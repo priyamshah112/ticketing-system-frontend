@@ -1,0 +1,56 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+table { 
+	width: 80%;
+    margin: 1rem auto;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+table tr > td,
+table th {
+	border: 1px solid #ddd;
+	color: #646464;
+    text-transform: capitalize;
+}
+
+table tr > td, table th {
+	padding: 0.2rem 0.5rem;
+	font-size: 14px;
+}
+
+table tr:nth-child(odd){
+    background-color: #fff;
+}
+
+table tr:nth-child(even){
+    background-color: #f6f6f6;
+}
+
+
+button{
+    margin: 1rem;
+    border: 1px solid #ddd;
+    background-color: #fefefe;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #525252;
+    cursor: pointer;
+}
+
+.flex-center-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginate_button{
+    
+}

@@ -1,0 +1,490 @@
+import React, { useState } from "react";
+import Navbar from "../navbar";
+// import data from "../data/ticket.json"
+import TableFeild from "../TableFeild";
+import { useEffect } from "react/cjs/react.development";
+import { getResponse } from "../../api/apiResponse";
+import { apipaths } from "../../api/apiPaths";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addTicketsAction } from "../../actions/ticketAction";
+import AddTicket from "../forms/AddTicket";
+import { getUserLists } from "../../actions/userActions";
+import { Link } from "react-router-dom";
+import MaterialTable from "material-table";
+import { Modal } from "antd";
+import $ from "jquery";
+import queryString from "query-string";
+import { dateFormatHandler } from "../../actions/commonAction";
+import { Tooltip } from "@material-ui/core";
+
+function Ticket(props) {
+  const columns = [
+    {
+      title: "ID",
+      field: "id",
+      width: "10%",
+    },
+    {
+      title: "Subject",
+      field: "subject",
+    },
+    {
+      title: "Created By",
+      field: "user.name",
+    },
+    {
+      title: "Created At",
+      field: "created_at",
+    },
+    {
+      title: "Assigned To",
+      field: "support.name",
+    },
+    {
+      title: "Status",
+      field: "status",
+    },
+    {
+      title: "Action",
+      field: "edit",
+      sorting: false,
+    },
+  ];
+  const [ticketModal, setTicketModal] = useState(false);
+
+  const [editTicket, setEditTicket] = useState();
+  const [ticketId, setTicketId] = useState("");
+  const [date, setDate] = useState("");
+  const [error, setError] = useState("");
+  const [users, setUsers] = useState([]);
+  const [isModal, setIsModal] = useState(false);
+  const [ticketinfo, setTicketInfo] = useState([]);
+  const userDetails = useSelector((state) => state.userDetails);
+  const ticketList = useSelector((state) => state.ticketList);
+  const userList = useSelector((state) => state.userList);
+  const userType = JSON.parse(localStorage.user_details).userType;
+  const { status } = queryString.parse(window.location.search);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    userListHandler();
+    $("#filter-ticket").slideToggle(0);
+  }, []);
+
+  useEffect(() => {
+    // // console.log(status)
+    if (status) {
+      filterSubmitHandler(status, true);
+    }
+  }, [status])
+
+  useEffect(() => {
+    if (userList.length > 0) getTickets();
+  }, [userList]);
+
+  const filterSubmitHandler = async (e, custom = false) => {
+    e && e.preventDefault && e.preventDefault();
+
+    let elem = $("#ticket-filter-form :input[value!='']").filter(function (index, element) { return $(element).val() != ''; }).serialize();
+    // // console.log("custom: ", custom)
+    if (custom) {
+      elem = `status=${e}`
+    }
+
+    let path = apipaths.listticket;
+    path["url"] = path["url"].split("?")[0] + "?" + elem;
+    await getResponse(path);
+  };
+
+  const userListHandler = async () => {
+    const { data } = await getResponse(apipaths.listusers, null);
+    const users = data.data.user;
+    dispatch(getUserLists(users));
+  }; 
+
+  const ViewTicketHandler = async (data) => {
+    setIsModal(true);
+    let ticket = [];
+    ticket.push(data);
+    setTicketInfo(ticket);
+  };
+
+  const getTickets = async () => {
+    const { data, error } = await getResponse(apipaths.listticket);
+    if (error) return toast.warn("Error in listing tickets.");
+
+    setUsers(data.data.support);
+
+    data.data.tickets.map((ticket) => {
+      let username = "";
+      let created_by = "";
+      userList.map((user) => {
+        if (ticket.assiged_to === user.id) {
+          username = user.name;
+        }
+
+        if (ticket.created_by === user.id) {
+          created_by = user.name;
+        }
+      });
+
+      ticket.created_by = username;
+      ticket.created_at = dateFormatHandler(ticket.created_at);
+      if (ticket.subject.length > 30)
+        ticket.subject = ticket.subject.substring(0, 30) + "...";
+
+      //ticket.assiged_to = username;
+      let ticketStatus = "";
+      // eslint-disable-next-line default-case
+      switch (ticket.status) {
+        case "Closed":
+          ticketStatus = (
+            <div className="status status-suspended">
+              <span></span> Closed
+            </div>
+          );
+          break;
+        case "In Progress":
+          ticketStatus = (
+            <div className="status status-success">
+              <span></span> Open
+            </div>
+          );
+          break;
+        case "Pending":
+          ticketStatus = (
+            <div className="status status-pending">
+              <span></span> Pending
+            </div>
+          );
+          break;
+      }
+      ticket.status = ticketStatus;
+      if (userType === "User") {
+      }
+      ticket.edit = (
+        <div className="flex justify-content-center">
+          {userType !== "User" && (
+            <Tooltip title="Assign Tickets">
+              <div>
+                <i
+                  className="fas fa-pen pr-3 table-icon bg-warning"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => ticketAssignHandler(ticket)}
+                ></i>
+              </div>
+            </Tooltip>
+          )}
+          <Tooltip title="View Ticket">
+            <div>
+              <i
+                className="fa fa-eye bg-success ml-3 table-icon"
+                onClick={() => ViewTicketHandler(ticket)}
+              ></i>
+            </div>
+          </Tooltip>
+        </div>
+      );
+      ticket.subject = (
+        <Link
+          style={{ fontWeight: 600 }}
+          to={`/ticket/details?ticketid=${ticket.id}`}
+        >
+          {ticket.subject}
+        </Link>
+      );
+    });
+
+    dispatch(addTicketsAction(data.data.tickets));
+  };
+
+  const ticketAssignHandler = (ticket) => {
+    setEditTicket(ticket);
+    setTicketId(ticket.id);
+  };
+
+  const onSubmit = async (ticket) => {
+    ticket.append("created_by", userDetails.id)
+    ticket.append("status", "Pending")
+    ticket.append("operation", "add")
+
+    const data = await getResponse(apipaths.addticket, ticket);
+    if (data.status === 200) {
+      toast.success(data.data.message)
+      getTickets();
+      setTicketModal(false);
+    }else{
+      toast.error(data.data.message)
+    }
+  };
+
+  const assignToSubmitHandler = async (userId) => {
+    if (userId) {
+      let { data } = await getResponse(apipaths.assignTicket, {
+        ticket_id: ticketId,
+        assigned_to: parseInt(userId),
+      });
+      userListHandler();
+      toast.success(data.message);
+    }
+    setEditTicket();
+    setTicketId();
+  };
+
+  return (
+    <>
+      <div className="wrapper">
+        <div className="main-panel">
+          <div className="content">
+            <div className="row buttons-row mt-5">
+              <div className="col-md-12">
+                <div className="d-flex align-items-center justify-content-between">
+                  <h2
+                    className="pull-left"
+                    style={{ fontSize: "22px", fontWeight: "600" }}
+                  >
+                    Tickets
+                  </h2>
+                  <div>
+                    <button
+                      className="btn btn-info btn-radius mx-3"
+                      onClick={() => $("#filter-ticket").slideToggle(300)}
+                    >
+                      More Filters
+                    </button>
+                    <button
+                      onClick={() => setTicketModal(true)}
+                      className="btn btn-outline-primary btn-radius"
+                    >
+                      Create
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 pt-2 border-radius-5">
+              <div className="search-box" id="filter-ticket">
+                <div className="card">
+                  <div className="card-body">
+                    <form onSubmit={filterSubmitHandler} id="ticket-filter-form" className="mb-5">
+                      <div className="row mx-auto pt-3">
+                        <div className="col-md-12">
+                          <h4 className="fw-bold">Search Ticket</h4>
+                        </div>
+                        <div className="col-12 col-md-6 col-lg-3 mt-3">
+                          <div>
+                            <div>
+                              <label className="mb-2">Subject</label>
+                            </div>
+                            <input
+                              name="subject"
+                              type="text"
+                              className="form-control filter-input"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mt-3">
+                          <div>
+                            <div>
+                              <label className="mb-2">Type</label>
+                            </div>
+                            <select name="type" className="form-control">
+                              <option>Select Type</option>
+                              <option>Hardware</option>
+                              <option>Software</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mt-3">
+                          <div>
+                            <div>
+                              <label className="mb-2">Product</label>
+                            </div>
+                            <select className="form-control">
+                              <option>Select Product</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mt-3">
+                          <div>
+                            <div>
+                              <label className="mb-2">Status</label>
+                            </div>
+                            <select name="status" className="form-control filter-status">
+                              <option>Select Status</option>
+                              <option value="pending">Pending</option>
+                              <option value="active">Active</option>
+                              <option value="close">Close</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mt-3">
+                          <div>
+                            <div>
+                              <label className="mb-2">Assigned To</label>
+                            </div>
+                            <select className="form-control">
+                              <option>Select Assigned To</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mt-3">
+                          <div>
+                            <div>
+                              <label className="mb-2">Created At</label>
+                            </div>
+                            <input
+                              type="date"
+                              className="form-control"
+                              value={date}
+                              onChange={(e) => setDate(e.target.value)}
+                            />
+                            {/* <div>
+                                                            <label className="mb-2">Assigned Date</label>
+                                                        </div>
+                                                        <RangePicker className="form-control" name="assigned_date" /> */}
+                          </div>
+                        </div>
+
+                        <div className="col-12 mt-3 text-right">
+                          <button
+                            className="btn  btn-info btn-radius"
+                            type="submit"
+                          >
+                            Search
+                          </button>
+                          <button
+                            className="btn  btn-info btn-radius ml-3"
+                            onClick={() => $("#filter-ticket").slideToggle(300)}
+                            type="button"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 pt-3 border-radius-5">
+              <div className="card">
+                <div className="card-body roles">
+                  <MaterialTable
+                    title=""
+                    data={ticketList}
+                    columns={columns}
+                    options={{
+                      search: true,
+                      paging: true,
+                      pageSize: 20,
+                      emptyRowsWhenPaging: false,
+                      exportButton: false,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="">
+        {ticketModal && (
+          <AddTicket setTicketModal={setTicketModal} onSubmit={onSubmit} />
+        )}
+      </div>
+      {editTicket && (
+        <div className="custom-modal open">
+          <div className="custom-modal-content col-md-6">
+            <h2>Assign Ticket</h2>
+
+            <div className="row align-items-center">
+              <div className="col-12 mt-4">
+                <label>Ticket Name: {editTicket.subject}</label>
+              </div>
+
+              <div className="col-lg-6 col-md-6 col-12 mt-4">
+                <label>Assign To</label>
+                <select
+                  onChange={(e) => assignToSubmitHandler(e.target.value)}
+                  className="form-control"
+                >
+                  <option value="">Choose User</option>
+                  {users &&
+                    users.map((user) => (
+                      <option value={user.id}>{user.name}</option>
+                    ))}
+                </select>
+              </div>
+              <div className="col-lg-6 col-md-6 col-12 mt-4">
+                <button
+                  className="btn btn-outline-danger btn-radius"
+                  onClick={(e) => assignToSubmitHandler()}
+                  style={{ marginTop: "20px" }}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <Modal
+        title="Ticket Details"
+        visible={isModal}
+        onOk={() => setIsModal(false)}
+        onCancel={() => setIsModal(false)}
+      >
+        <div className="">
+          <div>
+            {ticketinfo &&
+              ticketinfo.map((ticket, index) => (
+                <>
+                  <div className="row" key={index}>
+                    <div className="col-6 p-2">
+                      <span className="fw-bold">Ticket Id:</span>
+                      <span className="margin">{ticket.id}</span>
+                    </div>
+                    <div className="col-6 p-2">
+                      <span className="fw-bold">Subject:</span>
+                      <span className="margin">{ticket.subject}</span>
+                    </div>
+                    <div className="col-6 p-2">
+                      <span className="fw-bold">Status:</span>
+                      <span className="margin">{ticket.status}</span>
+                    </div>
+                    <div className="col-6 p-2">
+                      <span className="fw-bold">Closed At:</span>
+                      <span className="margin">{ticket.closed_at}</span>
+                    </div>
+                    <div className="col-6 p-2">
+                      <span className="fw-bold">Created At:</span>
+                      <span className="margin">{ticket.created_at}</span>
+                    </div>
+                    <div className="col-6 p-2">
+                      <span className="fw-bold">Assigned Date:</span>
+                      <span className="margin">{ticket.created_at}</span>
+                    </div>
+                  </div>
+                </>
+              ))}
+          </div>
+          {error && <p className="text-danger">{error}</p>}
+        </div>
+      </Modal>
+    </>
+  );
+}
+
+export default Ticket;

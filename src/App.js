@@ -1,0 +1,66 @@
+import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Dashboard from './component/dashboard/dashboard';
+import Index2 from './component/index2';
+import Navbar from './component/navbar';
+import Login from './component/login'; 
+import User from './component/user';
+import Ticket from './component/tickets';
+import Products from './component/products';
+import Roles from './component/roles';
+import UserModal from "./component/modal/userModal"
+import { Provider } from 'react-redux'
+import ProtectedRoute from './component/ProtectedRoute';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import TicketDetails from './component/ticketDetails';
+import 'antd/dist/antd.css';
+import CreateUser from './component/user/create';
+import TableDisplay from './component/ReactTable';
+import './App.css';
+import HardwareInventory from './component/hardwareInventory';
+import SoftwareInventory from './component/softwareInventory';
+import Faq from './component/faqs';
+import UserDashboard from './component/userDashboard';
+import ForgotPassword from './component/forgotpassword';
+import ResetPassword from './component/resetpassword';
+import ChangePassword from './component/changepassword';
+import ProfileView from './component/profileView';
+
+
+function App() {
+  return (
+    <div className="App">
+      <ToastContainer />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/forgotpassword" component={ForgotPassword} />
+          <Route exact path="/user/resetpassword" component={ResetPassword} />
+          <Route exact path="/changepassword" component={ChangePassword} />
+          <Route exact path="/profileview" component={ProfileView} />
+          <Route exact path="/user/create" component={UserModal} />
+          <Route exact path="/staff/create" component={CreateUser} />
+          <ProtectedRoute exact path="/table" component={TableDisplay} />
+          <div>
+            <Navbar />
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoute exact path="/userdashboard" component={UserDashboard} />
+            <ProtectedRoute exact path="/user" component={User} />
+            <ProtectedRoute exact path="/faqs" component={Faq} />              
+            <ProtectedRoute exact path="/role" component={Roles} />
+            <ProtectedRoute exact path="/tickets" component={Ticket} />
+            <ProtectedRoute path="/ticket/details" exact component={TicketDetails} />
+            <ProtectedRoute exact path="/products" component={Products} />
+            <ProtectedRoute exact path="/inventory/hardware" component={HardwareInventory} />
+            <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} />
+            <ProtectedRoute exact path="/inventory/software" component={SoftwareInventory} />
+            <ProtectedRoute exact path="/inventory/software/:userid" component={SoftwareInventory} />
+          </div>
+        </Switch>
+      </Router>
+    </div>
+  );
+}
+
+export default App;
