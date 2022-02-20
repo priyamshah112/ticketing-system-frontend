@@ -191,7 +191,7 @@ function User(props) {
           <Tooltip title="Edit User">
             <div>
               <i
-                class="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
+                className="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
                 onClick={() => {
                   setOperation("update");
                   setIsCreateModal(true);
@@ -227,7 +227,7 @@ function User(props) {
           <Tooltip title="view software inventories assigned">
             <div>
               <i
-                class="table-icon fas fa-laptop-code bg-success text-white cursor-pointer mr-2"
+                className="table-icon fas fa-laptop-code bg-success text-white cursor-pointer mr-2"
                 onClick={() => assignSoftwareInventoryHandler(user)}
               ></i>
             </div>

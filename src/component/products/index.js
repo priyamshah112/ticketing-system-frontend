@@ -46,15 +46,15 @@ function Ticket() {
                         <div className="mx-4 my-5">
                             {/* <TableData ticket={true} title="Products"  setTicketModal={setTicketModal} tableRows={tableRows} tableData={data.users}/> */}
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header flex ai-center jc-sb">
-                                            <div class="card-title">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="card">
+                                        <div className="card-header flex ai-center jc-sb">
+                                            <div className="card-title">
                                                 <h2>Products</h2>
                                             </div>
                                         </div>
-                                        <div class="card-body">
+                                        <div className="card-body">
                                             <TableFeild 
                                                 data={products}
                                                 columns={columns}

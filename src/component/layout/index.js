@@ -3,14 +3,17 @@ import Sidebar from './sidebar';
 import Header from './header/index';
 import Footer from './footer';
 
-function Layout(props) {
-
+function Layout (props){      
   return (
-    <div ClassName="layout">
+    <div ClassName="wrapper">
       <Header />
-      {/* <Sidebar /> */}
-      {props.children}
-      <Footer />
+      <Sidebar />
+      <div className="main-panel">
+        <div className="content">
+          {props.children}
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }

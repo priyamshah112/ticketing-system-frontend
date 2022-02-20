@@ -134,7 +134,7 @@ var statisticsChart = new Chart(ctx, {
 		}, 
 		legendCallback: function(chart) { 
 			var text = []; 
-			text.push('<ul class="' + chart.id + '-legend html-legend">'); 
+			text.push('<ul className="' + chart.id + '-legend html-legend">'); 
 			for (var i = 0; i < chart.data.datasets.length; i++) { 
 				text.push('<li><span style="background-color:' + chart.data.datasets[i].legendColor + '"></span>'); 
 				if (chart.data.datasets[i].label) { 

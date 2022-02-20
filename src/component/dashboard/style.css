@@ -1,11 +1,4 @@
-.dashboard-card {
-    background-color: #ffffff;
-    padding: 1rem;
-    /* border-radius: 0.5rem; */
-    box-shadow: 0px 2px 6px #0000000a;
-    border-radius: 12px;
-    height: 100%;
-  }
+
   
   .f-14 {
     font-size: 14px !important;
@@ -48,13 +41,6 @@
     font-size: 1.8rem;
   }
   
-  .dashboard-card-container {
-    background-color: rgba(66, 43, 136, 0.2);
-    padding: 15px;
-    border-radius: 0px 26px 24px 40px;
-    overflow: hidden;
-  }
-  
   .tab-view {
     background-color: rgba(243, 244, 244, 1);
     padding: 5px 12px;
@@ -80,7 +66,6 @@
   } */
   
   .dashboard-inventory {
-    height: 100%;
     border-radius: 70px;
     overflow: hidden;
     margin-top: 5px;
@@ -88,7 +73,7 @@
   
 
   .dashboard-inventory .sec-one {
-    background-color: rgba(66, 43, 136, 1);
+    background-color: #1269db;
     height: 100%;
     border-radius: 70px 0 70px 70px;
   } 

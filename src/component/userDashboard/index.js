@@ -57,7 +57,7 @@ function UserDashboard() {
       <div className="wrapper">
         <div className="main-panel">
           <div className="content">
-            <div class="container-fluid mt-4 pt-3">
+            <div className="container-fluid mt-4 pt-3">
               <div className="row my-2 ">
                 <div className="title-main col-lg-6">
                   <h1>Welcome</h1>
@@ -77,19 +77,19 @@ function UserDashboard() {
                   </div>
                 </div>
               </div>
-              <div class="row my-4">
-                <div class="col-lg-4 col-md-6 my-2">
+              <div className="row my-4">
+                <div className="col-lg-4 col-md-6 my-2">
                   <div
-                    class="card small-card cursor-pointer"
+                    className="card small-card cursor-pointer"
                     onClick={() => setTicketModal(true)}
                   >
-                    <div class="card-body">
-                      <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                    <div className="card-body">
+                      <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                         <div>
                           <img
                             src={create}
                             alt="create"
-                            class="img-fluid"
+                            className="img-fluid"
                             style={{ width: "35%" }}
                           />
                         </div>
@@ -98,36 +98,36 @@ function UserDashboard() {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 my-2">
-                  <div class="card small-card">
-                    <div class="card-body">
-                      <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                <div className="col-lg-4 col-md-6 my-2">
+                  <div className="card small-card">
+                    <div className="card-body">
+                      <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                         <div>
-                          <img src={process} alt="create" class="img-fluid" />
+                          <img src={process} alt="create" className="img-fluid" />
                         </div>
                         <h4>In Process</h4>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 my-2">
-                  <div class="card small-card">
-                    <div class="card-body">
-                      <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                <div className="col-lg-4 col-md-6 my-2">
+                  <div className="card small-card">
+                    <div className="card-body">
+                      <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                         <div>
-                          <img src={close} alt="create" class="img-fluid" />
+                          <img src={close} alt="create" className="img-fluid" />
                         </div>
                         <h4>Close Incedent Report</h4>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* <div class="col-lg-3 my-2">
-                                    <div class="card small-card">
-                                        <div class="card-body">
-                                            <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                {/* <div className="col-lg-3 my-2">
+                                    <div className="card small-card">
+                                        <div className="card-body">
+                                            <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                                                 <div>
-                                                    <img src={message} alt="create" class="img-fluid" />
+                                                    <img src={message} alt="create" className="img-fluid" />
                                                 </div>
                                                 <h4>New Messages</h4>
                                             </div>
@@ -135,17 +135,17 @@ function UserDashboard() {
                                     </div>
                                 </div> */}
               </div>
-              <div class="row my-4">
-                <div class="col-lg-4 my-2">
-                  <div class="card medium-card">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div class="d-flex flex-row justify-content-between ">
+              <div className="row my-4">
+                <div className="col-lg-4 my-2">
+                  <div className="card medium-card">
+                    <div className="card-body d-flex flex-column justify-content-between">
+                      <div className="d-flex flex-row justify-content-between ">
                         <h5>Assigned Hardware</h5>
 
                         <p>{userdata.totalHardwares}</p>
                       </div>
-                      <div class="md-card-icon mx-auto my-2">
-                        <img src={pc} alt="pc" class="img-fluid" />
+                      <div className="md-card-icon mx-auto my-2">
+                        <img src={pc} alt="pc" className="img-fluid" />
                       </div>
                       <div>
                         <p>
@@ -156,15 +156,15 @@ function UserDashboard() {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 my-2">
-                  <div class="card medium-card">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div class="d-flex flex-row justify-content-between ">
+                <div className="col-lg-4 my-2">
+                  <div className="card medium-card">
+                    <div className="card-body d-flex flex-column justify-content-between">
+                      <div className="d-flex flex-row justify-content-between ">
                         <h5>Assigned Software</h5>
                         <p>{userdata.totalSoftware}</p>
                       </div>
-                      <div class="md-card-icon mx-auto my-2">
-                        <img src={software} alt="pc" class="img-fluid" />
+                      <div className="md-card-icon mx-auto my-2">
+                        <img src={software} alt="pc" className="img-fluid" />
                       </div>
                       <div>
                         <p>
@@ -175,14 +175,14 @@ function UserDashboard() {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 my-2">
-                  <div class="card medium-card">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div class="d-flex text-center">
+                <div className="col-lg-4 my-2">
+                  <div className="card medium-card">
+                    <div className="card-body d-flex flex-column justify-content-between">
+                      <div className="d-flex text-center">
                         <h5>Create Request For Hardware</h5>
                       </div>
-                      <div class="md-card-icon mx-auto my-2">
-                        <img src={create1} alt="pc" class="img-fluid" />
+                      <div className="md-card-icon mx-auto my-2">
+                        <img src={create1} alt="pc" className="img-fluid" />
                       </div>
                       <div>
                         <p>
@@ -194,21 +194,21 @@ function UserDashboard() {
                   </div>
                 </div>
               </div>
-              <div class="row my-4">
-                {/* <div class="col-lg-6 my-2">
-                  <div class="card large-card calender-card">
-                    <div class="card-body">
-                      <div class="auto-jsCalendar"></div>
+              <div className="row my-4">
+                {/* <div className="col-lg-6 my-2">
+                  <div className="card large-card calender-card">
+                    <div className="card-body">
+                      <div className="auto-jsCalendar"></div>
                     </div>
                   </div>
                 </div> */}
-                <div class="col-lg-12 my-2">
-                  <div class="card acc-card">
-                    <div class="card-heading pt-3 px-4">
+                <div className="col-lg-12 my-2">
+                  <div className="card acc-card">
+                    <div className="card-heading pt-3 px-4">
                       <h3 className="mb-0">FAQs</h3>
                     </div>
-                    <div class="card-body d-flex flex-column pt-0">
-                      {/* <div class="d-flex text-left">
+                    <div className="card-body d-flex flex-column pt-0">
+                      {/* <div className="d-flex text-left">
                                                 <h5>FAQs</h5>
                                             </div> */}
                       <div id="accordion my-3">

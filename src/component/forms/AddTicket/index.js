@@ -73,7 +73,7 @@ function AddTicket(props) {
                   Assigned To<span className="text-danger">*</span>
                 </label>
                 <select
-                  class="form-control"
+                  className="form-control"
                   onChange={(e) =>
                     setFormdata({ ...formdata, assiged_to: e.target.value })
                   }

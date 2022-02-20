@@ -129,9 +129,9 @@ function AddUser(props) {
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-6 mt-3">
-                            <label class="form-label d-block mb-1">Hired As</label>
-                            <div class="selectgroup selectgroup-pills">
-                                <label class="selectgroup-item">
+                            <label className="form-label d-block mb-1">Hired As</label>
+                            <div className="selectgroup selectgroup-pills">
+                                <label className="selectgroup-item">
                                     <InputFeild
                                         type="radio"
                                         onChange={(e) =>
@@ -142,9 +142,9 @@ function AddUser(props) {
                                         className="selectgroup-input"
                                         selected
                                     />
-                                    <span class="selectgroup-button">1099</span>
+                                    <span className="selectgroup-button">1099</span>
                                 </label>
-                                <label class="selectgroup-item">
+                                <label className="selectgroup-item">
                                     <InputFeild
                                         type="radio"
                                         onChange={(e) =>
@@ -154,9 +154,9 @@ function AddUser(props) {
                                         value="W-2"
                                         className="selectgroup-input"
                                     />
-                                    <span class="selectgroup-button">W-2</span>
+                                    <span className="selectgroup-button">W-2</span>
                                 </label>
-                                <label class="selectgroup-item">
+                                <label className="selectgroup-item">
                                     <InputFeild
                                         type="radio"
                                         onChange={(e) =>
@@ -166,7 +166,7 @@ function AddUser(props) {
                                         value="B2B"
                                         className="selectgroup-input"
                                     />
-                                    <span class="selectgroup-button">B2B</span>
+                                    <span className="selectgroup-button">B2B</span>
                                 </label>
                             </div>
                         </div>
