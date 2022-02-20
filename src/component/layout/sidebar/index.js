@@ -1,21 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react/cjs/react.development";
-import { addUserDetailsAction } from "../../actions/userActions";
-import Footer from "../footer";
-import dashboard from "../assets/Category.svg";
-import userimg from "../assets/Plus.svg";
-import tickets from "../assets/File.svg";
-import inventory from "../assets/Invoice.svg";
-import faq from "../assets/Comment.svg";
-import role from "../assets/Education.svg";
-import admin from "../assets/Profile.svg";
-import logout from "../assets/Logout.svg";
-import ChangePassword from "../changepassword";
-import hardware from "../assets/Hardware.svg";
-import software from "../assets/Software.svg";
-import ProfileView from "../profileView";
+import { addUserDetailsAction } from "../../../actions/userActions";
+import dashboard from "../../assets/Category.svg";
+import userimg from "../../assets/Plus.svg";
+import tickets from "../../assets/File.svg";
+import inventory from "../../assets/Invoice.svg";
+import faq from "../../assets/Comment.svg";
+import role from "../../assets/Education.svg";
+import admin from "../../assets/Profile.svg";
+import logout from "../../assets/Logout.svg";
+import ChangePassword from "../../changepassword";
+import hardware from "../../assets/Hardware.svg";
+import software from "../../assets/Software.svg";
+import ProfileView from "../../profileView";
 import $ from "jquery";
 
 function Sidebar() {
@@ -224,7 +223,6 @@ function Sidebar() {
             </li>
           </ul>
         </div>
-        <Footer />
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../navbar";
 // import data from "../data/ticket.json"
 import TableFeild from "../TableFeild";
 import { useEffect } from "react/cjs/react.development";

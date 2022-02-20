@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../navbar";
 import data from "../data/user.json";
 import UserModal from "../modal/userModal";
 import TableFeild from "../TableFeild";

@@ -344,7 +344,7 @@ function Dashboard() {
             Dashboard
           </h2>
           <div className="dashboard-card-container">
-            <div className="row">
+            <div className="row flex-wrap">
               {cards &&
                 cards.map((card, i) => {
                   if (i === cards.length - 1) return null;
@@ -382,7 +382,7 @@ function Dashboard() {
                 </div>
               )}
             </div>
-            <div className="row mt-2 mb-2">
+            <div className="row flex-wrap mt-2 mb-2">
               <div className="col-xl-8 col-lg-12 col-md-12 col-12 mt-2">
                 <p className="software-heading mb-0 text-center">Country</p>
                 <div
@@ -466,10 +466,10 @@ function Dashboard() {
               </div>
 
               <div className="col-xl-4 col-lg-12 col-md-12 col-12 mt-3">
-                <p className="software-heading mb-0 text-center">
-                  Software inventory
-                </p>
                 <div className="dashboard-inventory bg-white">
+                  <p className="software-heading mb-0 text-center">
+                    Software inventory
+                  </p>
                   <div className="row" style={{ height: "100%" }}>
                     <div className="col-lg-5 col-md-5 col-12 px-0">
                       <div className="sec-one position-relative">

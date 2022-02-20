@@ -8,7 +8,7 @@
 body {
   height: 100%;
   width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato,sans-serif;
 }
 
 label {
@@ -823,12 +823,6 @@ form label {
   font-size: 18px;
 }
 
-@media screen and (max-width: 1510px) {
-  .col-lg-3 .dashboard-card {
-    height: 150px;
-  }
-}
-
 @media screen and (max-width: 1450px) {
   .software-heading {
     display: block;
@@ -845,9 +839,6 @@ form label {
   .dashboard-card-container .col-xl-8 {
     margin: 1px;
   }
-  .col-xl-8 .dashboard-card {
-    width: 75vw;
-  }
   .col-xl-4 .dashboard-inventory {
     width: 75vw;
   }
@@ -863,9 +854,6 @@ form label {
   .user-block {
     max-height: 400px;
     overflow-y: scroll;
-  }
-  .col-xl-8 .dashboard-card {
-    width: auto;
   }
   .col-xl-4 .dashboard-inventory {
     width: auto;
