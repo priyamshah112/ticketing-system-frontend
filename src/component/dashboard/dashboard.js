@@ -340,7 +340,7 @@ function Dashboard() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <div className="panel-header bg-primary-gradient">
         <div className="page-inner py-5">
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
@@ -1252,7 +1252,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

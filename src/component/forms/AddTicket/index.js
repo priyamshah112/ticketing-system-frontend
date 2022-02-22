@@ -6,6 +6,8 @@ import { getUserLists } from "../../../actions/userActions";
 import { apipaths } from "../../../api/apiPaths";
 import { getResponse } from "../../../api/apiResponse";
 import TextEditor from "../../TextEditor";
+import { Modal } from "antd";
+
 function AddTicket(props) {
   let form_data = new FormData();
   const [formdata, setFormdata] = useState({});
@@ -32,103 +34,106 @@ function AddTicket(props) {
   };
 
   return (
-    <div className="custom-modal open">
-      <div className="custom-modal-content col-md-6">
-        <h2 className="mb-3">Create Ticket</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const { message, subject, assiged_to } = formdata;
+    <Modal
+      title="Create Ticket"
+      visible={props.ticketModal}
+      // onOk={() => assignToSubmitHandler(false)}
+      onCancel={() => setTicketModal(false)}
+      footer={null}
+    >
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const { message, subject, assiged_to } = formdata;
 
-            if (!message || !subject || !assiged_to) {
-              toast.error("All field are required.");
-              setTicketModal(false);
-              return null;
-            }
-            form_data.append("assiged_to", formdata.assiged_to);
-            form_data.append("message", formdata.message);
-            form_data.append("subject", formdata.subject);
-            form_data.append("file", file);
+          if (!message || !subject || !assiged_to) {
+            toast.error("All field are required.");
+            setTicketModal(false);
+            return null;
+          }
+          form_data.append("assiged_to", formdata.assiged_to);
+          form_data.append("message", formdata.message);
+          form_data.append("subject", formdata.subject);
+          form_data.append("file", file);
 
-            onSubmit(form_data);
-            setProcess(true); 
-          }}
-        >
-          <div className="row">
+          onSubmit(form_data);
+          setProcess(true); 
+        }}
+      >
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-12">
+            <label>
+              Subject<span className="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) =>
+                setFormdata({ ...formdata, subject: e.target.value })
+              }
+            />
+          </div>
+          {userType !== "User" && (
             <div className="col-lg-6 col-md-6 col-12">
               <label>
-                Subject<span className="text-danger">*</span>
+                Assigned To<span className="text-danger">*</span>
               </label>
-              <input
-                type="text"
+              <select
                 className="form-control"
                 onChange={(e) =>
-                  setFormdata({ ...formdata, subject: e.target.value })
+                  setFormdata({ ...formdata, assiged_to: e.target.value })
                 }
+              >
+                <option value="">Choose One</option>
+
+                {userList.map((user) => (
+                  <option
+                    className="text-capitalize"
+                    key={user.id}
+                    value={user.id}
+                  >
+                    {user.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div className="col-lg-12 col-md-12 col-12 mt-4">
+            <div>
+              <label>Attachment</label>
+              <input
+                type={"file"}
+                className="form-control"
+                onChange={handleFileInput}
               />
             </div>
-            {userType !== "User" && (
-              <div className="col-lg-6 col-md-6 col-12">
-                <label>
-                  Assigned To<span className="text-danger">*</span>
-                </label>
-                <select
-                  className="form-control"
-                  onChange={(e) =>
-                    setFormdata({ ...formdata, assiged_to: e.target.value })
-                  }
-                >
-                  <option value="">Choose One</option>
-
-                  {userList.map((user) => (
-                    <option
-                      className="text-capitalize"
-                      key={user.id}
-                      value={user.id}
-                    >
-                      {user.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            <div className="col-lg-12 col-md-12 col-12 mt-4">
-              <div>
-                <label>Attachment</label>
-                <input
-                  type={"file"}
-                  className="form-control"
-                  onChange={handleFileInput}
-                />
-              </div>
-            </div>
-            <div className="col-lg-12 col-md-12 col-12 mt-4">
-              <lable>
-                Message<span className="text-danger">*</span>
-              </lable>
-              <TextEditor
-                onChange={(e) => setFormdata({ ...formdata, message: e })}
+          </div>
+          <div className="col-lg-12 col-md-12 col-12 mt-4">
+            <lable>
+              Message<span className="text-danger">*</span>
+            </lable>
+            <TextEditor
+              onChange={(e) => setFormdata({ ...formdata, message: e })}
+            />
+          </div>
+          <div className="col-lg-6 col-md-6 col-12">
+            <div className="mt-4">
+              <input type="submit" className="btn btn-success" />
+              <input
+                type="button"
+                value="Close"
+                className="btn btn-danger ml-4"
+                onClick={() => setTicketModal(false)}
               />
             </div>
-            <div className="col-lg-6 col-md-6 col-12">
-              <div className="mt-4">
-                <input type="submit" className="btn btn-success" />
-                <input
-                  type="button"
-                  value="Close"
-                  className="btn btn-danger ml-4"
-                  onClick={() => setTicketModal(false)}
-                />
-              </div>
-            </div>
           </div>
-          <div className="text-center mt-4">
-            {process && <p>Creating Ticket Please Wait</p>}
-          </div>
-        </form>
-      </div>
-    </div>
+        </div>
+        <div className="text-center mt-4">
+          {process && <p>Creating Ticket Please Wait</p>}
+        </div>
+      </form>
+    </Modal>
   );
 }
 

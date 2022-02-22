@@ -9,11 +9,6 @@ function Footer() {
             <ul className="nav">
               <li className="nav-item">
                 <a className="nav-link" href="javascript:void(0);">
-                  ThemeKita
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="javascript:void(0);">
                   Help
                 </a>
               </li>

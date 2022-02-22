@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import data from "../data/ticket.json"
-import TableFeild from "../TableFeild";
 import { useEffect } from "react/cjs/react.development";
 import { getResponse } from "../../api/apiResponse";
 import { apipaths } from "../../api/apiPaths";
@@ -53,6 +51,7 @@ function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
 
   const [editTicket, setEditTicket] = useState();
+  const [editTicketModel, setEditTicketModel] = useState(false);
   const [ticketId, setTicketId] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
@@ -200,6 +199,7 @@ function Ticket(props) {
   };
 
   const ticketAssignHandler = (ticket) => {
+    setEditTicketModel(true);
     setEditTicket(ticket);
     setTicketId(ticket.id);
   };
@@ -233,212 +233,182 @@ function Ticket(props) {
   };
 
   return (
-    <>
-      <div className="wrapper">
-        <div className="main-panel">
-          <div className="content">
-            <div className="row buttons-row mt-5">
-              <div className="col-md-12">
-                <div className="d-flex align-items-center justify-content-between">
-                  <h2
-                    className="pull-left"
-                    style={{ fontSize: "22px", fontWeight: "600" }}
-                  >
-                    Tickets
-                  </h2>
-                  <div>
-                    <button
-                      className="btn btn-info btn-radius mx-3"
-                      onClick={() => $("#filter-ticket").slideToggle(300)}
-                    >
-                      More Filters
-                    </button>
-                    <button
-                      onClick={() => setTicketModal(true)}
-                      className="btn btn-outline-primary btn-radius"
-                    >
-                      Create
-                    </button>
-                  </div>
-                </div>
-              </div>
+    <React.Fragment>
+      <div className="panel-header bg-primary-gradient">
+        <div className="page-inner py-5">
+          <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+              <h2 className="text-white pb-2 fw-bold">Tickets</h2>
+              <h5 className="text-white op-7 mb-2">Manage Your Inventory And Tickets</h5>
             </div>
+            <div className="ml-md-auto py-2 py-md-0">
+              <a href="#" className="btn btn-white btn-border btn-round mr-2" onClick={() => $("#filter-ticket").slideToggle(300)}>Filters</a>
+              <a href="#" className="btn btn-secondary btn-round" onClick={() => setTicketModal(true)}>Add Ticket</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="page-inner mt--5">
 
-            <div className="px-4 pt-2 border-radius-5">
-              <div className="search-box" id="filter-ticket">
-                <div className="card">
-                  <div className="card-body">
-                    <form onSubmit={filterSubmitHandler} id="ticket-filter-form" className="mb-5">
-                      <div className="row mx-auto pt-3">
-                        <div className="col-md-12">
-                          <h4 className="fw-bold">Search Ticket</h4>
+        <div className="border-radius-5">
+          <div className="search-box" id="filter-ticket">
+            <div className="card">
+              <div className="card-body">
+                <form onSubmit={filterSubmitHandler} id="ticket-filter-form" className="mb-5">
+                  <div className="row mx-auto pt-3">
+                    <div className="col-md-12">
+                      <h4 className="fw-bold">Search Ticket</h4>
+                    </div>
+                    <div className="col-12 col-md-6 col-lg-3 mt-3">
+                      <div>
+                        <div>
+                          <label className="mb-2">Subject</label>
                         </div>
-                        <div className="col-12 col-md-6 col-lg-3 mt-3">
-                          <div>
-                            <div>
-                              <label className="mb-2">Subject</label>
-                            </div>
-                            <input
-                              name="subject"
-                              type="text"
-                              className="form-control filter-input"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-md-6 col-lg-3 mt-3">
-                          <div>
-                            <div>
-                              <label className="mb-2">Type</label>
-                            </div>
-                            <select name="type" className="form-control">
-                              <option>Select Type</option>
-                              <option>Hardware</option>
-                              <option>Software</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-md-6 col-lg-3 mt-3">
-                          <div>
-                            <div>
-                              <label className="mb-2">Product</label>
-                            </div>
-                            <select className="form-control">
-                              <option>Select Product</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-md-6 col-lg-3 mt-3">
-                          <div>
-                            <div>
-                              <label className="mb-2">Status</label>
-                            </div>
-                            <select name="status" className="form-control filter-status">
-                              <option>Select Status</option>
-                              <option value="pending">Pending</option>
-                              <option value="active">Active</option>
-                              <option value="close">Close</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-md-6 col-lg-3 mt-3">
-                          <div>
-                            <div>
-                              <label className="mb-2">Assigned To</label>
-                            </div>
-                            <select className="form-control">
-                              <option>Select Assigned To</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-md-6 col-lg-3 mt-3">
-                          <div>
-                            <div>
-                              <label className="mb-2">Created At</label>
-                            </div>
-                            <input
-                              type="date"
-                              className="form-control"
-                              value={date}
-                              onChange={(e) => setDate(e.target.value)}
-                            />
-                            {/* <div>
-                                                            <label className="mb-2">Assigned Date</label>
-                                                        </div>
-                                                        <RangePicker className="form-control" name="assigned_date" /> */}
-                          </div>
-                        </div>
-
-                        <div className="col-12 mt-3 text-right">
-                          <button
-                            className="btn  btn-info btn-radius"
-                            type="submit"
-                          >
-                            Search
-                          </button>
-                          <button
-                            className="btn  btn-info btn-radius ml-3"
-                            onClick={() => $("#filter-ticket").slideToggle(300)}
-                            type="button"
-                          >
-                            Close
-                          </button>
-                        </div>
+                        <input
+                          name="subject"
+                          type="text"
+                          className="form-control filter-input"
+                        />
                       </div>
-                    </form>
+                    </div>
+
+                    <div className="col-12 col-md-6 col-lg-3 mt-3">
+                      <div>
+                        <div>
+                          <label className="mb-2">Type</label>
+                        </div>
+                        <select name="type" className="form-control">
+                          <option>Select Type</option>
+                          <option>Hardware</option>
+                          <option>Software</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-12 col-md-6 col-lg-3 mt-3">
+                      <div>
+                        <div>
+                          <label className="mb-2">Product</label>
+                        </div>
+                        <select className="form-control">
+                          <option>Select Product</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-12 col-md-6 col-lg-3 mt-3">
+                      <div>
+                        <div>
+                          <label className="mb-2">Status</label>
+                        </div>
+                        <select name="status" className="form-control filter-status">
+                          <option>Select Status</option>
+                          <option value="pending">Pending</option>
+                          <option value="active">Active</option>
+                          <option value="close">Close</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-12 col-md-6 col-lg-3 mt-3">
+                      <div>
+                        <div>
+                          <label className="mb-2">Assigned To</label>
+                        </div>
+                        <select className="form-control">
+                          <option>Select Assigned To</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-12 col-md-6 col-lg-3 mt-3">
+                      <div>
+                        <div>
+                          <label className="mb-2">Created At</label>
+                        </div>
+                        <input
+                          type="date"
+                          className="form-control"
+                          value={date}
+                          onChange={(e) => setDate(e.target.value)}
+                        />
+                        {/* <div>
+                                                        <label className="mb-2">Assigned Date</label>
+                                                    </div>
+                                                    <RangePicker className="form-control" name="assigned_date" /> */}
+                      </div>
+                    </div>
+
+                    <div className="col-12 mt-3 text-right">
+                      <button
+                        className="btn  btn-info btn-radius"
+                        type="submit"
+                      >
+                        Search
+                      </button>
+                      <button
+                        className="btn  btn-info btn-radius ml-3"
+                        onClick={() => $("#filter-ticket").slideToggle(300)}
+                        type="button"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="px-4 pt-3 border-radius-5">
-              <div className="card">
-                <div className="card-body roles">
-                  <MaterialTable
-                    title=""
-                    data={ticketList}
-                    columns={columns}
-                    options={{
-                      search: true,
-                      paging: true,
-                      pageSize: 20,
-                      emptyRowsWhenPaging: false,
-                      exportButton: false,
-                    }}
-                  />
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="">
-        {ticketModal && (
-          <AddTicket setTicketModal={setTicketModal} onSubmit={onSubmit} />
-        )}
-      </div>
-      {editTicket && (
-        <div className="custom-modal open">
-          <div className="custom-modal-content col-md-6">
-            <h2>Assign Ticket</h2>
-
-            <div className="row align-items-center">
-              <div className="col-12 mt-4">
-                <label>Ticket Name: {editTicket.subject}</label>
-              </div>
-
-              <div className="col-lg-6 col-md-6 col-12 mt-4">
-                <label>Assign To</label>
-                <select
-                  onChange={(e) => assignToSubmitHandler(e.target.value)}
-                  className="form-control"
-                >
-                  <option value="">Choose User</option>
-                  {users &&
-                    users.map((user) => (
-                      <option value={user.id}>{user.name}</option>
-                    ))}
-                </select>
-              </div>
-              <div className="col-lg-6 col-md-6 col-12 mt-4">
-                <button
-                  className="btn btn-outline-danger btn-radius"
-                  onClick={(e) => assignToSubmitHandler()}
-                  style={{ marginTop: "20px" }}
-                >
-                  Close
-                </button>
-              </div>
+        <div className="border-radius-5">
+          <div className="card">
+            <div className="card-body roles">
+              <MaterialTable
+                title=""
+                data={ticketList}
+                columns={columns}
+                options={{
+                  search: true,
+                  paging: true,
+                  pageSize: 20,
+                  emptyRowsWhenPaging: false,
+                  exportButton: false,
+                }}
+              />
             </div>
           </div>
         </div>
-      )}
 
+        <div className="">
+          {ticketModal && (
+            <AddTicket setTicketModal={setTicketModal} ticketModal={ticketModal} onSubmit={onSubmit} />
+          )}
+        </div>
+      </div>
+      <Modal
+        title="Assign Ticket"
+        visible={editTicketModel}
+        onOk={() => assignToSubmitHandler(false)}
+        onCancel={() => setEditTicketModel(false)}
+      >
+        <div className="col-12 mt-4">
+          <label>Ticket Name: {editTicket?.subject}</label>
+        </div>
+        <div className="col-12 mt-4">
+          <label>Assign To</label>
+          <select
+            onChange={(e) => assignToSubmitHandler(e.target.value)}
+            className="form-control"
+          >
+            <option value="">Choose User</option>
+            {users &&
+              users.map((user) => (
+                <option value={user.id}>{user.name}</option>
+              ))}
+          </select>
+        </div>
+      </Modal>
       <Modal
         title="Ticket Details"
         visible={isModal}
@@ -482,7 +452,7 @@ function Ticket(props) {
           {error && <p className="text-danger">{error}</p>}
         </div>
       </Modal>
-    </>
+    </React.Fragment>
   );
 }
 
