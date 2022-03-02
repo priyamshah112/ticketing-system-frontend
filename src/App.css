@@ -1,3 +1,247 @@
 .main-header{
     z-index: 999 !important;
 }
+.sidebar.sidebar-style-2 .nav.nav-primary>.nav-item.active>a{
+    background-color: #5c55bf!important;
+}
+.content-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+.content-wrapper .row {
+    height: 100%;
+  }
+.banner-img {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+      url("https://www.vertexone.net/hubfs/office-support-1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.auth-content {
+    width: 80%;
+    margin: auto;
+  }
+
+.auth-wrapper .auth-side-img {
+    padding-right: 400px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+  }
+  
+  .aut-bg-img .auth-content {
+    padding: 70px 40px;
+  }
+  
+  .bg-white {
+    background-color: white !important;
+  }
+  
+  .auth-wrapper .auth-content {
+    position: relative;
+    padding: 15px;
+    z-index: 5;
+  }
+  
+  .auth-wrapper .auth-side-form {
+    position: relative;
+    min-height: 100%;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    left: auto;
+    float: right;
+  }
+  
+  .auth-wrapper .auth-content:not(.container) {
+    width: 500px;
+  }
+  
+  .logo {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  .login-logo {
+    width: 40%;
+    margin: 20px;
+  }
+  
+  .auth-content-logo {
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .aut-bg-img .auth-content {
+    padding: 70px 40px;
+  }
+  
+  .auth-wrapper .auth-side-form > * {
+    position: relative;
+    z-index: 5;
+  }
+  .main-banner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+    height: 100%;
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  /* ******* Root Css ************ */
+  .status {
+    padding: 2px 6px;
+    width: fit-content;
+    border-radius: 40px;
+    font-size: 13px;
+  }
+  .status-active {
+    background: #e6e6f2;
+    color: #4a4aff;
+  }
+  .status-suspended {
+    background: #e6e6f2;
+    color: rgb(241 88 96);
+  }
+  .status-success {
+    background: #e6e6f2;
+    color: rgb(36, 145, 22);
+  }
+  .status-pending {
+    background: #ede7b3;
+    color: rgb(110, 104, 147);
+  }
+
+  .status:before {
+    content: "\A";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .status-active:before {
+    background-color: #4a4aff;
+  }
+  .status-pending:before {
+    background-color: rgb(110, 104, 147);
+  }
+  .status-suspended:before {
+    background-color: rgb(241 88 96);
+  }
+  .status-success:before {
+    background-color: rgb(36, 145, 22);
+  }
+  form label {
+    font-weight: 700;
+  }
+  /* ******* Custom Css ********** */
+  .MuiPaper-elevation2 {
+    box-shadow: none !important;
+  }
+  .MuiToolbar-root .MuiInput-root {
+    background: #f4f2ff;
+    padding: 5px;
+    border-radius: 6px;
+    padding-left: 15px;
+  }
+  .MuiToolbar-root .MuiInput-root input {
+    width: 300px;
+  }
+  .MuiInput-underline:before {
+    content: none !important;
+  }
+  .MuiTableCell-root {
+    padding: 0 !important;
+    padding: 10px 0 !important;
+  }
+  .MuiTableCell-root a{
+    text-decoration: none;
+    color: inherit;
+  }
+  .MuiTableCell-head {
+    background-color: #f4f2ff !important;
+    font-weight: bold;
+  }
+  .MuiTableCell-head div {
+    font-weight: bold;
+  }
+  .MuiTableCell-footer {
+    border-bottom: 0 !important;
+    float: none !important;
+  }  
+  .MuiTable-root table th {
+    background: #f4f2ff !important;
+  }
+  .MuiTable-root td:first-child,
+  .MuiTable-root th:first-child {
+    /* text-align: center; */
+    padding-left: 30px !important;
+  }    
+  .MuiTable-root td {
+    text-transform: capitalize;
+    padding: 10px 0 !important;
+  } 
+  .MuiTable-root td i {
+    border-radius: 0 !important;
+    padding: 0 !important;
+    width: 25px !important;
+    height: 25px !important;
+    font-size: 11px !important;
+    border-radius: 3px !important;
+  } 
+  .MuiTableBody-root .table-icon {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+    color: white;
+    cursor: pointer;
+  }
+  .MuiTableBody-root .table-icon::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .Component-paginationRoot-1
+  {
+    width: 10%;
+  }
+  .users th:last-child, .users th:nth-last-child(2){
+    text-align: center;
+  }
+  .faq-container h1 {
+    color: #858585;
+    font-size: 24px;
+  }
+  .faq-container p {
+    color: #858585;
+    font-size: 18px;
+  }
+  .faq-cards {
+    height: 200px;
+    color: #858585;
+    box-shadow: none;
+    border-radius: 10px !important;
+  }
+  .faq-cards i {
+    font-size: 20px;
+  }
+  .faq-cards h5 {
+    font-size: 18px;
+    color: #858585;
+    margin-bottom: 5px;
+  }
+  .ant-collapse{
+    border: none;
+  }

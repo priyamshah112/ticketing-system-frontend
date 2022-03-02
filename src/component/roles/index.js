@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import TableFeild from "../TableFeild";
 import { roleListAction } from "../../actions/roleAction";
 import { useDispatch, useSelector } from "react-redux";
 import RoleForm from "../forms/roleForm";
@@ -8,6 +7,7 @@ import { apipaths } from "../../api/apiPaths";
 import swal from "sweetalert";
 import { toast } from "react-toastify";
 import MaterialTable from "material-table";
+import { Modal } from "antd";
 import $ from "jquery"
 import { Tooltip } from "@material-ui/core";
 
@@ -15,7 +15,7 @@ function Ticket() {
 
     const roles = useSelector(state => state.roles);
     const [operation, setOperation] = useState("add")
-    const [modal, setModal] = useState(false)
+    const [roleModal, setRoleModal] = useState(false)
     const [roleList, setRoleList] = useState(false)
     const [roleid, setRoleid] = useState("");
     const [role, setRole] = useState("");
@@ -48,7 +48,6 @@ function Ticket() {
         },
     ]
 
-    const [ticketModal, setTicketModal] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -102,7 +101,7 @@ function Ticket() {
 
     const submitHandler = async (role) => {
         if (!role.role_name || role.access.length === 0) {
-            setModal(false);
+            setRoleModal(false);
             return toast.warning("Role Name and Managers are required.")
         }
 
@@ -116,7 +115,7 @@ function Ticket() {
             setRoleid("")
         }
 
-        setModal(false);
+        setRoleModal(false);
         dispatch(roleListAction())
     }
 
@@ -129,7 +128,7 @@ function Ticket() {
             setOperation("action")
         }
 
-        setModal(true)
+        setRoleModal(true)
     }
 
     const editRoleHandler = (data) => {
@@ -146,7 +145,7 @@ function Ticket() {
         })
         setRoleid(role.id)
         setRole(role)
-        setModal(true)
+        setRoleModal(true)
         setTimeout(() => {
             checkSelectedRoleAccess(data);
         }, [500])
@@ -174,51 +173,41 @@ function Ticket() {
     }
 
     return (
-        <>
-            <div className="wrapper">
-                <div className="main-panel">
-                    <div className="content">
-                        <div className="row buttons-row mt-5">
-                            <div className="col-md-12">
-                                <div className="d-flex align-items-center justify-content-between">
-                                    <h2 style={{ fontSize: "22px", fontWeight: "600" }}>Roles</h2>
-                                    <div>
-                                        <button className="btn btn-outline-primary btn-radius" onClick={() => roleHandler("add")}>Add</button>
-                                        {/* <button className="btn btn-info btn-round mx-3" onClick={() => $("#filter-role").slideToggle(300)}>
-                                            More Filters
-                                        </button> */}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="px-4 pt-3 border-radius-5">
-                            <div className="card">
-                                <div className="card-body roles">
-                                    <MaterialTable
-                                        title=""
-                                        data={roleList}
-                                        columns={columns}
-                                        options={{ search: true, pageSize: 20, emptyRowsWhenPaging: false, paging: true, exportButton: true }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
+        <React.Fragment>
+            <div className="panel-header bg-secondary-gradient">
+                <div className="page-inner py-5">
+                <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                    <div>
+                    <h2 className="text-white pb-2 fw-bold">Roles</h2>
+                    <h5 className="text-white op-7 mb-2">Manage Your Custom roles</h5>
+                    </div>
+                    <div className="ml-md-auto py-2 py-md-0">
+                        <button className="btn btn-primary btn-round" onClick={() => roleHandler("add")}>Add Role</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="page-inner mt--5">
+                <div className="card">
+                    <div className="card-body p-0">
+                        <MaterialTable
+                            title=""
+                            data={roleList}
+                            columns={columns}
+                            options={{ search: true, pageSize: 20, emptyRowsWhenPaging: false, paging: true, exportButton: true }}
+                        />
                     </div>
                 </div>
             </div>
-
-
-
-            <div className={`custom-modal ${modal ? "open" : ""}`}>
-                <div className="custom-modal-content col-md-6">
-                    <h2>{operation === "add" ? "Add" : "Update"} Role</h2>
-                    {
-                        modal && <RoleForm submitHandler={submitHandler} setModal={setModal} roleid={roleid} urole={role} />
-                    }
-
-                </div>
-            </div>
-        </>
+            <Modal
+                title={operation === "add" ? "Add Role" : "Update Role"}
+                onCancel={() => setRoleModal(false)}
+                visible={roleModal}
+                footer={null}
+            >
+                <RoleForm submitHandler={submitHandler} setModal={setRoleModal} roleid={roleid} urole={role} />
+            </Modal>
+        </React.Fragment>
     )
 
 }

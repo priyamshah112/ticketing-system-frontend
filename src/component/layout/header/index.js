@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo1.png";
 
 function Header() {
 
     return (
       <div className="main-header">
         {/* Logo Header */}
-        <div className="logo-header" data-background-color="blue">
+        <div className="logo-header" data-background-color="purple2">
           
-          <a href="index.html" className="logo">
-            <img src="../assets/img/logo.svg" alt="navbar brand" className="navbar-brand" />
-          </a>
+          <Link className="logo" to={'/dashboard'}>
+            <img src={logo} alt="navbar brand" className="navbar-brand" />
+          </Link>
           <button className="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon">
               <i className="icon-menu"></i>
@@ -26,7 +27,7 @@ function Header() {
         {/* End Logo Header */}
 
         {/* Navbar Header */}
-        <nav className="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+        <nav className="navbar navbar-header navbar-expand-lg" data-background-color="purple2">
           
           <div className="container-fluid">
             <div className="collapse" id="search-nav">
@@ -175,7 +176,7 @@ function Header() {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown hidden-caret">
+              {/* <li className="nav-item dropdown hidden-caret">
                 <a className="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                   <i className="fas fa-layer-group"></i>
                 </a>
@@ -227,7 +228,7 @@ function Header() {
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> */}
               <li className="nav-item dropdown hidden-caret">
                 <a className="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                   <div className="avatar-sm">

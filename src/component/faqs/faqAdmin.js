@@ -61,7 +61,7 @@ function FaqAdmin(props) {
   return (
     <>
       <div className="text-right mb-3">
-        <button className="btn btn-info btn-radius" onClick={addFaqBtn}>
+        <button className="btn btn-secondary btn-radius" onClick={addFaqBtn}>
           Add Faq
         </button>
       </div>
@@ -76,7 +76,7 @@ function FaqAdmin(props) {
           <div className="card-body">
             <form onSubmit={formSubmitHandler}>
               <div className="row">
-                <div className="col-lg-6 col-md-6 col-12 mt-4">
+                <div className="col-lg-6 col-md-6 col-12">
                   <label>Enter Question <span className="text-danger">*</span></label>
                   <input
                     className="form-control"
@@ -88,7 +88,7 @@ function FaqAdmin(props) {
                     }
                   />
                 </div>
-                <div className="col-lg-6 col-md-6 col-12 mt-4">
+                <div className="col-lg-6 col-md-6 col-12">
                   <label>Select Category <span className="text-danger">*</span></label>
                   <Select
                     id="faq-categories"
@@ -113,11 +113,11 @@ function FaqAdmin(props) {
                   />
                 </div>
                 <div className="col-12 mt-4">
-                  <button className="btn btn-info btn-radius mr-3">
+                  <button className="btn btn-secondary btn-radius mr-3">
                     {operation === "add" ? "Add" : "Update"} Faq
                   </button>
                   <button
-                    className="btn btn-info btn-radius"
+                    className="btn btn-danger btn-radius"
                     type="button"
                     onClick={() => {
                         setFaqModal(false);

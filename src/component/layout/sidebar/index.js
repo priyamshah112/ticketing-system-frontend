@@ -3,14 +3,10 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react/cjs/react.development";
 import { addUserDetailsAction } from "../../../actions/userActions";
-import tickets from "../../assets/File.svg";
-import inventory from "../../assets/Invoice.svg";
-import faq from "../../assets/Comment.svg";
 import ChangePassword from "../../changepassword";
-import hardware from "../../assets/Hardware.svg";
-import software from "../../assets/Software.svg";
 import ProfileView from "../../profileView";
 import $ from "jquery";
+import { Modal } from "antd";
 
 function Sidebar() {
   let data = localStorage.user_details;
@@ -36,14 +32,26 @@ function Sidebar() {
 
   return (    
   <div className="sidebar sidebar-style-2">	
-      <ChangePassword
-        isChangePasswordActive={isChangePasswordActive}
-        setIsChangePasswordActive={setIsChangePasswordActive}
-      />
-      <ProfileView
-        isProfileViewActive={isProfileViewActive}
-        setIsProfileViewActive={setIsProfileViewActive}
-      />		
+      <Modal
+        title="Change Password"
+        visible={isChangePasswordActive}
+        onCancel={() => setIsChangePasswordActive(false)}
+        footer={null}
+      >
+        <ChangePassword
+          setIsChangePasswordActive={setIsChangePasswordActive}
+        />
+      </Modal>
+      <Modal
+        title="My Profile"
+        visible={isProfileViewActive}
+        onCancel={() => setIsProfileViewActive(false)}
+        footer={null}
+      >
+        <ProfileView
+          setIsProfileViewActive={setIsProfileViewActive}
+        />	
+      </Modal>
     <div className="sidebar-wrapper scrollbar scrollbar-inner">
       <div className="sidebar-content">
         <div className="user">

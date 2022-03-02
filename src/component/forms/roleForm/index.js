@@ -69,12 +69,13 @@ function RoleForm(props) {
                         })
                     }
                 </div>
+                <div className="col-12">
+                    <div className="pull-right">
+                        <button className="btn btn-success" type="submit">Submit</button>
+                        <button className="btn btn-danger ml-4" type="button" onClick={() => { setModal(false) }}>Close</button>
+                    </div>
+                </div>
             </div>
-            <div className="pull-right">
-                <button className="btn btn-success" type="submit">Submit</button>
-                <button className="btn btn-danger ml-4" type="button" onClick={() => { setModal(false) }}>Close</button>
-            </div>
-
 
         </form>
     )

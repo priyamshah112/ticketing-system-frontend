@@ -341,7 +341,7 @@ function Dashboard() {
 
   return (
     <React.Fragment>
-      <div className="panel-header bg-primary-gradient">
+      <div className="panel-header bg-secondary-gradient">
         <div className="page-inner py-5">
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
@@ -350,7 +350,7 @@ function Dashboard() {
             </div>
             <div className="ml-md-auto py-2 py-md-0">
               <a href="#" className="btn btn-white btn-border btn-round mr-2">Manage</a>
-              <a href="#" className="btn btn-secondary btn-round">Add Customer</a>
+              <a href="#" className="btn btn-primary btn-round">Add Customer</a>
             </div>
           </div>
         </div>

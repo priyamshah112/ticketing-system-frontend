@@ -45,13 +45,23 @@ function AddTicket(props) {
         onSubmit={(e) => {
           e.preventDefault();
           const { message, subject, assiged_to } = formdata;
-
-          if (!message || !subject || !assiged_to) {
-            toast.error("All field are required.");
-            setTicketModal(false);
-            return null;
+          if (userType === 'User')
+          {
+            if(!message || !subject) {
+              toast.error("All field are required.");
+              setTicketModal(false);
+              return null;
+            }
           }
-          form_data.append("assiged_to", formdata.assiged_to);
+          else 
+          {
+            form_data.append("assiged_to", formdata.assiged_to);
+            if (!message || !subject || !assiged_to) {
+              toast.error("All field are required.");
+              setTicketModal(false);
+              return null;
+            }
+          }
           form_data.append("message", formdata.message);
           form_data.append("subject", formdata.subject);
           form_data.append("file", file);

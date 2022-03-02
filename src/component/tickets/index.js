@@ -163,7 +163,7 @@ function Ticket(props) {
       if (userType === "User") {
       }
       ticket.edit = (
-        <div className="flex justify-content-center">
+        <div className="d-flex justify-content-center">
           {userType !== "User" && (
             <Tooltip title="Assign Tickets">
               <div>
@@ -178,7 +178,7 @@ function Ticket(props) {
           <Tooltip title="View Ticket">
             <div>
               <i
-                className="fa fa-eye bg-success ml-3 table-icon"
+                className="fa fa-eye bg-secondary ml-3 table-icon"
                 onClick={() => ViewTicketHandler(ticket)}
               ></i>
             </div>
@@ -234,7 +234,7 @@ function Ticket(props) {
 
   return (
     <React.Fragment>
-      <div className="panel-header bg-primary-gradient">
+      <div className="panel-header bg-secondary-gradient">
         <div className="page-inner py-5">
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
@@ -243,140 +243,100 @@ function Ticket(props) {
             </div>
             <div className="ml-md-auto py-2 py-md-0">
               <a href="#" className="btn btn-white btn-border btn-round mr-2" onClick={() => $("#filter-ticket").slideToggle(300)}>Filters</a>
-              <a href="#" className="btn btn-secondary btn-round" onClick={() => setTicketModal(true)}>Add Ticket</a>
+              <a href="#" className="btn btn-primary btn-round" onClick={() => setTicketModal(true)}>Add Ticket</a>
             </div>
           </div>
         </div>
       </div>
       <div className="page-inner mt--5">
-
-        <div className="border-radius-5">
-          <div className="search-box" id="filter-ticket">
-            <div className="card">
-              <div className="card-body">
-                <form onSubmit={filterSubmitHandler} id="ticket-filter-form" className="mb-5">
-                  <div className="row mx-auto pt-3">
-                    <div className="col-md-12">
-                      <h4 className="fw-bold">Search Ticket</h4>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3 mt-3">
-                      <div>
-                        <div>
-                          <label className="mb-2">Subject</label>
-                        </div>
-                        <input
-                          name="subject"
-                          type="text"
-                          className="form-control filter-input"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-3 mt-3">
-                      <div>
-                        <div>
-                          <label className="mb-2">Type</label>
-                        </div>
-                        <select name="type" className="form-control">
-                          <option>Select Type</option>
-                          <option>Hardware</option>
-                          <option>Software</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-3 mt-3">
-                      <div>
-                        <div>
-                          <label className="mb-2">Product</label>
-                        </div>
-                        <select className="form-control">
-                          <option>Select Product</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-3 mt-3">
-                      <div>
-                        <div>
-                          <label className="mb-2">Status</label>
-                        </div>
-                        <select name="status" className="form-control filter-status">
-                          <option>Select Status</option>
-                          <option value="pending">Pending</option>
-                          <option value="active">Active</option>
-                          <option value="close">Close</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-3 mt-3">
-                      <div>
-                        <div>
-                          <label className="mb-2">Assigned To</label>
-                        </div>
-                        <select className="form-control">
-                          <option>Select Assigned To</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="col-12 col-md-6 col-lg-3 mt-3">
-                      <div>
-                        <div>
-                          <label className="mb-2">Created At</label>
-                        </div>
-                        <input
-                          type="date"
-                          className="form-control"
-                          value={date}
-                          onChange={(e) => setDate(e.target.value)}
-                        />
-                        {/* <div>
-                                                        <label className="mb-2">Assigned Date</label>
-                                                    </div>
-                                                    <RangePicker className="form-control" name="assigned_date" /> */}
-                      </div>
-                    </div>
-
-                    <div className="col-12 mt-3 text-right">
-                      <button
-                        className="btn  btn-info btn-radius"
-                        type="submit"
-                      >
-                        Search
-                      </button>
-                      <button
-                        className="btn  btn-info btn-radius ml-3"
-                        onClick={() => $("#filter-ticket").slideToggle(300)}
-                        type="button"
-                      >
-                        Close
-                      </button>
-                    </div>
+        <div className="card" id="filter-ticket">
+          <div className="card-body">
+            <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
+              <div className="row mx-auto">
+                <div className="form-group col-md-12">
+                  <h4 className="fw-bold">Search Ticket</h4>
+                </div>
+                
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Subject</label>
+                    <input
+                      name="subject"
+                      type="text"
+                      className="form-control filter-input"
+                    />
+                </div>
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                  <div className="form-group">
+                    <label className="mb-2">Type</label>
+                    <select name="type" className="form-control">
+                      <option>Select Type</option>
+                      <option>Hardware</option>
+                      <option>Software</option>
+                    </select>
                   </div>
-                </form>
+                </div>
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                  <label className="mb-2">Status</label>
+                  <select name="status" className="form-control filter-status">
+                    <option>Select Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="active">Active</option>
+                    <option value="close">Close</option>
+                  </select>
+                </div>               
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Assigned To</label>
+                    <select className="form-control">
+                      <option>Select Assigned To</option>
+                    </select>
+                </div>                
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Created At</label>
+                    <input
+                      type="date"
+                      className="form-control"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
+                    {/* <div>
+                        <label className="mb-2">Assigned Date</label>
+                    </div>
+                    <RangePicker className="form-control" name="assigned_date" /> */}
+                </div>
+                <div className="col-12 mt-3 text-right">
+                  <button
+                    className="btn  btn-secondary btn-radius"
+                    type="submit"
+                  >
+                    Search
+                  </button>
+                  <button
+                    className="btn  btn-secondary btn-border ml-3"
+                    onClick={() => $("#filter-ticket").slideToggle(300)}
+                    type="button"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
 
-        <div className="border-radius-5">
-          <div className="card">
-            <div className="card-body roles">
-              <MaterialTable
-                title=""
-                data={ticketList}
-                columns={columns}
-                options={{
-                  search: true,
-                  paging: true,
-                  pageSize: 20,
-                  emptyRowsWhenPaging: false,
-                  exportButton: false,
-                }}
-              />
-            </div>
+        <div className="card">
+          <div className="card-body p-0">
+            <MaterialTable
+              title=""
+              data={ticketList}
+              columns={columns}
+              options={{
+                search: true,
+                paging: true,
+                pageSize: 20,
+                emptyRowsWhenPaging: false,
+                exportButton: false,
+              }}
+            />
           </div>
         </div>
 
