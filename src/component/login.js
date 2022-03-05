@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
