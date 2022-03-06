@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react/cjs/react.development";
 import { dateHandler } from "../../actions/commonAction";
 import { addTicketsAction } from "../../actions/ticketAction";
 import { apipaths } from "../../api/apiPaths";
 import { getResponse } from "../../api/apiResponse";
 import LayoutOne from "../layout/layoutone";
-import LayoutTwo from "../layout/layouttwo";
 import Faq from "./faq";
 
 function Dashboard() {

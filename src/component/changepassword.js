@@ -1,15 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { useState } from "react/cjs/react.development";
-import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
-import logo1 from "./assets/logo1.png";
-import logo2 from "./assets/logo2.png";
-import logo3 from "./assets/logo3.png";
-const queryString = require("query-string");
 
 function ChangePassword(props) {
   const [oldpassword, setOldPassword] = useState("");

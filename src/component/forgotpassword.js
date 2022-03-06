@@ -1,7 +1,6 @@
 import { Button } from "antd";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
