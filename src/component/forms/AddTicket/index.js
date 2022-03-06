@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react/cjs/react.development";
 import { getUserLists } from "../../../actions/userActions";
 import { apipaths } from "../../../api/apiPaths";
 import { getResponse } from "../../../api/apiResponse";

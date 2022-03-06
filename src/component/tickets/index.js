@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import React, { useEffect, useState } from "react";
 import { getResponse } from "../../api/apiResponse";
 import { apipaths } from "../../api/apiPaths";
 import { toast } from "react-toastify";

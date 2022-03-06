@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react/cjs/react.development";
 import { addUserDetailsAction } from "../../../actions/userActions";
 import ChangePassword from "../../changepassword";
 import ProfileView from "../../profileView";

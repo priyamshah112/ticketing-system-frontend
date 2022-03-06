@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DatePicker, Select } from "antd";
-import { useEffect, useState } from "react/cjs/react.development";
 import { useSelector } from "react-redux";
 import InputFeild from "../InputFeild";
 import { getResponse } from "../../../api/apiResponse";

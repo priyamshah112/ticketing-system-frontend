@@ -1,7 +1,4 @@
-import react from "react";
-import { useEffect } from "react/cjs/react.development";
-import LayoutOne from "../layoutone";
-
+import react, { useEffect, useState } from "react";
 function LayoutTwo() {
 
     useEffect(() => {
