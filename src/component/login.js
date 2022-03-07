@@ -45,11 +45,16 @@ function Login(props) {
   };
 
   useEffect(() => {
+    let token = localStorage.authToken;
+    if (token) {
+      window.location.href = '/dashboard';
+    }
     let cred = localStorage.credentials;
     if(cred){
       cred = JSON.parse(cred);
       loginHandler(cred) 
     }
+    
   }, [])
 
   const createUserHandler = async (e) => {
@@ -93,16 +98,6 @@ function Login(props) {
               <div className="auth-content-logo">
                 <img
                   src={logo1}
-                  alt=""
-                  className="img-fluid mb-4 d-block login-logo"
-                />
-                <img
-                  src={logo2}
-                  alt=""
-                  className="img-fluid mb-4 d-block login-logo"
-                />
-                <img
-                  src={logo3}
                   alt=""
                   className="img-fluid mb-4 d-block login-logo"
                 />

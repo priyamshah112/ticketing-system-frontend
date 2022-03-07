@@ -67,13 +67,6 @@
   
   .login-logo {
     width: 40%;
-    margin: 20px;
-  }
-  
-  .auth-content-logo {
-    width: 500px;
-    display: flex;
-    flex-direction: row;
   }
   
   .aut-bg-img .auth-content {
