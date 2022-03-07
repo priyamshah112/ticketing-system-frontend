@@ -91,7 +91,7 @@ function Sidebar() {
                   </a>
                 </li>
                 <li>
-                  <Link onClick={() => localStorage.clear()} href="javascript:void(0);">
+                  <Link onClick={() => localStorage.clear()} to="/">
                     <span className="link-collapse">Logout</span>
                   </Link>
                 </li>

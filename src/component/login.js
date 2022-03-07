@@ -189,8 +189,8 @@ function Login(props) {
                     <button
                       type="submit"
                       className="btn btn-block btn-info sign-in mb-4"
+                      onClick={loginHandler}
                     >
-                      {" "}
                       SIGN IN
                     </button>
                   </form>
