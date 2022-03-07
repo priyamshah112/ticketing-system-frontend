@@ -46,16 +46,6 @@ function ResetPassword(props) {
                                     alt=""
                                     className="img-fluid mb-4 d-block login-logo"
                                 />
-                                <img
-                                    src={logo2}
-                                    alt=""
-                                    className="img-fluid mb-4 d-block login-logo"
-                                />
-                                <img
-                                    src={logo3}
-                                    alt=""
-                                    className="img-fluid mb-4 d-block login-logo"
-                                />
                             </div>
                             <h1 className="text-white my-4">Welcome!</h1>
                             <h5 className="text-white font-weight-normal">

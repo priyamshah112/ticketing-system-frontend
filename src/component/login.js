@@ -117,7 +117,7 @@ function Login(props) {
                   {create ? "Activate Account" : "LOGIN"}
                 </h5>
                 {!create ? (
-                  <form onSubmit={loginHandler}>
+                  <form>
                     <input
                       type="hidden"
                       name="_token"
@@ -186,13 +186,12 @@ function Login(props) {
                         Save credentials.
                       </label>
                     </div>
-                    <button
-                      type="submit"
+                    <div
                       className="btn btn-block btn-info sign-in mb-4"
                       onClick={loginHandler}
                     >
                       SIGN IN
-                    </button>
+                    </div>
                   </form>
                 ) : (
                   <form className="" onSubmit={createUserHandler}>
