@@ -407,7 +407,7 @@ function Ticket(props) {
                 {!userType === "User" && (
                   <div className="form-group col-12 col-md-6 col-lg-4">
                     <label className="mb-2">Assigned To</label>
-                    <select className="form-control">
+                    <select name="assigned_to" className="form-control">
                       <option>Select Assigned To</option>
                       {ticketList.length &&
                         ticketList.map((result) => {
@@ -426,6 +426,7 @@ function Ticket(props) {
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Created At</label>
                   <input
+                    name="created_at"
                     type="date"
                     className="form-control"
                     value={date}
