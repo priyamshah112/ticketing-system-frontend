@@ -398,7 +398,7 @@ function Ticket(props) {
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Status</label>
                   <select name="status" className="form-control filter-status">
-                    <option>Select Status</option>
+                    <option value="">Select Status</option>
                     <option value="pending">Pending</option>
                     <option value="open">Open</option>
                     <option value="closed">Closed</option>
