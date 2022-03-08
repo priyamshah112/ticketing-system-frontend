@@ -66,7 +66,7 @@ function Ticket(props) {
   const location = useLocation();
   const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
 
-  if (!userType === "User") {
+  if (userType !== "User") {
     columns[4] = {
       title: "Assigned To",
       field: "support.name",
@@ -404,21 +404,26 @@ function Ticket(props) {
                     <option value="closed">Closed</option>
                   </select>
                 </div>
-                {!userType === "User" && (
+                {userType !== "User" && (
                   <div className="form-group col-12 col-md-6 col-lg-4">
                     <label className="mb-2">Assigned To</label>
                     <select name="assigned_to" className="form-control">
-                      <option>Select Assigned To</option>
+                      <option value="">Select Assigned To</option>
                       {ticketList.length &&
                         ticketList.map((result) => {
-                          return (
-                            <option
-                              value={result.support?.name}
-                              key={result.support?.id}
-                            >
-                              {result.support?.name ? result.support?.name : ""}
-                            </option>
-                          );
+                          if(result.support?.id)
+                          {
+                            return (
+                              <option
+                                value={result.support?.id}
+                                key={result.support?.id}
+                              >
+                                {result.support?.name ? result.support?.name : ""}
+                              </option>
+                            );
+                          }
+
+                          return '';
                         })}
                     </select>
                   </div>
