@@ -106,7 +106,94 @@ function Ticket(props) {
 
     let path = apipaths.listticket;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
-    await getResponse(path);
+    
+    const { data, error } = await await getResponse(path);
+    if (error) return toast.warn("Error in listing tickets.");
+
+    setUsers(data.data.support);
+
+    data.data.tickets.map((ticket) => {
+      let username = "";
+      let created_by = "";
+      userList.map((user) => {
+        if (ticket.assiged_to === user.id) {
+          username = user.name;
+        }
+
+        if (ticket.created_by === user.id) {
+          created_by = user.name;
+        }
+      });
+
+      ticket.created_by = username;
+      ticket.created_at = dateFormatHandler(ticket.created_at);
+      if (ticket.subject.length > 30)
+        ticket.subject = ticket.subject.substring(0, 30) + "...";
+
+      //ticket.assiged_to = username;
+      let ticketStatus = "";
+      // eslint-disable-next-line default-case
+      switch (ticket.status) {
+        case "Closed":
+          ticketStatus = (
+            <div className="status status-suspended">
+              <span></span> Closed
+            </div>
+          );
+          break;
+        case "In Progress":
+          ticketStatus = (
+            <div className="status status-success">
+              <span></span> Open
+            </div>
+          );
+          break;
+        case "Pending":
+          ticketStatus = (
+            <div className="status status-pending">
+              <span></span> Pending
+            </div>
+          );
+          break;
+      }
+      ticket.status = ticketStatus;
+      if (userType === "User") {
+      }
+      ticket.edit = (
+        <div className="d-flex justify-content-center">
+          {userType !== "User" && (
+            <Tooltip title="Assign Tickets">
+              <div>
+                <i
+                  className="fas fa-pen pr-3 table-icon bg-warning"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => ticketAssignHandler(ticket)}
+                ></i>
+              </div>
+            </Tooltip>
+          )}
+          <Tooltip title="View Ticket">
+            <div>
+              <i
+                className="fa fa-eye bg-secondary ml-3 table-icon"
+                onClick={() => ViewTicketHandler(ticket)}
+              ></i>
+            </div>
+          </Tooltip>
+        </div>
+      );
+      ticket.subject = (
+        <Link
+          style={{ fontWeight: 600 }}
+          to={`/ticket/details?ticketid=${ticket.id}`}
+        >
+          {ticket.subject}
+        </Link>
+      );
+    });
+
+    dispatch(addTicketsAction(data.data.tickets));
+    
   };
 
   const userListHandler = async () => {
@@ -307,8 +394,8 @@ function Ticket(props) {
                   <select name="status" className="form-control filter-status">
                     <option>Select Status</option>
                     <option value="pending">Pending</option>
-                    <option value="active">Active</option>
-                    <option value="close">Close</option>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
                   </select>
                 </div>
                 <div className="form-group col-12 col-md-6 col-lg-4">
