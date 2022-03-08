@@ -34,10 +34,10 @@ function Ticket(props) {
       title: "Created At",
       field: "created_at",
     },
-    {
-      title: "Assigned To",
-      field: "support.name",
-    },
+    // {
+    //   title: "Assigned To",
+    //   field: "support.name",
+    // },
     {
       title: "Status",
       field: "status",
@@ -65,6 +65,13 @@ function Ticket(props) {
   const { status } = queryString.parse(window.location.search);
   const location = useLocation();
   const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
+
+  if (!userType === "User") {
+    columns[4] = {
+      title: "Assigned To",
+      field: "support.name",
+    };
+  }
 
   const dispatch = useDispatch();
 
@@ -106,7 +113,7 @@ function Ticket(props) {
 
     let path = apipaths.listticket;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
-    
+
     const { data, error } = await await getResponse(path);
     if (error) return toast.warn("Error in listing tickets.");
 
@@ -193,7 +200,6 @@ function Ticket(props) {
     });
 
     dispatch(addTicketsAction(data.data.tickets));
-    
   };
 
   const userListHandler = async () => {
@@ -398,15 +404,29 @@ function Ticket(props) {
                     <option value="closed">Closed</option>
                   </select>
                 </div>
-                <div className="form-group col-12 col-md-6 col-lg-4">
-                  <label className="mb-2">Assigned To</label>
-                  <select className="form-control">
-                    <option>Select Assigned To</option>
-                  </select>
-                </div>
+                {!userType === "User" && (
+                  <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Assigned To</label>
+                    <select name="assigned_to" className="form-control">
+                      <option>Select Assigned To</option>
+                      {ticketList.length &&
+                        ticketList.map((result) => {
+                          return (
+                            <option
+                              value={result.support?.name}
+                              key={result.support?.id}
+                            >
+                              {result.support?.name ? result.support?.name : ""}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                )}
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Created At</label>
                   <input
+                    name="created_at"
                     type="date"
                     className="form-control"
                     value={date}
