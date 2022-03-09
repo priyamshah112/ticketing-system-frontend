@@ -43,7 +43,10 @@ function UserDashboard() {
 
     const data = await getResponse(apipaths.addticket, ticket);
     if (data.status === 200) {
+      toast.success(data.data.message);
       setTicketModal(false);
+    } else {
+      toast.error(data.data.message);
     }
   };
 
@@ -75,11 +78,8 @@ function UserDashboard() {
         </div>
       </div>
       <div className="row my-4">
-        <div className="col-lg-4 col-md-6 my-2">
-          <div
-            className="card small-card cursor-pointer"
-            onClick={() => setTicketModal(true)}
-          >
+        <div className="col-lg-4 col-md-6 my-2 pointer">
+          <div className="card small-card" onClick={() => setTicketModal(true)}>
             <div className="card-body">
               <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                 <div>
@@ -95,7 +95,7 @@ function UserDashboard() {
             </div>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 my-2">
+        <div className="col-lg-4 col-md-6 my-2 pointer">
           <div
             className="card small-card"
             onClick={() =>
@@ -116,7 +116,7 @@ function UserDashboard() {
           </div>
         </div>
         <div
-          className="col-lg-4 col-md-6 my-2"
+          className="col-lg-4 col-md-6 my-2 pointer"
           onClick={() =>
             history.push({
               pathname: "/tickets",
