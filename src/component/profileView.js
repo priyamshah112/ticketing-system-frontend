@@ -1,49 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { Modal } from 'antd';
+import { Modal } from "antd";
 import InputFeild from "../component/forms/InputFeild";
 import { useSelector } from "react-redux";
 
 function ProfileView(props) {
-
   const { isProfileViewActive, setIsProfileViewActive } = props;
   const userDetails = useSelector((state) => state.userDetails.user_details);
 
   return (
     <form className="row">
+      <div className="form-group col-12 d-flex justify-content-center align-items-center">
+        <div className="avatar-sm float-left mr-2">
+          <img
+            src="../assets/img/profile.jpg"
+            alt="..."
+            className="avatar-img rounded-circle"
+          />
+        </div>
+      </div>
       <div className="form-group col-6">
         <label>First Name</label>
         <input
-          className="form-control" value={userDetails.firstName} disabled
+          className="form-control"
+          value={userDetails?.firstName}
+          disabled
         />
       </div>
       <div className="form-group col-6">
         <label>Middle Name</label>
         <input
-          className="form-control" value={userDetails.middleName} disabled
+          className="form-control"
+          value={userDetails?.middleName}
+          disabled
         />
       </div>
       <div className="form-group col-6">
         <label>Last Name</label>
         <input
-          className="form-control" value={userDetails.lastName} disabled
+          className="form-control"
+          value={userDetails?.lastName}
+          disabled
         />
       </div>
       <div className="form-group col-6">
         <label>Email</label>
-        <input
-          className="form-control" value={userDetails.email} disabled
-        />
+        <input className="form-control" value={userDetails?.email} disabled />
       </div>
       <div className="form-group col-6">
         <label>Phone</label>
         <input
-          className="form-control" value={userDetails.cellPhone} disabled
+          className="form-control"
+          value={userDetails?.cellPhone}
+          disabled
         />
       </div>
       <div className="form-group col-6">
         <label>Country</label>
         <input
-          className="form-control" value={userDetails.clientLocation} disabled
+          className="form-control"
+          value={userDetails?.clientLocation}
+          disabled
         />
       </div>
     </form>

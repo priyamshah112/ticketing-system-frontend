@@ -332,6 +332,7 @@ function Ticket(props) {
         assigned_to: parseInt(userId),
       });
       userListHandler();
+      setEditTicketModel(false);
       toast.success(data.message);
     }
     setEditTicket();
@@ -411,19 +412,20 @@ function Ticket(props) {
                       <option value="">Select Assigned To</option>
                       {ticketList.length &&
                         ticketList.map((result) => {
-                          if(result.support?.id)
-                          {
+                          if (result.support?.id) {
                             return (
                               <option
                                 value={result.support?.id}
                                 key={result.support?.id}
                               >
-                                {result.support?.name ? result.support?.name : ""}
+                                {result.support?.name
+                                  ? result.support?.name
+                                  : ""}
                               </option>
                             );
                           }
 
-                          return '';
+                          return "";
                         })}
                     </select>
                   </div>

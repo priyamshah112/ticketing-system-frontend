@@ -12,6 +12,7 @@ function AddTicket(props) {
   const [formdata, setFormdata] = useState({});
   const [process, setProcess] = useState(false);
   const [file, setFile] = useState({});
+  const [userListOnCoAdmin, setUSerListOnCoAdmin] = useState([]);
   const userList = useSelector((state) => state.userList);
   const dispatch = useDispatch();
   const userType = JSON.parse(localStorage.user_details).userType;
@@ -21,6 +22,13 @@ function AddTicket(props) {
   useEffect(() => {
     userListHandler();
   }, []);
+
+  useEffect(() => {
+    let userListOnCoAdmin = userList?.filter(
+      (result) => result.userType === "Support"
+    );
+    setUSerListOnCoAdmin(userListOnCoAdmin);
+  }, userList);
 
   const userListHandler = async () => {
     const { data } = await getResponse(apipaths.listusers, null);
@@ -44,16 +52,13 @@ function AddTicket(props) {
         onSubmit={(e) => {
           e.preventDefault();
           const { message, subject, assiged_to } = formdata;
-          if (userType === 'User')
-          {
-            if(!message || !subject) {
+          if (userType === "User") {
+            if (!message || !subject) {
               toast.error("All field are required.");
               setTicketModal(false);
               return null;
             }
-          }
-          else 
-          {
+          } else {
             form_data.append("assiged_to", formdata.assiged_to);
             if (!message || !subject || !assiged_to) {
               toast.error("All field are required.");
@@ -66,7 +71,7 @@ function AddTicket(props) {
           form_data.append("file", file);
 
           onSubmit(form_data);
-          setProcess(true); 
+          setProcess(true);
         }}
       >
         <div className="row">
@@ -95,7 +100,7 @@ function AddTicket(props) {
               >
                 <option value="">Choose One</option>
 
-                {userList.map((user) => (
+                {userListOnCoAdmin.map((user) => (
                   <option
                     className="text-capitalize"
                     key={user.id}

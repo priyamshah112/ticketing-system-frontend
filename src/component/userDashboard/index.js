@@ -188,7 +188,10 @@ function UserDashboard() {
             </div>
           </div>
         </div>
-        <div className="col-lg-4 my-2">
+        <div
+          className="col-lg-4 my-2 pointer"
+          onClick={() => setTicketModal(true)}
+        >
           <div className="card medium-card">
             <div className="card-body d-flex flex-column justify-content-between">
               <div className="d-flex text-center">

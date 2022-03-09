@@ -349,14 +349,6 @@ function Dashboard() {
                 Manage Your Inventory And Tickets
               </h5>
             </div>
-            <div className="ml-md-auto py-2 py-md-0">
-              <a href="#" className="btn btn-white btn-border btn-round mr-2">
-                Manage
-              </a>
-              <a href="#" className="btn btn-primary btn-round">
-                Add Customer
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -702,7 +694,7 @@ function Dashboard() {
                   })}
               </div>
             </div>
-            <div
+            {/* <div
               className="row position-relative ml-auto"
               style={{ width: "100%" }}
             >
@@ -779,7 +771,7 @@ function Dashboard() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="row">
@@ -1220,7 +1212,7 @@ function Dashboard() {
           <div className="col-md-6">
             <div className="card full-height">
               <div className="card-header">
-                <div className="card-title">Feed Activity</div>
+                <div className="card-title">User Activity</div>
               </div>
               <div className="card-body">
                 <ol className="activity-feed">
@@ -1272,7 +1264,7 @@ function Dashboard() {
               <div className="card-header">
                 <div className="card-head-row">
                   <div className="card-title">Support Tickets</div>
-                  <div className="card-tools">
+                  {/* <div className="card-tools">
                     <ul
                       className="nav nav-pills nav-secondary nav-pills-no-bd nav-sm"
                       id="pills-tab"
@@ -1315,7 +1307,7 @@ function Dashboard() {
                         </a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="card-body">
