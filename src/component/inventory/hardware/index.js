@@ -379,7 +379,6 @@ function HardwareInventory() {
       !service_tag ||
       !model ||
       !express_service_code ||
-      !serial_number ||
       !assignedTo ||
       // !device_name ||
       // !assigned_to ||
