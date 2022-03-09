@@ -14,15 +14,16 @@ import { getResponse } from "../../api/apiResponse";
 import AddTicket from "../forms/AddTicket";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import $ from "jquery"
-import { Collapse } from 'antd';
-
+import $ from "jquery";
+import { Collapse } from "antd";
+import { useHistory } from "react-router-dom";
 
 function UserDashboard() {
   const [userdata, setUserDate] = useState([]);
   const [ticketModal, setTicketModal] = useState(false);
   const userDetails = useSelector((state) => state.userDetails);
   const { Panel } = Collapse;
+  const history = useHistory();
 
   useEffect(() => {
     userinfo();
@@ -36,9 +37,9 @@ function UserDashboard() {
   };
 
   const onSubmit = async (ticket) => {
-    ticket.append("created_by", userDetails.id)
-    ticket.append("status", "Pending")
-    ticket.append("operation", "add")
+    ticket.append("created_by", userDetails.id);
+    ticket.append("status", "Pending");
+    ticket.append("operation", "add");
 
     const data = await getResponse(apipaths.addticket, ticket);
     if (data.status === 200) {
@@ -48,9 +49,9 @@ function UserDashboard() {
 
   const faqAnsHandler = (elem, faq) => {
     setTimeout(() => {
-      $(`.${elem}`).html(faq.answer)
-    }, 1000)
-  }
+      $(`.${elem}`).html(faq.answer);
+    }, 1000);
+  };
 
   return (
     <div className="page-inner">
@@ -58,8 +59,8 @@ function UserDashboard() {
         <div className="title-main col-lg-6">
           <h1>Welcome</h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Magni, nobis?
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni,
+            nobis?
           </p>
         </div>
         <div className="search-field col-lg-6  mt-4">
@@ -89,31 +90,47 @@ function UserDashboard() {
                     style={{ width: "35%" }}
                   />
                 </div>
-                <h4>Create Incedent</h4>
+                <h4>Create Ticket</h4>
               </div>
             </div>
           </div>
         </div>
         <div className="col-lg-4 col-md-6 my-2">
-          <div className="card small-card">
+          <div
+            className="card small-card"
+            onClick={() =>
+              history.push({
+                pathname: "/tickets",
+                state: { status: " Pending" },
+              })
+            }
+          >
             <div className="card-body">
               <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                 <div>
                   <img src={process} alt="create" className="img-fluid" />
                 </div>
-                <h4>In Process</h4>
+                <h4>In Process Ticket</h4>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 my-2">
+        <div
+          className="col-lg-4 col-md-6 my-2"
+          onClick={() =>
+            history.push({
+              pathname: "/tickets",
+              state: { status: " Closed" },
+            })
+          }
+        >
           <div className="card small-card">
             <div className="card-body">
               <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                 <div>
                   <img src={close} alt="create" className="img-fluid" />
                 </div>
-                <h4>Close Incedent Report</h4>
+                <h4>Closed Ticket</h4>
               </div>
             </div>
           </div>
@@ -145,8 +162,8 @@ function UserDashboard() {
               </div>
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Laboriosam, quam?
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laboriosam, quam?
                 </p>
               </div>
             </div>
@@ -164,8 +181,8 @@ function UserDashboard() {
               </div>
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Laboriosam, quam?
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laboriosam, quam?
                 </p>
               </div>
             </div>
@@ -182,8 +199,8 @@ function UserDashboard() {
               </div>
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Laboriosam, quam?
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laboriosam, quam?
                 </p>
               </div>
             </div>
@@ -211,13 +228,19 @@ function UserDashboard() {
                 <Collapse accordion>
                   {userdata.faqs &&
                     userdata.faqs.map((faq, i) => (
-
-                      <Panel header={<h4 className="font-weight-bold mb-0">sdfjkn</h4>} key={i}>
-                        <p className={`faq_${i}`} dangerouslySetInnerHTML={{ __html: faq.answer }}></p>
+                      <Panel
+                        header={
+                          <h4 className="font-weight-bold mb-0">sdfjkn</h4>
+                        }
+                        key={i}
+                      >
+                        <p
+                          className={`faq_${i}`}
+                          dangerouslySetInnerHTML={{ __html: faq.answer }}
+                        ></p>
                       </Panel>
                     ))}
                 </Collapse>
-
               </div>
               <Link to="/faqs" className="mx-3 my-2 text-primary">
                 More...
@@ -229,6 +252,7 @@ function UserDashboard() {
         <div className="">
           {ticketModal && (
             <AddTicket
+              ticketModal={ticketModal}
               setTicketModal={setTicketModal}
               onSubmit={onSubmit}
             />

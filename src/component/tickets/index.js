@@ -13,6 +13,7 @@ import $ from "jquery";
 import queryString from "query-string";
 import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
+import { useLocation } from "react-router-dom";
 
 function Ticket(props) {
   const columns = [
@@ -62,6 +63,8 @@ function Ticket(props) {
   const userList = useSelector((state) => state.userList);
   const userType = JSON.parse(localStorage.user_details).userType;
   const { status } = queryString.parse(window.location.search);
+  const location = useLocation();
+  const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -75,19 +78,30 @@ function Ticket(props) {
     if (status) {
       filterSubmitHandler(status, true);
     }
-  }, [status])
+  }, [status]);
 
   useEffect(() => {
     if (userList.length > 0) getTickets();
   }, [userList]);
 
+  useEffect(() => {
+    let ticketDataOnStatus = ticketList?.filter(
+      (result) => result.status.props.children[1] === location?.state?.status
+    );
+    setTicketDataOnStatus(ticketDataOnStatus);
+  }, [location?.state?.status]);
+
   const filterSubmitHandler = async (e, custom = false) => {
     e && e.preventDefault && e.preventDefault();
 
-    let elem = $("#ticket-filter-form :input[value!='']").filter(function (index, element) { return $(element).val() != ''; }).serialize();
+    let elem = $("#ticket-filter-form :input[value!='']")
+      .filter(function (index, element) {
+        return $(element).val() != "";
+      })
+      .serialize();
     // // console.log("custom: ", custom)
     if (custom) {
-      elem = `status=${e}`
+      elem = `status=${e}`;
     }
 
     let path = apipaths.listticket;
@@ -99,7 +113,7 @@ function Ticket(props) {
     const { data } = await getResponse(apipaths.listusers, null);
     const users = data.data.user;
     dispatch(getUserLists(users));
-  }; 
+  };
 
   const ViewTicketHandler = async (data) => {
     setIsModal(true);
@@ -204,17 +218,17 @@ function Ticket(props) {
   };
 
   const onSubmit = async (ticket) => {
-    ticket.append("created_by", userDetails.id)
-    ticket.append("status", "Pending")
-    ticket.append("operation", "add")
+    ticket.append("created_by", userDetails.id);
+    ticket.append("status", "Pending");
+    ticket.append("operation", "add");
 
     const data = await getResponse(apipaths.addticket, ticket);
     if (data.status === 200) {
-      toast.success(data.data.message)
+      toast.success(data.data.message);
       getTickets();
       setTicketModal(false);
-    }else{
-      toast.error(data.data.message)
+    } else {
+      toast.error(data.data.message);
     }
   };
 
@@ -238,11 +252,25 @@ function Ticket(props) {
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
               <h2 className="text-white pb-2 fw-bold">Tickets</h2>
-              <h5 className="text-white op-7 mb-2">Manage Your Inventory And Tickets</h5>
+              <h5 className="text-white op-7 mb-2">
+                Manage Your Inventory And Tickets
+              </h5>
             </div>
             <div className="ml-md-auto py-2 py-md-0">
-              <a href="#" className="btn btn-white btn-border btn-round mr-2" onClick={() => $("#filter-ticket").slideToggle(300)}>Filters</a>
-              <a href="#" className="btn btn-primary btn-round" onClick={() => setTicketModal(true)}>Add Ticket</a>
+              <a
+                href="#"
+                className="btn btn-white btn-border btn-round mr-2"
+                onClick={() => $("#filter-ticket").slideToggle(300)}
+              >
+                Filters
+              </a>
+              <a
+                href="#"
+                className="btn btn-primary btn-round"
+                onClick={() => setTicketModal(true)}
+              >
+                Add Ticket
+              </a>
             </div>
           </div>
         </div>
@@ -255,16 +283,16 @@ function Ticket(props) {
                 <div className="form-group col-md-12">
                   <h4 className="fw-bold">Search Ticket</h4>
                 </div>
-                
+
                 <div className="form-group col-12 col-md-6 col-lg-4">
-                    <label className="mb-2">Subject</label>
-                    <input
-                      name="subject"
-                      type="text"
-                      className="form-control filter-input"
-                    />
+                  <label className="mb-2">Subject</label>
+                  <input
+                    name="subject"
+                    type="text"
+                    className="form-control filter-input"
+                  />
                 </div>
-                <div className="form-group col-12 col-md-6 col-lg-4">
+                {/* <div className="form-group col-12 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label className="mb-2">Type</label>
                     <select name="type" className="form-control">
@@ -273,7 +301,7 @@ function Ticket(props) {
                       <option>Software</option>
                     </select>
                   </div>
-                </div>
+                </div> */}
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Status</label>
                   <select name="status" className="form-control filter-status">
@@ -282,22 +310,22 @@ function Ticket(props) {
                     <option value="active">Active</option>
                     <option value="close">Close</option>
                   </select>
-                </div>               
+                </div>
                 <div className="form-group col-12 col-md-6 col-lg-4">
-                    <label className="mb-2">Assigned To</label>
-                    <select className="form-control">
-                      <option>Select Assigned To</option>
-                    </select>
-                </div>                
+                  <label className="mb-2">Assigned To</label>
+                  <select className="form-control">
+                    <option>Select Assigned To</option>
+                  </select>
+                </div>
                 <div className="form-group col-12 col-md-6 col-lg-4">
-                    <label className="mb-2">Created At</label>
-                    <input
-                      type="date"
-                      className="form-control"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                    {/* <div>
+                  <label className="mb-2">Created At</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
+                  {/* <div>
                         <label className="mb-2">Assigned Date</label>
                     </div>
                     <RangePicker className="form-control" name="assigned_date" /> */}
@@ -326,7 +354,7 @@ function Ticket(props) {
           <div className="card-body p-0">
             <MaterialTable
               title=""
-              data={ticketList}
+              data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
               columns={columns}
               options={{
                 search: true,
@@ -341,7 +369,11 @@ function Ticket(props) {
 
         <div className="">
           {ticketModal && (
-            <AddTicket setTicketModal={setTicketModal} ticketModal={ticketModal} onSubmit={onSubmit} />
+            <AddTicket
+              setTicketModal={setTicketModal}
+              ticketModal={ticketModal}
+              onSubmit={onSubmit}
+            />
           )}
         </div>
       </div>
@@ -363,7 +395,9 @@ function Ticket(props) {
             <option value="">Choose User</option>
             {users &&
               users.map((user) => (
-                <option value={user.id}>{user.name}</option>
+                <option value={user.id} key={user.id}>
+                  {user.name}
+                </option>
               ))}
           </select>
         </div>

@@ -71,7 +71,7 @@ function AddInventoryForm(props) {
               />
             </div>
 
-            <div className="col-lg-6 col-md-6 col-12 mt-3">
+            {/* <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Brand Name</label>
               <Select
                 className="w-100"
@@ -96,7 +96,7 @@ function AddInventoryForm(props) {
                     );
                   })}
               </Select>
-            </div>
+            </div> */}
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <InputFeild
@@ -120,7 +120,7 @@ function AddInventoryForm(props) {
               />
             </div>
 
-            <div className="col-lg-6 col-md-6 col-12 mt-3">
+            {/* <div className="col-lg-6 col-md-6 col-12 mt-3">
               <InputFeild
                 label="Device Number"
                 value={formdata.device_number}
@@ -129,7 +129,7 @@ function AddInventoryForm(props) {
                 }
                 disabled={editForm ? "disabled" : ""}
               />
-            </div>
+            </div> */}
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <InputFeild
@@ -210,7 +210,7 @@ function AddInventoryForm(props) {
               />
             </div>
 
-            <div className="col-lg-6 col-md-6 col-12 mt-3">
+            {/* <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Device Name</label>
               <Select
                 className="w-100"
@@ -242,7 +242,7 @@ function AddInventoryForm(props) {
                     );
                   })}
               </Select>
-            </div>
+            </div> */}
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Users</label>
@@ -387,7 +387,7 @@ function AddInventoryForm(props) {
                 {userList &&
                   userList.map((user) => (
                     <option value={user.id}>
-                      {user.user_details.firstName}
+                      {user.user_details?.firstName}
                     </option>
                   ))}
               </select>

@@ -14,7 +14,6 @@ import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 
 function User(props) {
-
   const columns = [
     {
       title: "ID ",
@@ -111,8 +110,8 @@ function User(props) {
       user.namewithemail = (
         <div>
           <p className="username">
-            {user.user_details.firstName} {user.user_details.middleName}{" "}
-            {user.user_details.lastName}
+            {user.user_details?.firstName} {user.user_details?.middleName}{" "}
+            {user.user_details?.lastName}
           </p>
           <span className="email">{user.email}</span>
         </div>
@@ -475,10 +474,7 @@ function User(props) {
                     <div>
                       <label className="mb-2">Provided Laptop</label>
                     </div>
-                    <select
-                      className="form-control"
-                      name="providingLaptop"
-                    >
+                    <select className="form-control" name="providingLaptop">
                       <option value={""}>Select One</option>
                       <option value={"Admin"}>Yes</option>
                       <option value={"Agent"}>No</option>
@@ -570,7 +566,13 @@ function User(props) {
         </div>
       </Modal>
       <Modal
-        title={operation === "view" ? "View User" : operation === "update" ? "Edit User" : "Create User"}
+        title={
+          operation === "view"
+            ? "View User"
+            : operation === "update"
+            ? "Edit User"
+            : "Create User"
+        }
         visible={isCreateUserModal}
         onCancel={() => setIsCreateModal(false)}
         footer={null}
@@ -580,8 +582,8 @@ function User(props) {
           onSubmit={createUserHandler}
           operation={operation}
           userInfo={userInfo}
-      />
-    </Modal>
+        />
+      </Modal>
     </React.Fragment>
   );
 }

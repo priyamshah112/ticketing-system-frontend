@@ -144,10 +144,7 @@ function HardwareInventory() {
   const [inventoryFile, setInventoryFile] = useState("");
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
-  const brands = [
-    'HP',
-    'DELL'
-  ];
+  const brands = ["HP", "DELL"];
   const [isAssignInventoryModal, setIsAssignInventoryModal] = useState(false);
   const [sampleImport, setSampleImport] = useState("");
   const userList = useSelector((state) => state.userList);
@@ -373,17 +370,17 @@ function HardwareInventory() {
       description,
     } = data;
     if (
-      !brand ||
+      // !brand ||
       !assetName ||
       !customID ||
       !unitPrice ||
-      !device_number ||
+      // !device_number ||
       !service_tag ||
       !model ||
       !express_service_code ||
       !serial_number ||
       !assignedTo ||
-      !device_name ||
+      // !device_name ||
       !assigned_to ||
       !location ||
       !description
@@ -457,57 +454,57 @@ function HardwareInventory() {
                 {id === "software" ? "Software" : "Hardware"} Inventory{" "}
                 {userid && username && "( " + username + " )"}
               </h2>
-              <h5 className="text-white op-7 mb-2">Manage Your Hardware Inventory</h5>
+              <h5 className="text-white op-7 mb-2">
+                Manage Your Hardware Inventory
+              </h5>
             </div>
             <div className="ml-md-auto py-2 py-md-0">
-            {!userid ? (
-              <>
-              <button
-                className="btn btn-white btn-round btn-border mr-2"
-                onClick={() =>
-                  $("#filter-inventory-wrapper").slideToggle(300)
-                }
-              >
-                Filters
-              </button>
-                <button
-                  onClick={() => showModal()}
-                  className="btn btn-round btn-primary mr-2"
-                >
-                  Import Hardware
-                </button>
-                <button
-                  onClick={() => {
-                    window
-                      .open(inventoryList.exportUrl, "_blank")
-                      .focus();
-                  }}
-                  className="btn btn-round btn-primary mr-2"
-                >
-                  Export Hardware
-                </button>
-                <button
-                  className="btn btn-primary btn-round"
-                  onClick={() => {
-                    setModal(true);
-                    setEditFormData({});
-                    setInventoryId();
-                    setEditForm(false);
-                  }}
-                >
-                  Add Hardware
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  className="btn btn-primary btn-round"
-                  onClick={assignInventoryModal}
-                >
-                  Assign Inventory
-                </button>
-              </>
-            )}
+              {!userid ? (
+                <>
+                  <button
+                    className="btn btn-white btn-round btn-border mr-2"
+                    onClick={() =>
+                      $("#filter-inventory-wrapper").slideToggle(300)
+                    }
+                  >
+                    Filters
+                  </button>
+                  <button
+                    onClick={() => showModal()}
+                    className="btn btn-round btn-primary mr-2"
+                  >
+                    Import Hardware
+                  </button>
+                  <button
+                    onClick={() => {
+                      window.open(inventoryList.exportUrl, "_blank").focus();
+                    }}
+                    className="btn btn-round btn-primary mr-2"
+                  >
+                    Export Hardware
+                  </button>
+                  <button
+                    className="btn btn-primary btn-round"
+                    onClick={() => {
+                      setModal(true);
+                      setEditFormData({});
+                      setInventoryId();
+                      setEditForm(false);
+                    }}
+                  >
+                    Add Hardware
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-primary btn-round"
+                    onClick={assignInventoryModal}
+                  >
+                    Assign Inventory
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -515,180 +512,175 @@ function HardwareInventory() {
       <div className="page-inner mt--5">
         <div className="card" id="filter-inventory-wrapper">
           <div className="card-body">
-          <form
-            onSubmit={filterSubmitHandler}
-            id="filter-inventory"
-            className="mb-5"
-          >
-            <div className="row mx-auto pt-3">
-              <div className="col-md-12">
-                <h4 className="fw-bold">Search Hardware Inventory</h4>
-              </div>
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
+            <form
+              onSubmit={filterSubmitHandler}
+              id="filter-inventory"
+              className="mb-5"
+            >
+              <div className="row mx-auto pt-3">
+                <div className="col-md-12">
+                  <h4 className="fw-bold">Search Hardware Inventory</h4>
+                </div>
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
-                    <label className="mb-2">Device Name</label>
+                    <div>
+                      <label className="mb-2">Device Name</label>
+                    </div>
+                    <input
+                      type={"text"}
+                      className="form-control"
+                      name="device_name"
+                    />
                   </div>
-                  <input
-                    type={"text"}
-                    className="form-control"
-                    name="device_name"
-                  />
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Device Number</label>
+                    </div>
+                    <input
+                      name="device_number"
+                      type="text"
+                      className="form-control filter-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Brand</label>
+                    </div>
+                    <select className="form-control" name="brand">
+                      <option value="">Select Brand</option>
+                      {inventoryList.brands &&
+                        inventoryList.brands.map((data, i) => {
+                          if (!data) return null;
+                          return (
+                            <option value={data} key={i}>
+                              {data}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Model</label>
+                    </div>
+                    <input
+                      name="model"
+                      type="text"
+                      className="form-control filter-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Serial Number</label>
+                    </div>
+                    <input
+                      name="serial_number"
+                      type="text"
+                      className="form-control filter-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Express Service Code </label>
+                    </div>
+                    <input
+                      type="text"
+                      name="express_service_code"
+                      className="form-control filter-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Warranty Expire On</label>
+                    </div>
+                    <input
+                      type="date"
+                      name="warranty_expire_on"
+                      className="form-control filter-input"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Assign To</label>
+                    </div>
+                    <select className="form-control" name="assigned_to">
+                      <option value={""}>Select User</option>
+                      {userList &&
+                        userList.map((user) => (
+                          <option value={user.id}>{user.name}</option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Status</label>
+                    </div>
+                    <select className="form-control" name="status">
+                      <option value={""}>Select Status</option>
+                      <option value="In Use">Not Available</option>
+                      <option value="Avaialable">Available</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Location</label>
+                    </div>
+                    <select className="form-control" name="location">
+                      <option value={""}>Select Location</option>
+                      <option value={"USA"}>USA</option>
+                      <option value={"Costa Rica"}>Costa Rica</option>
+                      <option value={"India"}>India</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 mt-3 text-right">
+                  <button className="btn  btn-primary btn-radius" type="submit">
+                    Search
+                  </button>
+                  <button
+                    className="btn  btn-primary btn-border ml-3"
+                    onClick={() => {
+                      $("#filter-inventory").trigger("reset");
+                      $("#filter-inventory-wrapper").slideToggle(300);
+                      let path = apipaths.hardwareInventoryList;
+                      path["url"] = path["url"].split("?")[0];
+                      dispatch(inventoryListAction(id));
+                    }}
+                    type="button"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Device Number</label>
-                  </div>
-                  <input
-                    name="device_number"
-                    type="text"
-                    className="form-control filter-input"
-                  />
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Brand</label>
-                  </div>
-                  <select className="form-control" name="brand">
-                    <option value="">Select Brand</option>
-                    {inventoryList.brands &&
-                      inventoryList.brands.map((data, i) => {
-                        if (!data) return null;
-                        return (
-                          <option value={data} key={i}>
-                            {data}
-                          </option>
-                        );
-                      })}
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Model</label>
-                  </div>
-                  <input
-                    name="model"
-                    type="text"
-                    className="form-control filter-input"
-                  />
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Serial Number</label>
-                  </div>
-                  <input
-                    name="serial_number"
-                    type="text"
-                    className="form-control filter-input"
-                  />
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">
-                      Express Service Code{" "}
-                    </label>
-                  </div>
-                  <input
-                    type="text"
-                    name="express_service_code"
-                    className="form-control filter-input"
-                  />
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Warranty Expire On</label>
-                  </div>
-                  <input
-                    type="date"
-                    name="warranty_expire_on"
-                    className="form-control filter-input"
-                  />
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Assign To</label>
-                  </div>
-                  <select className="form-control" name="assigned_to">
-                    <option value={""}>Select User</option>
-                    {userList &&
-                      userList.map((user) => (
-                        <option value={user.id}>{user.name}</option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Status</label>
-                  </div>
-                  <select className="form-control" name="status">
-                    <option value={""}>Select Status</option>
-                    <option value="In Use">Not Available</option>
-                    <option value="Avaialable">Available</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-3 mt-3">
-                <div>
-                  <div>
-                    <label className="mb-2">Location</label>
-                  </div>
-                  <select className="form-control" name="location">
-                    <option value={""}>Select Location</option>
-                    <option value={"USA"}>USA</option>
-                    <option value={"Costa Rica"}>Costa Rica</option>
-                    <option value={"India"}>India</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="col-12 mt-3 text-right">
-                <button
-                  className="btn  btn-primary btn-radius"
-                  type="submit"
-                >
-                  Search
-                </button>
-                <button
-                  className="btn  btn-primary btn-border ml-3"
-                  onClick={() => {
-                    $("#filter-inventory").trigger("reset");
-                    $("#filter-inventory-wrapper").slideToggle(300);
-                    let path = apipaths.hardwareInventoryList;
-                    path["url"] = path["url"].split("?")[0];
-                    dispatch(inventoryListAction(id));
-                  }}
-                  type="button"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
           </div>
         </div>
         <div className="card">
@@ -708,7 +700,7 @@ function HardwareInventory() {
           </div>
         </div>
       </div>
-      
+
       <Modal
         title={inventoryId ? "Update Inventory" : "Add Inventory"}
         visible={modal}
@@ -759,8 +751,7 @@ function HardwareInventory() {
                 <option value="">Select Brand</option>
                 {inventoryList[id] &&
                   inventoryList[id].map(
-                    (inv) =>
-                      !inv.assigned_to && <option>{inv.brand}</option>
+                    (inv) => !inv.assigned_to && <option>{inv.brand}</option>
                   )}
               </select>
             </div>
@@ -771,8 +762,7 @@ function HardwareInventory() {
                 <option value="">Select Model</option>
                 {inventoryList[id] &&
                   inventoryList[id].map(
-                    (inv) =>
-                      !inv.assigned_to && <option>{inv.model}</option>
+                    (inv) => !inv.assigned_to && <option>{inv.model}</option>
                   )}
               </select>
             </div>
@@ -784,9 +774,7 @@ function HardwareInventory() {
                 {inventoryList[id] &&
                   inventoryList[id].map(
                     (inv) =>
-                      !inv.assigned_to && (
-                        <option>{inv.device_number}</option>
-                      )
+                      !inv.assigned_to && <option>{inv.device_number}</option>
                   )}
               </select>
             </div>
@@ -839,15 +827,11 @@ function HardwareInventory() {
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Device Name:</span>
-                      <span className="margin">
-                        {hardware.device_name}
-                      </span>
+                      <span className="margin">{hardware.device_name}</span>
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Device Number:</span>
-                      <span className="margin">
-                        {hardware.device_number}
-                      </span>
+                      <span className="margin">{hardware.device_number}</span>
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Brand:</span>
@@ -859,9 +843,7 @@ function HardwareInventory() {
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Serial Number:</span>
-                      <span className="margin">
-                        {hardware.serial_number}
-                      </span>
+                      <span className="margin">{hardware.serial_number}</span>
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Section:</span>
@@ -869,9 +851,7 @@ function HardwareInventory() {
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Assign To:</span>
-                      <span className="margin">
-                        {hardware.assigned_to}
-                      </span>
+                      <span className="margin">{hardware.assigned_to}</span>
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Status:</span>
@@ -901,9 +881,7 @@ function HardwareInventory() {
                     </div>
                     <div className="col-12 p-2">
                       <span className="fw-bold">Updated At:</span>
-                      <span className="margin">
-                        {hardware.updated_at}
-                      </span>
+                      <span className="margin">{hardware.updated_at}</span>
                     </div>
                   </div>
                 </>
