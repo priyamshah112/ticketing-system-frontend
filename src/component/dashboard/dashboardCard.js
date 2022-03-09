@@ -12,7 +12,7 @@ function DashboardCard(props) {
       <div className="card-body flex justify-content-between">
         <div className="card-title" style={{ color: colorArr[num], fontWeight: "bold" }}>{data.title}</div>
         {/* <div className="card-category">Daily information about statistics in system</div> */}
-        <div className="d-flex flex-wrap justify-content-around pb-2 pt-4">
+        <div className="d-flex flex-wrap justify-content-around pb-2 pt-4 align-items-center">
           <div className="align-items-center">
             <p className="mb-0" className="card-progress-total mb-0">
               {data.total}

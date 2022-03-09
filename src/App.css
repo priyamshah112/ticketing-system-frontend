@@ -90,6 +90,12 @@
   align-items: center;
   height: 100%;
 }
+.chart-350{
+  height: 350px !important;
+}
+.dashboard-count p{
+  color: #000000d9;
+}
 /* ******* Root Css ************ */
 .status {
   padding: 2px 6px;

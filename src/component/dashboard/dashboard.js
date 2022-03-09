@@ -265,7 +265,7 @@ function Dashboard() {
           options={graphData.options}
           series={graphData.series}
           type="radialBar"
-          height={350}
+          height="350px"
         />
       );
     }
@@ -332,7 +332,7 @@ function Dashboard() {
           options={data.options}
           series={data.series}
           type="radialBar"
-          height={350}
+          height="350px"
         />
       );
     }
@@ -353,19 +353,19 @@ function Dashboard() {
         </div>
       </div>
       <div className="dashboard-card-container page-inner mt--5">
-        <div className="row flex-wrap">
+        <div className="row dashboard-count">
           {cards &&
             cards.map((card, i) => {
               if (i === cards.length - 1) return null;
               return (
-                <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 my-2">
+                <div className="col-md-3">
                   <DashboardCard data={card} num={i} />
                 </div>
               );
             })}
 
           {cards && (
-            <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 my-2">
+            <div className="col-md-3">
               <div className="card full-height">
                 <div className="card-body flex justify-content-between">
                   <div
@@ -375,7 +375,7 @@ function Dashboard() {
                     Number of Active Users
                   </div>
                   {/* <div className="card-category">Daily information about statistics in system</div> */}
-                  <div className="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                  <div className="d-flex flex-wrap justify-content-around pb-2 pt-4 align-items-center">
                     <div className="align-items-center">
                       <p className="mb-0" className="card-progress-total mb-0">
                         {totalUsers}
@@ -393,9 +393,9 @@ function Dashboard() {
             </div>
           )}
         </div>
-        <div className="row flex-wrap">
-          <div className="col-xl-12 col-lg-12 col-md-12 col-12">
-            <div className="card mb-0">
+        <div className="row">
+          <div className="col-12">
+            <div className="card full-height">
               <div className="card-header">
                 <div className="card-head-row card-tools-still-right">
                   <h4 className="card-title">Country</h4>
@@ -515,10 +515,10 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="col-xl-4 col-lg-4 col-md-12 col-12">
-            <div className="dashboard-inventory bg-white">
+          {/* <div className="col-md-6">
+            <div className="card dashboard-inventory bg-white">
               <div className="row">
-                {/* <div className="col-lg-5 col-md-5 col-12 px-0">
+                <div className="col-lg-5 col-md-5 col-12 px-0">
                   <div className="sec-one position-relative">
                     <p className="inv-heading">Software inventory</p>
                     <div
@@ -541,8 +541,8 @@ function Dashboard() {
                         ))}
                     </div>
                   </div>
-                </div> */}
-                {/* <div className="col-xl-7 col-lg-7 col-md-7 col-12 px-0">
+                </div>
+                <div className="col-xl-7 col-lg-7 col-md-7 col-12 px-0">
                   <div className="text-center">
                     <p
                       className="pr-4 pt-4"
@@ -554,30 +554,28 @@ function Dashboard() {
                       {unassignedSofwareGraphHanlder(softwareInventoryData)}
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="row" style={{ marginTop: "1rem" }}>
-          <div className="col-xl-6 col-lg-6 col-md-6 col-12 w-100 mt-3">
+        <div className="row">
+          <div className="col-md-6">
             <div
-              className="w-100 ml-2 p-3"
-              style={{
-                borderRadius: "26px",
-                background: "#fff",
-              }}
+              className="card full-height"
             >
-              <div className="flex justify-content-between mt-3 px-4">
+              <div className="card-header">
                 <h2 className="font-weight-bold">Hardware Inventory</h2>
                 <p>last Seen 7 Days</p>
               </div>
-              <div>
-                {hardwareInventoryGraphHandler(hardwareInventory)}
+              <div className="card-body">
+                <div className="chart-350">
+                  {hardwareInventoryGraphHandler(hardwareInventory)}
+                </div>
                 <div className="pt-2">
                   {hardwareInventory && (
                     <>
-                      <div className="flex ai-center">
+                      <div className="d-flex">
                         <span
                           className="circle"
                           style={{ backgroundColor: "#1572e8" }}
@@ -593,7 +591,7 @@ function Dashboard() {
                         </p>
                       </div>
 
-                      <div className="flex ai-center">
+                      <div className="d-flex">
                         <span
                           className="circle"
                           style={{ backgroundColor: "#b64961" }}
@@ -609,7 +607,7 @@ function Dashboard() {
                         </p>
                       </div>
 
-                      <div className="flex ai-center">
+                      <div className="d-flex">
                         <span
                           className="circle"
                           style={{ backgroundColor: "#27723c" }}
@@ -631,37 +629,19 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="col-xl-6 col-lg-6 col-md-6 col-12 w-100 mt-3">
+          <div className="col-md-6">
             <div
-              className="bg-white ml-auto"
-              style={{
-                borderRadius: "35px",
-                width: "98%",
-                position: "relative",
-              }}
+              className="card full-height"
             >
-              <div
-                className="text-center"
-                style={{ position: "absolute", top: "30px", left: "30px" }}
-              >
-                <p
-                  className="mb-0 font-weight-bold"
-                  style={{ color: "rgb(39, 114, 60)" }}
-                >
-                  Support Tracker
-                </p>
-                <h2 className="mb-0 font-weight-bold">
-                  {totalTicketsCount(supportTracker)}
-                </h2>
-                <p className="mb-0">Tickets</p>
+              <div className="card-header">
+                <h2 className="font-weight-bold">Support Tracker</h2>
+                <p>{totalTicketsCount(supportTracker)} Tickets</p>
               </div>
-              <div
-                className="row position-relative ml-auto"
-                style={{ width: "100%" }}
-              >
-                {supportTrackerGraphHandler(supportTracker)}
-
-                <div className="flex justify-content-between px-5 pb-3 mt-10">
+              <div className="card-body">
+                <div className="chart-350">
+                  {supportTrackerGraphHandler(supportTracker)}
+                </div>
+                <div className="pt-2">
                   {supportTracker &&
                     Object.keys(supportTracker).map((track, i) => {
                       const ticketType = [
@@ -669,100 +649,269 @@ function Dashboard() {
                         "Pending Tickets",
                         "Closed Tickets",
                       ];
+                      const ticketTypeColor = [
+                        "#f25961",
+                        "#ff9e27",
+                        "#2bb930",
+                      ];
                       return (
-                        <div className="text-center">
-                          <p className="mb-0 font-weight-bold">
+                        <div className="d-flex align-items-center">
+                          <span
+                          className="circle"
+                          style={{ backgroundColor: ticketTypeColor[i] }}
+                        ></span>
+                          <p className="font-weight-bold mx-3 mb-0">
                             {ticketType[i]}
                           </p>
-                          <p className="font-weight-bold">
+                          <p
+                            className="font-weight-bold ml-auto mb-0"
+                            style={{ color: ticketTypeColor[i], fontWeight: "bold" }}
+                          >
                             {supportTracker[track]}
                           </p>
                         </div>
                       );
-                    })}
+                  })}
                 </div>
               </div>
             </div>
-            {/* <div
-              className="row position-relative ml-auto"
-              style={{ width: "100%" }}
-            >
-              <div className="seperator vertical"></div>
-              <div className="col-lg-6 col-md-12 col-12 w-100 mt-3">
-                <div
-                  className="bg-white pl-4 mt-4 py-4 box-shadow"
-                  style={{ borderRadius: "22px", height: "500px" }}
-                >
-                  <p
-                    className="font-weight-bold f-20"
-                    style={{ color: "#27723C" }}
-                  >
-                    Users
-                  </p>
-                  <hr />
-                  <div className="user-block">
-                    {newusers &&
-                      newusers.map((user) => (
-                        <div className="flex align-items-center my-3">
-                          <img
-                            width={50}
-                            height={50}
-                            className="mr-3"
-                            src="/images/user/user.png"
-                            style={{
-                              objectFit: "cover",
-                              borderRadius: "10px",
-                            }}
-                          />
-                          <div>
-                            <p className="f-17 mb-0">
-                              <b>{user.name}</b>
-                            </p>
-                            <p className="mb-0" style={{ color: "#707070" }}>
-                              {user.lastSeen}
-                            </p>
+          </div>
+        </div>        
+        <div className="row">
+          <div className="col-md-6">
+            <div className="card full-height">
+              <div className="card-header">
+                <div className="card-title">User Activity</div>
+              </div>
+              <div className="card-body">
+                <ol className="activity-feed">
+                  {activityTimeLine &&
+                    activityTimeLine.map((result, index) => {
+                      return (
+                        <li className="feed-item feed-item-success" key={index}>
+                          <time className="date" datetime="9-24">
+                            {result?.created_at &&
+                              moment(result.created_at).format("MM/DD/YYYY")}
+                          </time>
+                          <span className="text">
+                            {result.message && result.message}
+                            <a href="#">"Volunteer Activities"</a>
+                          </span>
+                        </li>
+                      );
+                    })}
+                  {/* <li className="feed-item feed-item-secondary">
+                    <time className="date" datetime="9-25">Sep 25</time>
+                    <span className="text">Responded to need <a href="#">"Volunteer opportunity"</a></span>
+                  </li>
+                  <li className="feed-item feed-item-success">
+                    <time className="date" datetime="9-24">Sep 24</time>
+                    <span className="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
+                  </li>
+                  <li className="feed-item feed-item-info">
+                    <time className="date" datetime="9-23">Sep 23</time>
+                    <span className="text">Joined the group <a href="single-group.php">"Boardsmanship Forum"</a></span>
+                  </li>
+                  <li className="feed-item feed-item-warning">
+                    <time className="date" datetime="9-21">Sep 21</time>
+                    <span className="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
+                  </li>
+                  <li className="feed-item feed-item-danger">
+                    <time className="date" datetime="9-18">Sep 18</time>
+                    <span className="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
+                  </li>
+                  <li className="feed-item">
+                    <time className="date" datetime="9-17">Sep 17</time>
+                    <span className="text">Attending the event <a href="single-event.php">"Some New Event"</a></span>
+                  </li> */}
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="card full-height">
+              <div className="card-header">
+                <div className="card-head-row">
+                  <div className="card-title">Support Tickets</div>
+                  {/* <div className="card-tools">
+                    <ul
+                      className="nav nav-pills nav-secondary nav-pills-no-bd nav-sm"
+                      id="pills-tab"
+                      role="tablist"
+                    >
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="pills-today"
+                          data-toggle="pill"
+                          href="#pills-today"
+                          role="tab"
+                          aria-selected="true"
+                        >
+                          Today
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link active"
+                          id="pills-week"
+                          data-toggle="pill"
+                          href="#pills-week"
+                          role="tab"
+                          aria-selected="false"
+                        >
+                          Week
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link"
+                          id="pills-month"
+                          data-toggle="pill"
+                          href="#pills-month"
+                          role="tab"
+                          aria-selected="false"
+                        >
+                          Month
+                        </a>
+                      </li>
+                    </ul>
+                  </div> */}
+                </div>
+              </div>
+              <div className="card-body">
+                {newusers &&
+                  newusers.map((result) => {
+                    return (
+                      <>
+                        <div className="d-flex">
+                          <div className="avatar avatar-offline">
+                            <span className="avatar-title rounded-circle border border-white bg-secondary">
+                              {result.name.charAt(0)}
+                            </span>
+                          </div>
+                          <div className="flex-1 ml-3 pt-1">
+                            <h6 className="text-uppercase fw-bold mb-1">
+                              {result.name}
+                              <span className="text-success pl-3">open</span>
+                            </h6>
+                            <span className="text-muted">
+                              I have some query regarding the license issue.
+                            </span>
+                          </div>
+                          <div className="float-right pt-1">
+                            <small className="text-muted">
+                              {result.lastSeen}
+                            </small>
                           </div>
                         </div>
-                      ))}
+                        <div className="separator-dashed"></div>
+                      </>
+                    );
+                  })}
+                {/* <div className="d-flex">
+                  <div className="avatar avatar-online">
+                    <span className="avatar-title rounded-circle border border-white bg-info">
+                      J
+                    </span>
+                  </div>
+                  <div className="flex-1 ml-3 pt-1">
+                    <h6 className="text-uppercase fw-bold mb-1">
+                      Joko Subianto{" "}
+                      <span className="text-warning pl-3">pending</span>
+                    </h6>
+                    <span className="text-muted">
+                      I am facing some trouble with my viewport. When i start my
+                    </span>
+                  </div>
+                  <div className="float-right pt-1">
+                    <small className="text-muted">8:40 PM</small>
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-6 col-md-12 col-12 w-100 mt-3">
-                <div
-                  className="bg-white pl-4 mt-4 py-4 box-shadow"
-                  style={{ borderRadius: "22px", height: "500px" }}
-                >
-                  <p
-                    className="font-weight-bold f-20"
-                    style={{ color: "#27723C" }}
-                  >
-                    Activity Timeline
-                  </p>
-                  <hr />
-                  <div className="timeline-block">
-                    {activityTimeLine &&
-                      activityTimeLine.map((data) => (
-                        <div
-                          className="flex align-items-baseline"
-                          style={{ borderLeft: `5px solid ${data.color}` }}
-                        >
-                          <span className="ml-3 f-17 mb-0">{data.message}</span>
-                        </div>
-                      ))}
-
-                    <Link
-                      to="/faqs"
-                      className="mt-3 pl-1"
-                      style={{ color: "rgb(71, 145, 255)" }}
-                    >
-                      more...
-                    </Link>
+                <div className="separator-dashed"></div>
+                <div className="d-flex">
+                  <div className="avatar avatar-offline">
+                    <span className="avatar-title rounded-circle border border-white bg-secondary">
+                      P
+                    </span>
+                  </div>
+                  <div className="flex-1 ml-3 pt-1">
+                    <h6 className="text-uppercase fw-bold mb-1">
+                      Prabowo Widodo{" "}
+                      <span className="text-success pl-3">open</span>
+                    </h6>
+                    <span className="text-muted">
+                      I have some query regarding the license issue.
+                    </span>
+                  </div>
+                  <div className="float-right pt-1">
+                    <small className="text-muted">1 Day Ago</small>
                   </div>
                 </div>
+                <div className="separator-dashed"></div>
+                <div className="d-flex">
+                  <div className="avatar avatar-away">
+                    <span className="avatar-title rounded-circle border border-white bg-danger">
+                      L
+                    </span>
+                  </div>
+                  <div className="flex-1 ml-3 pt-1">
+                    <h6 className="text-uppercase fw-bold mb-1">
+                      Lee Chong Wei{" "}
+                      <span className="text-muted pl-3">closed</span>
+                    </h6>
+                    <span className="text-muted">
+                      Is there any update plan for RTL version near future?
+                    </span>
+                  </div>
+                  <div className="float-right pt-1">
+                    <small className="text-muted">2 Days Ago</small>
+                  </div>
+                </div>
+                <div className="separator-dashed"></div>
+                <div className="d-flex">
+                  <div className="avatar avatar-offline">
+                    <span className="avatar-title rounded-circle border border-white bg-secondary">
+                      P
+                    </span>
+                  </div>
+                  <div className="flex-1 ml-3 pt-1">
+                    <h6 className="text-uppercase fw-bold mb-1">
+                      Peter Parker{" "}
+                      <span className="text-success pl-3">open</span>
+                    </h6>
+                    <span className="text-muted">
+                      I have some query regarding the license issue.
+                    </span>
+                  </div>
+                  <div className="float-right pt-1">
+                    <small className="text-muted">2 Day Ago</small>
+                  </div>
+                </div>
+                <div className="separator-dashed"></div>
+                <div className="d-flex">
+                  <div className="avatar avatar-away">
+                    <span className="avatar-title rounded-circle border border-white bg-danger">
+                      L
+                    </span>
+                  </div>
+                  <div className="flex-1 ml-3 pt-1">
+                    <h6 className="text-uppercase fw-bold mb-1">
+                      Logan Paul <span className="text-muted pl-3">closed</span>
+                    </h6>
+                    <span className="text-muted">
+                      Is there any update plan for RTL version near future?
+                    </span>
+                  </div>
+                  <div className="float-right pt-1">
+                    <small className="text-muted">2 Days Ago</small>
+                  </div>
+                </div> */}
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
+      </div>
         {/* <div className="row">
           <div className="col-md-6">
             <div className="card full-height">
@@ -1197,241 +1346,6 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
-        <div className="row" style={{ marginTop: "3em" }}>
-          <div className="col-md-6">
-            <div className="card full-height">
-              <div className="card-header">
-                <div className="card-title">User Activity</div>
-              </div>
-              <div className="card-body">
-                <ol className="activity-feed">
-                  {activityTimeLine &&
-                    activityTimeLine.map((result, index) => {
-                      return (
-                        <li className="feed-item feed-item-success" key={index}>
-                          <time className="date" datetime="9-24">
-                            {result?.created_at &&
-                              moment(result.created_at).format("MM/DD/YYYY")}
-                          </time>
-                          <span className="text">
-                            {result.message && result.message}
-                            <a href="#">"Volunteer Activities"</a>
-                          </span>
-                        </li>
-                      );
-                    })}
-                  {/* <li className="feed-item feed-item-secondary">
-                    <time className="date" datetime="9-25">Sep 25</time>
-                    <span className="text">Responded to need <a href="#">"Volunteer opportunity"</a></span>
-                  </li>
-                  <li className="feed-item feed-item-success">
-                    <time className="date" datetime="9-24">Sep 24</time>
-                    <span className="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
-                  </li>
-                  <li className="feed-item feed-item-info">
-                    <time className="date" datetime="9-23">Sep 23</time>
-                    <span className="text">Joined the group <a href="single-group.php">"Boardsmanship Forum"</a></span>
-                  </li>
-                  <li className="feed-item feed-item-warning">
-                    <time className="date" datetime="9-21">Sep 21</time>
-                    <span className="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
-                  </li>
-                  <li className="feed-item feed-item-danger">
-                    <time className="date" datetime="9-18">Sep 18</time>
-                    <span className="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
-                  </li>
-                  <li className="feed-item">
-                    <time className="date" datetime="9-17">Sep 17</time>
-                    <span className="text">Attending the event <a href="single-event.php">"Some New Event"</a></span>
-                  </li> */}
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="card full-height">
-              <div className="card-header">
-                <div className="card-head-row">
-                  <div className="card-title">Support Tickets</div>
-                  {/* <div className="card-tools">
-                    <ul
-                      className="nav nav-pills nav-secondary nav-pills-no-bd nav-sm"
-                      id="pills-tab"
-                      role="tablist"
-                    >
-                      <li className="nav-item">
-                        <a
-                          className="nav-link"
-                          id="pills-today"
-                          data-toggle="pill"
-                          href="#pills-today"
-                          role="tab"
-                          aria-selected="true"
-                        >
-                          Today
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          className="nav-link active"
-                          id="pills-week"
-                          data-toggle="pill"
-                          href="#pills-week"
-                          role="tab"
-                          aria-selected="false"
-                        >
-                          Week
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          className="nav-link"
-                          id="pills-month"
-                          data-toggle="pill"
-                          href="#pills-month"
-                          role="tab"
-                          aria-selected="false"
-                        >
-                          Month
-                        </a>
-                      </li>
-                    </ul>
-                  </div> */}
-                </div>
-              </div>
-              <div className="card-body">
-                {newusers &&
-                  newusers.map((result) => {
-                    return (
-                      <>
-                        <div className="d-flex">
-                          <div className="avatar avatar-offline">
-                            <span className="avatar-title rounded-circle border border-white bg-secondary">
-                              {result.name.charAt(0)}
-                            </span>
-                          </div>
-                          <div className="flex-1 ml-3 pt-1">
-                            <h6 className="text-uppercase fw-bold mb-1">
-                              {result.name}
-                              <span className="text-success pl-3">open</span>
-                            </h6>
-                            <span className="text-muted">
-                              I have some query regarding the license issue.
-                            </span>
-                          </div>
-                          <div className="float-right pt-1">
-                            <small className="text-muted">
-                              {result.lastSeen}
-                            </small>
-                          </div>
-                        </div>
-                        <div className="separator-dashed"></div>
-                      </>
-                    );
-                  })}
-                {/* <div className="d-flex">
-                  <div className="avatar avatar-online">
-                    <span className="avatar-title rounded-circle border border-white bg-info">
-                      J
-                    </span>
-                  </div>
-                  <div className="flex-1 ml-3 pt-1">
-                    <h6 className="text-uppercase fw-bold mb-1">
-                      Joko Subianto{" "}
-                      <span className="text-warning pl-3">pending</span>
-                    </h6>
-                    <span className="text-muted">
-                      I am facing some trouble with my viewport. When i start my
-                    </span>
-                  </div>
-                  <div className="float-right pt-1">
-                    <small className="text-muted">8:40 PM</small>
-                  </div>
-                </div>
-                <div className="separator-dashed"></div>
-                <div className="d-flex">
-                  <div className="avatar avatar-offline">
-                    <span className="avatar-title rounded-circle border border-white bg-secondary">
-                      P
-                    </span>
-                  </div>
-                  <div className="flex-1 ml-3 pt-1">
-                    <h6 className="text-uppercase fw-bold mb-1">
-                      Prabowo Widodo{" "}
-                      <span className="text-success pl-3">open</span>
-                    </h6>
-                    <span className="text-muted">
-                      I have some query regarding the license issue.
-                    </span>
-                  </div>
-                  <div className="float-right pt-1">
-                    <small className="text-muted">1 Day Ago</small>
-                  </div>
-                </div>
-                <div className="separator-dashed"></div>
-                <div className="d-flex">
-                  <div className="avatar avatar-away">
-                    <span className="avatar-title rounded-circle border border-white bg-danger">
-                      L
-                    </span>
-                  </div>
-                  <div className="flex-1 ml-3 pt-1">
-                    <h6 className="text-uppercase fw-bold mb-1">
-                      Lee Chong Wei{" "}
-                      <span className="text-muted pl-3">closed</span>
-                    </h6>
-                    <span className="text-muted">
-                      Is there any update plan for RTL version near future?
-                    </span>
-                  </div>
-                  <div className="float-right pt-1">
-                    <small className="text-muted">2 Days Ago</small>
-                  </div>
-                </div>
-                <div className="separator-dashed"></div>
-                <div className="d-flex">
-                  <div className="avatar avatar-offline">
-                    <span className="avatar-title rounded-circle border border-white bg-secondary">
-                      P
-                    </span>
-                  </div>
-                  <div className="flex-1 ml-3 pt-1">
-                    <h6 className="text-uppercase fw-bold mb-1">
-                      Peter Parker{" "}
-                      <span className="text-success pl-3">open</span>
-                    </h6>
-                    <span className="text-muted">
-                      I have some query regarding the license issue.
-                    </span>
-                  </div>
-                  <div className="float-right pt-1">
-                    <small className="text-muted">2 Day Ago</small>
-                  </div>
-                </div>
-                <div className="separator-dashed"></div>
-                <div className="d-flex">
-                  <div className="avatar avatar-away">
-                    <span className="avatar-title rounded-circle border border-white bg-danger">
-                      L
-                    </span>
-                  </div>
-                  <div className="flex-1 ml-3 pt-1">
-                    <h6 className="text-uppercase fw-bold mb-1">
-                      Logan Paul <span className="text-muted pl-3">closed</span>
-                    </h6>
-                    <span className="text-muted">
-                      Is there any update plan for RTL version near future?
-                    </span>
-                  </div>
-                  <div className="float-right pt-1">
-                    <small className="text-muted">2 Days Ago</small>
-                  </div>
-                </div> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </React.Fragment>
   );
 }
