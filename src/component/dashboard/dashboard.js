@@ -561,9 +561,7 @@ function Dashboard() {
         </div>
         <div className="row">
           <div className="col-md-6">
-            <div
-              className="card full-height"
-            >
+            <div className="card full-height">
               <div className="card-header">
                 <h2 className="font-weight-bold">Hardware Inventory</h2>
                 <p>last Seen 7 Days</p>
@@ -630,9 +628,7 @@ function Dashboard() {
           </div>
 
           <div className="col-md-6">
-            <div
-              className="card full-height"
-            >
+            <div className="card full-height">
               <div className="card-header">
                 <h2 className="font-weight-bold">Support Tracker</h2>
                 <p>{totalTicketsCount(supportTracker)} Tickets</p>
@@ -649,34 +645,33 @@ function Dashboard() {
                         "Pending Tickets",
                         "Closed Tickets",
                       ];
-                      const ticketTypeColor = [
-                        "#f25961",
-                        "#ff9e27",
-                        "#2bb930",
-                      ];
+                      const ticketTypeColor = ["#f25961", "#ff9e27", "#2bb930"];
                       return (
                         <div className="d-flex align-items-center">
                           <span
-                          className="circle"
-                          style={{ backgroundColor: ticketTypeColor[i] }}
-                        ></span>
+                            className="circle"
+                            style={{ backgroundColor: ticketTypeColor[i] }}
+                          ></span>
                           <p className="font-weight-bold mx-3 mb-0">
                             {ticketType[i]}
                           </p>
                           <p
                             className="font-weight-bold ml-auto mb-0"
-                            style={{ color: ticketTypeColor[i], fontWeight: "bold" }}
+                            style={{
+                              color: ticketTypeColor[i],
+                              fontWeight: "bold",
+                            }}
                           >
                             {supportTracker[track]}
                           </p>
                         </div>
                       );
-                  })}
+                    })}
                 </div>
               </div>
             </div>
           </div>
-        </div>        
+        </div>
         <div className="row">
           <div className="col-md-6">
             <div className="card full-height">
@@ -911,7 +906,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
+        {/* </div> */}
         {/* <div className="row">
           <div className="col-md-6">
             <div className="card full-height">
@@ -1031,8 +1026,8 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
-        {/* <div className="row row-card-no-pd">
-          <div className="col-md-12">
+        <div className="row row-card-no-pd">
+          <div className="col-md-10">
             <div className="card">
               <div className="card-header">
                 <div className="card-head-row card-tools-still-right">
@@ -1059,84 +1054,123 @@ function Dashboard() {
                     <div className="table-responsive table-hover table-sales">
                       <table className="table">
                         <tbody>
-                          <tr>
-                            <td>
-                              <div className="flag">
-                                <img
-                                  src="../assets/img/flags/id.png"
-                                  alt="indonesia"
-                                />
-                              </div>
-                            </td>
-                            <td>Indonesia</td>
-                            <td className="text-right">2.320</td>
-                            <td className="text-right">42.18%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div className="flag">
-                                <img
-                                  src="../assets/img/flags/us.png"
-                                  alt="united states"
-                                />
-                              </div>
-                            </td>
-                            <td>USA</td>
-                            <td className="text-right">240</td>
-                            <td className="text-right">4.36%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div className="flag">
-                                <img
-                                  src="../assets/img/flags/au.png"
-                                  alt="australia"
-                                />
-                              </div>
-                            </td>
-                            <td>Australia</td>
-                            <td className="text-right">119</td>
-                            <td className="text-right">2.16%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div className="flag">
-                                <img
-                                  src="../assets/img/flags/ru.png"
-                                  alt="russia"
-                                />
-                              </div>
-                            </td>
-                            <td>Russia</td>
-                            <td className="text-right">1.081</td>
-                            <td className="text-right">19.65%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div className="flag">
-                                <img
-                                  src="../assets/img/flags/cn.png"
-                                  alt="china"
-                                />
-                              </div>
-                            </td>
-                            <td>China</td>
-                            <td className="text-right">1.100</td>
-                            <td className="text-right">20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div className="flag">
-                                <img
-                                  src="../assets/img/flags/br.png"
-                                  alt="brazil"
-                                />
-                              </div>
-                            </td>
-                            <td>Brasil</td>
-                            <td className="text-right">640</td>
-                            <td className="text-right">11.63%</td>
-                          </tr>
+                          {countryData &&
+                            countryData.map((result, index) => {
+                              return (
+                                <tr key={index}>
+                                  <td>
+                                    <div className="flag">
+                                      {result.country === "USA" && (
+                                        <img
+                                          src={"images/united-states.svg"}
+                                          alt="USA"
+                                          width={30}
+                                        />
+                                      )}
+                                      {result.country === "Costa Rica" && (
+                                        <img
+                                          src={"images/cr.png"}
+                                          alt="Costa Rica"
+                                          width={30}
+                                        />
+                                      )}
+                                      {result.country === "India" && (
+                                        <img
+                                          src={"images/in.png"}
+                                          alt="India"
+                                          width={30}
+                                        />
+                                      )}
+                                    </div>
+                                  </td>
+                                  <td>{result.country}</td>
+                                  <td className="text-right">
+                                    {result.tickets.open}
+                                  </td>
+                                  <td className="text-right">
+                                    {result.tickets.closed}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          {/* <tr>
+                          <td>
+                            <div className="flag">
+                              <img
+                                src="../assets/img/flags/id.png"
+                                alt="indonesia"
+                              />
+                            </div>
+                          </td>
+                          <td>Indonesia</td>
+                          <td className="text-right">2.320</td>
+                          <td className="text-right">42.18%</td>
+                        </tr> */}
+                          {/* <tr>
+                          <td>
+                            <div className="flag">
+                              <img
+                                src="../assets/img/flags/us.png"
+                                alt="united states"
+                              />
+                            </div>
+                          </td>
+                          <td>USA</td>
+                          <td className="text-right">240</td>
+                          <td className="text-right">4.36%</td>
+                        </tr> */}
+                          {/* <tr>
+                          <td>
+                            <div className="flag">
+                              <img
+                                src="../assets/img/flags/au.png"
+                                alt="australia"
+                              />
+                            </div>
+                          </td>
+                          <td>Australia</td>
+                          <td className="text-right">119</td>
+                          <td className="text-right">2.16%</td>
+                        </tr> */}
+                          {/* <tr>
+                          <td>
+                            <div className="flag">
+                              <img
+                                src="../assets/img/flags/ru.png"
+                                alt="russia"
+                              />
+                            </div>
+                          </td>
+                          <td>Russia</td>
+                          <td className="text-right">1.081</td>
+                          <td className="text-right">19.65%</td>
+                        </tr> */}
+                          {/* <tr>
+                          <td>
+                            <div className="flag">
+                              <img
+                                src="../assets/img/flags/cn.png"
+                                alt="china"
+                              />
+                            </div>
+                          </td>
+                          <td>China</td>
+                          <td className="text-right">1.100</td>
+                          <td className="text-right">20%</td>
+                        </tr> */}
+                          {/* <tr>
+                          <td>
+                            <div className="flag">
+                              <img
+                                src="../assets/img/flags/br.png"
+                                alt="brazil"
+                              />
+                            </div>
+                          </td>
+                          <td>Brasil</td>
+                          <td className="text-right">640</td>
+                          <td className="text-right">11.63%</td>
+                        </tr> */}
                         </tbody>
                       </table>
                     </div>
@@ -1150,7 +1184,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
         {/* <div className="row">
           <div className="col-md-4">
             <div className="card">
@@ -1346,6 +1380,7 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
+      </div>
     </React.Fragment>
   );
 }
