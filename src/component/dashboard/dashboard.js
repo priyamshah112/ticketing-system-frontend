@@ -561,7 +561,10 @@ function Dashboard() {
         </div>
         <div className="row">
           <div className="col-md-6">
-            <div className="card full-height">
+            <div
+              className="card full-height"
+              style={{ backgroundColor: "#d3c5e3" }}
+            >
               <div className="card-header">
                 <h2 className="font-weight-bold">Hardware Inventory</h2>
                 <p>last Seen 7 Days</p>
