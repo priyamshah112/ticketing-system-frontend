@@ -265,7 +265,7 @@ function HardwareInventory() {
       }
       inv.status = invStatus;
       inv.action = (
-        <div className="flex justify-content-center">
+        <div className="d-flex justify-content-center">
           {!userid ? (
             <>
               <Tooltip title="View Hardware Inventory">
