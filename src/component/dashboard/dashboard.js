@@ -393,6 +393,7 @@ function Dashboard() {
             </div>
           )}
         </div>
+        
         <div className="row">
           <div className="col-12">
             <div className="card full-height">
@@ -417,7 +418,7 @@ function Dashboard() {
               </div>
               <div className="card-body">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-md-6">
                     <div className="table-responsive table-hover table-sales">
                       <table className="table">
                         <thead>
@@ -448,35 +449,29 @@ function Dashboard() {
                           {countryData &&
                             countryData.map((d, i) => (
                               <tr key={i}>
-                                <td className={`flex align-items-center`}>
+                                <td className={`flex`}>
                                   {d.country === "USA" && (
-                                    <span>
-                                      <img
-                                        width={30}
-                                        className="mr-3"
-                                        src={"images/united-states.svg"}
-                                      />
-                                    </span>
+                                    <img
+                                      width={30}
+                                      className="mr-3"
+                                      src={"../assets/img/flags/us.png"}
+                                    />
                                   )}
 
                                   {d.country === "Costa Rica" && (
-                                    <span>
-                                      <img
-                                        width={30}
-                                        className="mr-3"
-                                        src={"images/cr.png"}
-                                      />
-                                    </span>
+                                    <img
+                                      width={30}
+                                      className="mr-3"
+                                      src={"images/cr.png"}
+                                    />
                                   )}
 
                                   {d.country === "India" && (
-                                    <span>
-                                      <img
-                                        width={30}
-                                        className="mr-3"
-                                        src={"images/in.png"}
-                                      />
-                                    </span>
+                                    <img
+                                      width={30}
+                                      className="mr-3"
+                                      src={"images/in.png"}
+                                    />
                                   )}
 
                                   {d.country}
@@ -506,7 +501,7 @@ function Dashboard() {
                       </table>
                     </div>
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-md-6">
                     <div className="mapcontainer">
                       <div id="map-example" className="vmap"></div>
                     </div>
@@ -1029,165 +1024,6 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
-        <div className="row row-card-no-pd">
-          <div className="col-md-10">
-            <div className="card">
-              <div className="card-header">
-                <div className="card-head-row card-tools-still-right">
-                  <h4 className="card-title">Users Geolocation</h4>
-                  <div className="card-tools">
-                    <button className="btn btn-icon btn-link btn-primary btn-xs">
-                      <span className="fa fa-angle-down"></span>
-                    </button>
-                    <button className="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card">
-                      <span className="fa fa-sync-alt"></span>
-                    </button>
-                    <button className="btn btn-icon btn-link btn-primary btn-xs">
-                      <span className="fa fa-times"></span>
-                    </button>
-                  </div>
-                </div>
-                <p className="card-category">
-                  Map of the distribution of users around the world
-                </p>
-              </div>
-              <div className="card-body">
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="table-responsive table-hover table-sales">
-                      <table className="table">
-                        <tbody>
-                          {countryData &&
-                            countryData.map((result, index) => {
-                              return (
-                                <tr key={index}>
-                                  <td>
-                                    <div className="flag">
-                                      {result.country === "USA" && (
-                                        <img
-                                          src={"images/united-states.svg"}
-                                          alt="USA"
-                                          width={30}
-                                        />
-                                      )}
-                                      {result.country === "Costa Rica" && (
-                                        <img
-                                          src={"images/cr.png"}
-                                          alt="Costa Rica"
-                                          width={30}
-                                        />
-                                      )}
-                                      {result.country === "India" && (
-                                        <img
-                                          src={"images/in.png"}
-                                          alt="India"
-                                          width={30}
-                                        />
-                                      )}
-                                    </div>
-                                  </td>
-                                  <td>{result.country}</td>
-                                  <td className="text-right">
-                                    {result.tickets.open}
-                                  </td>
-                                  <td className="text-right">
-                                    {result.tickets.closed}
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          {/* <tr>
-                          <td>
-                            <div className="flag">
-                              <img
-                                src="../assets/img/flags/id.png"
-                                alt="indonesia"
-                              />
-                            </div>
-                          </td>
-                          <td>Indonesia</td>
-                          <td className="text-right">2.320</td>
-                          <td className="text-right">42.18%</td>
-                        </tr> */}
-                          {/* <tr>
-                          <td>
-                            <div className="flag">
-                              <img
-                                src="../assets/img/flags/us.png"
-                                alt="united states"
-                              />
-                            </div>
-                          </td>
-                          <td>USA</td>
-                          <td className="text-right">240</td>
-                          <td className="text-right">4.36%</td>
-                        </tr> */}
-                          {/* <tr>
-                          <td>
-                            <div className="flag">
-                              <img
-                                src="../assets/img/flags/au.png"
-                                alt="australia"
-                              />
-                            </div>
-                          </td>
-                          <td>Australia</td>
-                          <td className="text-right">119</td>
-                          <td className="text-right">2.16%</td>
-                        </tr> */}
-                          {/* <tr>
-                          <td>
-                            <div className="flag">
-                              <img
-                                src="../assets/img/flags/ru.png"
-                                alt="russia"
-                              />
-                            </div>
-                          </td>
-                          <td>Russia</td>
-                          <td className="text-right">1.081</td>
-                          <td className="text-right">19.65%</td>
-                        </tr> */}
-                          {/* <tr>
-                          <td>
-                            <div className="flag">
-                              <img
-                                src="../assets/img/flags/cn.png"
-                                alt="china"
-                              />
-                            </div>
-                          </td>
-                          <td>China</td>
-                          <td className="text-right">1.100</td>
-                          <td className="text-right">20%</td>
-                        </tr> */}
-                          {/* <tr>
-                          <td>
-                            <div className="flag">
-                              <img
-                                src="../assets/img/flags/br.png"
-                                alt="brazil"
-                              />
-                            </div>
-                          </td>
-                          <td>Brasil</td>
-                          <td className="text-right">640</td>
-                          <td className="text-right">11.63%</td>
-                        </tr> */}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="mapcontainer">
-                      <div id="map-example" className="vmap"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         {/* <div className="row">
           <div className="col-md-4">
             <div className="card">

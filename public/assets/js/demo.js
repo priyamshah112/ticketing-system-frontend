@@ -43,7 +43,7 @@ $('#map-example').vectorMap(
 	normalizeFunction: 'linear',
 	scaleColors: ['#b6d6ff', '#005ace'],
 	selectedColor: '#35cd3a',
-	selectedRegions: ['ID', 'RU', 'US', 'AU', 'CN', 'BR'],
+	selectedRegions: ['US','IN','CR'],
 	showTooltip: true,
 	onRegionClick: function(element, code, region)
 	{

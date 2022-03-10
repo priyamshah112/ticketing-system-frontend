@@ -353,36 +353,36 @@ function HardwareInventory() {
 
     const {
       // brand,
-      assetName,
-      customID,
-      unitPrice,
+      asset_name,
+      custom_id,
+      unit_price,
       // device_number,
       service_tag,
       model,
       express_service_code,
       serial_number,
-      assignedTo,
+      assigned_to,
       Test,
       // device_name,
       // assigned_to,
       location,
       description,
-      warranty_expiry_date,
+      warranty_expire_on,
     } = data;
     console.log("data==>", data);
     if (
       // !brand ||
-      !assetName ||
-      !customID ||
-      !unitPrice ||
+      !asset_name ||
+      !custom_id ||
+      !unit_price ||
       // !device_number ||
       !service_tag ||
       !model ||
       !express_service_code ||
-      !assignedTo ||
+      !assigned_to ||
       // !device_name ||
       // !assigned_to ||
-      !warranty_expiry_date ||
+      !warranty_expire_on ||
       !location ||
       !description
     ) {
