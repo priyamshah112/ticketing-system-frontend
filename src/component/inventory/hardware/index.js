@@ -27,6 +27,7 @@ function HardwareInventory() {
   const [editFormData, setEditFormData] = useState({});
   const [inventoryId, setInventoryId] = useState("");
   const [editForm, setEditForm] = useState(false);
+  const [formData, setFormdata] = useState({});
 
   let columns = userid
     ? [
@@ -40,11 +41,11 @@ function HardwareInventory() {
           field: "device_name",
           emptyValue: "-",
         },
-        {
-          title: "Brand Name",
-          field: "brand",
-          emptyValue: "-",
-        },
+        // {
+        //   title: "Brand Name",
+        //   field: "brand",
+        //   emptyValue: "-",
+        // },
         {
           title: "Location",
           field: "location",
@@ -92,11 +93,11 @@ function HardwareInventory() {
           field: "device_name",
           emptyValue: "-",
         },
-        {
-          title: "Brand Name",
-          field: "brand",
-          emptyValue: "-",
-        },
+        // {
+        //   title: "Brand Name",
+        //   field: "brand",
+        //   emptyValue: "-",
+        // },
         {
           title: "Location",
           field: "location",
@@ -203,8 +204,6 @@ function HardwareInventory() {
     else setEditForm(false);
     setModal(true);
   };
-
-  const handleChange = () => {};
 
   useEffect(() => {
     let data = inventoryList[id];
@@ -320,7 +319,7 @@ function HardwareInventory() {
       .serialize();
     let path = apipaths.hardwareInventoryList;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
-    let { data } = await getResponse(path);
+    let { data } = await getResponse(path, formData);
     let inventoryData = inventoryDataModifier(data.data.inventory);
     setInventories(inventoryData);
   };
@@ -353,22 +352,24 @@ function HardwareInventory() {
     let data = formdata;
 
     const {
-      brand,
+      // brand,
       assetName,
       customID,
       unitPrice,
-      device_number,
+      // device_number,
       service_tag,
       model,
       express_service_code,
       serial_number,
       assignedTo,
       Test,
-      device_name,
-      assigned_to,
+      // device_name,
+      // assigned_to,
       location,
       description,
+      warranty_expiry_date,
     } = data;
+    console.log("data==>", data);
     if (
       // !brand ||
       !assetName ||
@@ -381,7 +382,8 @@ function HardwareInventory() {
       !serial_number ||
       !assignedTo ||
       // !device_name ||
-      !assigned_to ||
+      // !assigned_to ||
+      !warranty_expiry_date ||
       !location ||
       !description
     ) {
@@ -524,12 +526,18 @@ function HardwareInventory() {
                 <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
                     <div>
-                      <label className="mb-2">Device Name</label>
+                      <label className="mb-2">Assest Name</label>
                     </div>
                     <input
                       type={"text"}
                       className="form-control"
                       name="device_name"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          device_name: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -543,11 +551,17 @@ function HardwareInventory() {
                       name="device_number"
                       type="text"
                       className="form-control filter-input"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          device_number: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
 
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
                     <div>
                       <label className="mb-2">Brand</label>
@@ -565,7 +579,7 @@ function HardwareInventory() {
                         })}
                     </select>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
@@ -576,6 +590,12 @@ function HardwareInventory() {
                       name="model"
                       type="text"
                       className="form-control filter-input"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          model: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -589,6 +609,12 @@ function HardwareInventory() {
                       name="serial_number"
                       type="text"
                       className="form-control filter-input"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          serial_number: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -602,6 +628,12 @@ function HardwareInventory() {
                       type="text"
                       name="express_service_code"
                       className="form-control filter-input"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          express_service_code: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -615,6 +647,12 @@ function HardwareInventory() {
                       type="date"
                       name="warranty_expire_on"
                       className="form-control filter-input"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          warranty_expire_on: e.target.value,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -624,11 +662,21 @@ function HardwareInventory() {
                     <div>
                       <label className="mb-2">Assign To</label>
                     </div>
-                    <select className="form-control" name="assigned_to">
+                    <select
+                      optionsState={formData?.assignTo}
+                      className="form-control"
+                      name="assigned_to"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          assignTo: e.target.value,
+                        });
+                      }}
+                    >
                       <option value={""}>Select User</option>
                       {userList &&
                         userList.map((user) => (
-                          <option value={user.id}>{user.name}</option>
+                          <option value={user.name}>{user.name}</option>
                         ))}
                     </select>
                   </div>
@@ -639,9 +687,19 @@ function HardwareInventory() {
                     <div>
                       <label className="mb-2">Status</label>
                     </div>
-                    <select className="form-control" name="status">
+                    <select
+                      className="form-control"
+                      value={formData?.status}
+                      name="status"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          status: e.target.value,
+                        });
+                      }}
+                    >
                       <option value={""}>Select Status</option>
-                      <option value="In Use">Not Available</option>
+                      <option value="Not Available">Not Available</option>
                       <option value="Avaialable">Available</option>
                     </select>
                   </div>
@@ -649,16 +707,24 @@ function HardwareInventory() {
 
                 <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
-                    <div>
-                      <label className="mb-2">Location</label>
-                    </div>
-                    <select className="form-control" name="location">
-                      <option value={""}>Select Location</option>
-                      <option value={"USA"}>USA</option>
-                      <option value={"Costa Rica"}>Costa Rica</option>
-                      <option value={"India"}>India</option>
-                    </select>
-                  </div>
+                    <label className="mb-2">Location</label>
+                  </div>{" "}
+                  <select
+                    className="form-control"
+                    value={formData?.location}
+                    name="location"
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        location: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value={""}>{"Select LOcation"}</option>
+                    <option value={"USA"}>{"USA"}</option>
+                    <option value={"Costa Rica"}>{"Costa Rica"}</option>
+                    <option value={"India"}>{"India"}</option>
+                  </select>
                 </div>
 
                 <div className="col-12 mt-3 text-right">

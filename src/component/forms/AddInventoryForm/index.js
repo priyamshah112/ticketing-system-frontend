@@ -168,14 +168,27 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <InputFeild
+              <label>Warranty Expiry Date</label>
+              <input
+                type="date"
+                value={formdata.warranty_expiry_date}
+                onChange={(e) =>
+                  setFormdata({
+                    ...formdata,
+                    warranty_expiry_date: e.target.value,
+                  })
+                }
+                className="form-control"
+                disabled={editForm ? "disabled" : ""}
+              />
+              {/* <InputFeild
                 label="Warranty Expiry Date"
                 value={formdata.serial_number}
                 onChange={(e) =>
                   setFormdata({ ...formdata, serial_number: e.target.value })
                 }
                 disabled={editForm ? "disabled" : ""}
-              />
+              /> */}
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
@@ -244,7 +257,7 @@ function AddInventoryForm(props) {
               </Select>
             </div> */}
 
-            <div className="col-lg-6 col-md-6 col-12 mt-3">
+            {/* <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Users</label>
               <select
                 className="form-control"
@@ -272,7 +285,7 @@ function AddInventoryForm(props) {
                     </option>
                   ))}
               </select>
-            </div>
+            </div> */}
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Location</label>

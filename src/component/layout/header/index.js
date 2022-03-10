@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo1.png";
+import ProfileView from "../../profileView";
+import { Modal } from "antd";
 
 function Header() {
+  let data = localStorage.user_details;
+  // let user = JSON.parse(data);
+  const [userData, setUserData] = useState({});
+  const [isProfileViewActive, setIsProfileViewActive] = useState(false);
+
+  useEffect(() => {
+    let user = JSON.parse(data);
+    setUserData(user);
+  }, [data]);
+
   return (
     <div className="main-header">
       {/* Logo Header */}
@@ -320,11 +332,17 @@ function Header() {
                         />
                       </div>
                       <div className="u-text">
-                        <h4>Hizrian</h4>
-                        <p className="text-muted">hello@example.com</p>
+                        <h4>{userData?.name}</h4>
+                        <p className="text-muted">{userData?.email}</p>
                         <a
-                          href="profile.html"
+                          // href="profile.html"
                           className="btn btn-xs btn-secondary btn-sm"
+                          // className="dropdown-item"
+                          href="/profileview"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsProfileViewActive(true);
+                          }}
                         >
                           View Profile
                         </a>
@@ -333,7 +351,14 @@ function Header() {
                   </li>
                   <li>
                     <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="/profileview"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsProfileViewActive(true);
+                      }}
+                    >
                       My Profile
                     </a>
                     <div className="dropdown-divider"></div>
@@ -352,6 +377,14 @@ function Header() {
         </div>
       </nav>
       {/* End Navbar */}
+      <Modal
+        title="My Profile"
+        visible={isProfileViewActive}
+        onCancel={() => setIsProfileViewActive(false)}
+        footer={null}
+      >
+        <ProfileView setIsProfileViewActive={setIsProfileViewActive} />
+      </Modal>
     </div>
   );
 }

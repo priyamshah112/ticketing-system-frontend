@@ -80,7 +80,7 @@ function Sidebar() {
                         setIsChangePasswordActive(true);
                       }}
                     >
-                      <span className="link-collapse">changePassword</span>
+                      <span className="link-collapse">Change Password</span>
                     </a>
                   </li>
                   <li>

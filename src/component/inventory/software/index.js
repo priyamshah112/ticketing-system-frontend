@@ -29,6 +29,7 @@ function SoftwareInventory() {
   const [isModal, setIsModal] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [editFormData, setEditFormData] = useState({});
+  const [formData, setFormdata] = useState({});
 
   const [inventoryId, setInventoryId] = useState("");
   let columns = parameters.userid
@@ -101,10 +102,7 @@ function SoftwareInventory() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [softwareInfo, setSoftwareeInfo] = useState([]);
   const [inventoryFile, setInventoryFile] = useState("");
-  const brands = [
-    'HP',
-    'DELL'
-  ];
+  const brands = ["HP", "DELL"];
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const userList = useSelector((state) => state.userList);
@@ -285,7 +283,8 @@ function SoftwareInventory() {
     let defaultPath = apipaths.softwareInventoryList;
     let path = apipaths.softwareInventoryList;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
-    let { data } = await getResponse(path);
+    console.log("formData:", formData);
+    let { data } = await getResponse(path, formData);
     inventoryListDataModifier(data.data.inventory);
   };
 
@@ -376,9 +375,14 @@ function SoftwareInventory() {
         <div className="page-inner py-5">
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
-              <h2 className="text-white pb-2 fw-bold">{id === "software" ? "Software" : "Hardware"} Inventory{" "}
-                  {parameters.userid && username && "( " + username + " )"} Inventory</h2>
-              <h5 className="text-white op-7 mb-2">Manage Your Software Inventory</h5>
+              <h2 className="text-white pb-2 fw-bold">
+                {id === "software" ? "Software" : "Hardware"} Inventory{" "}
+                {parameters.userid && username && "( " + username + " )"}{" "}
+                Inventory
+              </h2>
+              <h5 className="text-white op-7 mb-2">
+                Manage Your Software Inventory
+              </h5>
             </div>
             <div className="ml-md-auto py-2 py-md-0">
               {parameters.userid ? (
@@ -390,14 +394,14 @@ function SoftwareInventory() {
                 </button>
               ) : (
                 <>
-                <button
-                  className="btn btn-white btn-border btn-round mr-2"
-                  onClick={() =>
-                    $("#filter-inventory-wrapper").slideToggle(300)
-                  }
-                >
-                  Filters
-                </button>
+                  <button
+                    className="btn btn-white btn-border btn-round mr-2"
+                    onClick={() =>
+                      $("#filter-inventory-wrapper").slideToggle(300)
+                    }
+                  >
+                    Filters
+                  </button>
                   <button
                     onClick={() => showModal()}
                     className="btn btn-round btn-primary mr-2"
@@ -406,9 +410,7 @@ function SoftwareInventory() {
                   </button>
                   <button
                     onClick={() => {
-                      window
-                        .open(inventoryList.exportUrl, "_blank")
-                        .focus();
+                      window.open(inventoryList.exportUrl, "_blank").focus();
                     }}
                     className="btn btn-round btn-primary mr-2"
                   >
@@ -449,6 +451,12 @@ function SoftwareInventory() {
                     name="name"
                     type="text"
                     className="form-control filter-input"
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        name: e.target.value,
+                      });
+                    }}
                   />
                 </div>
 
@@ -458,25 +466,53 @@ function SoftwareInventory() {
                     name="version"
                     type="text"
                     className="form-control filter-input"
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        version: e.target.value,
+                      });
+                    }}
                   />
                 </div>
 
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Assigned To</label>
-                  <select className="form-control" name="assignedTo">
+                  <select
+                    className="form-control"
+                    name="assignedTo"
+                    value={formData?.assignedTo}
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        assignTo: e.target.value,
+                      });
+                    }}
+                  >
                     <option value={""}>Select Assigned To</option>
                     {userList &&
                       userList.map((user) => (
-                        <option value={user.id}>{user?.user_details?.firstName}</option>
+                        <option value={user.id}>
+                          {user?.user_details?.firstName}
+                        </option>
                       ))}
                   </select>
                 </div>
 
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Status</label>
-                  <select className="form-control" name="status">
+                  <select
+                    className="form-control"
+                    name="status"
+                    value={formData?.status}
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        status: e.target.value,
+                      });
+                    }}
+                  >
                     <option value={""}>Select Status</option>
-                    <option value={"In Use"}>In Use</option>
+                    <option value={"Not Available"}>Not Available</option>
                     <option value={"Available"}>Available</option>
                   </select>
                 </div>
@@ -487,6 +523,12 @@ function SoftwareInventory() {
                     type={"date"}
                     name="assignedOn"
                     className="form-control"
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        assignedOn: e.target.value,
+                      });
+                    }}
                   />
                 </div>
 
@@ -496,6 +538,12 @@ function SoftwareInventory() {
                     type={"date"}
                     name="expiry_date"
                     className="form-control"
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        expiry_date: e.target.value,
+                      });
+                    }}
                   />
                 </div>
                 <div className="form-group col-12 col-md-6 col-lg-4">
@@ -504,14 +552,17 @@ function SoftwareInventory() {
                     type={"date"}
                     name="assigned_date"
                     className="form-control"
+                    onChange={(e) => {
+                      setFormdata({
+                        ...formData,
+                        assigned_date: e.target.value,
+                      });
+                    }}
                   />
                 </div>
 
                 <div className="col-12 mt-3 text-right">
-                  <button
-                    className="btn  btn-info btn-radius"
-                    type="submit"
-                  >
+                  <button className="btn  btn-info btn-radius" type="submit">
                     Search
                   </button>
                   <button
@@ -580,8 +631,7 @@ function SoftwareInventory() {
                 <option value="">Select Inventory</option>
                 {inventoryList[id] &&
                   inventoryList[id].map(
-                    (inv) =>
-                      !inv.assigned_to && <option>{inv.version}</option>
+                    (inv) => !inv.assigned_to && <option>{inv.version}</option>
                   )}
               </select>
             </div>
@@ -618,7 +668,7 @@ function SoftwareInventory() {
       <Modal
         title={inventoryId ? "Update Inventory" : "Add Inventory"}
         visible={modal}
-        onCancel={()=> setModal(false)}
+        onCancel={() => setModal(false)}
         footer={null}
       >
         <AddInventoryForm

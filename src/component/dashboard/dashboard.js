@@ -424,11 +424,11 @@ function Dashboard() {
                           <tr style={{ borderBottom: "1px solid #9b9b9b" }}>
                             <th
                               className="py-2"
-                              style={{
-                                fontSize: "18px",
-                                color: "#27723C",
-                                fontWeight: "600",
-                              }}
+                              // style={{
+                              //   fontSize: "18px",
+                              //   color: "#27723C",
+                              //   fontWeight: "600",
+                              // }}
                             >
                               Country
                             </th>
@@ -518,7 +518,7 @@ function Dashboard() {
           <div className="col-xl-4 col-lg-4 col-md-12 col-12">
             <div className="dashboard-inventory bg-white">
               <div className="row">
-                <div className="col-lg-5 col-md-5 col-12 px-0">
+                {/* <div className="col-lg-5 col-md-5 col-12 px-0">
                   <div className="sec-one position-relative">
                     <p className="inv-heading">Software inventory</p>
                     <div
@@ -541,8 +541,8 @@ function Dashboard() {
                         ))}
                     </div>
                   </div>
-                </div>
-                <div className="col-xl-7 col-lg-7 col-md-7 col-12 px-0">
+                </div> */}
+                {/* <div className="col-xl-7 col-lg-7 col-md-7 col-12 px-0">
                   <div className="text-center">
                     <p
                       className="pr-4 pt-4"
@@ -554,7 +554,7 @@ function Dashboard() {
                       {unassignedSofwareGraphHanlder(softwareInventoryData)}
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -583,7 +583,7 @@ function Dashboard() {
                           style={{ backgroundColor: "#1572e8" }}
                         ></span>
                         <p className="font-weight-bold mx-3 mb-0">
-                          Total Hardware
+                          Total Laptops
                         </p>
                         <p
                           className="font-weight-bold ml-auto mb-0"
@@ -599,7 +599,7 @@ function Dashboard() {
                           style={{ backgroundColor: "#b64961" }}
                         ></span>
                         <p className="font-weight-bold mx-3 mb-0">
-                          Available Hardware
+                          Available Laptops
                         </p>
                         <p
                           className="font-weight-bold ml-auto mb-0"
@@ -615,7 +615,7 @@ function Dashboard() {
                           style={{ backgroundColor: "#27723c" }}
                         ></span>
                         <p className="font-weight-bold mx-3 mb-0">
-                          Assigned Hardware
+                          Assigned Laptops
                         </p>
                         <p
                           className="font-weight-bold ml-auto mb-0"
@@ -626,23 +626,6 @@ function Dashboard() {
                       </div>
                     </>
                   )}
-                </div>
-              </div>
-            </div>
-            <h2
-              className="text-center mt-4"
-              style={{
-                color: "#1572e8",
-                fontWeight: "bold",
-                fontSize: "18px",
-              }}
-            >
-              Calendar
-            </h2>
-            <div className="mt-4 bg-white  box-shadow">
-              <div className="card large-card calender-card">
-                <div className="card-body">
-                  <div className="auto-jsCalendar"></div>
                 </div>
               </div>
             </div>
@@ -774,7 +757,7 @@ function Dashboard() {
             </div> */}
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-md-6">
             <div className="card full-height">
               <div className="card-body">
@@ -829,8 +812,8 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row">
+        </div> */}
+        {/* <div className="row">
           <div className="col-md-8">
             <div className="card">
               <div className="card-header">
@@ -892,7 +875,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row row-card-no-pd">
           <div className="col-md-12">
             <div className="card">
@@ -1013,7 +996,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-md-4">
             <div className="card">
               <div className="card-header">
@@ -1207,7 +1190,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row">
           <div className="col-md-6">
             <div className="card full-height">
