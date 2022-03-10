@@ -394,7 +394,7 @@ function Dashboard() {
           )}
         </div>
         <div className="row flex-wrap">
-          <div className="col-xl-8 col-lg-8 col-md-12 col-12">
+          <div className="col-xl-12 col-lg-12 col-md-12 col-12">
             <div className="card mb-0">
               <div className="card-header">
                 <div className="card-head-row card-tools-still-right">
@@ -559,13 +559,13 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-xl-5 col-lg-5 col-md-5 col-12 w-100 mt-3">
+        <div className="row" style={{ marginTop: "1rem" }}>
+          <div className="col-xl-6 col-lg-6 col-md-6 col-12 w-100 mt-3">
             <div
               className="w-100 ml-2 p-3"
               style={{
                 borderRadius: "26px",
-                background: "#D3D0E1",
+                background: "#fff",
               }}
             >
               <div className="flex justify-content-between mt-3 px-4">
@@ -631,7 +631,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="col-lg-7 col-md-7 col-12 w-100 mt-3">
+          <div className="col-xl-6 col-lg-6 col-md-6 col-12 w-100 mt-3">
             <div
               className="bg-white ml-auto"
               style={{
@@ -655,26 +655,32 @@ function Dashboard() {
                 </h2>
                 <p className="mb-0">Tickets</p>
               </div>
+              <div
+                className="row position-relative ml-auto"
+                style={{ width: "100%" }}
+              >
+                {supportTrackerGraphHandler(supportTracker)}
 
-              {supportTrackerGraphHandler(supportTracker)}
-
-              <div className="flex justify-content-between px-5 pb-3">
-                {supportTracker &&
-                  Object.keys(supportTracker).map((track, i) => {
-                    const ticketType = [
-                      "Open Tickets",
-                      "Pending Tickets",
-                      "Closed Tickets",
-                    ];
-                    return (
-                      <div className="text-center">
-                        <p className="mb-0 font-weight-bold">{ticketType[i]}</p>
-                        <p className="font-weight-bold">
-                          {supportTracker[track]}
-                        </p>
-                      </div>
-                    );
-                  })}
+                <div className="flex justify-content-between px-5 pb-3 mt-10">
+                  {supportTracker &&
+                    Object.keys(supportTracker).map((track, i) => {
+                      const ticketType = [
+                        "Open Tickets",
+                        "Pending Tickets",
+                        "Closed Tickets",
+                      ];
+                      return (
+                        <div className="text-center">
+                          <p className="mb-0 font-weight-bold">
+                            {ticketType[i]}
+                          </p>
+                          <p className="font-weight-bold">
+                            {supportTracker[track]}
+                          </p>
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
             </div>
             {/* <div
@@ -876,7 +882,7 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
-        <div className="row row-card-no-pd">
+        {/* <div className="row row-card-no-pd">
           <div className="col-md-12">
             <div className="card">
               <div className="card-header">
@@ -995,7 +1001,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="row">
           <div className="col-md-4">
             <div className="card">
@@ -1191,7 +1197,7 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
-        <div className="row">
+        <div className="row" style={{ marginTop: "3em" }}>
           <div className="col-md-6">
             <div className="card full-height">
               <div className="card-header">
