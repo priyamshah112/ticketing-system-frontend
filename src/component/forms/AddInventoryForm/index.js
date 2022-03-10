@@ -149,7 +149,7 @@ function AddInventoryForm(props) {
                 {users &&
                   users.map((data, i) => (
                     <>
-                      <Option value={data.name} key={i}>
+                      <Option value={data.id} key={i}>
                         {data.name}
                       </Option>
                     </>
@@ -163,6 +163,13 @@ function AddInventoryForm(props) {
                 type="date"
                 className="form-control"
                 disabled={editForm ? "disabled" : ""}
+                value={formdata.assigned_on}
+                onChange={(e) =>
+                  setFormdata({
+                    ...formdata,
+                    assigned_on: e.target.value,
+                  })
+                }
               />
             </div>
 

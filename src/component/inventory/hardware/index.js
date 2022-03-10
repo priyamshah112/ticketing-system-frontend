@@ -38,7 +38,7 @@ function HardwareInventory() {
         },
         {
           title: "Asset Name",
-          field: "device_name",
+          field: "asset_name",
           emptyValue: "-",
         },
         // {
@@ -90,7 +90,7 @@ function HardwareInventory() {
         },
         {
           title: "Asset Name",
-          field: "device_name",
+          field: "asset_name",
           emptyValue: "-",
         },
         // {
