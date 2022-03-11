@@ -417,7 +417,7 @@ function Dashboard() {
               </div>
               <div className="card-body">
                 <div className="row">
-                  <div className="col-12">
+                  <div className="col-6">
                     <div className="table-responsive table-hover table-sales">
                       <table className="table">
                         <thead>
@@ -506,11 +506,11 @@ function Dashboard() {
                       </table>
                     </div>
                   </div>
-                  {/* <div className="col-sm-6">
+                  <div className="col-sm-6">
                     <div className="mapcontainer">
                       <div id="map-example" className="vmap"></div>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </div>
