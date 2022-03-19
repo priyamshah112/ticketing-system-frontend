@@ -5,21 +5,15 @@ import { Link } from "react-router-dom";
 function DashboardCard(props) {
   const { data, num } = props;
 
-  const colorArr = ["#ff0000", "#fac72c", "#27723C"];
+  const colorArr = ["#f25961", "#ff9e27", "#2bb930"];
   const redirectLink = ["/tickets?status=open", "/tickets?status=pending", "/inventory/hardware"];
   return (
-    <Link to={ `${redirectLink[num]}`}>
-      <div className="dashboard-card flex justify-content-between">
-        <div>
-          <div>
-            <p
-              className="mb-0 dashboard-card-title"
-              style={{ color: colorArr[num], fontWeight: "bold" }}
-            >
-              {data.title}
-            </p>
-          </div>
-          <div className="mt-4" >
+    <Link to={ `${redirectLink[num]}`}  className="card full-height">      
+      <div className="card-body flex justify-content-between">
+        <div className="card-title" style={{ color: colorArr[num], fontWeight: "bold" }}>{data.title}</div>
+        {/* <div className="card-category">Daily information about statistics in system</div> */}
+        <div className="d-flex flex-wrap justify-content-around pb-2 pt-4 align-items-center">
+          <div className="align-items-center">
             <p className="mb-0" className="card-progress-total mb-0">
               {data.total}
             </p>
@@ -46,12 +40,12 @@ function DashboardCard(props) {
               </span>
             </p>
           </div>
-        </div>
-        <div className="card-sec-two align-items-center">
-          <p className="f-14 card-lastchecked mb-0">{data.lastChecked}</p>
-          <p className="f-14 card-lastchecked mb-0">
-            <img src={data.icon} />
-          </p>
+          <div className="card-sec-two align-items-left">
+            <p className="f-14 card-lastchecked mb-0">{data.lastChecked}</p>
+            <p className="f-14 card-lastchecked mb-0">
+              <img src={data.icon} />
+            </p>
+          </div>
         </div>
       </div>
     </Link>

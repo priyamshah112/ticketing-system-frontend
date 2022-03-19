@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../navbar";
-import data from "../data/user.json";
-import UserModal from "../modal/userModal";
-import TableFeild from "../TableFeild";
 import { useDispatch, useSelector } from "react-redux";
 import AddUser from "../forms/AddUser";
 import { getResponse } from "../../api/apiResponse";
@@ -10,20 +6,14 @@ import { apipaths } from "../../api/apiPaths";
 import { getUserLists } from "../../actions/userActions";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
-import { Collapse } from "antd";
 import { inventoryListAction } from "../../actions/inventoryAction";
-import { Select } from "antd";
-import { Modal, Button, Tabs } from "antd";
+import { Modal } from "antd";
 import $ from "jquery";
 import MaterialTable from "material-table";
-import { DatePicker, Space } from "antd";
 import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 
 function User(props) {
-  const { RangePicker } = DatePicker;
-
-  const { TabPane } = Tabs;
   const columns = [
     {
       title: "ID ",
@@ -60,15 +50,9 @@ function User(props) {
   ];
   const [isCreateUserModal, setIsCreateModal] = useState(false);
   const [operation, setOperation] = useState("");
-  const [modal, setModal] = useState(false);
-  const [userId, setUserId] = useState("");
   const [userImportFile, setUserImportFile] = useState("");
 
-  const [seletedInventory, setSeletedInventory] = useState([]);
-  const [availableInventory, setAvailableSeletedInventory] = useState([]);
-  const [userInventory, setUserInventory] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isModal, setIsModal] = useState(false);
   const [error, setError] = useState();
   const [userData, setUserData] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
@@ -84,7 +68,6 @@ function User(props) {
 
   const dispatch = useDispatch();
 
-  const { Option } = Select;
   useEffect(() => {
     dataHandler();
     $("#filter-user").slideToggle(0);
@@ -108,29 +91,6 @@ function User(props) {
     setIsModalVisible(false);
   };
 
-  const handleViewModalCancel = () => {
-    setIsModal(false);
-  };
-
-  const userInventoriesHandler = (inventories) => {
-    if (inventories.length > 0) {
-      return (
-        <>
-          {inventories.map((inventory) => (
-            <button
-              className="btn btn-outline-primary btn-radius btn-sm m-1"
-              style={{ pointerEvents: "none" }}
-            >
-              {inventory.device_name}
-            </button>
-          ))}
-        </>
-      );
-    } else {
-      return null;
-    }
-  };
-
   const getUserListData = async () => {
     const { data } = await getResponse(apipaths.listusers, null);
     setSampleImport(data.data.sampleImport);
@@ -144,16 +104,14 @@ function User(props) {
   const usersAddMoreData = (users) => {
     let data = users;
     data.map((user) => {
-      // user.inventories_assigned = userInventoriesHandler(user.inventories);
-      // user.created_at = new Date(user.created_at).toDateString()
       user.created_at = dateFormatHandler(user.created_at);
       user.updated_at = new Date(user.updated_at).toDateString();
 
       user.namewithemail = (
         <div>
           <p className="username">
-            {user.user_details.firstName} {user.user_details.middleName}{" "}
-            {user.user_details.lastName}
+            {user.user_details?.firstName} {user.user_details?.middleName}{" "}
+            {user.user_details?.lastName}
           </p>
           <span className="email">{user.email}</span>
         </div>
@@ -192,7 +150,7 @@ function User(props) {
           <Tooltip title="Edit User">
             <div>
               <i
-                class="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
+                className="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
                 onClick={() => {
                   setOperation("update");
                   setIsCreateModal(true);
@@ -204,7 +162,7 @@ function User(props) {
           <Tooltip title="View User">
             <div>
               <i
-                className="table-icon fa fa-eye bg-success text-white cursor-pointer mr-2"
+                className="table-icon fa fa-eye bg-secondary text-white cursor-pointer mr-2"
                 onClick={() => {
                   setOperation("view");
                   setIsCreateModal(true);
@@ -228,7 +186,7 @@ function User(props) {
           <Tooltip title="view software inventories assigned">
             <div>
               <i
-                class="table-icon fas fa-laptop-code bg-success text-white cursor-pointer mr-2"
+                className="table-icon fas fa-laptop-code bg-secondary text-white cursor-pointer mr-2"
                 onClick={() => assignSoftwareInventoryHandler(user)}
               ></i>
             </div>
@@ -236,7 +194,7 @@ function User(props) {
           <Tooltip title="view hardware inventories assigned">
             <div>
               <i
-                className="table-icon fa fa-laptop bg-success text-white cursor-pointer"
+                className="table-icon fa fa-laptop bg-secondary text-white cursor-pointer"
                 onClick={() => assignHardwareInventoryHandler(user)}
               ></i>
             </div>
@@ -247,34 +205,12 @@ function User(props) {
     return data;
   };
 
-  const assignInventoryHandler = async (user) => {
-    setUserId(user.id);
-    const { data } = await getResponse(apipaths.getInventory, {
-      user_id: user.id,
-    });
-    if (data) {
-      setAvailableSeletedInventory(data.data.availableInventory);
-      setUserInventory(data.data.userInventory);
-      setModal(true);
-    }
-  };
-
   const assignSoftwareInventoryHandler = async (user) => {
     props.history.push(`/inventory/software/${user.id}`);
   };
 
   const assignHardwareInventoryHandler = async (user) => {
-    // window.location.href = `/inventory/hardware:${user.id}`
     props.history.push(`/inventory/hardware/${user.id}`);
-    // setUserId(user.id)
-    // const { data } = await getResponse(apipaths.getInventory, {
-    //   user_id: user.id,
-    // });
-    // if (data) {
-    //   setAvailableSeletedInventory(data.data.availableInventory);
-    //   setUserInventory(data.data.userInventory);
-    //   setModal(true);
-    // }
   };
 
   const getData = async () => {
@@ -316,21 +252,6 @@ function User(props) {
         dispatch(getUserLists());
       }
     });
-  };
-
-  const submitHandler = async () => {
-    let formdata = new FormData();
-    formdata.append("user_id", userId);
-
-    seletedInventory.map((data) => {
-      formdata.append("inventory_ids[]", data);
-    });
-
-    let { data } = await getResponse(apipaths.assignInventory, formdata);
-    toast.success(data.message);
-
-    dataHandler();
-    setModal();
   };
 
   const importUserFileHandler = async () => {
@@ -376,344 +297,294 @@ function User(props) {
     setFilterData(users);
   };
   return (
-    <>
-      <div className="wrapper">
-        <div className="main-panel">
-          <div className="content">
-            <Modal
-              title="Import Users"
-              destroyOnClose
-              visible={isModalVisible}
-              onOk={importUserFileHandler}
-              onCancel={handleCancel}
-            >
-              <div className="">
-                <form>
-                  <input
-                    type={"file"}
-                    className={"form-control"}
-                    onChange={(e) => setUserImportFile(e.target.files[0])}
-                  />
-                </form>
-                {error && <p className="text-danger">{error}</p>}
-                <p>
-                  To download a sample import file&nbsp;
-                  <span
-                    className="text-primary cursor-pointer"
-                    onClick={() => window.open(sampleImport, "_blank")}
-                  >
-                    click here
-                  </span>
-                </p>
-              </div>
-            </Modal>
-            <div className="row buttons-row mt-5">
-              <div className="col-md-6 text-left">
-                <h2 style={{ fontSize: "22px", fontWeight: "600" }}>
-                  Users Details
-                </h2>
-              </div>
-              <div className="col-md-6 buttons-col">
-                <button
-                  className="btn btn-info btn-radius ml-3"
-                  onClick={showModal}
-                >
-                  Import User
-                </button>
-                <button
-                  className="btn btn-info btn-radius ml-3"
-                  onClick={() => window.open(exportUrl, "_blank").focus()}
-                >
-                  Export User
-                </button>
-                <button
-                  className="btn btn-info btn-radius mx-3"
-                  onClick={() => $("#filter-user").slideToggle(300)}
-                >
-                  More Filters
-                </button>
-                <button
-                  className="btn btn-outline-primary btn-radius"
-                  onClick={() => {
-                    setOperation("add");
-                    setIsCreateModal(true);
-                  }}
-                >
-                  Create
-                </button>
-              </div>
+    <React.Fragment>
+      <div className="panel-header bg-secondary-gradient">
+        <div className="page-inner py-5">
+          <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+              <h2 className="text-white pb-2 fw-bold">Users Details</h2>
+              <h5 className="text-white op-7 mb-2">Manage Your Users</h5>
             </div>
-            <div className="px-4 pt-3 border-radius-5">
-              <div className="search-box" id="filter-user">
-                <div className="card py-4">
-                  <form onSubmit={filterSubmitHandler} id="filter-user-form">
-                    <div className="row mx-auto pt-3">
-                      <div className="col-md-12">
-                        <h4 className="fw-bold">Search User</h4>
-                      </div>
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">User Type</label>
-                          </div>
-                          <select className="form-control" name="userType">
-                            <option value="">Choose User Type</option>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                            <option value="support">Co-Admin</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Hire Date</label>
-                            <input type={"text"} className="d-none" />
-                          </div>
-                          <RangePicker
-                            className="form-control"
-                            name="hireDate"
-                            onChange={(val) => {}}
-                          />
-                        </div>
-                      </div> */}
-
-                      {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Start Date</label>
-                          </div>
-                          <RangePicker
-                            className="form-control"
-                            name="startDate"
-                          />
-                        </div>
-                      </div> */}
-
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Project Name</label>
-                          </div>
-                          <select className="form-control" name="projectName">
-                            <option value="">Select One</option>
-                            {userData &&
-                              userData.projectName &&
-                              userData.projectName.map((project, index) => {
-                                if (!project) return null;
-                                return (
-                                  <option key={index} value={project}>
-                                    {project}
-                                  </option>
-                                );
-                              })}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Client Name</label>
-                          </div>
-                          <select className="form-control" name="clientName">
-                            <option value={""}>Select One</option>
-                            {userData &&
-                              userData.clientName &&
-                              userData.clientName.map((project, index) => {
-                                if (!project) return null;
-                                return (
-                                  <option key={index} value={project}>
-                                    {project}
-                                  </option>
-                                );
-                              })}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Work Location</label>
-                          </div>
-                          <select className="form-control" name="workLocation">
-                            <option value={""}>Select One</option>
-                            {userData &&
-                              userData.workLocation &&
-                              userData.workLocation.map((project, index) => {
-                                if (!project) return null;
-                                return (
-                                  <option key={index} value={project}>
-                                    {project}
-                                  </option>
-                                );
-                              })}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Hired As</label>
-                          </div>
-                          <select className="form-control" name="hiredAs">
-                            <option value={""}>Select One</option>
-                            {userData &&
-                              userData.hiredAs &&
-                              userData.hiredAs.map((project, index) => {
-                                if (!project) return null;
-                                return (
-                                  <option key={index} value={project}>
-                                    {project}
-                                  </option>
-                                );
-                              })}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <div>
-                            <label className="mb-2">Provided Laptop</label>
-                          </div>
-                          <select
-                            className="form-control"
-                            name="providingLaptop"
-                          >
-                            <option value={""}>Select One</option>
-                            <option value={"Admin"}>Yes</option>
-                            <option value={"Agent"}>No</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-12 col-md-6 col-lg-3 mt-3">
-                        <div>
-                          <label className="mb-2">Status</label>
-                        </div>
-                        <select className="form-control" name="status">
-                          <option value={""}>Select Status</option>
-                          <option value={"active"}>Active</option>
-                          <option value={"pending"}>Pending</option>
-                          <option value={"suspended"}>Suspended</option>
-                        </select>
-                      </div>
-
-                      <div className="col-12 mt-3 text-right">
-                        <button
-                          className="btn  btn-info btn-radius"
-                          type="submit"
-                        >
-                          Search
-                        </button>
-                        <button
-                          className="btn  btn-info btn-radius ml-3"
-                          onClick={() => {
-                            setIsFilterActive(false);
-                            $("#filter-user-form").trigger("reset");
-                            $("#filter-user").slideToggle(300);
-                            let path = apipaths.listusers;
-                            path["url"] = path["url"].split("?")[0];
-                            dataHandler();
-                          }}
-                          type="button"
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <br />
-              <div className="card">
-                <div className="card-body users">
-                  <MaterialTable
-                    title=""
-                    data={isFilterActive ? filterData : userList}
-                    columns={columns}
-                    options={{
-                      search: true,
-                      pageSize: 20,
-                      emptyRowsWhenPaging: false,
-                      paging: true,
-                      exportButton: false,
-                    }}
-                  />
-                </div>
-              </div>
+            <div className="ml-md-auto py-2 py-md-0">
+              <button
+                className="btn btn-white btn-round btn-border mr-2"
+                onClick={() => $("#filter-user").slideToggle(300)}
+              >
+                Filters
+              </button>
+              <button
+                className="btn btn-white btn-round btn-border mr-2"
+                onClick={showModal}
+              >
+                Import User
+              </button>
+              <button
+                className="btn btn-primary btn-round mr-2"
+                onClick={() => window.open(exportUrl, "_blank").focus()}
+              >
+                Export User
+              </button>
+              <button
+                className="btn btn-primary btn-round"
+                onClick={() => {
+                  setOperation("add");
+                  setIsCreateModal(true);
+                }}
+              >
+                Add User
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="mx-4 col-md-6">
-        {/* <UserModal
-                    isOpen={isCreateUserModal}
-                    onCancel={() => setIsCreateModal(false)}
-                    onSubmit={(data) => // console.log(data)}
-                /> */}
-        {isCreateUserModal && (
-          <AddUser
-            isOpen={isCreateUserModal}
-            onCancel={() => setIsCreateModal(false)}
-            onSubmit={createUserHandler}
-            operation={operation}
-            userInfo={userInfo}
-          />
-        )}
-
-        {modal && (
-          <div className={`custom-modal ${modal ? "open" : ""}`}>
-            <div className="custom-modal-content add-inventory">
-              <h2>Assign Inventory</h2>
-              <div className="row align-items-end">
-                <div className="col-lg-6 col-md-6 col-12 px-4 mt-3">
-                  <label className="mb-2">Hardware</label>
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="Please select"
-                    onChange={(data) => setSeletedInventory(data)}
-                  >
-                    {availableInventory &&
-                      availableInventory.map((data) => (
-                        <Option key={data.id} defaultValue={data.id}>
-                          {data.device_name}
-                        </Option>
-                      ))}
-
-                    {userInventory &&
-                      userInventory.map((data) => (
-                        <Option key={data.id} defaultValue={data.id}>
-                          {data.device_name}
-                        </Option>
-                      ))}
-                  </Select>
+      <div className="page-inner mt--5 users">
+        <div className="card" id="filter-user">
+          <div className="card-body">
+            <form onSubmit={filterSubmitHandler} id="filter-user-form">
+              <div className="row mx-auto pt-3">
+                <div className="col-md-12">
+                  <h4 className="fw-bold">Search User</h4>
                 </div>
-                <div className="col-lg-6 col-md-6 col-12 px-4 mt-3">
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">User Type</label>
+                    </div>
+                    <select className="form-control" name="userType">
+                      <option value="">Choose User Type</option>
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                      <option value="support">Co-Admin</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Hire Date</label>
+                      <input type={"text"} className="d-none" />
+                    </div>
+                    <RangePicker
+                      className="form-control"
+                      name="hireDate"
+                      onChange={(val) => {}}
+                    />
+                  </div>
+                </div> */}
+
+                {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Start Date</label>
+                    </div>
+                    <RangePicker
+                      className="form-control"
+                      name="startDate"
+                    />
+                  </div>
+                </div> */}
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Project Name</label>
+                    </div>
+                    <select className="form-control" name="projectName">
+                      <option value="">Select One</option>
+                      {userData &&
+                        userData.projectName &&
+                        userData.projectName.map((project, index) => {
+                          if (!project) return null;
+                          return (
+                            <option key={index} value={project}>
+                              {project}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Client Name</label>
+                    </div>
+                    <select className="form-control" name="clientName">
+                      <option value={""}>Select One</option>
+                      {userData &&
+                        userData.clientName &&
+                        userData.clientName.map((project, index) => {
+                          if (!project) return null;
+                          return (
+                            <option key={index} value={project}>
+                              {project}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Work Location</label>
+                    </div>
+                    <select className="form-control" name="workLocation">
+                      <option value={""}>Select One</option>
+                      {userData &&
+                        userData.workLocation &&
+                        userData.workLocation.map((project, index) => {
+                          if (!project) return null;
+                          return (
+                            <option key={index} value={project}>
+                              {project}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Hired As</label>
+                    </div>
+                    <select className="form-control" name="hiredAs">
+                      <option value={""}>Select One</option>
+                      {userData &&
+                        userData.hiredAs &&
+                        userData.hiredAs.map((project, index) => {
+                          if (!project) return null;
+                          return (
+                            <option key={index} value={project}>
+                              {project}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Provided Laptop</label>
+                    </div>
+                    <select className="form-control" name="providingLaptop">
+                      <option value={""}>Select One</option>
+                      <option value={"Admin"}>Yes</option>
+                      <option value={"Agent"}>No</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <label className="mb-2">Status</label>
+                  </div>
+                  <select className="form-control" name="status">
+                    <option value={""}>Select Status</option>
+                    <option value={"active"}>Active</option>
+                    <option value={"pending"}>Pending</option>
+                    <option value={"suspended"}>Suspended</option>
+                  </select>
+                </div>
+
+                <div className="col-12 mt-3 text-right">
                   <button
-                    className="btn btn-success"
-                    onClick={() => submitHandler()}
+                    className="btn btn-secondary btn-radius"
+                    type="submit"
                   >
-                    Add
+                    Search
                   </button>
                   <button
-                    className="btn btn-danger ml-3"
-                    onClick={() => setModal(false)}
+                    className="btn  btn-danger btn-radius ml-3"
+                    onClick={() => {
+                      setIsFilterActive(false);
+                      $("#filter-user-form").trigger("reset");
+                      $("#filter-user").slideToggle(300);
+                      let path = apipaths.listusers;
+                      path["url"] = path["url"].split("?")[0];
+                      dataHandler();
+                    }}
+                    type="button"
                   >
                     Close
                   </button>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
-        )}
+        </div>
+
+        <div className="card">
+          <div className="card-body p-0">
+            <MaterialTable
+              title=""
+              data={isFilterActive ? filterData : userList}
+              columns={columns}
+              options={{
+                search: true,
+                pageSize: 20,
+                emptyRowsWhenPaging: false,
+                paging: true,
+                exportButton: false,
+              }}
+            />
+          </div>
+        </div>
       </div>
-    </>
+      <Modal
+        title="Import Users"
+        destroyOnClose
+        visible={isModalVisible}
+        onOk={importUserFileHandler}
+        onCancel={handleCancel}
+      >
+        <div className="">
+          <form>
+            <input
+              type={"file"}
+              className={"form-control"}
+              onChange={(e) => setUserImportFile(e.target.files[0])}
+            />
+          </form>
+          {error && <p className="text-danger">{error}</p>}
+          <p>
+            To download a sample import file&nbsp;
+            <span
+              className="text-primary cursor-pointer"
+              onClick={() => window.open(sampleImport, "_blank")}
+            >
+              click here
+            </span>
+          </p>
+        </div>
+      </Modal>
+      <Modal
+        title={
+          operation === "view"
+            ? "View User"
+            : operation === "update"
+            ? "Edit User"
+            : "Create User"
+        }
+        visible={isCreateUserModal}
+        onCancel={() => setIsCreateModal(false)}
+        footer={null}
+      >
+        <AddUser
+          onCancel={() => setIsCreateModal(false)}
+          onSubmit={createUserHandler}
+          operation={operation}
+          userInfo={userInfo}
+        />
+      </Modal>
+    </React.Fragment>
   );
 }
 

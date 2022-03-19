@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react/cjs/react.development";
 import { inventoryListAction } from "../actions/inventoryAction";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import AddInventoryForm from "./forms/AddInventoryForm";
-import Navbar from "./navbar";
-import TableFeild from "./TableFeild";
-import { Modal, Button, Select, DatePicker } from "antd";
+import { Modal, Select, DatePicker } from "antd";
 import { toast } from "react-toastify";
 import $ from "jquery";
 import MaterialTable from "material-table";

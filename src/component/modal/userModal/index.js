@@ -87,9 +87,9 @@ function UserModal(props) {
                 </div>
               </div>
               <div className="col-lg-6 col-md-6 col-6 mt-3">
-                <label class="form-label d-block mb-1">Hired As</label>
-                <div class="selectgroup selectgroup-pills">
-                  <label class="selectgroup-item">
+                <label className="form-label d-block mb-1">Hired As</label>
+                <div className="selectgroup selectgroup-pills">
+                  <label className="selectgroup-item">
                     <InputFeild
                       type="radio"
                       onChange={(e) =>
@@ -99,9 +99,9 @@ function UserModal(props) {
                       value="1099"
                       className="selectgroup-input"
                     />
-                    <span class="selectgroup-button">1099</span>
+                    <span className="selectgroup-button">1099</span>
                   </label>
-                  <label class="selectgroup-item">
+                  <label className="selectgroup-item">
                     <InputFeild
                       type="radio"
                       onChange={(e) =>
@@ -111,9 +111,9 @@ function UserModal(props) {
                       value="W-2"
                       className="selectgroup-input"
                     />
-                    <span class="selectgroup-button">W-2</span>
+                    <span className="selectgroup-button">W-2</span>
                   </label>
-                  <label class="selectgroup-item">
+                  <label className="selectgroup-item">
                     <InputFeild
                       type="radio"
                       onChange={(e) =>
@@ -123,7 +123,7 @@ function UserModal(props) {
                       value="B2B"
                       className="selectgroup-input"
                     />
-                    <span class="selectgroup-button">B2B</span>
+                    <span className="selectgroup-button">B2B</span>
                   </label>
                 </div>
               </div>
@@ -314,7 +314,7 @@ function UserModal(props) {
                   </div>
                   <div className="col-lg-9 col-md-9 col-9">
                     <textarea
-                      class="form-control"
+                      className="form-control"
                       id="comment"
                       rows="5"
                       onChange={(e) =>
@@ -334,8 +334,8 @@ function UserModal(props) {
                   </div>
                   <div className="col-lg-3 col-md-3 col-3">
                     <div className="">
-                      <label class="selectgroup-item mr-3">
-                        {/* <input type="radio" name="providelaptop" onChange={(e) => setItInfo({ ...itInfo, providingLaptop: e.target.value })} value="no" class="selectgroup-input" /> */}
+                      <label className="selectgroup-item mr-3">
+                        {/* <input type="radio" name="providelaptop" onChange={(e) => setItInfo({ ...itInfo, providingLaptop: e.target.value })} value="no" className="selectgroup-input" /> */}
 
                         <InputFeild
                           type="radio"
@@ -349,10 +349,10 @@ function UserModal(props) {
                           value="Yes"
                           className="selectgroup-input"
                         />
-                        <span class="selectgroup-button">Yes</span>
+                        <span className="selectgroup-button">Yes</span>
                       </label>
-                      <label class="selectgroup-item mr-3">
-                        {/* <input type="radio" name="providelaptop" onChange={(e) => setItInfo({ ...itInfo, providingLaptop: e.target.value })} value="yes" class="selectgroup-input" /> */}
+                      <label className="selectgroup-item mr-3">
+                        {/* <input type="radio" name="providelaptop" onChange={(e) => setItInfo({ ...itInfo, providingLaptop: e.target.value })} value="yes" className="selectgroup-input" /> */}
                         <InputFeild
                           type="radio"
                           onChange={(e) =>
@@ -365,7 +365,7 @@ function UserModal(props) {
                           value="No"
                           className="selectgroup-input"
                         />
-                        <span class="selectgroup-button">No</span>
+                        <span className="selectgroup-button">No</span>
                       </label>
                     </div>
                   </div>
@@ -374,10 +374,10 @@ function UserModal(props) {
             </div>
 
             <div className="mt-4">
-              <button type="submit" class="btn btn-success mr-3">
+              <button type="submit" className="btn btn-success mr-3">
                 Submit
               </button>
-              <button type="button" class="btn btn-danger" onClick={onCancel}>
+              <button type="button" className="btn btn-danger" onClick={onCancel}>
                 Cancel
               </button>
             </div>

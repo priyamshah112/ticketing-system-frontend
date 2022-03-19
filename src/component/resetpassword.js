@@ -1,8 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
-import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
@@ -46,16 +43,6 @@ function ResetPassword(props) {
                             <div className="auth-content-logo">
                                 <img
                                     src={logo1}
-                                    alt=""
-                                    className="img-fluid mb-4 d-block login-logo"
-                                />
-                                <img
-                                    src={logo2}
-                                    alt=""
-                                    className="img-fluid mb-4 d-block login-logo"
-                                />
-                                <img
-                                    src={logo3}
                                     alt=""
                                     className="img-fluid mb-4 d-block login-logo"
                                 />

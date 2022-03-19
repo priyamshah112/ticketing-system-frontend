@@ -14,15 +14,16 @@ import { getResponse } from "../../api/apiResponse";
 import AddTicket from "../forms/AddTicket";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import $ from "jquery"
-import { Collapse } from 'antd';
-
+import $ from "jquery";
+import { Collapse } from "antd";
+import { useHistory } from "react-router-dom";
 
 function UserDashboard() {
   const [userdata, setUserDate] = useState([]);
   const [ticketModal, setTicketModal] = useState(false);
   const userDetails = useSelector((state) => state.userDetails);
   const { Panel } = Collapse;
+  const history = useHistory();
 
   useEffect(() => {
     userinfo();
@@ -36,214 +37,232 @@ function UserDashboard() {
   };
 
   const onSubmit = async (ticket) => {
-    ticket.append("created_by", userDetails.id)
-    ticket.append("status", "Pending")
-    ticket.append("operation", "add")
+    ticket.append("created_by", userDetails.id);
+    ticket.append("status", "Pending");
+    ticket.append("operation", "add");
 
     const data = await getResponse(apipaths.addticket, ticket);
     if (data.status === 200) {
+      toast.success(data.data.message);
       setTicketModal(false);
+    } else {
+      toast.error(data.data.message);
     }
   };
 
   const faqAnsHandler = (elem, faq) => {
     setTimeout(() => {
-      $(`.${elem}`).html(faq.answer)
-    }, 1000)
-  }
+      $(`.${elem}`).html(faq.answer);
+    }, 1000);
+  };
 
   return (
-    <>
-      <div className="wrapper">
-        <div className="main-panel">
-          <div className="content">
-            <div class="container-fluid mt-4 pt-3">
-              <div className="row my-2 ">
-                <div className="title-main col-lg-6">
-                  <h1>Welcome</h1>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Magni, nobis?
-                  </p>
+    <div className="page-inner">
+      <div className="row my-2 ">
+        <div className="title-main col-lg-6">
+          <h1>Welcome</h1>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni,
+            nobis?
+          </p>
+        </div>
+        <div className="search-field col-lg-6  mt-4">
+          <div className="form-group has-search">
+            <span className="fa fa-search form-control-feedback"></span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="How To"
+            ></input>
+          </div>
+        </div>
+      </div>
+      <div className="row my-4">
+        <div className="col-lg-4 col-md-6 my-2 pointer">
+          <div className="card small-card" onClick={() => setTicketModal(true)}>
+            <div className="card-body">
+              <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                <div>
+                  <img
+                    src={create}
+                    alt="create"
+                    className="img-fluid"
+                    style={{ width: "35%" }}
+                  />
                 </div>
-                <div className="search-field col-lg-6  mt-4">
-                  <div className="form-group has-search">
-                    <span className="fa fa-search form-control-feedback"></span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="How To"
-                    ></input>
-                  </div>
-                </div>
+                <h4>Create Ticket</h4>
               </div>
-              <div class="row my-4">
-                <div class="col-lg-4 col-md-6 my-2">
-                  <div
-                    class="card small-card cursor-pointer"
-                    onClick={() => setTicketModal(true)}
-                  >
-                    <div class="card-body">
-                      <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
-                        <div>
-                          <img
-                            src={create}
-                            alt="create"
-                            class="img-fluid"
-                            style={{ width: "35%" }}
-                          />
-                        </div>
-                        <h4>Create Incedent</h4>
-                      </div>
-                    </div>
-                  </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-4 col-md-6 my-2 pointer">
+          <div
+            className="card small-card"
+            onClick={() =>
+              history.push({
+                pathname: "/tickets",
+                state: { status: " Pending" },
+              })
+            }
+          >
+            <div className="card-body">
+              <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                <div>
+                  <img src={process} alt="create" className="img-fluid" />
                 </div>
-                <div class="col-lg-4 col-md-6 my-2">
-                  <div class="card small-card">
-                    <div class="card-body">
-                      <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
-                        <div>
-                          <img src={process} alt="create" class="img-fluid" />
-                        </div>
-                        <h4>In Process</h4>
-                      </div>
-                    </div>
-                  </div>
+                <h4>In Process Ticket</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col-lg-4 col-md-6 my-2 pointer"
+          onClick={() =>
+            history.push({
+              pathname: "/tickets",
+              state: { status: " Closed" },
+            })
+          }
+        >
+          <div className="card small-card">
+            <div className="card-body">
+              <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                <div>
+                  <img src={close} alt="create" className="img-fluid" />
                 </div>
-                <div class="col-lg-4 col-md-6 my-2">
-                  <div class="card small-card">
-                    <div class="card-body">
-                      <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
-                        <div>
-                          <img src={close} alt="create" class="img-fluid" />
-                        </div>
-                        <h4>Close Incedent Report</h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* <div class="col-lg-3 my-2">
-                                    <div class="card small-card">
-                                        <div class="card-body">
-                                            <div class="card-details d-flex flex-column text-center justify-content-center align-items-center">
-                                                <div>
-                                                    <img src={message} alt="create" class="img-fluid" />
-                                                </div>
-                                                <h4>New Messages</h4>
-                                            </div>
+                <h4>Closed Ticket</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="col-lg-3 my-2">
+                            <div className="card small-card">
+                                <div className="card-body">
+                                    <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+                                        <div>
+                                            <img src={message} alt="create" className="img-fluid" />
                                         </div>
+                                        <h4>New Messages</h4>
                                     </div>
-                                </div> */}
+                                </div>
+                            </div>
+                        </div> */}
+      </div>
+      <div className="row my-4">
+        <div className="col-lg-4 my-2">
+          <div className="card medium-card">
+            <div className="card-body d-flex flex-column justify-content-between">
+              <div className="d-flex flex-row justify-content-between ">
+                <h5>Assigned Hardware</h5>
+
+                <p>{userdata.totalHardwares}</p>
               </div>
-              <div class="row my-4">
-                <div class="col-lg-4 my-2">
-                  <div class="card medium-card">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div class="d-flex flex-row justify-content-between ">
-                        <h5>Assigned Hardware</h5>
-
-                        <p>{userdata.totalHardwares}</p>
-                      </div>
-                      <div class="md-card-icon mx-auto my-2">
-                        <img src={pc} alt="pc" class="img-fluid" />
-                      </div>
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Laboriosam, quam?
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 my-2">
-                  <div class="card medium-card">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div class="d-flex flex-row justify-content-between ">
-                        <h5>Assigned Software</h5>
-                        <p>{userdata.totalSoftware}</p>
-                      </div>
-                      <div class="md-card-icon mx-auto my-2">
-                        <img src={software} alt="pc" class="img-fluid" />
-                      </div>
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Laboriosam, quam?
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 my-2">
-                  <div class="card medium-card">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                      <div class="d-flex text-center">
-                        <h5>Create Request For Hardware</h5>
-                      </div>
-                      <div class="md-card-icon mx-auto my-2">
-                        <img src={create1} alt="pc" class="img-fluid" />
-                      </div>
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Laboriosam, quam?
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="md-card-icon mx-auto my-2">
+                <img src={pc} alt="pc" className="img-fluid" />
               </div>
-              <div class="row my-4">
-                {/* <div class="col-lg-6 my-2">
-                  <div class="card large-card calender-card">
-                    <div class="card-body">
-                      <div class="auto-jsCalendar"></div>
-                    </div>
-                  </div>
-                </div> */}
-                <div class="col-lg-12 my-2">
-                  <div class="card acc-card">
-                    <div class="card-heading pt-3 px-4">
-                      <h3 className="mb-0">FAQs</h3>
-                    </div>
-                    <div class="card-body d-flex flex-column pt-0">
-                      {/* <div class="d-flex text-left">
-                                                <h5>FAQs</h5>
-                                            </div> */}
-                      <div id="accordion my-3">
-                        <Collapse accordion>
-                          {userdata.faqs &&
-                            userdata.faqs.map((faq, i) => (
-
-                              <Panel header={<h4 className="font-weight-bold mb-0">sdfjkn</h4>} key={i}>
-                                <p className={`faq_${i}`} dangerouslySetInnerHTML={{ __html: faq.answer }}></p>
-                              </Panel>
-                            ))}
-                        </Collapse>
-
-                      </div>
-                      <Link to="/faqs" className="mx-3 my-2 text-primary">
-                        More...
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="">
-                  {ticketModal && (
-                    <AddTicket
-                      setTicketModal={setTicketModal}
-                      onSubmit={onSubmit}
-                    />
-                  )}
-                </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laboriosam, quam?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-4 my-2">
+          <div className="card medium-card">
+            <div className="card-body d-flex flex-column justify-content-between">
+              <div className="d-flex flex-row justify-content-between ">
+                <h5>Assigned Software</h5>
+                <p>{userdata.totalSoftware}</p>
+              </div>
+              <div className="md-card-icon mx-auto my-2">
+                <img src={software} alt="pc" className="img-fluid" />
+              </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laboriosam, quam?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="col-lg-4 my-2 pointer"
+          onClick={() => setTicketModal(true)}
+        >
+          <div className="card medium-card">
+            <div className="card-body d-flex flex-column justify-content-between">
+              <div className="d-flex text-center">
+                <h5>Create Request For Hardware</h5>
+              </div>
+              <div className="md-card-icon mx-auto my-2">
+                <img src={create1} alt="pc" className="img-fluid" />
+              </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laboriosam, quam?
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+      <div className="row my-4">
+        {/* <div className="col-lg-6 my-2">
+          <div className="card large-card calender-card">
+            <div className="card-body">
+              <div className="auto-jsCalendar"></div>
+            </div>
+          </div>
+        </div> */}
+        <div className="col-lg-12 my-2">
+          <div className="card acc-card">
+            <div className="card-heading pt-3 px-4">
+              <h3 className="mb-0">FAQs</h3>
+            </div>
+            <div className="card-body d-flex flex-column pt-0">
+              {/* <div className="d-flex text-left">
+                                        <h5>FAQs</h5>
+                                    </div> */}
+              <div id="accordion my-3">
+                <Collapse accordion>
+                  {userdata.faqs &&
+                    userdata.faqs.map((faq, i) => (
+                      <Panel
+                        header={
+                          <h4 className="font-weight-bold mb-0">sdfjkn</h4>
+                        }
+                        key={i}
+                      >
+                        <p
+                          className={`faq_${i}`}
+                          dangerouslySetInnerHTML={{ __html: faq.answer }}
+                        ></p>
+                      </Panel>
+                    ))}
+                </Collapse>
+              </div>
+              <Link to="/faqs" className="mx-3 my-2 text-primary">
+                More...
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          {ticketModal && (
+            <AddTicket
+              ticketModal={ticketModal}
+              setTicketModal={setTicketModal}
+              onSubmit={onSubmit}
+            />
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 

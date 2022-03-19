@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
@@ -46,11 +45,16 @@ function Login(props) {
   };
 
   useEffect(() => {
+    let token = localStorage.authToken;
+    if (token) {
+      window.location.href = '/dashboard';
+    }
     let cred = localStorage.credentials;
     if(cred){
       cred = JSON.parse(cred);
       loginHandler(cred) 
     }
+    
   }, [])
 
   const createUserHandler = async (e) => {
@@ -97,16 +101,6 @@ function Login(props) {
                   alt=""
                   className="img-fluid mb-4 d-block login-logo"
                 />
-                <img
-                  src={logo2}
-                  alt=""
-                  className="img-fluid mb-4 d-block login-logo"
-                />
-                <img
-                  src={logo3}
-                  alt=""
-                  className="img-fluid mb-4 d-block login-logo"
-                />
               </div>
               <h1 className="text-white my-4">Welcome to Enhance Compliance!</h1>
               <h5 className="text-white font-weight-normal">
@@ -123,7 +117,7 @@ function Login(props) {
                   {create ? "Activate Account" : "LOGIN"}
                 </h5>
                 {!create ? (
-                  <form onSubmit={loginHandler}>
+                  <form>
                     <input
                       type="hidden"
                       name="_token"
@@ -192,13 +186,12 @@ function Login(props) {
                         Save credentials.
                       </label>
                     </div>
-                    <button
-                      type="submit"
+                    <div
                       className="btn btn-block btn-info sign-in mb-4"
+                      onClick={loginHandler}
                     >
-                      {" "}
                       SIGN IN
-                    </button>
+                    </div>
                   </form>
                 ) : (
                   <form className="" onSubmit={createUserHandler}>

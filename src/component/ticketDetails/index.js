@@ -133,104 +133,100 @@ function TicketDetails(props) {
 
 
     return (
-        <div className="wrapper">
-            <div className="main-panel">
-                <div className="content">
-                    <div className="row mt-3 mx-5">
-                        <div className="col-lg-4 col-md-4 col-12 mt-3">
-                            <TicketInformation ticket={ticket} closeTicketHandler={closeTicketHandler} />
+        <div className="page-inner">
+            <div className="row">
+                <div className="col-lg-4 col-12">
+                    <TicketInformation ticket={ticket} closeTicketHandler={closeTicketHandler} />
+                </div>
+                <div className="col-lg-8 col-12 mt-4 mt-lg-0">
+                    <div className="ticket-details card bg-white py-3">
+                        <div className="ticket-details-container px-3">
+                            <h3>View Ticket</h3>
+                            <p className="text-lg ticket-subject">Subject: <b>{ticket.subject}</b></p>
                         </div>
-                        <div className="col-lg-8 col-md-8 col-12 mt-3">
-                            <div className="ticket-details card bg-white py-3">
-                                <div className="ticket-details-container px-3">
-                                    <h3>View Ticket</h3>
-                                    <p className="text-lg ticket-subject">Subject: <b>{ticket.subject}</b></p>
-                                </div>
 
-                                {
-                                    ticket.ticket_activity && ticket.ticket_activity.map((t, i) => {
+                        {
+                            ticket.ticket_activity && ticket.ticket_activity.map((t, i) => {
 
-                                        return (
-                                            <div className="ticket-details-content">
-                                                <div className="ticket-post-info">
-                                                    <div className="px-3 flex align-items-center justify-content-between">
-                                                        <p className="mb-0">Posted By {getUserNameById(t.activity_by)} on {dateHandler(t.created_at)}</p>
-                                                        {
-                                                            userDetails.id === t.activity_by ? (
-                                                                <Button
-                                                                    type="primary"
-                                                                    style={{ background: "green", borderColor: "green" }}
-                                                                    shape="round"
-                                                                    size="small">
-                                                                    Owner
-                                                                </Button>
-                                                            ) : (
-                                                                <Button
-                                                                    type="primary"
-                                                                    style={{ background: "#1986d9", borderColor: "#1986d9" }}
-                                                                    shape="round"
-                                                                    size="small">
-                                                                    Operator
-                                                                </Button>
-                                                            )
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div className="ticket-post-content mx-3">
-                                                    <p id={`${ticket.id}_${t.id}`}>{ticketMessageHandler(ticket.id + '_' + t.id, t.message)}</p>
-                                                    <div className="activity-image">
-                                                        {
-                                                            t.images && t.images.map((img, i) => {
-                                                                return (
-                                                                    <img className="img_reply mr-3 mb-3" key={i} src={`${process.env.REACT_APP_BASE_URL}${img}`} width={100} height={100} />
-                                                                )
-                                                            })
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-
-                                {
-                                    ticket.status !== "Closed" && (
-                                        <div className="ticket-details-form-wrapper mx-3 mt-2">
-                                            <div>
-                                                <lable>Message <span className="text-danger">*</span></lable>
-                                                <TextEditor
-                                                    onChange={(e) => setTicketMessage(e)} />
-                                            </div>
-
-                                            <div className="mt-3">
-                                                <h4>Attachments</h4>
-                                                <form onSubmit={submitHandler}>
-                                                    <Form.Item
-                                                        name="upload"
-                                                        label="Upload"
-                                                        valuePropName="fileList"
-                                                        getValueFromEvent={normFile}
-                                                        extra="Upload attachments from here"
-                                                    >
-                                                        <Input className="form-control" type={"file"} multiple onChange={fileHandler} />
-                                                    </Form.Item>
-
-                                                    {
-                                                        <p className=" text-center text-success">{apiMess}</p>
-                                                    }
-
-                                                    <div className="container text-center">
-                                                        <button className="btn btn-info" type="submit">Submit</button>
-                                                        <button type="reset" id="form-reset-btn" className="btn btn-danger ml-3">Cancel</button>
-                                                    </div>
-                                                </form>
+                                return (
+                                    <div className="ticket-details-content">
+                                        <div className="ticket-post-info">
+                                            <div className="px-3 flex align-items-center justify-content-between">
+                                                <p className="mb-0">Posted By {getUserNameById(t.activity_by)} on {dateHandler(t.created_at)}</p>
+                                                {
+                                                    userDetails.id === t.activity_by ? (
+                                                        <Button
+                                                            type="primary"
+                                                            style={{ background: "green", borderColor: "green" }}
+                                                            shape="round"
+                                                            size="small">
+                                                            Owner
+                                                        </Button>
+                                                    ) : (
+                                                        <Button
+                                                            type="primary"
+                                                            style={{ background: "#1986d9", borderColor: "#1986d9" }}
+                                                            shape="round"
+                                                            size="small">
+                                                            Operator
+                                                        </Button>
+                                                    )
+                                                }
                                             </div>
                                         </div>
-                                    )
-                                }
+                                        <div className="ticket-post-content mx-3">
+                                            <p id={`${ticket.id}_${t.id}`}>{ticketMessageHandler(ticket.id + '_' + t.id, t.message)}</p>
+                                            <div className="activity-image">
+                                                {
+                                                    t.images && t.images.map((img, i) => {
+                                                        return (
+                                                            <img className="img_reply mr-3 mb-3" key={i} src={`${process.env.REACT_APP_BASE_URL}${img}`} width={100} height={100} />
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
 
-                            </div>
-                        </div>
+                        {
+                            ticket.status !== "Closed" && (
+                                <div className="ticket-details-form-wrapper mx-3 mt-2">
+                                    <div>
+                                        <lable>Message <span className="text-danger">*</span></lable>
+                                        <TextEditor
+                                            onChange={(e) => setTicketMessage(e)} />
+                                    </div>
+
+                                    <div className="mt-3">
+                                        <h4>Attachments</h4>
+                                        <form onSubmit={submitHandler}>
+                                            <Form.Item
+                                                name="upload"
+                                                label="Upload"
+                                                valuePropName="fileList"
+                                                getValueFromEvent={normFile}
+                                                extra="Upload attachments from here"
+                                            >
+                                                <Input className="form-control" type={"file"} multiple onChange={fileHandler} />
+                                            </Form.Item>
+
+                                            {
+                                                <p className=" text-center text-success">{apiMess}</p>
+                                            }
+
+                                            <div className="container text-center">
+                                                <button className="btn btn-info" type="submit">Submit</button>
+                                                <button type="reset" id="form-reset-btn" className="btn btn-danger ml-3">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            )
+                        }
+
                     </div>
                 </div>
             </div>

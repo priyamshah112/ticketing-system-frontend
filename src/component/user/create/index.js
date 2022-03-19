@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react/cjs/react.development";
-import Login from "../../login";
 import UserModal from "../../modal/userModal";
 
 function CreateUser(props) {

@@ -1,7 +1,6 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react/cjs/react.development";
 import { addUserDetailsAction } from "../../actions/userActions";
 import Footer from "../footer";
 import dashboard from "../assets/Category.svg";
@@ -20,7 +19,7 @@ import $ from "jquery";
 
 function Sidebar() {
   let data = localStorage.user_details;
-  let user = JSON.parse(data); 
+  let user = JSON.parse(data);
 
   const userType = JSON.parse(localStorage.user_details).userType;
   const dispatch = useDispatch();
@@ -33,12 +32,11 @@ function Sidebar() {
   }, []);
 
   const activeLinkHandler = (elem) => {
-      $(`.nav-item`).removeClass("curr-active");
-      $(`.sub-nav-item`).removeClass("curr-active");
-      $(`#${elem}`).addClass("curr-active");
-      console.log($(`#${elem}`))
-    }
-  
+    $(`.nav-item`).removeClass("curr-active");
+    $(`.sub-nav-item`).removeClass("curr-active");
+    $(`#${elem}`).addClass("curr-active");
+    console.log($(`#${elem}`));
+  };
 
   return (
     <div className="sidebar sidebar-style-2">
@@ -68,22 +66,45 @@ function Sidebar() {
                 aria-expanded="true"
               >
                 <div class="dropdown">
-                  <span className="text-dark d-flex flex-column" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span
+                    className="text-dark d-flex flex-column"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     {user && user.user_details && user.user_details.firstName}
 
-                    <span className="user-level text-dark mt-2">{user.userType} <i className="fas fa-chevron-down ml-1"></i></span>
+                    <span className="user-level text-dark mt-2">
+                      {user.userType}{" "}
+                      <i className="fas fa-chevron-down ml-1"></i>
+                    </span>
                   </span>
-                  <div class="dropdown-menu" style={{ top: "20px" }} aria-labelledby="dropdownMenuButton">
-
-                    <a class="dropdown-item" href="/changepassword" onClick={(e) => {
-                      e.preventDefault();
-                      setIsChangePasswordActive(true);
-                    }}>changePassword</a>
-                    <a class="dropdown-item" href="/profileview" onClick={(e) => {
-                      e.preventDefault();
-                      setIsProfileViewActive(true);
-                    }}>My Profile</a>
-
+                  <div
+                    class="dropdown-menu"
+                    style={{ top: "20px" }}
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="/changepassword"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsChangePasswordActive(true);
+                      }}
+                    >
+                      changePassword
+                    </a>
+                    <a
+                      class="dropdown-item"
+                      href="/profileview"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsProfileViewActive(true);
+                      }}
+                    >
+                      My Profile
+                    </a>
                   </div>
                 </div>
               </a>
@@ -92,7 +113,11 @@ function Sidebar() {
           </div>
           <ul className="nav nav-primary">
             {userType !== "Support" && (
-              <li className="nav-item" id="dashboard" onClick={() => activeLinkHandler("dashboard")}>
+              <li
+                className="nav-item"
+                id="dashboard"
+                onClick={() => activeLinkHandler("dashboard")}
+              >
                 <Link
                   to={userType === "User" ? "/userdashboard" : "/dashboard"}
                 >
@@ -108,7 +133,11 @@ function Sidebar() {
             )}
 
             {userType !== "Support" && userType !== "User" && (
-              <li className="nav-item" id="user-main" onClick={() => activeLinkHandler("user-main")}>
+              <li
+                className="nav-item"
+                id="user-main"
+                onClick={() => activeLinkHandler("user-main")}
+              >
                 <a
                   data-toggle="collapse"
                   href="#user"
@@ -151,7 +180,11 @@ function Sidebar() {
             )}
 
             {userType !== "Support" && userType !== "User" && (
-              <li className="nav-item" id="inventory-main" onClick={() => activeLinkHandler("inventory-main")}>
+              <li
+                className="nav-item"
+                id="inventory-main"
+                onClick={() => activeLinkHandler("inventory-main")}
+              >
                 <a
                   data-toggle="collapse"
                   href="#inventory"
@@ -168,7 +201,11 @@ function Sidebar() {
                 </a>
                 <div className="collapse" id="inventory">
                   <ul className="nav nav-collapse">
-                    <li id="inv-software" className="sub-nav-item" onClick={() => activeLinkHandler("inv-software")}>
+                    <li
+                      id="inv-software"
+                      className="sub-nav-item"
+                      onClick={() => activeLinkHandler("inv-software")}
+                    >
                       <Link to="/inventory/software">
                         <img
                           src={software}
@@ -178,7 +215,11 @@ function Sidebar() {
                         <span className="">Software</span>
                       </Link>
                     </li>
-                    <li id="inv-hardware" className="sub-nav-item" onClick={() => activeLinkHandler("inv-hardware")}>
+                    <li
+                      id="inv-hardware"
+                      className="sub-nav-item"
+                      onClick={() => activeLinkHandler("inv-hardware")}
+                    >
                       <Link to="/inventory/hardware">
                         <img
                           src={hardware}
@@ -193,7 +234,11 @@ function Sidebar() {
               </li>
             )}
 
-            <li className="nav-item" id="tickets-main" onClick={() => activeLinkHandler("tickets-main")}>
+            <li
+              className="nav-item"
+              id="tickets-main"
+              onClick={() => activeLinkHandler("tickets-main")}
+            >
               <Link to={`/tickets`}>
                 <img
                   src={tickets}
@@ -204,7 +249,11 @@ function Sidebar() {
               </Link>
             </li>
 
-            <li className="nav-item" id="faq-main" onClick={() => activeLinkHandler("faq-main")}>
+            <li
+              className="nav-item"
+              id="faq-main"
+              onClick={() => activeLinkHandler("faq-main")}
+            >
               <Link to="/faqs">
                 <img src={faq} alt="faq" className="img-fluid icon-img" />
                 <span className="">FAQs</span>

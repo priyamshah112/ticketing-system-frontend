@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react/cjs/react.development";
 import { dateHandler } from "../../actions/commonAction";
 import { addTicketsAction } from "../../actions/ticketAction";
 import { apipaths } from "../../api/apiPaths";
 import { getResponse } from "../../api/apiResponse";
 import LayoutOne from "../layout/layoutone";
-import LayoutTwo from "../layout/layouttwo";
 import Faq from "./faq";
 
 function Dashboard() {
@@ -50,13 +48,13 @@ function Dashboard() {
               </div>
             </div>
             <div className="page-inner mt--5">
-              <div class="row mt--2">
-                <div class="col-md-9">
+              <div className="row mt--2">
+                <div className="col-md-9">
                   {
                     data && <LayoutOne tickets={ticketList} data={data} />
                   }
                 </div>
-                <div class="col-md-3">
+                <div className="col-md-3">
                   <div className="card">
                     <div className="card-head">
 
@@ -99,21 +97,21 @@ function Dashboard() {
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div className="col-md-6">
                   <div className="card">
                     <div className="card-head">
                     </div>
                     <div className="card-body">
                       <div className="card-title mb-3">Recent Tickets</div>
-                      <ul class="list-group">
-                        <li class="list-group-item  text-capitalize justify-content-between">
+                      <ul className="list-group">
+                        <li className="list-group-item  text-capitalize justify-content-between">
                           <p><b>Subject</b></p>
                           <p><b>Status</b></p>
                           <p><b>Lasted Updated</b></p>
                         </li>
                         {
                           data.recentTickets && data.recentTickets.map((data, i) => (
-                            i < 5 && <li class="list-group-item  text-capitalize justify-content-between" key={i}>
+                            i < 5 && <li className="list-group-item  text-capitalize justify-content-between" key={i}>
                               <Link to={`/ticket/details?ticketid=${data.id}`}>{data.subject}</Link>
                               <p>{data.status}</p>
                               <p>{dateHandler(data.updated_at)}</p>
@@ -125,14 +123,14 @@ function Dashboard() {
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div className="col-md-6">
                   <div className="card">
                     <div className="card-head">
                     </div>
                     <div className="card-body">
                       <div className="card-title mb-3">Recent Open Tickets</div>
-                      <ul class="list-group">
-                        <li class="list-group-item  text-capitalize justify-content-between">
+                      <ul className="list-group">
+                        <li className="list-group-item  text-capitalize justify-content-between">
                           <p><b>Subject</b></p>
                           <p><b>Status</b></p>
                           <p><b>Lasted Updated</b></p>
@@ -141,7 +139,7 @@ function Dashboard() {
                         {
                           data.recentOpenTickets && data.recentOpenTickets.map((data, i) => (
                             i < 5 && (
-                              <li class="list-group-item  text-capitalize justify-content-between" key={i}
+                              <li className="list-group-item  text-capitalize justify-content-between" key={i}
                               ><Link to={`/ticket/details?ticketid=${data.id}`}>{data.subject}</Link>
                                 <p>{data.status}</p>
                                 <p>{dateHandler(data.updated_at)}</p>
@@ -156,13 +154,13 @@ function Dashboard() {
 
                 {
                   userDetails.userType !== "Support" && userDetails.userType !== "Staff" && (
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <div className="card">
                         <div className="card-head">
                         </div>
                         <div className="card-body">
                           <div className="card-title mb-3">Hardware List</div>
-                          <ul class="list-group">
+                          <ul className="list-group">
                             <li className="list-group-item  text-capitalize justify-content-between">
                               <b>Device Name</b>
                               <b>Device Number</b>
@@ -170,7 +168,7 @@ function Dashboard() {
                             {
                               data.hardwareList && data.hardwareList.map((data, i) => (
                                 i < 5 && (
-                                  <li class="list-group-item  text-capitalize justify-content-between" key={i}>
+                                  <li className="list-group-item  text-capitalize justify-content-between" key={i}>
                                     <Link to={`/inventory/hardware`}>{data.device_name}</Link>
                                     <p>{data.device_number}</p>
                                   </li>)
@@ -185,13 +183,13 @@ function Dashboard() {
 
 
                 {
-                  userDetails.userType !== "Support" && userDetails.userType !== "Staff" && (<div class="col-md-6">
+                  userDetails.userType !== "Support" && userDetails.userType !== "Staff" && (<div className="col-md-6">
                     <div className="card">
                       <div className="card-head">
                       </div>
                       <div className="card-body">
                         <div className="card-title mb-3">Software List</div>
-                        <ul class="list-group">
+                        <ul className="list-group">
                           <li className="list-group-item  text-capitalize justify-content-between">
                             <b>Device Name</b>
                             <b>Assigned On</b>
@@ -199,7 +197,7 @@ function Dashboard() {
                           {
                             data.softwareList && data.softwareList.map((data, i) => (
                               i < 5 && (
-                                <li class="list-group-item  text-capitalize justify-content-between" key={i}>
+                                <li className="list-group-item  text-capitalize justify-content-between" key={i}>
                                   <Link to={`/inventory/software`}>{data.name}</Link>
                                   <p>{data.assigned_on}</p>
                                 </li>)
@@ -211,7 +209,7 @@ function Dashboard() {
                   </div>)
                 }
 
-                <div class="col-md-6">
+                <div className="col-md-6">
                   <Faq data={data.faqs} />
                 </div>
 
