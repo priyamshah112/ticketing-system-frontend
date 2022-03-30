@@ -302,7 +302,7 @@ function HardwareInventory() {
                                                         </div>
                                                         <select className="form-control">
                                                             <option>Select Status</option>
-                                                            <option>In Use</option>
+                                                            <option>Available</option>
                                                             <option>Available</option>
                                                         </select>
                                                     </div>
@@ -315,7 +315,7 @@ function HardwareInventory() {
                                                         </div>
                                                         <select className="form-control">
                                                             <option>Select Status</option>
-                                                            <option>In Use</option>
+                                                            <option>Not Available</option>
                                                             <option>Available</option>
                                                         </select>
                                                     </div>

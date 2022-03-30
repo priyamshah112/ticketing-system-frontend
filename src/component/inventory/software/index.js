@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { inventoryListAction } from "../../../actions/inventoryAction";
 import { apipaths } from "../../../api/apiPaths";
 import { getResponse } from "../../../api/apiResponse";
-import AddInventoryForm from "../../forms/AddInventoryForm";
+import AddInventoryForm from "../addInventoryForm";
 import swal from "sweetalert";
-import { Modal, Button, Select, DatePicker } from "antd";
+import { Modal, Select } from "antd";
 import { toast } from "react-toastify";
 import $ from "jquery";
 import MaterialTable from "material-table";
@@ -21,12 +21,10 @@ function SoftwareInventory() {
   const parameters = useParams();
   let assInvFormData = new FormData();
 
-  const { RangePicker } = DatePicker;
   let id = "software";
   const inventoryList = useSelector((state) => state.inventoryList);
   const [inventories, setInventories] = useState([]);
   const [modal, setModal] = useState(false);
-  const [isModal, setIsModal] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [editFormData, setEditFormData] = useState({});
   const [formData, setFormdata] = useState({});
@@ -35,11 +33,11 @@ function SoftwareInventory() {
   let columns = parameters.userid
     ? [
         {
-          title: "Inventory ID",
+          title: "Software ID",
           field: "id",
         },
         {
-          title: "Name",
+          title: "Software Name",
           field: "name",
         },
         {
@@ -47,30 +45,26 @@ function SoftwareInventory() {
           field: "version",
         },
         {
-          title: "Notes",
-          field: "notes",
-        },
-        {
-          title: "Assigned To",
+          title: "User",
           field: "assigned_to_username",
         },
         {
-          title: "Assigned On",
-          field: "assigned_on",
+          title: "Expiry Date",
+          field: "expiry_date",
         },
         {
           title: "Action",
           field: "action",
           sorting: false,
-        },
+        }
       ]
     : [
         {
-          title: "Inventory ID",
+          title: "Software ID",
           field: "id",
         },
         {
-          title: "Name",
+          title: "Software Name",
           field: "name",
         },
         {
@@ -82,22 +76,18 @@ function SoftwareInventory() {
           field: "status",
         },
         {
-          title: "Notes",
-          field: "notes",
-        },
-        {
-          title: "Assigned To",
+          title: "User",
           field: "assigned_to_username",
         },
         {
-          title: "Assigned On",
-          field: "assigned_on",
+          title: "Expiry Date",
+          field: "expiry_date",
         },
         {
           title: "Action",
           field: "action",
           sorting: false,
-        },
+        }
       ];
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [softwareInfo, setSoftwareeInfo] = useState([]);
@@ -106,7 +96,7 @@ function SoftwareInventory() {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const userList = useSelector((state) => state.userList);
-
+  
   const [isAssignInventoryModal, setIsAssignInventoryModal] = useState(false);
 
   const [sampleImport, setSampleImport] = useState("");
@@ -217,7 +207,7 @@ function SoftwareInventory() {
             </div>
           );
           break;
-        case "In Use":
+        case "Not Available":
           invStatus = (
             <div className="status status-suspended">
               <span></span> Not Available
@@ -280,11 +270,11 @@ function SoftwareInventory() {
         return $(element).val() != "";
       })
       .serialize();
-    let defaultPath = apipaths.softwareInventoryList;
     let path = apipaths.softwareInventoryList;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
-    console.log("formData:", formData);
-    let { data } = await getResponse(path, formData);
+    let { data, error } = await getResponse(path, formData);
+    if (error) return toast.warn("Error in listing tickets.");
+    console.log(data);
     inventoryListDataModifier(data.data.inventory);
   };
 
@@ -309,31 +299,6 @@ function SoftwareInventory() {
         }
       });
     }
-  };
-
-  const submitHandler = async (formdata) => {
-    let data = formdata;
-    const { name, key, assigned_to, version } = data;
-    if (!name || !key || !assigned_to || !version) {
-      return toast.warn("Name, Key, Assigned to, Version are required.");
-    }
-
-    // 2022-04-22
-    // let dateformat = data.expiry_date;
-    // dateformat =  dateformat.split("-");
-    // dateformat = dateformat[1] + "/" + dateformat[2] + "/" + dateformat[0];
-    // data.expiry_date = dateformat;
-    if (inventoryId) {
-      data.operation = "update";
-      data.assigned_on = editFormData.assigned_on;
-      data.id = inventoryId;
-    } else data.operation = "add";
-
-    if (id === "software")
-      await getResponse(apipaths.addInventorySoftware, data);
-    else await getResponse(apipaths.addInventoryHardware, data);
-    dispatch(inventoryListAction(id));
-    setModal(false);
   };
 
   const importTnventoryFileHandler = async () => {
@@ -376,7 +341,7 @@ function SoftwareInventory() {
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
               <h2 className="text-white pb-2 fw-bold">
-                {id === "software" ? "Software" : "Hardware"} Inventory{" "}
+                {id === "software" ? "Software" : "Hardware"}
                 {parameters.userid && username && "( " + username + " )"}{" "}
                 Inventory
               </h2>
@@ -446,7 +411,7 @@ function SoftwareInventory() {
                   <h4 className="fw-bold">Search software Inventory</h4>
                 </div>
                 <div className="form-group col-12 col-md-6 col-lg-4">
-                  <label className="mb-2">Name</label>
+                  <label className="mb-2">Software Name</label>
                   <input
                     name="name"
                     type="text"
@@ -476,11 +441,11 @@ function SoftwareInventory() {
                 </div>
 
                 <div className="form-group col-12 col-md-6 col-lg-4">
-                  <label className="mb-2">Assigned To</label>
+                  <label className="mb-2">User</label>
                   <select
                     className="form-control"
-                    name="assignedTo"
-                    value={formData?.assignedTo}
+                    name="assigned_to"
+                    value={formData?.assigned_to}
                     onChange={(e) => {
                       setFormdata({
                         ...formData,
@@ -488,7 +453,7 @@ function SoftwareInventory() {
                       });
                     }}
                   >
-                    <option value={""}>Select Assigned To</option>
+                    <option value={""}>Select User</option>
                     {userList &&
                       userList.map((user) => (
                         <option value={user.id}>
@@ -511,25 +476,10 @@ function SoftwareInventory() {
                       });
                     }}
                   >
-                    <option value={""}>Select Status</option>
-                    <option value={"Not Available"}>Not Available</option>
-                    <option value={"Available"}>Available</option>
+                    <option value="">Select Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Not Available">Not Available</option>
                   </select>
-                </div>
-
-                <div className="form-group col-12 col-md-6 col-lg-4">
-                  <label className="mb-2">Assigned On</label>
-                  <input
-                    type={"date"}
-                    name="assignedOn"
-                    className="form-control"
-                    onChange={(e) => {
-                      setFormdata({
-                        ...formData,
-                        assignedOn: e.target.value,
-                      });
-                    }}
-                  />
                 </div>
 
                 <div className="form-group col-12 col-md-6 col-lg-4">
@@ -542,20 +492,6 @@ function SoftwareInventory() {
                       setFormdata({
                         ...formData,
                         expiry_date: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
-                <div className="form-group col-12 col-md-6 col-lg-4">
-                  <label className="mb-2">Assigned Date</label>
-                  <input
-                    type={"date"}
-                    name="assigned_date"
-                    className="form-control"
-                    onChange={(e) => {
-                      setFormdata({
-                        ...formData,
-                        assigned_date: e.target.value,
                       });
                     }}
                   />
@@ -674,10 +610,8 @@ function SoftwareInventory() {
         <AddInventoryForm
           type={id}
           isOpen={setModal}
-          submitHandler={submitHandler}
           editFormData={editFormData}
           inventoryId={inventoryId}
-          id={id}
           userList={userList}
           editForm={editForm}
           brands={brands}

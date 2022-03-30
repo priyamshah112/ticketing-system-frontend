@@ -20,7 +20,7 @@ function Footer() {
             </ul>
           </nav>
           <div className="copyright ml-auto">
-            2022, made with <i className="fa fa-heart heart text-danger"></i> by <a href="javascript:void(0);">Enhanced Compliance</a>
+            2022, All rights reserved by <a href="javascript:void(0);">Enhanced Compliance</a>
           </div>				
         </div>
       </footer>

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { inventoryListAction } from "../../../actions/inventoryAction";
 import { apipaths } from "../../../api/apiPaths";
 import { getResponse } from "../../../api/apiResponse";
-import AddInventoryForm from "../../forms/AddInventoryForm";
+import AddInventoryForm from "../addInventoryForm";
 import { Modal, Select } from "antd";
 import { toast } from "react-toastify";
 import $ from "jquery";
@@ -41,24 +41,24 @@ function HardwareInventory() {
           field: "asset_name",
           emptyValue: "-",
         },
-        // {
-        //   title: "Brand Name",
-        //   field: "brand",
-        //   emptyValue: "-",
-        // },
         {
           title: "Location",
           field: "location",
           emptyValue: "-",
         },
         {
-          title: "Assigned To",
+          title: "User Name",
           field: "assigned_to_username",
           emptyValue: "-",
         },
         {
           title: "Assigned On",
           field: "assigned_on",
+          emptyValue: "-",
+        },
+        {
+          title: "Model",
+          field: "model",
           emptyValue: "-",
         },
         {
@@ -93,11 +93,6 @@ function HardwareInventory() {
           field: "asset_name",
           emptyValue: "-",
         },
-        // {
-        //   title: "Brand Name",
-        //   field: "brand",
-        //   emptyValue: "-",
-        // },
         {
           title: "Location",
           field: "location",
@@ -111,6 +106,11 @@ function HardwareInventory() {
         {
           title: "Assigned On",
           field: "assigned_on",
+          emptyValue: "-",
+        },
+        {
+          title: "Model",
+          field: "model",
           emptyValue: "-",
         },
         {
@@ -255,7 +255,7 @@ function HardwareInventory() {
             </div>
           );
           break;
-        case "In Use":
+        case "Not Available":
           invStatus = (
             <div className="status status-suspended">
               <span></span> Not Available
@@ -320,6 +320,7 @@ function HardwareInventory() {
     let path = apipaths.hardwareInventoryList;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
     let { data } = await getResponse(path, formData);
+    console.log(data.data.inventory);
     let inventoryData = inventoryDataModifier(data.data.inventory);
     setInventories(inventoryData);
   };
@@ -345,59 +346,6 @@ function HardwareInventory() {
           }
         }
       });
-    }
-  };
-
-  const submitHandler = async (formdata) => {
-    let data = formdata;
-
-    const {
-      // brand,
-      asset_name,
-      custom_id,
-      unit_price,
-      // device_number,
-      service_tag,
-      model,
-      express_service_code,
-      serial_number,
-      assigned_to,
-      Test,
-      // device_name,
-      // assigned_to,
-      location,
-      description,
-      warranty_expire_on,
-    } = data;
-    console.log("data==>", data);
-    if (
-      // !brand ||
-      !asset_name ||
-      !custom_id ||
-      !unit_price ||
-      // !device_number ||
-      !service_tag ||
-      !model ||
-      !express_service_code ||
-      !assigned_to ||
-      // !device_name ||
-      // !assigned_to ||
-      !warranty_expire_on ||
-      !location ||
-      !description
-    ) {
-      toast.warn("All Feilds are required.");
-    } else {
-      if (inventoryId) {
-        data.operation = "update";
-        data.id = inventoryId;
-      } else data.operation = "add";
-
-      if (id === "software")
-        await getResponse(apipaths.addInventorySoftware, data);
-      else await getResponse(apipaths.addInventoryHardware, data);
-      dispatch(inventoryListAction(id));
-      setModal(false);
     }
   };
 
@@ -530,55 +478,16 @@ function HardwareInventory() {
                     <input
                       type={"text"}
                       className="form-control"
-                      name="device_name"
+                      name="asset_name"
                       onChange={(e) => {
                         setFormdata({
                           ...formData,
-                          device_name: e.target.value,
+                          asset_name: e.target.value,
                         });
                       }}
                     />
                   </div>
                 </div>
-
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Device Number</label>
-                    </div>
-                    <input
-                      name="device_number"
-                      type="text"
-                      className="form-control filter-input"
-                      onChange={(e) => {
-                        setFormdata({
-                          ...formData,
-                          device_number: e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Brand</label>
-                    </div>
-                    <select className="form-control" name="brand">
-                      <option value="">Select Brand</option>
-                      {inventoryList.brands &&
-                        inventoryList.brands.map((data, i) => {
-                          if (!data) return null;
-                          return (
-                            <option value={data} key={i}>
-                              {data}
-                            </option>
-                          );
-                        })}
-                    </select>
-                  </div>
-                </div> */}
 
                 <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
@@ -675,7 +584,7 @@ function HardwareInventory() {
                       <option value={""}>Select User</option>
                       {userList &&
                         userList.map((user) => (
-                          <option value={user.name}>{user.name}</option>
+                          <option value={user.id}>{user.name}</option>
                         ))}
                     </select>
                   </div>
@@ -775,10 +684,8 @@ function HardwareInventory() {
         <AddInventoryForm
           type={id}
           isOpen={setModal}
-          submitHandler={submitHandler}
           editFormData={editFormData}
           inventoryId={inventoryId}
-          id={id}
           editForm={editForm}
           brands={brands}
         />
@@ -889,14 +796,6 @@ function HardwareInventory() {
                     <div className="col-6 p-2">
                       <span className="fw-bold">Hardware Id:</span>
                       <span className="margin">{hardware.id}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Device Name:</span>
-                      <span className="margin">{hardware.device_name}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Device Number:</span>
-                      <span className="margin">{hardware.device_number}</span>
                     </div>
                     <div className="col-6 p-2">
                       <span className="fw-bold">Brand:</span>

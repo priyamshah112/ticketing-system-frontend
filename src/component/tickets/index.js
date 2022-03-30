@@ -4,7 +4,7 @@ import { apipaths } from "../../api/apiPaths";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addTicketsAction } from "../../actions/ticketAction";
-import AddTicket from "../forms/AddTicket";
+import AddTicket from "./AddTicket";
 import { getUserLists } from "../../actions/userActions";
 import { Link } from "react-router-dom";
 import MaterialTable from "material-table";
@@ -114,7 +114,7 @@ function Ticket(props) {
     let path = apipaths.listticket;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
 
-    const { data, error } = await await getResponse(path);
+    const { data, error } = await getResponse(path);
     if (error) return toast.warn("Error in listing tickets.");
 
     setUsers(data.data.support);

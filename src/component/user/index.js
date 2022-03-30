@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddUser from "../forms/AddUser";
+import AddUser from "./AddUser";
 import { getResponse } from "../../api/apiResponse";
 import { apipaths } from "../../api/apiPaths";
 import { getUserLists } from "../../actions/userActions";

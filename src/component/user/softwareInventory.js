@@ -279,7 +279,7 @@ function SoftwareInventory() {
                               <label className="mb-2">Status</label>
                             </div>
                             <select className="form-control">
-                              <option>In Use</option>
+                              <option>Not Available</option>
                               <option>Available</option>
                             </select>
                           </div>
@@ -291,7 +291,7 @@ function SoftwareInventory() {
                               <label className="mb-2">Assigned On</label>
                             </div>
                             <select className="form-control">
-                              <option>In Use</option>
+                              <option>Not Available</option>
                               <option>Available</option>
                             </select>
                           </div>
