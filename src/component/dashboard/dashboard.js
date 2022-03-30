@@ -377,7 +377,7 @@ function Dashboard() {
                   {/* <div className="card-category">Daily information about statistics in system</div> */}
                   <div className="d-flex flex-wrap justify-content-around pb-2 pt-4 align-items-center">
                     <div className="align-items-center">
-                      <p className="mb-0" className="card-progress-total mb-0">
+                      <p className="card-progress-total mb-0">
                         {totalUsers}
                       </p>
                     </div>
