@@ -16,38 +16,6 @@ import { Tooltip } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
 
 function Ticket(props) {
-  const columns = [
-    {
-      title: "ID",
-      field: "id",
-      width: "10%",
-    },
-    {
-      title: "Subject",
-      field: "subject",
-    },
-    {
-      title: "Created By",
-      field: "user.name",
-    },
-    {
-      title: "Created At",
-      field: "created_at",
-    },
-    // {
-    //   title: "Assigned To",
-    //   field: "support.name",
-    // },
-    {
-      title: "Status",
-      field: "status",
-    },
-    {
-      title: "Action",
-      field: "edit",
-      sorting: false,
-    },
-  ];
   const [ticketModal, setTicketModal] = useState(false);
 
   const [editTicket, setEditTicket] = useState();
@@ -66,12 +34,61 @@ function Ticket(props) {
   const location = useLocation();
   const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
 
-  if (userType !== "User") {
-    columns[4] = {
+  const columns = userType !== "User" ? [
+    {
+      title: "ID",
+      field: "id",
+      width: "10%",
+    },
+    {
+      title: "Subject",
+      field: "subject",
+    },
+    {
+      title: "Created By",
+      field: "user.name",
+    },
+    {
+      title: "Created At",
+      field: "created_at",
+    },
+    {
       title: "Assigned To",
       field: "support.name",
-    };
-  }
+    },
+    {
+      title: "Status",
+      field: "status",
+    },
+    {
+      title: "Action",
+      field: "edit",
+      sorting: false,
+    },
+  ] : [
+    {
+      title: "ID",
+      field: "id",
+      width: "10%",
+    },
+    {
+      title: "Subject",
+      field: "subject",
+    },
+    {
+      title: "Created By",
+      field: "user.name",
+    },
+    {
+      title: "Created At",
+      field: "created_at",
+    },
+    {
+      title: "Action",
+      field: "edit",
+      sorting: false,
+    },
+  ];
 
   const dispatch = useDispatch();
 
@@ -359,7 +376,7 @@ function Ticket(props) {
                 Filters
               </a>
               <a
-                href="#"
+                href="javascript:void(0);"
                 className="btn btn-primary btn-round"
                 onClick={() => setTicketModal(true)}
               >

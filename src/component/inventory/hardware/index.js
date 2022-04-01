@@ -12,6 +12,7 @@ import MaterialTable from "material-table";
 import {
   assignInventoryToUser,
   unassignInventory,
+  dateFormatHandler
 } from "../../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 import swal from "sweetalert";
@@ -244,6 +245,15 @@ function HardwareInventory() {
   const inventoryDataModifier = (data) => {
     let mydata = data;
     mydata.map((inv) => {
+      
+      inv.assigned_on =
+      inv.assigned_on &&
+      dateFormatHandler(new Date(inv.assigned_on).getTime());
+
+      inv.warranty_expire_on =
+      inv.warranty_expire_on &&
+      dateFormatHandler(new Date(inv.warranty_expire_on).getTime());
+
       inv.assigned_to_username = inv.user && inv.user.name && inv.user.name;
       let invStatus = "";
       // eslint-disable-next-line default-case
@@ -320,7 +330,6 @@ function HardwareInventory() {
     let path = apipaths.hardwareInventoryList;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
     let { data } = await getResponse(path, formData);
-    console.log(data.data.inventory);
     let inventoryData = inventoryDataModifier(data.data.inventory);
     setInventories(inventoryData);
   };

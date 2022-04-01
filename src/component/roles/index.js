@@ -29,10 +29,10 @@ function Ticket() {
             title: "Name",
             field: "role_name",
         },
-        {
-            title: "Role Access",
-            field: "role_access_string",
-        },
+        // {
+        //     title: "Role Access",
+        //     field: "role_access_string",
+        // },
         {
             title: "Created At",
             field: "created_at",
@@ -100,9 +100,9 @@ function Ticket() {
     }
 
     const submitHandler = async (role) => {
-        if (!role.role_name || role.access.length === 0) {
+        if (!role.role_name) {
             setRoleModal(false);
-            return toast.warning("Role Name and Managers are required.")
+            return toast.warning("Role Name are required.")
         }
 
         if (operation === "add") {
@@ -181,9 +181,9 @@ function Ticket() {
                     <h2 className="text-white pb-2 fw-bold">Roles</h2>
                     <h5 className="text-white op-7 mb-2">Manage Your Custom roles</h5>
                     </div>
-                    <div className="ml-md-auto py-2 py-md-0">
+                    {/* <div className="ml-md-auto py-2 py-md-0">
                         <button className="btn btn-primary btn-round" onClick={() => roleHandler("add")}>Add Role</button>
-                    </div>
+                    </div> */}
                 </div>
                 </div>
             </div>

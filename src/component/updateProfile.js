@@ -63,7 +63,7 @@ function ProfileUpdate(props) {
     <form className="row">
       <div className="form-group col-12 d-flex justify-content-center align-items-center">
         <div className="avatar-sm float-left mr-2">
-          <form className={props.formStatus === "Active" ? "" : "hidden"} onSubmit={submitPhoto}>
+          {/* <form className={props.formStatus === "Active" ? "" : "hidden"} onSubmit={submitPhoto}>
             <input type="file"
               id="profile-photo-input" name="profile_picture"
               accept="image/png, image/jpeg"
@@ -73,7 +73,7 @@ function ProfileUpdate(props) {
               type="submit"
               value="Upload"
             />
-          </form>
+          </form> */}
           <img
             src="../assets/img/profile.jpg"
             alt="..."
@@ -87,6 +87,7 @@ function ProfileUpdate(props) {
           onChange={e => { }}
           className="form-control"
           value={userDetails?.firstName}
+          disabled
 
         />
       </div>

@@ -13,6 +13,7 @@ import MaterialTable from "material-table";
 import {
   assignInventoryToUser,
   unassignInventory,
+  dateFormatHandler
 } from "../../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 import { getUserLists } from "../../../actions/userActions";
@@ -196,6 +197,15 @@ function SoftwareInventory() {
       );
     }
     data.map((inv) => {
+      
+      inv.assigned_on =
+      inv.assigned_on &&
+      dateFormatHandler(new Date(inv.assigned_on).getTime());
+
+      inv.expiry_date =
+      inv.expiry_date &&
+      dateFormatHandler(new Date(inv.expiry_date).getTime());
+      
       inv.assigned_to_username = inv.user && inv.user.name && inv.user.name;
       let invStatus = "";
       // eslint-disable-next-line default-case
