@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { addUserDetailsAction } from "../../../actions/userActions";
 import ChangePassword from "../../changepassword";
 import ProfileView from "../../profileView";
+import ProfileUpdate from "../../updateProfile"
 import $ from "jquery";
 import { Modal } from "antd";
 
@@ -16,6 +17,7 @@ function Sidebar() {
 
   const [isChangePasswordActive, setIsChangePasswordActive] = useState(false);
   const [isProfileViewActive, setIsProfileViewActive] = useState(false);
+  const [isProfileUpdateActive, setIsProfileUpdateActive] = useState(false);
 
   useEffect(() => {
     if (data) return dispatch(addUserDetailsAction(JSON.parse(data)));
@@ -45,6 +47,14 @@ function Sidebar() {
         footer={null}
       >
         <ProfileView setIsProfileViewActive={setIsProfileViewActive} />
+      </Modal>
+      <Modal
+        title="Edit Profile"
+        visible={isProfileUpdateActive}
+        onCancel={() => setIsProfileUpdateActive(false)}
+        footer={null}
+      >
+        <ProfileUpdate setIsProfileUpdateActive={setIsProfileUpdateActive} />
       </Modal>
       <div className="sidebar-wrapper scrollbar scrollbar-inner">
         <div className="sidebar-content">
@@ -95,7 +105,12 @@ function Sidebar() {
                     </a>
                   </li>
                   <li>
-                    <a href="#edit">
+                    <a href="#edit"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsProfileUpdateActive(true);
+                    }}
+                    >
                       <span className="link-collapse">Edit Profile</span>
                     </a>
                   </li>
