@@ -12,6 +12,7 @@ import $ from "jquery";
 import MaterialTable from "material-table";
 import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
+import { CSVLink } from "react-csv";
 
 function User(props) {
   const columns = [
@@ -322,12 +323,11 @@ function User(props) {
               >
                 Import User
               </button>
-              <button
-                className="btn btn-primary btn-round mr-2"
-                onClick={() => window.open(exportUrl, "_blank").focus()}
-              >
-                Export User
-              </button>
+              <CSVLink data={isFilterActive ? filterData : userList}
+                    filename={"users-list.csv"}
+                    className="btn btn-round btn-primary mr-2"
+                    target="_blank"
+                  >Export Software</CSVLink>
               <button
                 className="btn btn-primary btn-round"
                 onClick={() => {

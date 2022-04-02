@@ -17,6 +17,7 @@ import {
 import { Tooltip } from "@material-ui/core";
 import swal from "sweetalert";
 import { getUserLists } from "../../../actions/userActions";
+import { CSVLink } from "react-csv";
 
 function HardwareInventory() {
   let id = "hardware";
@@ -433,14 +434,11 @@ function HardwareInventory() {
                   >
                     Import Hardware
                   </button>
-                  <button
-                    onClick={() => {
-                      window.open(inventoryList.exportUrl, "_blank").focus();
-                    }}
+                  <CSVLink data={inventories}
+                    filename={"hardware-inventory-list.csv"}
                     className="btn btn-round btn-primary mr-2"
-                  >
-                    Export Hardware
-                  </button>
+                    target="_blank"
+                  >Export Software</CSVLink>
                   <button
                     className="btn btn-primary btn-round"
                     onClick={() => {
@@ -520,7 +518,7 @@ function HardwareInventory() {
                 <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
                     <div>
-                      <label className="mb-2">Serial Number</label>
+                      <label className="mb-2">Service Tag</label>
                     </div>
                     <input
                       name="serial_number"

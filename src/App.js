@@ -45,7 +45,7 @@ function App() {
           <ProtectedRoute exact path="/tickets" component={Ticket} />
           <ProtectedRoute path="/ticket/details" exact component={TicketDetails} />
           <ProtectedRoute exact path="/inventory/hardware" component={HardwareInventory} />
-          {/* <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} /> */}
+          <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} />
           <ProtectedRoute exact path="/inventory/software" component={SoftwareInventory} />
           <ProtectedRoute exact path="/inventory/software/:userid" component={SoftwareInventory} />
         </Switch>

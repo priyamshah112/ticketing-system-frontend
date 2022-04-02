@@ -56,7 +56,7 @@ function AddInventoryForm(props) {
       dispatch(inventoryListAction(type));
       isOpen(false);
     } else {
-      toast.error(resp.data.message);
+      toast.error(resp.error.message);
     }
     
   };
@@ -107,7 +107,7 @@ function AddInventoryForm(props) {
         dispatch(inventoryListAction(type));
         isOpen(false);
       } else {
-        toast.error(resp.data.message);
+        toast.error(resp.error.message);
       }
     }
   };
