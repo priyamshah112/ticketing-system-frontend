@@ -327,7 +327,7 @@ function User(props) {
                     filename={"users-list.csv"}
                     className="btn btn-round btn-primary mr-2"
                     target="_blank"
-                  >Export Software</CSVLink>
+                  >Export User</CSVLink>
               <button
                 className="btn btn-primary btn-round"
                 onClick={() => {

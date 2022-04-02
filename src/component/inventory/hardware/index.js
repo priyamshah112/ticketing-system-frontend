@@ -438,7 +438,7 @@ function HardwareInventory() {
                     filename={"hardware-inventory-list.csv"}
                     className="btn btn-round btn-primary mr-2"
                     target="_blank"
-                  >Export Software</CSVLink>
+                  >Export Hardware</CSVLink>
                   <button
                     className="btn btn-primary btn-round"
                     onClick={() => {
