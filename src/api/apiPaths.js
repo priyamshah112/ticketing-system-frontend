@@ -30,6 +30,8 @@ export const apipaths = {
     userDashboard: { url: "/userdashboard", method: "GET" },
     usergetlist: {url: "/user/getlist" ,method:"GET"},
     faqList: {url: "/faqs", method: "GET"},
-    addFaq: {url: "/faq/add", method: "POST"}
+    addFaq: {url: "/faq/add", method: "POST"},
+    viewProfile: {url: "/view-profile", method: "POST"},
+    updateProfile: {url: "/update-profile", method: "POST"}
 
 }
