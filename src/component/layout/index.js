@@ -1,22 +1,22 @@
 import React from "react";
-import { Redirect } from "react-router-dom"; 
+import { Redirect } from "react-router-dom";
 import Sidebar from './sidebar';
 import Header from './header/index';
 import Footer from './footer';
 
-function Layout (props){  
+function Layout(props) {
   let token = localStorage.authToken;
-	if (!token) {
+  if (!token) {
     return (
       <Redirect to={{ pathname: "/" }} />
     );
-  }    
-  
+  }
+
   return (
     <div ClassName="wrapper">
       <Header />
       <Sidebar />
-      <div className="main-panel">
+      <div className="main-panel" style={{ width: "calc(100 % -100px)" }}>
         <div className="content">
           {props.children}
         </div>

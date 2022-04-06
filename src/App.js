@@ -21,6 +21,8 @@ import ForgotPassword from './component/forgotpassword';
 import ResetPassword from './component/resetpassword';
 import ChangePassword from './component/changepassword';
 import ProfileView from './component/profileView';
+import AdminDashboard from "./component/AdminDashboard/admin-dashboard";
+import AdminRoute from "./component/AdminRoute";
 
 
 function App() {
@@ -37,7 +39,7 @@ function App() {
           <Route exact path="/user/create" component={UserModal} />
           <Route exact path="/staff/create" component={CreateUser} />
           <ProtectedRoute exact path="/table" component={TableDisplay} />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          <AdminRoute exact path="/dashboard" component={AdminDashboard} />
           <ProtectedRoute exact path="/userdashboard" component={UserDashboard} />
           <ProtectedRoute exact path="/user" component={User} />
           <ProtectedRoute exact path="/faqs" component={Faq} />              
