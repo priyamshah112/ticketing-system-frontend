@@ -2,7 +2,8 @@ import Footer from "../layout/footer";
 import "./admin-dashboard.css"
 import Header from "./header";
 import IconTabs from "./sidebar";
-
+import tool from "../../../src/images/admin-dashboard/tool.svg";
+import person from "../../../src/images/admin-dashboard/person.svg";
 
 
 function AdminDashboard() {
@@ -76,8 +77,8 @@ function AdminDashboard() {
                                 <div className="row align-items-center">
                                     <div className="col-auto">
                                         <figure>
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
-                                                width="40" height="40" />
+                                            <img src={tool}
+                                                className="dashboard__icon" width="40" height="40" />
                                         </figure>
                                     </div>
                                     <div className="col">
@@ -93,8 +94,8 @@ function AdminDashboard() {
                                 <div className="row align-items-center">
                                     <div className="col-auto">
                                         <figure>
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
-                                                width="40" height="40" />
+                                            <img src={person}
+                                                className="dashboard__icon" width="40" height="40" />
                                         </figure>
                                     </div>
                                     <div className="col">
