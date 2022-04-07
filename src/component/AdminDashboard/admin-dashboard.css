@@ -88,6 +88,21 @@ body {
     border-right: 1px solid blueviolet;
 }
 
+ul {
+    list-style-type: none;
+}
+
+.popover__content {
+    /* margin: 10px; */
+}
+
+.link-collapse {
+    color: #555;
+    padding: 10px 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 /* sidebar */
 
 /* content__section */
@@ -121,7 +136,7 @@ body {
     border-radius: 10px;
 }
 
-.table__box{
+.table__box {
     text-align: center;
     font-weight: 500;
     font-size: 0.8rem;
@@ -130,15 +145,15 @@ body {
     padding: 0.4rem;
 }
 
-.table__boxborder{
+.table__boxborder {
     border-top: 1px solid #eeeeee;
 }
 
-.table_number_color{
+.table_number_color {
     color: #000000;
 }
 
-.table__style{
+.table__style {
     width: 100%;
     border-collapse: collapse;
 
@@ -181,14 +196,17 @@ body {
     overflow: hidden;
     overflow-y: auto;
 }
-.category__box__ht__max::-webkit-scrollbar{
+
+.category__box__ht__max::-webkit-scrollbar {
     width: 8px;
 }
-.category__box__ht__max::-webkit-scrollbar-thumb{
+
+.category__box__ht__max::-webkit-scrollbar-thumb {
     border-radius: 0.5rem;
     background-color: blue;
 }
-.category__box__ht__max::-webkit-scrollbar-track{
+
+.category__box__ht__max::-webkit-scrollbar-track {
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     background-color: #F4F4F4;
 }
