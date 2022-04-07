@@ -35,18 +35,19 @@ body {
 /* header */
 .header__section {
     /* border: 1px solid red; */
-    position: fixed;
+    /* position: fixed;
     top: 0;
     left: 0;
     overflow: hidden;
     z-index: 9;
-    width: 100%;
+    width: 100%; */
 }
 
 .menu__navigation {
     overflow: hidden;
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 0;
 }
 
 .menu__navigation li {
@@ -109,7 +110,7 @@ ul {
 .content__section {
     width: calc(100% - 60px);
     height: calc(100vh - 66px);
-    margin-top: 65px;
+    /* margin-top: 65px; */
     margin-left: auto;
     /* overflow: hidden; */
 }
@@ -123,19 +124,19 @@ ul {
     color: blueviolet;
     font-size: 20px;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .tickets__box {
-    display: flex;
-    flex: 1;
-    align-items: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     background: #ffffff;
-    padding: 1rem;
-    margin-right: 1rem;
+    padding: 0.5rem;
     border-radius: 10px;
 }
 
+.tickets__box figure{
+    margin: 0;
+}
 .table__box {
     text-align: center;
     font-weight: 500;
@@ -167,32 +168,37 @@ ul {
     font-size: 1rem;
     color: #000000;
     text-transform: capitalize;
+    font-weight: 600;
+    margin: 0;
 }
 
 .tickets__count {
     font-size: 0.8rem;
+    margin: 0;
 }
 
 .tickets__viewDetails {
     font-size: 0.6rem;
     opacity: 0.9;
+    margin: 0;
 }
 
 .support__title {
     font-size: 20px;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .category__box {
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+    box-shadow: 0px 4px 15px 0px #00000040;
+    /* box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px; */
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: white;
 }
 
 .category__box__ht__max {
-    height: 200px;
+    height: 180px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -212,13 +218,13 @@ ul {
 }
 
 .category__box__ht__min {
-    height: 160px;
+    height: 140px;
     overflow: hidden;
     overflow-y: auto;
 }
 
 .category__box:first-child {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .category__title {

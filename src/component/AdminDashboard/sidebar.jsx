@@ -7,8 +7,13 @@ import Button from '@material-ui/core/Button';
 import { Modal } from "antd";
 import ChangePassword from "../changepassword";
 import ProfileView from "../profileView";
-import ProfileUpdate from "../updateProfile"
-
+import ProfileUpdate from "../updateProfile";
+import bi_clipboard from "../../../src/images/admin-dashboard/bi_clipboard-data.svg";
+import solid_users from "../../../src/images/admin-dashboard/fa-solid_users.svg";
+import ic_outline from "../../../src/images/admin-dashboard/ic_outline-inventory-2.svg";
+import Vector from "../../../src/images/admin-dashboard/Vector.svg";
+import wpf_faq from "../../../src/images/admin-dashboard/wpf_faq.svg";
+import dropdown from "../../../src/images/admin-dashboard/dropdown.svg";
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -69,8 +74,8 @@ function IconTabs() {
                             width="40" height="40" className="profile__img" alt="" />
                     </figure>
                     <figure onClick={handleClick}>
-                        <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                            width="10" height="10" className="profile__img" alt="" />
+                        <img src={dropdown}
+                            width="10" height="10" alt="" />
                     </figure>
 
                     <Popover
@@ -136,37 +141,31 @@ function IconTabs() {
                 <ul className="sidebar__ul">
                     <li className="active">
                         <figure>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
+                            <img src={bi_clipboard}
                                 width="20" height="20" />
                         </figure>
                     </li>
                     <li>
                         <figure>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
+                            <img src={Vector}
                                 width="20" height="20" />
                         </figure>
                     </li>
                     <li>
                         <figure>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
+                            <img src={solid_users}
                                 width="20" height="20" />
                         </figure>
                     </li>
                     <li>
                         <figure>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
+                            <img src={ic_outline}
                                 width="20" height="20" />
                         </figure>
                     </li>
                     <li>
                         <figure>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
-                                width="20" height="20" />
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
+                            <img src={wpf_faq}
                                 width="20" height="20" />
                         </figure>
                     </li>
