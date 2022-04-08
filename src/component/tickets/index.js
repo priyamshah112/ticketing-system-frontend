@@ -14,6 +14,8 @@ import queryString from "query-string";
 import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
+import Header from "../AdminDashboard/header";
+import IconTabs from "../AdminDashboard/sidebar";
 
 function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
@@ -358,6 +360,12 @@ function Ticket(props) {
 
   return (
     <React.Fragment>
+      {userType !== 'user' && (
+        <>
+          <Header />
+          <IconTabs />
+        </>
+      )}
       <div className="panel-header bg-secondary-gradient">
         <div className="page-inner py-5">
           <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">

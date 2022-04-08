@@ -20,25 +20,22 @@ function UserRequest(props) {
                                 className="table__box table__boxborder">
                                 Closed</th>
                         </tr>
-                        <tr>
-                            {props.userRequest.map((user) => (
-                                < >
-                                    <td
-                                        className="table__box">
-                                        {user.name}</td>
-                                    <td
-                                        className="table__box" style={{color:"#BF5555"}}>
-                                        {user.open}</td>
-                                    <td
-                                        className="table__box" style={{color:"#EAD063"}}>
-                                        {user.pending}</td>
-                                    <td
-                                        className="table__box" style={{color:"#62BC46"}}>
-                                        {user.closed}</td>
-                                </>
-                            ))}
-
-                        </tr>
+                        {props.userRequest.map((user) => (
+                            <tr>
+                                <td
+                                    className="table__box">
+                                    {user.name}</td>
+                                <td
+                                    className="table__box" style={{color:"#BF5555"}}>
+                                    {user.open}</td>
+                                <td
+                                    className="table__box" style={{color:"#EAD063"}}>
+                                    {user.pending}</td>
+                                <td
+                                    className="table__box" style={{color:"#62BC46"}}>
+                                    {user.closed}</td>
+                            </tr>
+                        ))}
 
                     </table>
                 </div>

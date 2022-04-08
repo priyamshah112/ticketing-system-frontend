@@ -6,19 +6,19 @@ function Header() {
         <>
             <div className="header__section">
                 <ul className="menu__navigation">
-                    <li className="pt-3">
+                    <li>
                         <figure>
                             <img src={logo} width="120"
                                 height="" />
                         </figure>
                     </li>
-                    <li className="pt-3">
+                    <li>
                         <figure>
                             <img src={logo} width="120"
                                 height="" />
                         </figure>
                     </li>
-                    <li className="pt-3">
+                    <li>
                         <figure>
                             <img src={logo} width="120"
                                 height="" />

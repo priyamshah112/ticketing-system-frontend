@@ -20,7 +20,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box p={0}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -78,9 +78,9 @@ export default function CenteredTabs(props) {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="High" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Medium" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Low" href="/spam" {...a11yProps(2)} />
+          <LinkTab label="High" href="/high" {...a11yProps(0)} />
+          <LinkTab label="Medium" href="/medium" {...a11yProps(1)} />
+          <LinkTab label="Low" href="/low" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

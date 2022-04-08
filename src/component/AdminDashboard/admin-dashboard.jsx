@@ -45,99 +45,95 @@ function AdminDashboard() {
 
             <div className="content__section">
 
-                <div className="col-12 mb-3 mb-lg-4">
-                    <h5 className="section__title">Dashboard</h5>
-                    <div className="row">
+                <h1 className="section__title">Dashboard</h1>
 
-                        <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box py-0">
-                                <div className="row align-items-center">
-                                    <div className="col-5 p-0">
-                                        <RadialBar color={"#BF5555"} series={70} />
-                                    </div>
-                                    <div className="col">
-                                        <h6 className="tickets__title">Open Tickets</h6>
-                                        <p className="tickets__count">25</p>
-                                        <p className="tickets__viewDetails">View Details</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box py-0">
-                                <div className="row align-items-center">
+                <div className="row">
+                    <div className="col-12 col-sm-6 col-md col-lg">
+                        <div className="tickets__box py-0">
+                            <div className="row align-items-center">
                                 <div className="col-5 p-0">
-                                        <RadialBar color={"#EAD063"} series={13} />
-                                    </div>
-                                    <div className="col pr-0">
-                                        <h6 className="tickets__title">pending Tickets</h6>
-                                        <p className="tickets__count">13</p>
-                                        <p className="tickets__viewDetails">View Details</p>
-                                    </div>
+                                    <RadialBar color={"#BF5555"} series={70} />
+                                </div>
+                                <div className="col p-0 pl-2">
+                                    <h6 className="tickets__title">Open Tickets</h6>
+                                    <p className="tickets__count">25</p>
+                                    <p className="tickets__viewDetails">View Details >></p>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box py-0">
-                                <div className="row align-items-center">
+                    </div>
+                    <div className="col-12 col-sm-6 col-md col-lg">
+                        <div className="tickets__box py-0">
+                            <div className="row align-items-center">
                                 <div className="col-5 p-0">
-                                        <RadialBar color={"#62BC46"} series={40} />
-                                    </div>
-                                    <div className="col pl-4">
-                                        <h6 className="tickets__title">closed</h6>
-                                        <p className="tickets__count">4</p>
-                                        <p className="tickets__viewDetails">View Details</p>
-                                    </div>
+                                    <RadialBar color={"#EAD063"} series={13} />
+                                </div>
+                                <div className="col p-0 pl-2">
+                                    <h6 className="tickets__title">pending Tickets</h6>
+                                    <p className="tickets__count">13</p>
+                                    <p className="tickets__viewDetails">View Details >></p>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box">
-                                <div className="row align-items-center">
-                                    <div className="col-auto">
-                                        <figure>
-                                            <img src={tool}
-                                                className="dashboard__icon" width="80" height="80" />
-                                        </figure>
-                                    </div>
-                                    <div className="col">
-                                        <h6 className="tickets__title">total hardware</h6>
-                                        <p className="tickets__count">9</p>
-                                        <p className="tickets__viewDetails">View Details</p>
-                                    </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md col-lg">
+                        <div className="tickets__box py-0">
+                            <div className="row align-items-center">
+                                <div className="col-5 p-0">
+                                    <RadialBar color={"#62BC46"} series={40} />
+                                </div>
+                                <div className="col p-0 pl-2">
+                                    <h6 className="tickets__title">closed</h6>
+                                    <p className="tickets__count">4</p>
+                                    <p className="tickets__viewDetails">View Details >></p>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box">
-                                <div className="row align-items-center">
-                                    <div className="col-auto">
-                                        <figure>
-                                            <img src={person}
-                                                className="dashboard__icon" width="80" height="80" />
-                                        </figure>
-                                    </div>
-                                    <div className="col">
-                                        <h6 className="tickets__title">active users</h6>
-                                        <p className="tickets__count">10</p>
-                                        <p className="tickets__viewDetails">View Details</p>
-                                    </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md col-lg">
+                        <div className="tickets__box">
+                            <div className="row align-items-center">
+                                <div className="col-auto">
+                                    <figure>
+                                        <img src={tool}
+                                            className="dashboard__icon" />
+                                    </figure>
+                                </div>
+                                <div className="col p-0 pl-2">
+                                    <h6 className="tickets__title">total hardware</h6>
+                                    <p className="tickets__count">9</p>
+                                    <p className="tickets__viewDetails">View Details >></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-6 col-md col-lg">
+                        <div className="tickets__box">
+                            <div className="row align-items-center">
+                                <div className="col-auto">
+                                    <figure>
+                                        <img src={person}
+                                            className="dashboard__icon" />
+                                    </figure>
+                                </div>
+                                <div className="col p-0 pl-2">
+                                    <h6 className="tickets__title">active users</h6>
+                                    <p className="tickets__count">10</p>
+                                    <p className="tickets__viewDetails">View Details >></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-12">
-                    <h5 className="support__title">Support Tracker</h5>
-                    <div className="row">
-                        <UserRequest userRequest={userRequest} />
-                        <HardInventory priorityTickets={priorityTickets} />
-                        <div className="col-4">
-                            <TrackByCountry />
-                            <TicketCalender />
+                <h5 className="support__title">Support Tracker</h5>
+                <div className="row">
+                    <UserRequest userRequest={userRequest} />
+                    <HardInventory priorityTickets={priorityTickets} />
+                    <div className="col-4">
+                        <TrackByCountry />
+                        <TicketCalender />
 
-                        </div>
                     </div>
                 </div>
 

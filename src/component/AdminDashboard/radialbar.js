@@ -10,13 +10,12 @@ class RadialBar extends React.Component {
             series: [this.props.series],
             options: {
                 chart: {
-                    height: 100,
                     type: 'radialBar',
                 },
                 plotOptions: {
                     radialBar: {
                         hollow: {
-                            size: "40%"
+                            size: "35%"
                         },
 
                         dataLabels: {
@@ -42,7 +41,7 @@ class RadialBar extends React.Component {
 
 
             <div id="chart">
-                <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={150} />
+                <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={110} />
             </div>
 
         );

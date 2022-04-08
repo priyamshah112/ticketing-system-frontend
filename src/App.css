@@ -1,3 +1,12 @@
+.App{
+  background: #FAFAFA;
+}
+
+.alert, .brand, .btn-simple, .h1, .h2, .h3, .h4, .h5, .h6, .navbar, .td-name, a, body, button.close, h1, h2, h3, h4, h5, h6, p, td{
+  font-family: 'Rubik';
+  font-weight: normal;
+}
+
 .main-header {
   z-index: 999 !important;
 }

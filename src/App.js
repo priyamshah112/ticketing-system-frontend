@@ -44,7 +44,7 @@ function App() {
           <ProtectedRoute exact path="/user" component={User} />
           <ProtectedRoute exact path="/faqs" component={Faq} />              
           <ProtectedRoute exact path="/role" component={Roles} />
-          <ProtectedRoute exact path="/tickets" component={Ticket} />
+          <Route exact path="/tickets" component={Ticket} />
           <ProtectedRoute path="/ticket/details" exact component={TicketDetails} />
           <ProtectedRoute exact path="/inventory/hardware" component={HardwareInventory} />
           <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} />

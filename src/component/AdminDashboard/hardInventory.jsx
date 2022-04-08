@@ -103,7 +103,7 @@ class HardInventory extends React.Component {
                         <p className="category__title m-0">hardware inventory</p>
                         <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={150} className="verticalCharts" />
                     </div>
-                    <div className="category__box category__box__ht__max">
+                    <div className="category__box category__box__ht__max" style={{ overflowY: "hidden" }}>
                         <p className="category__title">ticket priority level</p>
                         <CenteredTabs priorityTickets={this.props.priorityTickets} />
 

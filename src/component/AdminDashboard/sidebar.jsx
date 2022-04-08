@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import { Modal } from "antd";
 import ChangePassword from "../changepassword";
 import ProfileView from "../profileView";
@@ -14,6 +13,7 @@ import ic_outline from "../../../src/images/admin-dashboard/ic_outline-inventory
 import Vector from "../../../src/images/admin-dashboard/Vector.svg";
 import wpf_faq from "../../../src/images/admin-dashboard/wpf_faq.svg";
 import dropdown from "../../../src/images/admin-dashboard/dropdown.svg";
+import $ from "jquery";
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 function IconTabs() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const userType = JSON.parse(localStorage.user_details).userType;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -40,6 +41,12 @@ function IconTabs() {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
+
+    const activeLinkHandler = (elem) => {
+        $(`.sidebar-item`).removeClass("active");
+        $(`#${elem}`).addClass("active");
+    };
+
     return (
         <>
             <div className="side__bar">
@@ -68,15 +75,13 @@ function IconTabs() {
                     <ProfileUpdate setIsProfileUpdateActive={setIsProfileUpdateActive} />
                 </Modal>
 
-                <div className="profile__img__layout row align-items-center mx-0 justify-content-around">
-                    <figure>
+                <div className="profile__img__layout">
+                    <div className="profile" onClick={handleClick}>
                         <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                             width="40" height="40" className="profile__img" alt="" />
-                    </figure>
-                    <figure onClick={handleClick}>
-                        <img src={dropdown}
-                            width="10" height="10" alt="" />
-                    </figure>
+                            
+                        <img className="profile__dropdown" src={dropdown} width="10" height="10" alt="" />
+                    </div>
 
                     <Popover
                         id={id}
@@ -135,39 +140,44 @@ function IconTabs() {
                         </Typography>
                     </Popover>
 
-
                 </div>
 
                 <ul className="sidebar__ul">
-                    <li className="active">
-                        <figure>
+                    {userType !== "Support" && (
+                        <li className="sidebar-item active"
+                            id="dashboard"
+                            onClick={() => activeLinkHandler("dashboard")}
+                        >
+                            <Link
+                            to={userType === "User" ? "/userdashboard" : "/dashboard"}
+                            >
                             <img src={bi_clipboard}
-                                width="20" height="20" />
-                        </figure>
+                            width="20" height="20" />
+                            </Link>
+                        </li>
+                    )}
+                    <li
+                        className="sidebar-item"
+                        id="tickets-main"
+                        onClick={() => activeLinkHandler("tickets-main")}
+                        >
+                        <Link to={`/tickets`}>
+                            <img src={Vector} width="20" height="20" />
+                        </Link>
+                    </li>
+                    <li class="sidebar__divider">
                     </li>
                     <li>
-                        <figure>
-                            <img src={Vector}
-                                width="20" height="20" />
-                        </figure>
+                        <img src={solid_users}
+                            width="20" height="20" />
                     </li>
                     <li>
-                        <figure>
-                            <img src={solid_users}
-                                width="20" height="20" />
-                        </figure>
+                        <img src={ic_outline}
+                            width="20" height="20" />
                     </li>
                     <li>
-                        <figure>
-                            <img src={ic_outline}
-                                width="20" height="20" />
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src={wpf_faq}
-                                width="20" height="20" />
-                        </figure>
+                        <img src={wpf_faq}
+                            width="20" height="20" />
                     </li>
                 </ul>
             </div>
