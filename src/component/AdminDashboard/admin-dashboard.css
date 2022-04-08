@@ -104,6 +104,12 @@ ul {
     height: 46px;
 }
 
+.verticalCharts {
+    position: relative;
+    top: -20px;
+
+}
+
 .link-collapse {
     color: #555;
     padding: 10px 0px;
@@ -145,6 +151,8 @@ ul {
     background: #ffffff;
     padding: 0.5rem;
     border-radius: 10px;
+    min-height: 127px;
+    display: flex;
 }
 
 .tickets__box figure {
@@ -223,7 +231,7 @@ ul {
 
 .category__box__ht__max::-webkit-scrollbar-thumb {
     border-radius: 0.5rem;
-    background-color: blue;
+    background-color: #5C55BF;
 }
 
 .category__box__ht__max::-webkit-scrollbar-track {

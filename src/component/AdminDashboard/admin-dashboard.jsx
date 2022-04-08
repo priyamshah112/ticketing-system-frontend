@@ -11,6 +11,7 @@ import UserRequest from "./user-request";
 import TrackByCountry from "./track-by-country";
 import Calendar from "./calender";
 import TicketCalender from "./calender";
+import RadialBar from "./radialbar";
 
 
 
@@ -49,13 +50,10 @@ function AdminDashboard() {
                     <div className="row">
 
                         <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box">
+                            <div className="col-12 tickets__box py-0">
                                 <div className="row align-items-center">
-                                    <div className="col-auto">
-                                        <figure>
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
-                                                width="40" height="40" />
-                                        </figure>
+                                    <div className="col-5 p-0">
+                                        <RadialBar color={"#BF5555"} series={70} />
                                     </div>
                                     <div className="col">
                                         <h6 className="tickets__title">Open Tickets</h6>
@@ -66,15 +64,12 @@ function AdminDashboard() {
                             </div>
                         </div>
                         <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box">
+                            <div className="col-12 tickets__box py-0">
                                 <div className="row align-items-center">
-                                    <div className="col-auto">
-                                        <figure>
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
-                                                width="40" height="40" />
-                                        </figure>
+                                <div className="col-5 p-0">
+                                        <RadialBar color={"#EAD063"} series={13} />
                                     </div>
-                                    <div className="col">
+                                    <div className="col pr-0">
                                         <h6 className="tickets__title">pending Tickets</h6>
                                         <p className="tickets__count">13</p>
                                         <p className="tickets__viewDetails">View Details</p>
@@ -83,15 +78,12 @@ function AdminDashboard() {
                             </div>
                         </div>
                         <div className="col-12 col-sm-6 col-md-4 col-lg">
-                            <div className="col-12 tickets__box">
+                            <div className="col-12 tickets__box py-0">
                                 <div className="row align-items-center">
-                                    <div className="col-auto">
-                                        <figure>
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"
-                                                width="40" height="40" />
-                                        </figure>
+                                <div className="col-5 p-0">
+                                        <RadialBar color={"#62BC46"} series={40} />
                                     </div>
-                                    <div className="col">
+                                    <div className="col pl-4">
                                         <h6 className="tickets__title">closed</h6>
                                         <p className="tickets__count">4</p>
                                         <p className="tickets__viewDetails">View Details</p>
@@ -105,7 +97,7 @@ function AdminDashboard() {
                                     <div className="col-auto">
                                         <figure>
                                             <img src={tool}
-                                                className="dashboard__icon" width="40" height="40" />
+                                                className="dashboard__icon" width="80" height="80" />
                                         </figure>
                                     </div>
                                     <div className="col">
@@ -122,7 +114,7 @@ function AdminDashboard() {
                                     <div className="col-auto">
                                         <figure>
                                             <img src={person}
-                                                className="dashboard__icon" width="40" height="40" />
+                                                className="dashboard__icon" width="80" height="80" />
                                         </figure>
                                     </div>
                                     <div className="col">

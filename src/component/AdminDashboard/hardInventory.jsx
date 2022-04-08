@@ -77,28 +77,31 @@ class HardInventory extends React.Component {
 
     };
 
-    getHardwareData = async () => {
-        // series: [{
-        //     data: [1, 2, 3]
-        // }],
-        const { data } = await getResponse(apipaths.getHardwareInventory)
-        this.setState({
-            data: data
-        }, () => console.log(Object.values(data.data[0])))
-    }
-
     componentDidMount() {
         this.getHardwareData()
     }
+
+    getHardwareData = async () => {
+        const { data } = await getResponse(apipaths.getHardwareInventory)
+        let seriesData = Object.values(data?.data[0])
+        let series = [{
+            data: seriesData
+        }]
+        this.setState({
+            series
+        })
+    }
+
+
 
     render() {
         // console.log(Object.values(this.props.inventoryData[0]))
         return (
             <>
                 <div className="col-4">
-                    <div className="category__box category__box__ht__min">
+                    <div className="category__box category__box__ht__min" style={{ overflowY: "hidden" }}>
                         <p className="category__title m-0">hardware inventory</p>
-                        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={150} />
+                        <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={150} className="verticalCharts" />
                     </div>
                     <div className="category__box category__box__ht__max">
                         <p className="category__title">ticket priority level</p>
