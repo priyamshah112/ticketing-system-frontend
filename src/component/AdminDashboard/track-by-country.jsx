@@ -16,8 +16,11 @@ class TrackByCountry extends Component {
                         columnWidth: '30%',
                     }
                 },
+                colors: ['#5C55BF', '#5C55BF', '#5C55BF'
+
+                ],
                 xaxis: {
-                    categories: ["In","US","CN"]
+                    categories: ["In", "US", "CN"]
                 }
             },
             series: [
