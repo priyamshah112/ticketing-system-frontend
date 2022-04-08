@@ -1,0 +1,237 @@
+@font-face {
+    font-family: Roboto;
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+.bg-logo {
+    position: absolute;
+    width: 460.51px;
+    left: 58px;
+    top: 171px;
+}
+
+.compliance-logo {
+    position: absolute;
+    width: 145px;
+    height: 46px;
+    left: 26px;
+    top: 29px;
+}
+
+.science-logo {
+    position: absolute;
+    width: 145px;
+    height: 46px;
+    left: 212px;
+    top: 29px;
+}
+
+.life-sciencelogo {
+    position: absolute;
+    width: 136px;
+    height: 43px;
+    left: 398px;
+    top: 32px;
+}
+
+.sign-in-head {
+
+    left: 3.68%;
+    right: 87.64%;
+    top: 16.33%;
+    bottom: 78.44%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 47px;
+    /* identical to box height */
+
+
+    color: #13213C;
+}
+
+.have-account {
+    left: 3.68%;
+    right: 85.07%;
+    top: 22.89%;
+    bottom: 75.33%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #BBB5B5;
+}
+
+.sign-up {
+    left: 15.28%;
+    right: 80.69%;
+    top: 22.78%;
+    bottom: 75.22%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15.75px;
+    line-height: 18px;
+
+    color: #FFAA06;
+}
+
+.google-button {
+    height: 41.078262px;
+    width: 260px;
+    margin-right: 30px;
+    left: 3.68%;
+    right: 76.32%;
+    top: 31.44%;
+    bottom: 63.55%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2.50435px rgb(0 0 0 / 8%), 0px 1.66957px 2.50435px rgb(0 0 0 / 17%);
+    border-radius: 8.34783px;
+    border-radius: 8.34783px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 23px;
+    color: rgba(0, 0, 0, 0.54);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    padding-left: 0px
+}
+
+.google-button>img {
+    margin: 0px 12.5217px;
+    width: 20.03px;
+    height: 20.03px;
+    left: 12.52px;
+    top: 12.52px;
+}
+
+.facebook-button>img {
+    margin: 0px 12.5217px;
+    width: 20.03px;
+    height: 20.03px;
+    left: 12.52px;
+    top: 12.52px;
+}
+
+.google-icon {
+
+    /* background: #FFFFFF; */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 12.5217px;
+}
+
+.facebook-button {
+
+
+    height: 41.078262px;
+    width: 260px;
+
+    left: 25.76%;
+    right: 54.24%;
+    top: 31.56%;
+    bottom: 63.44%;
+
+    background: #1877F2;
+    border-radius: 8.35px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    padding-left: 0px
+}
+
+.button-div {
+    margin-top: 61px;
+
+}
+
+.divider-div {
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #BBB5B5;
+    position: relative;
+    margin-top: 24px;
+    display: inline-flex;
+
+}
+
+.divider {
+    width: 260px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 5px;
+
+}
+
+.input-label {
+
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #13213C;
+}
+
+.input-box {
+    left: 3.75%;
+    right: 54.24%;
+    top: 49.89%;
+    bottom: 44.78%;
+
+    border: 1px solid #FFAA06;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.forgot-pwd {
+    left: 2.75%;
+    right: 88.33%;
+    top: 71.22%;
+    bottom: 60%;
+    height: 51px;
+    width: 114px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #BBB5B5; 
+}
+
+.sign-in-button {
+    left: 32.1%;
+    position: absolute;
+    right: 64.72%;
+    top: 88.33%;
+    bottom: 16.44%;
+    height: 47px;
+    width: 253px;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 30px;
+    color: #FFFFFF;
+    background: #13213C;
+    border-radius: 10px;
+}

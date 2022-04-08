@@ -15,10 +15,18 @@ import { useSelector } from "react-redux";
 import $ from "jquery";
 import { Collapse } from "antd";
 import { useHistory } from "react-router-dom";
+import corner from "../assets/corner.png";
+import inprogress from "../assets/inprogress.png"
+import ellipse from "../assets/Ellipse.png"
+import hardware from "../assets/hardware.png"
+import file from "../assets/file.png"
+import Calendar from 'react-calendar';
 
 function UserDashboard() {
   const [userdata, setUserDate] = useState([]);
   const [ticketModal, setTicketModal] = useState(false);
+  const [value, onChange] = useState(new Date());
+  const formatShortWeekday = (locale, date) => ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][date.getDay()]
   const userDetails = useSelector((state) => state.userDetails);
   const { Panel } = Collapse;
   const history = useHistory();
@@ -54,38 +62,29 @@ function UserDashboard() {
     }, 1000);
   };
 
+
+
   return (
-    <div className="page-inner">
+    <div className="page-inner ">
+      <img className="corner" src={corner}></img>
       <div className="row my-2 ">
         <div className="title-main col-lg-6">
-          <h1>Welcome</h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni,
-            nobis?
-          </p>
+          <h1>Dashboard</h1>
+
         </div>
-        <div className="search-field col-lg-6  mt-4">
-          <div className="form-group has-search">
-            <span className="fa fa-search form-control-feedback"></span>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="How To"
-            ></input>
-          </div>
-        </div>
+
       </div>
       <div className="row my-4">
-        <div className="col-lg-4 col-md-6 my-2 pointer">
-          <div className="card small-card" onClick={() => setTicketModal(true)}>
+        <div className="col-lg-3 col-md-6 my-2 pointer">
+          <div className="card ticket-card" onClick={() => setTicketModal(true)}>
             <div className="card-body">
-              <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+              <div className="card-details d-inline-flex align-items-center">
                 <div>
                   <img
                     src={create}
                     alt="create"
-                    className="img-fluid"
-                    style={{ width: "35%" }}
+                    className="img-fluid ticket-card-img  "
+                    style={{ width: "20%" }}
                   />
                 </div>
                 <h4>Create Ticket</h4>
@@ -93,9 +92,9 @@ function UserDashboard() {
             </div>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 my-2 pointer">
+        <div className="col-lg-3 col-md-6 my-2 pointer">
           <div
-            className="card small-card"
+            className="card ticket-card"
             onClick={() =>
               history.push({
                 pathname: "/tickets",
@@ -104,9 +103,11 @@ function UserDashboard() {
             }
           >
             <div className="card-body">
-              <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+              <div className="card-details d-inline-flex align-items-center">
                 <div>
-                  <img src={process} alt="create" className="img-fluid" />
+                  <img src={ellipse} alt="create" className="img-fluid inprogress-circle" />
+                  <img src={inprogress} alt="create" className="img-fluid inprogress-icon" style={{ width: "25%" }} />
+
                 </div>
                 <h4>In Process Ticket</h4>
               </div>
@@ -114,7 +115,7 @@ function UserDashboard() {
           </div>
         </div>
         <div
-          className="col-lg-4 col-md-6 my-2 pointer"
+          className="col-lg-3 col-md-6 my-2 pointer"
           onClick={() =>
             history.push({
               pathname: "/tickets",
@@ -122,13 +123,15 @@ function UserDashboard() {
             })
           }
         >
-          <div className="card small-card">
+          <div className="card ticket-card">
             <div className="card-body">
-              <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
+              <div className="card-details d-inline-flex align-items-center">
                 <div>
-                  <img src={close} alt="create" className="img-fluid" />
+                  <img src={ellipse} alt="create" className="img-fluid inprogress-circle" />
+
+                  <img src={hardware} alt="create" className="img-fluid inprogress-icon" style={{ width: "25%" }} />
                 </div>
-                <h4>Closed Ticket</h4>
+                <h4>Create Request For Hardware </h4>
               </div>
             </div>
           </div>
@@ -148,62 +151,92 @@ function UserDashboard() {
       </div>
       <div className="row my-4">
         <div className="col-lg-4 my-2">
-          <div className="card medium-card">
+          <div className="card medium-card calendar-card">
             <div className="card-body d-flex flex-column justify-content-between">
               <div className="d-flex flex-row justify-content-between ">
-                <h5>Assigned Hardware</h5>
+                <h5>Calendar</h5>
 
-                <p>{userdata.totalHardwares}</p>
               </div>
-              <div className="md-card-icon mx-auto my-2">
-                <img src={pc} alt="pc" className="img-fluid" />
-              </div>
+
               <div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laboriosam, quam?
-                </p>
+                <Calendar onChange={onChange}
+                  next2Label={null}
+                  prev2Label={null}
+                  prevLabel={null}
+                  nextLabel={null}
+
+                  showNavigation={true}
+                  defaultValue={new Date()}
+                  value={value}
+                  formatShortWeekday={formatShortWeekday}
+                />
+
               </div>
             </div>
           </div>
         </div>
-        <div className="col-lg-4 my-2">
-          <div className="card medium-card">
-            <div className="card-body d-flex flex-column justify-content-between">
-              <div className="d-flex flex-row justify-content-between ">
-                <h5>Assigned Software</h5>
-                <p>{userdata.totalSoftware}</p>
-              </div>
-              <div className="md-card-icon mx-auto my-2">
-                <img src={software} alt="pc" className="img-fluid" />
-              </div>
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laboriosam, quam?
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+
         <div
-          className="col-lg-4 my-2 pointer"
+          className="col-lg-4 my-2 pointer information"
           onClick={() => setTicketModal(true)}
         >
-          <div className="card medium-card">
+          <div className="card medium-card info-card">
             <div className="card-body d-flex flex-column justify-content-between">
               <div className="d-flex text-center">
-                <h5>Create Request For Hardware</h5>
+                <h5>Useful Information</h5>
               </div>
-              <div className="md-card-icon mx-auto my-2">
-                <img src={create1} alt="pc" className="img-fluid" />
+              <div >
+                <div className="button-div">
+                  <button type="button" className="btn info-buttons  active">Files</button>
+                  <button type="button" className="btn info-buttons ">Links</button>
+
+                </div>
+                <div className="table-div  table-responsive">
+                  <table class="table table-sm info-table">
+                    <thead>
+                      <tr className="row-height">
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Created By</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr>
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr>
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr>
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr>
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr> 
+                    </tbody>
+                  </table>
+                </div>
               </div>
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laboriosam, quam?
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
