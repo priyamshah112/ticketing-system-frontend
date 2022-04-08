@@ -17,6 +17,8 @@ import sciencelogo from "../../assets/sciences-logo.png"
 import lifescience from "../../assets/life-sciencelogo.png"
 import man from "../../assets/man.png"
 import msg from "../../assets/msg.png"
+import corner from "../../assets/corner.png";
+
 function Sidebar2() {
     let data = localStorage.user_details;
     let user = JSON.parse(data);
@@ -42,6 +44,8 @@ function Sidebar2() {
     return (
         <div className="col-lg-6">
             <div>
+            <img className="corner" src={corner}></img>
+
             <img
                   src={compliancelogo}
                   alt="logo"
@@ -86,7 +90,7 @@ function Sidebar2() {
                                 <a class="" href="#"><img src={dashboard}></img>Dashboard</a>
                             </li>
                             <li class="nav-item items ">
-                                <a class="" href="#"><img src={tickets}></img>Tickets</a>
+                                <a class="" href={`/tickets`}><img src={tickets}></img>Tickets</a>
                             </li>
                             <li class="nav-item items ">
                                 <a class="" href="#"><img src={settings}></img>Settings</a>

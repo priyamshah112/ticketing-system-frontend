@@ -304,15 +304,7 @@ body {
   }
 }
 
-.corner {
-  position: absolute;
-  width: 465px;
-  height: 321px;
-  left: -363px;
-  top: 25px;
-  z-index: -1;
 
-}
 
 .main-panel {
   position: relative;
@@ -633,6 +625,7 @@ body {
   width: 835px;
   height: 48px;
   left: -20px;
+
 }
 
 .ant-collapse-item{
@@ -642,9 +635,20 @@ body {
     width: 834px;
     margin-top: 22px;
     margin-bottom: 10px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #2D3142;
+
 }
 
 .scrollit {
   overflow:scroll;
   height:100px;
+}
+
+.ant-collapse{
+  background-color: transparent;
 }

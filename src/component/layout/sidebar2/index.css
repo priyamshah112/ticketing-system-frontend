@@ -169,3 +169,12 @@
     width: 150px;
     height: 150px;
 }
+.corner {
+    position: absolute;
+    width: 465px;
+    height: 321px;
+    left: -3px;
+    /* top: 0px; */
+    z-index: -1;
+  
+  }

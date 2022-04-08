@@ -7,14 +7,20 @@ import { addTicketsAction } from "../../actions/ticketAction";
 import AddTicket from "./AddTicket";
 import { getUserLists } from "../../actions/userActions";
 import { Link } from "react-router-dom";
-import MaterialTable from "material-table";
+import MaterialTable, { MTableToolbar } from "material-table";
+import { makeStyles } from '@material-ui/core/styles';
+
 import { Modal } from "antd";
 import $ from "jquery";
 import queryString from "query-string";
 import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 import { useLocation } from "react-router-dom";
-
+import ".//index.css"
+import filterpic from "../assets/filter.png"
+import plus from "../assets/plus.png"
+import export1 from "../assets/export.png"
+import import1 from "../assets/import.png"
 function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
 
@@ -66,11 +72,7 @@ function Ticket(props) {
       sorting: false,
     },
   ] : [
-    {
-      title: "ID",
-      field: "id",
-      width: "10%",
-    },
+
     {
       title: "Subject",
       field: "subject",
@@ -84,7 +86,11 @@ function Ticket(props) {
       field: "created_at",
     },
     {
-      title: "Action",
+      title: "Status",
+      field: "status",
+    },
+    {
+      title: "Edit",
       field: "edit",
       sorting: false,
     },
@@ -356,37 +362,94 @@ function Ticket(props) {
     setTicketId();
   };
 
+  const useStyles = makeStyles({
+    toolbarWrapper: {
+      '& .MuiToolbar-gutters': {
+        paddingLeft: 0,
+        paddingRight: 0,
+        fontFamily: 'Rubik',
+        fontSize: ' 24px',
+
+        lineHeight: '28px',
+
+        color: '#2D3142',
+      }
+    },
+  });
+  const classes = useStyles();
+
+
   return (
     <React.Fragment>
-      <div className="panel-header bg-secondary-gradient">
+      <div className="panel-header ">
         <div className="page-inner py-5">
-          <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-            <div>
-              <h2 className="text-white pb-2 fw-bold">Tickets</h2>
-              <h5 className="text-white op-7 mb-2">
-                Manage Your Inventory And Tickets
-              </h5>
+          <div>
+            <h2 className=" pb-2 fw-bold ticket-heading">Tickets</h2>
+
+          </div>
+          <div className=" d-flex align-items-left align-items-md-center flex-column flex-md-row col-lg-12">
+
+            <div className="col-lg-6" >
+              <div class="form-group ">
+                <span class="fa fa-search search-icon"></span>
+                <input type="search" class="form-control text-padding " placeholder="Search for tickets" />
+              </div>
+
             </div>
-            <div className="ml-md-auto py-2 py-md-0">
+            <div className="col-lg filter">
+              <img src={filterpic} alt="filter" className="filter-icon"></img>
               <a
                 href="#"
-                className="btn btn-white btn-border btn-round mr-2"
+                className="btn  ml-3 mr-5"
                 onClick={() => $("#filter-ticket").slideToggle(300)}
               >
                 Filters
               </a>
-              <a
-                href="javascript:void(0);"
-                className="btn btn-primary btn-round"
-                onClick={() => setTicketModal(true)}
-              >
-                Add Ticket
-              </a>
+              <span className="caret filter-caret"></span>
+
             </div>
+
+            <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons">
+              <div className="add-ticket py-2 px-3  mr-3">
+                <img src={plus}></img>
+                <a
+                  href="javascript:void(0);"
+                  className="button-font"
+                  onClick={() => setTicketModal(true)}
+                >
+                  Add Ticket
+                </a>
+              </div>
+              <div className="export py-2 px-3 mr-3">
+                <img src={export1}></img>
+
+                <a
+                  href="javascript:void(0);"
+                  className="button-font"
+
+                  onClick={() => setTicketModal(true)}
+                >
+                  Export
+                </a>
+              </div>
+              <div className="import py-2 px-3 mr-3">
+                <img src={import1}></img>
+
+                <a
+                  href="javascript:void(0);"
+                  className="button-font"
+                  onClick={() => setTicketModal(true)}
+                >
+                  Import
+                </a>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
-      <div className="page-inner mt--5">
+      <div className="page-inner mt--5 d-flex">
         <div className="card" id="filter-ticket">
           <div className="card-body">
             <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
@@ -481,16 +544,19 @@ function Ticket(props) {
           </div>
         </div>
 
-        <div className="card">
-          <div className="card-body p-0">
-            <MaterialTable
+        <div className="card tickets-table col-lg-12">
+          <div className="card-body p-0 ">
+            <MaterialTable className={classes.toolbarWrapper}
               title=""
               data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
               columns={columns}
+              disableGutters={true}
               options={{
-                search: true,
+                search: false,
                 paging: true,
                 pageSize: 20,
+                showTitle: false,
+
                 emptyRowsWhenPaging: false,
                 exportButton: false,
               }}
