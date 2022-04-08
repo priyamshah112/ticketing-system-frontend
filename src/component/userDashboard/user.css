@@ -501,7 +501,7 @@ body {
   padding-bottom: 26px;
 }
 
-.button-div {
+.info-card .button-div {
   position: absolute;
   width: 392px;
   height: 46px;

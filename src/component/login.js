@@ -148,12 +148,8 @@ function Login(props) {
                   <form>
 
                     <div className="button-div">
-                      <span>
-                        <button type="button" className="btn btn-light google-button " data-toggle="button" aria-pressed="false" ><img src={google} classname="google-icon"></img>Continue with Google</button>
-                        <button type="button" class="btn btn-primary facebook-button" data-toggle="button" aria-pressed="false" ><img src={facebook} classname="  google-icon"></img> Continue with Facebook</button>
-
-                      </span>
-
+                      <button type="button" className="btn btn-light google-button " data-toggle="button" aria-pressed="false" ><img src={google} classname="google-icon"></img>Continue with Google</button>
+                      <button type="button" class="btn btn-primary facebook-button" data-toggle="button" aria-pressed="false" ><img src={facebook} classname="  google-icon"></img> Continue with Facebook</button>
                     </div>
                     <div className="divider-div">
                       <div><hr className="divider"></hr></div>  <div>or </div> <div><hr className="divider"></hr></div>

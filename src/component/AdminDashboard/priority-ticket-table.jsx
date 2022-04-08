@@ -4,7 +4,7 @@ function PriorityTable(props) {
    
     return (
         <>
-            <table className="table__style">
+            <table className="table__style mt-4">
                 <tr>
                     <th
                         className="table__box table__boxborder">

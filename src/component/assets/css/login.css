@@ -5,14 +5,14 @@
 
 .bg-logo {
     position: absolute;
-    width: 460.51px;
+    /* width: 460.51px; */
     left: 58px;
     top: 171px;
 }
 
 .compliance-logo {
     position: absolute;
-    width: 145px;
+    width: 140px;
     height: 46px;
     left: 26px;
     top: 29px;
@@ -20,7 +20,7 @@
 
 .science-logo {
     position: absolute;
-    width: 145px;
+    width: 140px;
     height: 46px;
     left: 212px;
     top: 29px;
@@ -28,7 +28,7 @@
 
 .life-sciencelogo {
     position: absolute;
-    width: 136px;
+    width: 140px;
     height: 43px;
     left: 398px;
     top: 32px;
@@ -51,7 +51,6 @@
 
     color: #13213C;
 }
-
 .have-account {
     left: 3.68%;
     right: 85.07%;
@@ -101,7 +100,6 @@
     line-height: 23px;
     color: rgba(0, 0, 0, 0.54);
     flex: none;
-    order: 1;
     flex-grow: 0;
     padding-left: 0px
 }
@@ -154,7 +152,7 @@
 
 .button-div {
     margin-top: 61px;
-
+    display: flex;
 }
 
 .divider-div {

@@ -47,7 +47,7 @@ function AdminDashboard() {
 
                 <h1 className="section__title">Dashboard</h1>
 
-                <div className="row">
+                <div className="row pb-4">
                     <div className="col-12 col-sm-6 col-md col-lg">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">

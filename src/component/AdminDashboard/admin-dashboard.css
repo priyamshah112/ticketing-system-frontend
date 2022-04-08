@@ -170,6 +170,14 @@ ul {
     width: 48px;
 }
 
+.dashboard__white__icon {
+    background-color: #FFFFFF;
+    padding: 0.5rem;
+    padding-left: 0px;
+    border-radius: 0.3rem;
+    width: 48px;
+}
+
 .dashboard__summary {
     padding: 0 1rem;
     margin-bottom: 2rem;
@@ -267,7 +275,7 @@ ul {
 .support__title {
     font-size: 20px;
     margin-top: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     font-weight: 400;
 }
 
@@ -280,7 +288,7 @@ ul {
 }
 
 .category__box__ht__max {
-    height: 300px;
+    height: 450px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -300,7 +308,7 @@ ul {
 }
 
 .category__box__ht__min {
-    height: 250px;
+    height: 300px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -333,4 +341,87 @@ ul {
     flex: 1;
 }
 
+.mixed-chart{
+    width: 100%;
+    padding: 24px;
+    padding-bottom: 0px;
+}
+.mixed-chart-title{
+    height: 14px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;    
+    letter-spacing: 2px;
+    text-transform: uppercase;    
+    color: #BF5555;
+}
+.mixed-chart-count{
+    height: 32px;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 54px;
+    color: #2D3142;
+    margin-bottom: 0px;
+}
 /* content__section */
+
+  /* Calender Section */
+.react-calendar {
+
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: #2D3142;
+    position: relative;
+    top: -34px;
+  
+  }
+  
+  .react-calendar__tile {
+  
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: white;
+    border: none;
+  
+  }
+  
+  
+  
+  
+  .react-calendar__viewContainer {
+    line-height: 23px;
+    font-size: 12px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    top: 32px;
+    position: relative;
+    text-align: center;
+  
+  }
+  
+  .react-calendar__month-view__weekdays__weekday abbr {
+    text-decoration: none;
+  
+  }
+  
+  
+  .react-calendar__navigation__label {
+    position: relative;
+    top: 2px;
+    left: 200px;
+    background: white;
+    border: none;
+  
+  }
+  .react-calendar__navigation{
+    position: absolute;
+      top: -5px;
+  }
+  /* Calender Section */
