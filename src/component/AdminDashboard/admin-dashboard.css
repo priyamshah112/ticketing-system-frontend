@@ -93,8 +93,15 @@ ul {
     list-style-type: none;
 }
 
-.popover__content {
-    /* margin: 10px; */
+.tabPanel>div>div>a {
+    min-width: 100px !important;
+}
+
+.parentTabs .MuiAppBar-colorPrimary {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 20px 20px 0px 0px;
+    height: 46px;
 }
 
 .link-collapse {
@@ -140,9 +147,10 @@ ul {
     border-radius: 10px;
 }
 
-.tickets__box figure{
+.tickets__box figure {
     margin: 0;
 }
+
 .table__box {
     text-align: center;
     font-weight: 500;
