@@ -30,7 +30,24 @@ function UserDashboard() {
   const userDetails = useSelector((state) => state.userDetails);
   const { Panel } = Collapse;
   const history = useHistory();
+  const [faq, setFaqDate] = useState([{
+    questions: "Is there a free trial available?",
+    answer: "2 Hours Ago",
+  },
+  {
+    questions: "What is Cancellation fee?",
+    answer: "2 Hours Ago",
+  },
+  {
+    questions: "How does your billing work?",
+    answer: "2 Hours Ago",
+  },
+  {
+    questions: "How do I change my account email?",
+    answer: "2 Hours Ago",
+  }
 
+]);
   useEffect(() => {
     userinfo();
   }, []);
@@ -164,6 +181,7 @@ function UserDashboard() {
                   prev2Label={null}
                   prevLabel={null}
                   nextLabel={null}
+                  showNeighboringMonth={false}
 
                   showNavigation={true}
                   defaultValue={new Date()}
@@ -178,7 +196,7 @@ function UserDashboard() {
 
         <div
           className="col-lg-4 my-2 pointer information"
-          onClick={() => setTicketModal(true)}
+          
         >
           <div className="card medium-card info-card">
             <div className="card-body d-flex flex-column justify-content-between">
@@ -201,7 +219,7 @@ function UserDashboard() {
                         <th scope="col">Created By</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="scrollit">
                       <tr className="row-height">
                         <th scope="row">File1</th>
                         <td><img src={file}></img></td>
@@ -232,6 +250,18 @@ function UserDashboard() {
                         <td>21/03/2022</td>
                         <td>Ashwin Rao</td>
                       </tr> 
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr>
+                      <tr className="row-height">
+                        <th scope="row">File1</th>
+                        <td><img src={file}></img></td>
+                        <td>21/03/2022</td>
+                        <td>Ashwin Rao</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -241,7 +271,7 @@ function UserDashboard() {
           </div>
         </div>
       </div>
-      <div className="row my-4">
+      <div className="row my-4 h-100">
         {/* <div className="col-lg-6 my-2">
           <div className="card large-card calender-card">
             <div className="card-body">
@@ -250,21 +280,23 @@ function UserDashboard() {
           </div>
         </div> */}
         <div className="col-lg-12 my-2">
-          <div className="card acc-card">
-            <div className="card-heading pt-3 px-4">
+          <div className=" acc-card">
+            <div className="pt-3 px-4">
               <h3 className="mb-0">FAQs</h3>
             </div>
-            <div className="card-body d-flex flex-column pt-0">
+            
+          </div>
+          <div className=" d-flex flex-column pt-0">
               {/* <div className="d-flex text-left">
                                         <h5>FAQs</h5>
                                     </div> */}
-              <div id="accordion my-3">
+              <div id="accordion my-3 ">
                 <Collapse accordion>
-                  {userdata.faqs &&
-                    userdata.faqs.map((faq, i) => (
+                  {faq &&
+                    faq.map((faqdata, i) => (
                       <Panel
                         header={
-                          <h4 className="font-weight-bold mb-0">sdfjkn</h4>
+                          <h4 className="font-weight-bold mb-0 ">{faqdata.questions}<i class="indicator glyphicon glyphicon-chevron-right  pull-right"></i></h4>
                         }
                         key={i}
                       >
@@ -276,14 +308,11 @@ function UserDashboard() {
                     ))}
                 </Collapse>
               </div>
-              <Link to="/faqs" className="mx-3 my-2 text-primary">
-                More...
-              </Link>
+             
             </div>
-          </div>
         </div>
 
-        <div className="">
+        {/*<div className="">
           {ticketModal && (
             <AddTicket
               ticketModal={ticketModal}
@@ -291,7 +320,7 @@ function UserDashboard() {
               onSubmit={onSubmit}
             />
           )}
-        </div>
+          </div>*/}
       </div>
     </div>
   );
