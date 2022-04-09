@@ -119,7 +119,7 @@ function Ticket(props) {
 
   useEffect(() => {
     let ticketDataOnStatus = ticketList?.filter(
-      (result) => result.status.props.children[1] === location?.state?.status
+      (result) => result.status.props?.children[1] === location?.state?.status
     );
     setTicketDataOnStatus(ticketDataOnStatus);
   }, [location?.state?.status]);

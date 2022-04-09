@@ -4,19 +4,15 @@ import IconTabs from "../../AdminDashboard/sidebar";
 import Header from "../../AdminDashboard/header";
 
 function AdminLayout(props) {
-    
+    console.log("AdminLayout:",props);
   
     return (
     
-      <div ClassName="wrapper">
+      <>
         <Header/>
         <IconTabs />
-        <div className="main-panel">
-          <div className="content">
-            {props.children}
-          </div>
-        </div>
-      </div>
+        {props.children}
+      </>
     );
  
   

@@ -13,6 +13,9 @@ import ic_outline from "../../../src/images/admin-dashboard/ic_outline-inventory
 import Vector from "../../../src/images/admin-dashboard/Vector.svg";
 import wpf_faq from "../../../src/images/admin-dashboard/wpf_faq.svg";
 import dropdown from "../../../src/images/admin-dashboard/dropdown.svg";
+import hardwareInventory from "../../../src/images/admin-dashboard/hardware-inventory.svg";
+import softwareInventory from "../../../src/images/admin-dashboard/software-inventory.svg";
+import role from "../../../src/images/admin-dashboard/roles.svg";
 import $ from "jquery";
 
 const useStyles = makeStyles((theme) => ({
@@ -167,18 +170,48 @@ function IconTabs() {
                     </li>
                     <li class="sidebar__divider">
                     </li>
-                    <li>
-                        <img src={solid_users}
-                            width="20" height="20" />
+                    <li
+                       className="sidebar-item"
+                      id="inv-software"
+                      onClick={() => activeLinkHandler("inv-software")}
+                    >
+                      <Link to="/inventory/software">
+                        <img src={softwareInventory} width="20" height="20" />
+                      </Link>
                     </li>
-                    <li>
-                        <img src={ic_outline}
-                            width="20" height="20" />
+                    <li 
+                    id="inv-hardware"
+                    className="sidebar-item"
+                    onClick={() => activeLinkHandler("inv-hardware")}
+                    >
+                      <Link
+                        to="/inventory/hardware"
+                      >
+                        <img src={hardwareInventory} width="20" height="20" />
+                      </Link>
                     </li>
-                    <li>
+                    <li
+                    className="sidebar-item"
+                      id="user-role"
+                      onClick={() => activeLinkHandler("user-role")}
+                    >
+                      <Link to="/role">
+                      <img src={role} width="20" height="20" />
+                      </Link>
+                    </li>
+                    <li
+                    className="sidebar-item"
+                      id="user-sub-user"
+                      onClick={() => activeLinkHandler("user-sub-user")}
+                    >
+                      <Link to="/user">
+                      <img src={solid_users} width="20" height="20" />
+                      </Link>
+                    </li>
+                    {/* <li>
                         <img src={wpf_faq}
                             width="20" height="20" />
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </>
