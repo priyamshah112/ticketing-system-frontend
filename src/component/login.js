@@ -120,7 +120,7 @@ function Login(props) {
                   alt="logo"
                   className="img-fluid mb-4 d-block  life-sciencelogo"></img>
               </div>
-              <div className="auth-content-logo">
+              <div className="auth-content-logo px-3 py-3">
                 <img
                   src={bg}
                   alt=""

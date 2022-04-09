@@ -142,8 +142,8 @@
     top: 48px;
     background: #FFFFFF;
     box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
-    border-radius: 10px;
     padding: 0px;
+    border-radius: 20px 20px 0px 0px !important;
 
    
 }
@@ -152,23 +152,48 @@
     display: none !important;
 }
 
-.MuiPaper-root{
+.MuiTableBody-root >td{
     font-family: 'Rubik' !important;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-size: 16px!important;
     line-height: 28px;
 
     color: #2D3142;
 }
 
-.MuiTableCell-head{
+.MuiTableRow-head > th{
     background-color: #5C55BF  !important;
     font-family: 'Rubik' !important;
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 400!important;
+    font-size: 16px!important;
     line-height: 28px;
-
     color: #ffffff;
+    text-align: start !important;
+}
+
+.MuiTableCell-root a {
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Rubik'!important ;
+    font-style: normal!important;
+    font-weight: 400 !important;
+    font-size: 17px;
+    line-height: 28px;
+    color: #2D3142;
+    text-align: start !important;
+
+}
+
+.MuiTableRow-root > td{
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Rubik'!important;
+    font-style: normal!important;
+    font-size: 17px!important;
+    line-height: 28px;
+    color: #2D3142;
+    text-align: start !important;
+
 }

@@ -88,14 +88,12 @@ function Sidebar2() {
                     <div className="card-body">
                         <ul class="nav   flex-column">
                             <li class="nav-item items">
-                                <a class="" href="#"><img src={dashboard}></img>Dashboard</a>
+                                <a class="" href={`/dashboard`}><img src={dashboard}></img>Dashboard</a>
                             </li>
                             <li class="nav-item items ">
                                 <a class="" href={`/tickets`}><img src={tickets}></img>Tickets</a>
                             </li>
-                            <li class="nav-item items ">
-                                <a class="" href="#"><img src={settings}></img>Settings</a>
-                            </li>
+                           
                             <li class="nav-item items" onClick={() => localStorage.clear()}>
                                 <a class="" href="#"><img src={calender}></img>Logout</a>
                             </li>

@@ -76,6 +76,7 @@ body {
     padding: 16px;
     padding-top: 24px;
     width: 80px;
+    cursor:pointer;
 }
 
 .profile__img__layout {

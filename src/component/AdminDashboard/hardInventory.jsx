@@ -43,8 +43,8 @@ class HardInventory extends React.Component {
                         <p className="category__title m-0">hardware inventory</p>
                         <div className="p-4">
                             <ProgressBar label={"Total Laptops"} width={this.state.totalLaptop} count={this.state.totalLaptopValue} backgroundColor={'#5C55BF'} />
-                            <ProgressBar label={"Available Laptops"} width={this.state.availableLaptop} count={this.state.availableLaptop} backgroundColor={'#EAD063'} color={"#2D3142"}/>
-                            <ProgressBar label={"Assigned Laptops"} width={this.state.assignedLaptop} count={this.state.assignedLaptop} backgroundColor={'#62BC46'} color={"#2D3142"}/>
+                            <ProgressBar label={"Available Laptops"} width={this.state.availableLaptop} count={this.state.availableLaptopValue} backgroundColor={'#EAD063'} color={"#2D3142"}/>
+                            <ProgressBar label={"Assigned Laptops"} width={this.state.assignedLaptop} count={this.state.assignedLaptopValue} backgroundColor={'#62BC46'} color={"#2D3142"}/>
                         </div>
                     </div>
                     <div className="category__box category__box__ht__max">

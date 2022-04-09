@@ -39,12 +39,12 @@ function App() {
           <Route exact path="/user/create" component={UserModal} />
           <Route exact path="/staff/create" component={CreateUser} />
           <ProtectedRoute exact path="/table" component={TableDisplay} />
-          <AdminRoute exact path="/dashboard" component={AdminDashboard} />
+          <ProtectedRoute exact path="/dashboard" component={AdminDashboard} />
           <ProtectedRoute exact path="/userdashboard" component={UserDashboard} />
           <ProtectedRoute exact path="/user" component={User} />
           <ProtectedRoute exact path="/faqs" component={Faq} />              
           <ProtectedRoute exact path="/role" component={Roles} />
-          <Route exact path="/tickets" component={Ticket} />
+          <ProtectedRoute exact path="/tickets" component={Ticket} />
           <ProtectedRoute path="/ticket/details" exact component={TicketDetails} />
           <ProtectedRoute exact path="/inventory/hardware" component={HardwareInventory} />
           <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} />

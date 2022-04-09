@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import Layout from '../layout';
+import AdminLayout from '../layout/adminLayout/adminlayout';
 
 function AdminRoute({ component: Component, ...rest }) {
     let token = localStorage.authToken;
@@ -9,9 +9,9 @@ function AdminRoute({ component: Component, ...rest }) {
             {...rest}
             render={(props) => {
                 return (
-                    // <Layout>
+                     <AdminLayout>
                     <Component history={props.history} />
-                    // </Layout>
+                 </AdminLayout>
                 )
             }}
         />

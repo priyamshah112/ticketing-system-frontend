@@ -51,7 +51,7 @@ function AddTicket(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const { message, subject, assiged_to } = formdata;
+          const { message, subject, assiged_to, priority } = formdata;
           if (userType === "User") {
             if (!message || !subject) {
               toast.error("All field are required.");
@@ -60,7 +60,7 @@ function AddTicket(props) {
             }
           } else {
             form_data.append("assiged_to", formdata.assiged_to);
-            if (!message || !subject || !assiged_to) {
+            if (!message || !subject || !assiged_to || !priority) {
               toast.error("All field are required.");
               setTicketModal(false);
               return null;
@@ -68,6 +68,7 @@ function AddTicket(props) {
           }
           form_data.append("message", formdata.message);
           form_data.append("subject", formdata.subject);
+          form_data.append("priority", formdata.priority);
           form_data.append("file", file);
 
           onSubmit(form_data);
@@ -113,7 +114,7 @@ function AddTicket(props) {
             </div>
           )}
 
-          <div className="col-lg-12 col-md-12 col-12 mt-4">
+          <div className="col-lg-6 col-md-6 col-12 mt-4">
             <div>
               <label>Attachment</label>
               <input
@@ -123,6 +124,21 @@ function AddTicket(props) {
               />
             </div>
           </div>
+          <div className="col-lg-6 col-md-6 col-12 mt-4">
+              <label>
+                Priority<span className="text-danger">*</span>
+              </label>
+              <select
+                className="form-control"
+                onChange={(e) =>
+                  setFormdata({ ...formdata, priority: e.target.value })
+                }
+              >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
           <div className="col-lg-12 col-md-12 col-12 mt-4">
             <lable>
               Message<span className="text-danger">*</span>
