@@ -338,6 +338,7 @@ padding-right: 5%;
     padding-right: 5%;
 }
 
+
 .category__box__ht__max::-webkit-scrollbar {
     width: 8px;
 }
@@ -437,6 +438,7 @@ padding-right: 5%;
     font-size: 12px;
     background-color: white;
     border: none;
+    padding:8px
   
   }
   
@@ -471,7 +473,7 @@ padding-right: 5%;
   
   }
   .calender{
-      margin-top:45px
+      margin-top:10px
   }
   .react-calendar__navigation{
     position: absolute;
