@@ -35,4 +35,5 @@ export const apipaths = {
     getTicketRequestByUser:{url:"/request-by-user",method:"GET"},
     getTicketPriority:{url:"/ticket-priority-level",method:"GET"},
     getTicketRequest:{url:"/ticket-request",method:"GET"},
+    getTrackByCountry:{url:"/track-by-contry",method:"GET"}
 }

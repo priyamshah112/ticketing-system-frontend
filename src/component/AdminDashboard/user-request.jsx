@@ -5,6 +5,7 @@ function UserRequest(props) {
             <div className="col-4">
                 <div className="category__box category__box__ht__max">
                     <p className="category__title">requests by users</p>
+                    <div className="tableWrapper">
                     <table className="table__style">
                         <tr>
                             <th
@@ -38,6 +39,7 @@ function UserRequest(props) {
                         ))}
 
                     </table>
+                    </div>
                 </div>
                 <div className="category__box category__box__ht__min">
                     <p className="category__title">ticket requests</p>

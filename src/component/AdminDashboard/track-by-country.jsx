@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import track from "../../../src/images/admin-dashboard/track.svg";
+import { getResponse } from "../../api/apiResponse";
+import { apipaths } from "../../api/apiPaths";
 
 class TrackByCountry extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            count: 120,
+            count: 0,
             options: {
                 chart: {
                     toolbar: { show: false },
@@ -37,7 +39,22 @@ class TrackByCountry extends Component {
                 }
             ]
         };
+    
     }
+    async componentDidMount (){
+            const { data } = await getResponse(apipaths.getTrackByCountry);
+            console.log("Dashboard--- >",data);
+            this.setState({
+                count : data?.totalticket[0].count + data?.totalticket[1].count + data?.totalticket[2].count,
+                series: [
+                    {
+                        name: "Open Tickets",
+                        data: [data?.totalticket[0].count , data?.totalticket[1].count , data?.totalticket[2].count]
+                    }
+                ]
+            })
+          }
+    
 
     render() {
         return (

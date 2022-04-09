@@ -31,8 +31,7 @@ function AdminDashboard() {
         console.log("Dashboard--- >",data);
         setDashBoardTicketData(data)
       }
-
-
+      
     const getTicketRequestUser = async () => {
         const data = await getResponse(apipaths.getTicketRequestByUser)
         setUserRequest(data?.data?.data)
@@ -398,7 +397,7 @@ function AdminDashboard() {
                             <div className="category__box category__box__ht__max">
                                 <p className="category__title"></p>
                             </div>
-                            <div className="category__box category__box__ht__min">
+                            <div className="category__box category__box__ht__min calender">
                                 <p className="category__title">calender</p>
                             </div>
                         </div>
