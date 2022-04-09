@@ -112,14 +112,16 @@
 }
 
 .button-font {
-  color: #ffffff;
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 19px;
-  line-height: 28px;
-  text-align: center;
-  padding: 10px;
+    color: #FFFFFF;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 16px;
+    text-align: center;
+    padding: 10px;
+    background: transparent;
+    border: none;
 }
 
 .export {
@@ -187,13 +189,28 @@
   text-align: start !important;
 }
 
-.MuiTableRow-root > td {
-  text-decoration: none;
-  color: inherit;
-  font-family: 'Rubik' !important;
-  font-style: normal !important;
-  font-size: 17px !important;
-  line-height: 28px;
-  color: #2d3142;
-  text-align: start !important;
+.MuiTableRow-root > td{
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Rubik'!important;
+    font-style: normal!important;
+    font-size: 17px!important;
+    line-height: 28px;
+    color: #2D3142;
+    text-align: start !important;
+
+}
+
+.filter-btn{
+    background: transparent;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #2D3142;
+}
+.filter-ticket{
+    position: relative;
+    top: 60px;
 }

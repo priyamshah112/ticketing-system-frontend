@@ -17,6 +17,11 @@ import { Tooltip } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './index.css';
+import filterpic from "../assets/filter.png"
+import plus from "../assets/plus.png"
+import export1 from "../assets/export.png"
+import import1 from "../assets/import.png"
+
 
 function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
@@ -395,197 +400,467 @@ function Ticket(props) {
     },
   };
 
-  return (
-    <div className="ticket__window">
-      <FilterComponent {...{ ...filterProps }} />
-      <div className="card" id="filter-ticket">
-        <div className="card-body">
-          <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
-            <div className="row mx-auto">
-              <div className="form-group col-md-12">
-                <h4 className="fw-bold">Search Ticket</h4>
-              </div>
+  if(userType !== 'User'){
+    return (
+      <div className="ticket__window">
+        <FilterComponent {...{ ...filterProps }} />
+        <div className="card" id="filter-ticket">
+          <div className="card-body">
+            <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
+              <div className="row mx-auto">
+                <div className="form-group col-md-12">
+                  <h4 className="fw-bold">Search Ticket</h4>
+                </div>
 
-              <div className="form-group col-12 col-md-6 col-lg-4">
-                <label className="mb-2">Subject</label>
-                <input
-                  name="subject"
-                  type="text"
-                  className="form-control filter-input"
-                />
-              </div>
-              {/* <div className="form-group col-12 col-md-6 col-lg-4">
-                  <div className="form-group">
-                    <label className="mb-2">Type</label>
-                    <select name="type" className="form-control">
-                      <option>Select Type</option>
-                      <option>Hardware</option>
-                      <option>Software</option>
-                    </select>
-                  </div>
-                </div> */}
-              <div className="form-group col-12 col-md-6 col-lg-4">
-                <label className="mb-2">Status</label>
-                <select name="status" className="form-control filter-status">
-                  <option value="">Select Status</option>
-                  <option value="pending">Pending</option>
-                  <option value="open">Open</option>
-                  <option value="closed">Closed</option>
-                </select>
-              </div>
-              {userType !== 'User' && (
                 <div className="form-group col-12 col-md-6 col-lg-4">
-                  <label className="mb-2">Assigned To</label>
-                  <select name="assigned_to" className="form-control">
-                    <option value="">Select Assigned To</option>
-                    {ticketList.length &&
-                      ticketList.map((result) => {
-                        if (result.support?.id) {
-                          return (
-                            <option
-                              value={result.support?.id}
-                              key={result.support?.id}
-                            >
-                              {result.support?.name ? result.support?.name : ''}
-                            </option>
-                          );
-                        }
-
-                        return '';
-                      })}
+                  <label className="mb-2">Subject</label>
+                  <input
+                    name="subject"
+                    type="text"
+                    className="form-control filter-input"
+                  />
+                </div>
+                {/* <div className="form-group col-12 col-md-6 col-lg-4">
+                    <div className="form-group">
+                      <label className="mb-2">Type</label>
+                      <select name="type" className="form-control">
+                        <option>Select Type</option>
+                        <option>Hardware</option>
+                        <option>Software</option>
+                      </select>
+                    </div>
+                  </div> */}
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                  <label className="mb-2">Status</label>
+                  <select name="status" className="form-control filter-status">
+                    <option value="">Select Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
                   </select>
                 </div>
-              )}
-              <div className="form-group col-12 col-md-6 col-lg-4">
-                <label className="mb-2">Created At</label>
-                <input
-                  name="created_at"
-                  type="date"
-                  className="form-control"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-                {/* <div>
-                        <label className="mb-2">Assigned Date</label>
-                    </div>
-                    <RangePicker className="form-control" name="assigned_date" /> */}
-              </div>
-              <div className="col-12 mt-3 text-right">
-                <button className="btn  btn-secondary btn-radius" type="submit">
-                  Search
-                </button>
-                <button
-                  className="btn  btn-secondary btn-border ml-3"
-                  onClick={() => $('#filter-ticket').slideToggle(300)}
-                  type="button"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+                {userType !== 'User' && (
+                  <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Assigned To</label>
+                    <select name="assigned_to" className="form-control">
+                      <option value="">Select Assigned To</option>
+                      {ticketList.length &&
+                        ticketList.map((result) => {
+                          if (result.support?.id) {
+                            return (
+                              <option
+                                value={result.support?.id}
+                                key={result.support?.id}
+                              >
+                                {result.support?.name ? result.support?.name : ''}
+                              </option>
+                            );
+                          }
 
-      <div className="ticket__table">
-        <MaterialTable
-          className={classes.toolbarWrapper}
-          title=""
-          data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
-          columns={columns}
-          disableGutters={true}
-          options={{
-            search: false,
-            paging: true,
-            pageSize: 20,
-            showTitle: false,
-
-            emptyRowsWhenPaging: false,
-            exportButton: false,
-          }}
-        />
-      </div>
-
-      <div className="">
-        {ticketModal && (
-          <AddTicket
-            setTicketModal={setTicketModal}
-            ticketModal={ticketModal}
-            onSubmit={onSubmit}
-          />
-        )}
-      </div>
-
-      <Modal
-        title="Assign Ticket"
-        visible={editTicketModel}
-        onOk={() => assignToSubmitHandler(false)}
-        onCancel={() => setEditTicketModel(false)}
-      >
-        <div className="col-12 mt-4">
-          <label>Ticket Name: {editTicket?.subject}</label>
-        </div>
-        <div className="col-12 mt-4">
-          <label>Assign To</label>
-          <select
-            onChange={(e) => assignToSubmitHandler(e.target.value)}
-            className="form-control"
-          >
-            <option value="">Choose User</option>
-            {users &&
-              users.map((user) => (
-                <option value={user.id} key={user.id}>
-                  {user.name}
-                </option>
-              ))}
-          </select>
-        </div>
-      </Modal>
-      <Modal
-        title="Ticket Details"
-        visible={isModal}
-        onOk={() => setIsModal(false)}
-        onCancel={() => setIsModal(false)}
-      >
-        <div className="">
-          <div>
-            {ticketinfo &&
-              ticketinfo.map((ticket, index) => (
-                <>
-                  <div className="row" key={index}>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Ticket Id:</span>
-                      <span className="margin">{ticket.id}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Subject:</span>
-                      <span className="margin">{ticket.subject}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Status:</span>
-                      <span className="margin">{ticket.status}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Closed At:</span>
-                      <span className="margin">{ticket.closed_at}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Created At:</span>
-                      <span className="margin">{ticket.created_at}</span>
-                    </div>
-                    <div className="col-6 p-2">
-                      <span className="fw-bold">Assigned Date:</span>
-                      <span className="margin">{ticket.created_at}</span>
-                    </div>
+                          return '';
+                        })}
+                    </select>
                   </div>
-                </>
-              ))}
+                )}
+                <div className="form-group col-12 col-md-6 col-lg-4">
+                  <label className="mb-2">Created At</label>
+                  <input
+                    name="created_at"
+                    type="date"
+                    className="form-control"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
+                  {/* <div>
+                          <label className="mb-2">Assigned Date</label>
+                      </div>
+                      <RangePicker className="form-control" name="assigned_date" /> */}
+                </div>
+                <div className="col-12 mt-3 text-right">
+                  <button className="btn  btn-secondary btn-radius" type="submit">
+                    Search
+                  </button>
+                  <button
+                    className="btn  btn-secondary btn-border ml-3"
+                    onClick={() => $('#filter-ticket').slideToggle(300)}
+                    type="button"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-          {error && <p className="text-danger">{error}</p>}
         </div>
-      </Modal>
-    </div>
-  );
+
+        <div className="ticket__table">
+          <MaterialTable
+            className={classes.toolbarWrapper}
+            title=""
+            data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
+            columns={columns}
+            disableGutters={true}
+            options={{
+              search: false,
+              paging: true,
+              pageSize: 20,
+              showTitle: false,
+
+              emptyRowsWhenPaging: false,
+              exportButton: false,
+            }}
+          />
+        </div>
+
+        <div className="">
+          {ticketModal && (
+            <AddTicket
+              setTicketModal={setTicketModal}
+              ticketModal={ticketModal}
+              onSubmit={onSubmit}
+            />
+          )}
+        </div>
+
+        <Modal
+          title="Assign Ticket"
+          visible={editTicketModel}
+          onOk={() => assignToSubmitHandler(false)}
+          onCancel={() => setEditTicketModel(false)}
+        >
+          <div className="col-12 mt-4">
+            <label>Ticket Name: {editTicket?.subject}</label>
+          </div>
+          <div className="col-12 mt-4">
+            <label>Assign To</label>
+            <select
+              onChange={(e) => assignToSubmitHandler(e.target.value)}
+              className="form-control"
+            >
+              <option value="">Choose User</option>
+              {users &&
+                users.map((user) => (
+                  <option value={user.id} key={user.id}>
+                    {user.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        </Modal>
+        <Modal
+          title="Ticket Details"
+          visible={isModal}
+          onOk={() => setIsModal(false)}
+          onCancel={() => setIsModal(false)}
+        >
+          <div className="">
+            <div>
+              {ticketinfo &&
+                ticketinfo.map((ticket, index) => (
+                  <>
+                    <div className="row" key={index}>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Ticket Id:</span>
+                        <span className="margin">{ticket.id}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Subject:</span>
+                        <span className="margin">{ticket.subject}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Status:</span>
+                        <span className="margin">{ticket.status}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Closed At:</span>
+                        <span className="margin">{ticket.closed_at}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Created At:</span>
+                        <span className="margin">{ticket.created_at}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Assigned Date:</span>
+                        <span className="margin">{ticket.created_at}</span>
+                      </div>
+                    </div>
+                  </>
+                ))}
+            </div>
+            {error && <p className="text-danger">{error}</p>}
+          </div>
+        </Modal>
+      </div>
+    );
+  }
+  else
+  {
+    return (
+      <>
+        <div className="panel-header ">
+          <div className="page-inner py-5">
+            <div>
+              <h2 className=" pb-2 fw-bold ticket-heading">Tickets</h2>
+  
+            </div>
+            <div className=" d-flex align-items-left align-items-md-center flex-column flex-md-row col-lg-12">
+  
+              <div className="col-lg-6" >
+                <div class="form-group ">
+                  <span class="fa fa-search search-icon"></span>
+                  <input type="search" class="form-control text-padding " placeholder="Search for tickets" />
+                </div>
+  
+              </div>
+              <div className="col-lg filter">
+                <img src={filterpic} alt="filter" className="filter-icon"></img>
+                <button
+                 
+                  className="btn  ml-3 mr-5 filter-btn"
+                  onClick={() => $("#filter-ticket").slideToggle(300)}
+                >
+                  Filters
+                </button>
+                <span className="caret filter-caret"></span>
+  
+              </div>
+  
+              <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons " style={{ top: '8px' }}>
+                <div className="add-ticket py-2 px-3  mr-3">
+                  <img src={plus}></img>
+                  <button
+                    href="javascript:void(0);"
+                    className="button-font"
+                    onClick={() => setTicketModal(true)}
+                  >
+                    Add Ticket
+                  </button>
+                </div>
+                <div className="export py-2 px-3 mr-3">
+                  <img src={export1}></img>
+  
+                  <button
+                    href="javascript:void(0);"
+                    className="button-font"
+  
+                    onClick={() => setTicketModal(true)}
+                  >
+                    Export
+                  </button>
+                </div>
+                <div className="import py-2 px-3 mr-0">
+                  <img src={import1}></img>
+  
+                  <button
+                    href="javascript:void(0);"
+                    className="button-font"
+                    onClick={() => setTicketModal(true)}
+                  >
+                    Import
+                  </button>
+                </div>
+  
+              </div>
+  
+            </div>
+          </div>
+        </div>
+        <div className=" mt--5  col-lg-12" style={{ paddingRight: '74px' }}>
+          <div className="card" id="filter-ticket">
+            <div className="card-body">
+              <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
+                <div className="row mx-auto">
+                  <div className="form-group col-md-12">
+                    <h4 className="fw-bold">Search Ticket</h4>
+                  </div>
+  
+                  <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Subject</label>
+                    <input
+                      name="subject"
+                      type="text"
+                      className="form-control filter-input"
+                    />
+                  </div>
+                  {/* <div className="form-group col-12 col-md-6 col-lg-4">
+                    <div className="form-group">
+                      <label className="mb-2">Type</label>
+                      <select name="type" className="form-control">
+                        <option>Select Type</option>
+                        <option>Hardware</option>
+                        <option>Software</option>
+                      </select>
+                    </div>
+                  </div> */}
+                  <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Status</label>
+                    <select name="status" className="form-control filter-status">
+                      <option value="">Select Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="open">Open</option>
+                      <option value="closed">Closed</option>
+                    </select>
+                  </div>
+                  {userType !== "User" && (
+                    <div className="form-group col-12 col-md-6 col-lg-4">
+                      <label className="mb-2">Assigned To</label>
+                      <select name="assigned_to" className="form-control">
+                        <option value="">Select Assigned To</option>
+                        {ticketList.length &&
+                          ticketList.map((result) => {
+                            if (result.support?.id) {
+                              return (
+                                <option
+                                  value={result.support?.id}
+                                  key={result.support?.id}
+                                >
+                                  {result.support?.name
+                                    ? result.support?.name
+                                    : ""}
+                                </option>
+                              );
+                            }
+  
+                            return "";
+                          })}
+                      </select>
+                    </div>
+                  )}
+                  <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="mb-2">Created At</label>
+                    <input
+                      name="created_at"
+                      type="date"
+                      className="form-control"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
+                    {/* <div>
+                          <label className="mb-2">Assigned Date</label>
+                      </div>
+                      <RangePicker className="form-control" name="assigned_date" /> */}
+                  </div>
+                  <div className="col-12 mt-3 text-right">
+                    <button
+                      className="btn  btn-secondary btn-radius"
+                      type="submit"
+                    >
+                      Search
+                    </button>
+                    <button
+                      className="btn  btn-secondary btn-border ml-3"
+                      onClick={() => $("#filter-ticket").slideToggle(300)}
+                      type="button"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+  
+          <div className="card tickets-table col-lg-12 ">
+            <div className="card-body p-0 ">
+              <MaterialTable className={classes.toolbarWrapper}
+                title=""
+                data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
+                columns={columns}
+                disableGutters={true}
+                options={{
+                  search: false,
+                  paging: true,
+                  pageSize: 20,
+                  showTitle: false,
+  
+                  emptyRowsWhenPaging: false,
+                  exportButton: false,
+                }}
+              />
+            </div>
+          </div>
+  
+          <div className="">
+            {ticketModal && (
+              <AddTicket
+                setTicketModal={setTicketModal}
+                ticketModal={ticketModal}
+                onSubmit={onSubmit}
+              />
+            )}
+          </div>
+        </div>
+        <Modal
+          title="Assign Ticket"
+          visible={editTicketModel}
+          onOk={() => assignToSubmitHandler(false)}
+          onCancel={() => setEditTicketModel(false)}
+        >
+          <div className="col-12 mt-4">
+            <label>Ticket Name: {editTicket?.subject}</label>
+          </div>
+          <div className="col-12 mt-4">
+            <label>Assign To</label>
+            <select
+              onChange={(e) => assignToSubmitHandler(e.target.value)}
+              className="form-control"
+            >
+              <option value="">Choose User</option>
+              {users &&
+                users.map((user) => (
+                  <option value={user.id} key={user.id}>
+                    {user.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        </Modal>
+        <Modal
+          title="Ticket Details"
+          visible={isModal}
+          onOk={() => setIsModal(false)}
+          onCancel={() => setIsModal(false)}
+        >
+          <div className="">
+            <div>
+              {ticketinfo &&
+                ticketinfo.map((ticket, index) => (
+                  <>
+                    <div className="row" key={index}>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Ticket Id:</span>
+                        <span className="margin">{ticket.id}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Subject:</span>
+                        <span className="margin">{ticket.subject}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Status:</span>
+                        <span className="margin">{ticket.status}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Closed At:</span>
+                        <span className="margin">{ticket.closed_at}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Created At:</span>
+                        <span className="margin">{ticket.created_at}</span>
+                      </div>
+                      <div className="col-6 p-2">
+                        <span className="fw-bold">Assigned Date:</span>
+                        <span className="margin">{ticket.created_at}</span>
+                      </div>
+                    </div>
+                  </>
+                ))}
+            </div>
+            {error && <p className="text-danger">{error}</p>}
+          </div>
+        </Modal>
+      </>
+    );  
+  }
 }
 
 export default Ticket;

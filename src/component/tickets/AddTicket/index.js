@@ -76,7 +76,7 @@ function AddTicket(props) {
         }}
       >
         <div className="row">
-          <div className="col-lg-6 col-md-6 col-12">
+        {userType !== "User" && ( <div className="col-lg-6 col-md-6 col-12">
             <label>
               Subject<span className="text-danger">*</span>
             </label>
@@ -88,6 +88,20 @@ function AddTicket(props) {
               }
             />
           </div>
+          )}
+          {userType == "User" && ( <div className="col-lg-12 col-md-12 col-12">
+            <label>
+              Subject<span className="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) =>
+                setFormdata({ ...formdata, subject: e.target.value })
+              }
+            />
+          </div>
+          )}
           {userType !== "User" && (
             <div className="col-lg-6 col-md-6 col-12">
               <label>
