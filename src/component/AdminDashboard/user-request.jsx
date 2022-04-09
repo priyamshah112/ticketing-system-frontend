@@ -1,3 +1,4 @@
+const { default: TicketRequestTabs } = require("./TicketRequestTabs");
 
 function UserRequest(props) {
     return (
@@ -41,9 +42,7 @@ function UserRequest(props) {
                     </table>
                     </div>
                 </div>
-                <div className="category__box category__box__ht__min">
-                    <p className="category__title">ticket requests</p>
-                </div>
+                    <TicketRequestTabs/>
             </div>
         </>
     );
