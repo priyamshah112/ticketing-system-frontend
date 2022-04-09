@@ -292,7 +292,7 @@ function Ticket(props) {
       if (userType === "User") {
       }
       ticket.edit = (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex ">
           {userType !== "User" && (
             <Tooltip title="Assign Tickets">
               <div>
@@ -409,7 +409,7 @@ function Ticket(props) {
 
             </div>
 
-            <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons " style={{top: '8px'}}>
+            <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons " style={{ top: '8px' }}>
               <div className="add-ticket py-2 px-3  mr-3">
                 <img src={plus}></img>
                 <a
@@ -449,7 +449,7 @@ function Ticket(props) {
           </div>
         </div>
       </div>
-      <div className=" mt--5 d-flex col-lg-12">
+      <div className=" mt--5 d-flex col-lg-12" style={{ paddingRight: '74px' }}>
         <div className="card" id="filter-ticket">
           <div className="card-body">
             <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
@@ -544,7 +544,7 @@ function Ticket(props) {
           </div>
         </div>
 
-        <div className="card tickets-table col-lg-12">
+        <div className="card tickets-table col-lg-12 ">
           <div className="card-body p-0 ">
             <MaterialTable className={classes.toolbarWrapper}
               title=""
