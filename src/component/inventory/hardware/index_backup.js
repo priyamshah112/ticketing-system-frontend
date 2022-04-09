@@ -17,8 +17,7 @@ import {
 import { Tooltip } from '@material-ui/core';
 import swal from 'sweetalert';
 import { getUserLists } from '../../../actions/userActions';
-import FilterComponent from '../reusableComponents/filters';
-import './style.css';
+import { CSVLink } from 'react-csv';
 
 function HardwareInventory() {
   let id = 'hardware';
@@ -403,30 +402,72 @@ function HardwareInventory() {
     setIsAssignInventoryModal(false);
   };
 
-  const filterProps = {
-    heading: 'Inventory Hardware',
-    buttonOne: 'Add Hardware',
-    buttonOneHandler: () => {
-      setModal(true);
-      setEditFormData({});
-      setInventoryId();
-      setEditForm(false);
-    },
-    buttonTwo: 'Import',
-    buttonTwoHandler: () => {
-      showModal();
-    },
-    filter: () => {
-      $('#filter-inventory-wrapper').slideToggle(300);
-    },
-    buttonThree: 'Export',
-    inventories,
-  };
-
   return (
-    <div className="hardware__inventory">
-      <FilterComponent {...{ ...filterProps }} />
-      <div className="">
+    <React.Fragment>
+      <div className="panel-header bg-secondary-gradient">
+        <div className="page-inner py-5">
+          <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+              <h2 className="text-white pb-2 fw-bold">
+                {id === 'software' ? 'Software' : 'Hardware'} Inventory{' '}
+                {userid && username && '( ' + username + ' )'}
+              </h2>
+              <h5 className="text-white op-7 mb-2">
+                Manage Your Hardware Inventory
+              </h5>
+            </div>
+            <div className="ml-md-auto py-2 py-md-0">
+              {!userid ? (
+                <>
+                  <button
+                    className="btn btn-white btn-round btn-border mr-2"
+                    onClick={() =>
+                      $('#filter-inventory-wrapper').slideToggle(300)
+                    }
+                  >
+                    Filters
+                  </button>
+                  <button
+                    onClick={() => showModal()}
+                    className="btn btn-round btn-primary mr-2"
+                  >
+                    Import Hardware
+                  </button>
+                  <CSVLink
+                    data={inventories}
+                    filename={'hardware-inventory-list.csv'}
+                    className="btn btn-round btn-primary mr-2"
+                    target="_blank"
+                  >
+                    Export Hardware
+                  </CSVLink>
+                  <button
+                    className="btn btn-primary btn-round"
+                    onClick={() => {
+                      setModal(true);
+                      setEditFormData({});
+                      setInventoryId();
+                      setEditForm(false);
+                    }}
+                  >
+                    Add Hardware
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-primary btn-round"
+                    onClick={assignInventoryModal}
+                  >
+                    Assign Inventory
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="page-inner mt--5">
         <div className="card" id="filter-inventory-wrapper">
           <div className="card-body">
             <form
@@ -625,20 +666,21 @@ function HardwareInventory() {
             </form>
           </div>
         </div>
-
-        <div className="table__view">
-          <MaterialTable
-            title=""
-            data={inventories}
-            columns={columns}
-            options={{
-              search: false,
-              paging: true,
-              pageSize: 20,
-              emptyRowsWhenPaging: false,
-              exportButton: false,
-            }}
-          />
+        <div className="card">
+          <div className="card-body p-0">
+            <MaterialTable
+              title=""
+              data={inventories}
+              columns={columns}
+              options={{
+                search: true,
+                paging: true,
+                pageSize: 20,
+                emptyRowsWhenPaging: false,
+                exportButton: false,
+              }}
+            />
+          </div>
         </div>
       </div>
 
@@ -821,7 +863,7 @@ function HardwareInventory() {
           {error && <p className="text-danger">{error}</p>}
         </div>
       </Modal>
-    </div>
+    </React.Fragment>
   );
 }
 

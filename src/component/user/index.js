@@ -1,72 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import AddUser from "./AddUser";
-import { getResponse } from "../../api/apiResponse";
-import { apipaths } from "../../api/apiPaths";
-import { getUserLists } from "../../actions/userActions";
-import { toast } from "react-toastify";
-import swal from "sweetalert";
-import { inventoryListAction } from "../../actions/inventoryAction";
-import { Modal } from "antd";
-import $ from "jquery";
-import MaterialTable from "material-table";
-import { dateFormatHandler } from "../../actions/commonAction";
-import { Tooltip } from "@material-ui/core";
-import { CSVLink } from "react-csv";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import AddUser from './AddUser';
+import { getResponse } from '../../api/apiResponse';
+import { apipaths } from '../../api/apiPaths';
+import { getUserLists } from '../../actions/userActions';
+import { toast } from 'react-toastify';
+import swal from 'sweetalert';
+import { inventoryListAction } from '../../actions/inventoryAction';
+import { Modal } from 'antd';
+import $ from 'jquery';
+import MaterialTable from 'material-table';
+import { dateFormatHandler } from '../../actions/commonAction';
+import { Tooltip } from '@material-ui/core';
+import FilterComponent from '../inventory/reusableComponents/filters';
+import './style.css';
 
 function User(props) {
   const columns = [
     {
-      title: "ID ",
-      field: "id",
+      title: 'ID ',
+      field: 'id',
     },
     {
-      title: "Name",
-      field: "namewithemail",
+      title: 'Name',
+      field: 'namewithemail',
     },
     {
-      title: "Status",
-      field: "status",
+      title: 'Status',
+      field: 'status',
     },
     {
-      title: "Type",
-      field: "userType",
+      title: 'Type',
+      field: 'userType',
     },
     {
-      title: "Country",
-      field: "user_details.clientLocation",
+      title: 'Country',
+      field: 'user_details.clientLocation',
     },
     {
-      title: "Added On",
-      field: "created_at",
+      title: 'Added On',
+      field: 'created_at',
     },
     {
-      title: "Inventory",
-      field: "inventory",
-      width: "10%",
+      title: 'Inventory',
+      field: 'inventory',
+      width: '10%',
       sorting: false,
     },
     {
-      title: "Action",
-      field: "action",
-      width: "10%",
+      title: 'Action',
+      field: 'action',
+      width: '10%',
       sorting: false,
     },
   ];
   const [isCreateUserModal, setIsCreateModal] = useState(false);
-  const [operation, setOperation] = useState("");
-  const [userImportFile, setUserImportFile] = useState("");
+  const [operation, setOperation] = useState('');
+  const [userImportFile, setUserImportFile] = useState('');
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [error, setError] = useState();
   const [userData, setUserData] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
-  const [exportUrl, setExportUrl] = useState("");
+  const [exportUrl, setExportUrl] = useState('');
 
   const [filterData, setFilterData] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState();
 
-  const [sampleImport, setSampleImport] = useState("");
+  const [sampleImport, setSampleImport] = useState('');
 
   const userList = useSelector((state) => state.userList);
   const userDetails = useSelector((state) => state.userDetails);
@@ -75,17 +76,17 @@ function User(props) {
 
   useEffect(() => {
     dataHandler();
-    $("#filter-user").slideToggle(0);
+    $('#filter-user').slideToggle(0);
   }, []);
 
   useEffect(() => {
-    if (isModalVisible) setError("");
+    if (isModalVisible) setError('');
   }, [isModalVisible]);
 
   const dataHandler = () => {
     getData();
-    dispatch(inventoryListAction("software"));
-    dispatch(inventoryListAction("hardware"));
+    dispatch(inventoryListAction('software'));
+    dispatch(inventoryListAction('hardware'));
   };
 
   const showModal = () => {
@@ -115,17 +116,17 @@ function User(props) {
       user.namewithemail = (
         <div>
           <p className="username">
-            {user.user_details?.firstName} {user.user_details?.middleName}{" "}
+            {user.user_details?.firstName} {user.user_details?.middleName}{' '}
             {user.user_details?.lastName}
           </p>
           <span className="email">{user.email}</span>
         </div>
       );
 
-      if (user.userType === "Support") {
-        user.userType = "Co-Admin";
+      if (user.userType === 'Support') {
+        user.userType = 'Co-Admin';
       }
-      let userStatus = "";
+      let userStatus = '';
       switch (user.enable) {
         case 1:
           userStatus = (
@@ -157,7 +158,7 @@ function User(props) {
               <i
                 className="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
                 onClick={() => {
-                  setOperation("update");
+                  setOperation('update');
                   setIsCreateModal(true);
                   setUserInfo(user);
                 }}
@@ -169,7 +170,7 @@ function User(props) {
               <i
                 className="table-icon fa fa-eye bg-secondary text-white cursor-pointer mr-2"
                 onClick={() => {
-                  setOperation("view");
+                  setOperation('view');
                   setIsCreateModal(true);
                   setUserInfo(user);
                 }}
@@ -225,7 +226,7 @@ function User(props) {
   const createUserHandler = async (data, setFormdata) => {
     if (!data.firstName || !data.email) {
       setIsCreateModal(false);
-      toast.warn("Name and Email is required");
+      toast.warn('Name and Email is required');
       return null;
     }
     let user = data;
@@ -238,15 +239,15 @@ function User(props) {
 
     if (res.data.success) getUserListData();
 
-    setOperation("");
+    setOperation('');
     setIsCreateModal(false);
   };
 
   const deleteUserHandler = async ({ id }) => {
     swal({
-      title: "Are you sure?",
-      text: "Press ok to delete this user!",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'Press ok to delete this user!',
+      icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then(async (val) => {
@@ -260,19 +261,19 @@ function User(props) {
   };
 
   const importUserFileHandler = async () => {
-    setError("Importing file please wait");
+    setError('Importing file please wait');
     const formdata = new FormData();
-    formdata.append("file", userImportFile);
+    formdata.append('file', userImportFile);
     if (
       userImportFile.type ===
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
-      userImportFile.type === "application/vnd.ms-excel"
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+      userImportFile.type === 'application/vnd.ms-excel'
     ) {
       let { data, error } = await getResponse(apipaths.importUser, formdata);
 
       if (error && error.status_code === 301) {
         setError(error.message);
-        return window.open(error.data.filePath, "_blank");
+        return window.open(error.data.filePath, '_blank');
       }
 
       if (data.success) toast.success(data.message);
@@ -280,68 +281,51 @@ function User(props) {
 
       setIsModalVisible();
       dataHandler();
-    } else setError("File type not allowed.");
+    } else setError('File type not allowed.');
   };
 
   const filterSubmitHandler = async (e) => {
     e.preventDefault();
     let filterString = $("#filter-user-form :input[value!='']")
       .filter(function (index, element) {
-        return $(element).val() != "";
+        return $(element).val() != '';
       })
       .serialize();
     let path = apipaths.listusers;
-    path["url"] = path["url"].split("?")[0] + "?" + filterString;
+    path['url'] = path['url'].split('?')[0] + '?' + filterString;
     // console.log(path);
     let { data } = await getResponse(path);
-    path = "";
+    path = '';
     setIsFilterActive(true);
 
     let users = data.data.user;
     users = usersAddMoreData(users);
     setFilterData(users);
   };
+
+  const filterProps = {
+    heading: 'User Management',
+    buttonOne: 'Add User',
+    buttonOneHandler: () => {
+      setOperation('add');
+      setIsCreateModal(true);
+    },
+
+    buttonTwo: 'Import Users',
+    buttonTwoHandler: () => {
+      showModal();
+    },
+    filter: () => {
+      $('#filter-user').slideToggle(300);
+    },
+    buttonThree: 'Export',
+    inventories: isFilterActive ? filterData : userList,
+  };
   return (
-    <React.Fragment>
-      <div className="panel-header bg-secondary-gradient">
-        <div className="page-inner py-5">
-          <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-            <div>
-              <h2 className="text-white pb-2 fw-bold">Users Details</h2>
-              <h5 className="text-white op-7 mb-2">Manage Your Users</h5>
-            </div>
-            <div className="ml-md-auto py-2 py-md-0">
-              <button
-                className="btn btn-white btn-round btn-border mr-2"
-                onClick={() => $("#filter-user").slideToggle(300)}
-              >
-                Filters
-              </button>
-              <button
-                className="btn btn-white btn-round btn-border mr-2"
-                onClick={showModal}
-              >
-                Import User
-              </button>
-              <CSVLink data={isFilterActive ? filterData : userList}
-                    filename={"users-list.csv"}
-                    className="btn btn-round btn-primary mr-2"
-                    target="_blank"
-                  >Export User</CSVLink>
-              <button
-                className="btn btn-primary btn-round"
-                onClick={() => {
-                  setOperation("add");
-                  setIsCreateModal(true);
-                }}
-              >
-                Add User
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="page-inner mt--5 users">
+    <div className="user__window">
+      <FilterComponent {...{ ...filterProps }} />
+
+      <div className="">
         <div className="card" id="filter-user">
           <div className="card-body">
             <form onSubmit={filterSubmitHandler} id="filter-user-form">
@@ -368,10 +352,10 @@ function User(props) {
                     <label className="mb-2">Status</label>
                   </div>
                   <select className="form-control" name="status">
-                    <option value={""}>Select Status</option>
-                    <option value={"active"}>Active</option>
-                    <option value={"pending"}>Pending</option>
-                    <option value={"suspended"}>Suspended</option>
+                    <option value={''}>Select Status</option>
+                    <option value={'active'}>Active</option>
+                    <option value={'pending'}>Pending</option>
+                    <option value={'suspended'}>Suspended</option>
                   </select>
                 </div>
 
@@ -386,10 +370,10 @@ function User(props) {
                     className="btn  btn-danger btn-radius ml-3"
                     onClick={() => {
                       setIsFilterActive(false);
-                      $("#filter-user-form").trigger("reset");
-                      $("#filter-user").slideToggle(300);
+                      $('#filter-user-form').trigger('reset');
+                      $('#filter-user').slideToggle(300);
                       let path = apipaths.listusers;
-                      path["url"] = path["url"].split("?")[0];
+                      path['url'] = path['url'].split('?')[0];
                       dataHandler();
                     }}
                     type="button"
@@ -402,23 +386,22 @@ function User(props) {
           </div>
         </div>
 
-        <div className="card">
-          <div className="card-body p-0">
-            <MaterialTable
-              title=""
-              data={isFilterActive ? filterData : userList}
-              columns={columns}
-              options={{
-                search: true,
-                pageSize: 20,
-                emptyRowsWhenPaging: false,
-                paging: true,
-                exportButton: false,
-              }}
-            />
-          </div>
+        <div className="user__table">
+          <MaterialTable
+            title=""
+            data={isFilterActive ? filterData : userList}
+            columns={columns}
+            options={{
+              search: false,
+              pageSize: 20,
+              emptyRowsWhenPaging: false,
+              paging: true,
+              exportButton: false,
+            }}
+          />
         </div>
       </div>
+
       <Modal
         title="Import Users"
         destroyOnClose
@@ -429,8 +412,8 @@ function User(props) {
         <div className="">
           <form>
             <input
-              type={"file"}
-              className={"form-control"}
+              type={'file'}
+              className={'form-control'}
               onChange={(e) => setUserImportFile(e.target.files[0])}
             />
           </form>
@@ -439,7 +422,7 @@ function User(props) {
             To download a sample import file&nbsp;
             <span
               className="text-primary cursor-pointer"
-              onClick={() => window.open(sampleImport, "_blank")}
+              onClick={() => window.open(sampleImport, '_blank')}
             >
               click here
             </span>
@@ -448,11 +431,11 @@ function User(props) {
       </Modal>
       <Modal
         title={
-          operation === "view"
-            ? "View User"
-            : operation === "update"
-            ? "Edit User"
-            : "Create User"
+          operation === 'view'
+            ? 'View User'
+            : operation === 'update'
+            ? 'Edit User'
+            : 'Create User'
         }
         visible={isCreateUserModal}
         onCancel={() => setIsCreateModal(false)}
@@ -465,7 +448,7 @@ function User(props) {
           userInfo={userInfo}
         />
       </Modal>
-    </React.Fragment>
+    </div>
   );
 }
 

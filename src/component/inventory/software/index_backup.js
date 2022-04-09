@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { inventoryListAction } from '../../../actions/inventoryAction';
@@ -19,8 +18,6 @@ import {
 import { Tooltip } from '@material-ui/core';
 import { getUserLists } from '../../../actions/userActions';
 import { CSVLink } from 'react-csv';
-import FilterComponent from '../reusableComponents/filters';
-import './style.css';
 
 function SoftwareInventory() {
   const parameters = useParams();
@@ -347,32 +344,72 @@ function SoftwareInventory() {
     assInvFormData.append('software_ids[]', inventoryId);
   };
 
-  const showModalHandler = () => {
-    showModal();
-  };
-
-  const filterProps = {
-    heading: 'Inventory Software',
-    buttonOne: 'Add Software',
-    buttonOneHandler: () => {
-      setModal(true);
-      setEditFormData({});
-      setInventoryId();
-      setEditForm(false);
-    },
-    buttonThree: 'Export',
-    buttonThreeHandler: showModalHandler,
-    buttonTwo: 'Import',
-    buttonTwoHandler: showModalHandler,
-    filter: () => {
-      $('#filter-inventory-wrapper').slideToggle(300);
-    },
-    inventories,
-  };
   return (
-    <div className="software__inventory">
-      <FilterComponent {...{ ...filterProps }} />
-      <div className="table__view">
+    <React.Fragment>
+      <div className="panel-header bg-secondary-gradient">
+        <div className="page-inner py-5">
+          <div className="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+              <h2 className="text-white pb-2 fw-bold">
+                {id === 'software' ? 'Software' : 'Hardware'}
+                {parameters.userid && username && '( ' + username + ' )'}{' '}
+                Inventory
+              </h2>
+              <h5 className="text-white op-7 mb-2">
+                Manage Your Software Inventory
+              </h5>
+            </div>
+            <div className="ml-md-auto py-2 py-md-0">
+              {parameters.userid ? (
+                <button
+                  className="btn btn-round btn-primary mr-3"
+                  onClick={assignInventoryModal}
+                >
+                  Assign Inventory
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-white btn-border btn-round mr-2"
+                    onClick={() =>
+                      $('#filter-inventory-wrapper').slideToggle(300)
+                    }
+                  >
+                    Filters
+                  </button>
+                  <button
+                    onClick={() => showModal()}
+                    className="btn btn-round btn-primary mr-2"
+                  >
+                    Import Software
+                  </button>
+                  <CSVLink
+                    data={inventories}
+                    filename={'Software-inventory-list.csv'}
+                    className="btn btn-round btn-primary mr-2"
+                    target="_blank"
+                  >
+                    Export Software
+                  </CSVLink>
+
+                  <button
+                    className="btn btn-primary btn-round"
+                    onClick={() => {
+                      setModal(true);
+                      setEditFormData({});
+                      setInventoryId();
+                      setEditForm(false);
+                    }}
+                  >
+                    Add Software
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="page-inner mt--5">
         <div className="card" id="filter-inventory-wrapper">
           <div className="card-body">
             <form
@@ -494,13 +531,13 @@ function SoftwareInventory() {
           </div>
         </div>
         <div className="card">
-          <div className="p-0">
+          <div className="card-body p-0">
             <MaterialTable
-              title={null}
+              title=""
               data={inventories}
               columns={columns}
               options={{
-                search: false,
+                search: true,
                 paging: true,
                 pageSize: 20,
                 emptyRowsWhenPaging: false,
@@ -591,7 +628,7 @@ function SoftwareInventory() {
           brands={brands}
         />
       </Modal>
-    </div>
+    </React.Fragment>
   );
 }
 

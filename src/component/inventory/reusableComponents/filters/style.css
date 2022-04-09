@@ -1,0 +1,97 @@
+.filter__component {
+  padding: 40px 0;
+}
+.filter__component .filters__view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter__component .filters__view .left__filters {
+  flex: 1;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.filter__component .filters__view .right__filters {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.filter__component .filters__view button,
+.button {
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  color: #ffffff;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+  margin-right: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filter__component .filters__view button > img {
+  margin-right: 10px;
+}
+.button__add {
+  background: #bf5555;
+}
+.button__export {
+  background: #5c55bf;
+}
+.button__import {
+  background: #62bc46;
+}
+.button__filter {
+  background: #ffffff;
+  color: #000000 !important;
+}
+
+.filter__caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 1em;
+  content: '';
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+.input__group__container {
+  position: relative;
+}
+.input__group__container .search {
+  position: absolute;
+  left: 10px;
+  top: 35%;
+}
+
+.input__group {
+  padding: 10px 15px;
+  padding-left: 30px;
+  outline: none;
+  border: none;
+  min-width: 350px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  color: #000000;
+  margin-right: 20px;
+}
+
+input[type='search']::placeholder {
+  color: #bbb;
+}
+
+@media only screen and (max-width: 768px) {
+  .filter__component {
+    padding: 10px 0;
+  }
+  .filters__view {
+    display: block;
+  }
+}
