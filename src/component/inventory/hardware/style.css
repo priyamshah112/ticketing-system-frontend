@@ -1,0 +1,23 @@
+.hardware__inventory {
+  margin-left: 100px;
+}
+
+.hardware__inventory .table__view {
+  padding: 20px 20px 0 0;
+}
+
+.MuiToolbar-regular {
+  min-height: 0 !important;
+}
+
+@media (min-width: 600px) {
+  .MuiToolbar-regular {
+    min-height: 0 !important;
+  }
+}
+
+@media (min-width: 0px) and (orientation: landscape) {
+  .MuiToolbar-regular {
+    min-height: 0 !important;
+  }
+}
