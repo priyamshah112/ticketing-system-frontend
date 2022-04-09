@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 import $ from "jquery";
 import { Collapse } from "antd";
 import { useHistory } from "react-router-dom";
-import corner from "../assets/corner.png";
 import inprogress from "../assets/inprogress.png"
 import ellipse from "../assets/Ellipse.png"
 import hardware from "../assets/hardware.png"
@@ -83,7 +82,6 @@ function UserDashboard() {
 
   return (
     <div className="page-inner ">
-      <img className="corner" src={corner}></img>
       <div className="row my-2 ">
         <div className="title-main col-lg-6">
           <h1>Dashboard</h1>
@@ -296,7 +294,7 @@ function UserDashboard() {
                     faq.map((faqdata, i) => (
                       <Panel
                         header={
-                          <h4 className="font-weight-bold mb-0 ">{faqdata.questions}<i class="indicator glyphicon glyphicon-chevron-right  pull-right"></i></h4>
+                          <h4 className=" mb-0 ">{faqdata.questions}<i class="indicator glyphicon glyphicon-chevron-right  pull-right"></i></h4>
                         }
                         key={i}
                       >

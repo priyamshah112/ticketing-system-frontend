@@ -1,0 +1,174 @@
+@font-face {
+    font-family: Rubik;
+    src: url("../assets/fonts/Rubik-Regular.ttf");
+}
+
+.ticket-heading {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 40px;
+    color: #2D3142;
+}
+
+.search-bar {
+    width: 375px;
+    height: 50px;
+    left: 510px;
+    top: 264px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    color: #BEC3CE;
+}
+
+.search-bar1 .form-control {
+    padding-left: 2.375rem;
+    background-color: #FFFFFF
+}
+
+
+.search-icon {
+    color: #BEC3CE;
+    position: absolute;
+    transform: translateY(-50%);
+    font-size: 14px;
+    left: 5px;
+    top: 26px;
+    z-index: 2;
+
+}
+
+.text-padding {
+    padding-left: 42px;
+    width: 375px;
+    height: 50px;
+    left: -13px;
+    position: absolute;
+    top: 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 28px;
+    color: #BEC3CE;
+    margin-top: -34px;
+}
+
+.filter {
+    width: 148.82px;
+    height: 48px;
+    /* position: absolute; */
+    left: -35px;
+    top: 14px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+
+}
+
+.filter>a {
+    color: #2D3142 !important;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 28px;
+
+}
+
+.filter-icon {
+    position: absolute;
+    left: 15px;
+    width: 20px;
+    top: 15px;
+    z-index: 1;
+}
+
+.filter-caret {
+    position: absolute;
+    color: black;
+    right: 15px;
+    top: 24px;
+}
+
+
+.add-ticket {
+    position: relative;
+    height: 48px;
+    background: #BF5555;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    text-align: center;
+    top: 6px;
+}
+
+.button-font {
+    color: #FFFFFF;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 28px;
+    text-align: center;
+    padding: 10px;
+}
+
+.export {
+    position: relative;
+    height: 48px;
+    background: #5C55BF;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    top: 5px;
+    bottom: 0px
+}
+
+.import {
+    height: 48px;
+    position: relative;
+    top: 5px;
+    background: #62BC46;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+}
+
+.tickets-table {
+    /* left: 510px; */
+    top: 48px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    padding: 0px;
+
+   
+}
+
+.MTableToolbar-root-7 {
+    display: none !important;
+}
+
+.MuiPaper-root{
+    font-family: 'Rubik' !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: #2D3142;
+}
+
+.MuiTableCell-head{
+    background-color: #5C55BF  !important;
+    font-family: 'Rubik' !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+
+    color: #ffffff;
+}
