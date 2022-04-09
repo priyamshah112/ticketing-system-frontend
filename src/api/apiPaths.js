@@ -30,6 +30,8 @@ export const apipaths = {
     userDashboard: { url: "/userdashboard", method: "GET" },
     usergetlist: {url: "/user/getlist" ,method:"GET"},
     faqList: {url: "/faqs", method: "GET"},
-    addFaq: {url: "/faq/add", method: "POST"}
-
+    addFaq: {url: "/faq/add", method: "POST"},
+    getHardwareInventory:{url:"/hardware-inventory",method:"GET"},
+    getTicketRequest:{url:"/request-by-user",method:"GET"},
+    getTicketPriority:{url:"/ticket-priority-level",method:"GET"},
 }

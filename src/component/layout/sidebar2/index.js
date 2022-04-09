@@ -12,6 +12,7 @@ import dashboard from "../../assets/dashboard.png"
 import calender from "../../assets/calender.png"
 import tickets from "../../assets/tickets.png"
 import settings from "../../assets/settings.png"
+import logout from "../../../images/admin-dashboard/logout.svg"
 import compliancelogo from "../../assets/compliancelogo.png"
 import sciencelogo from "../../assets/sciences-logo.png"
 import lifescience from "../../assets/life-sciencelogo.png"
@@ -95,8 +96,8 @@ function Sidebar2() {
                             <li class="nav-item items ">
                                 <a class="" href="#"><img src={settings}></img>Settings</a>
                             </li>
-                            <li class="nav-item items ">
-                                <a class="" href="#"><img src={calender}></img>Calender</a>
+                            <li class="nav-item items" onClick={() => localStorage.clear()}>
+                                <a class="" href="#"><img src={calender}></img>Logout</a>
                             </li>
                         </ul>
                     </div>

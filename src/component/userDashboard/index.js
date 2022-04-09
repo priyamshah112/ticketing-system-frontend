@@ -203,7 +203,7 @@ function UserDashboard() {
               </div>
               <div >
                 <div className="button-div">
-                  <button type="button" className="btn info-buttons  active">Files</button>
+                  <button type="button" className="btn info-buttons active">Files</button>
                   <button type="button" className="btn info-buttons ">Links</button>
 
                 </div>

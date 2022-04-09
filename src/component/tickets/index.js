@@ -380,7 +380,7 @@ function Ticket(props) {
 
 
   return (
-    <React.Fragment>
+    <>
       <div className="panel-header ">
         <div className="page-inner py-5">
           <div>
@@ -409,7 +409,7 @@ function Ticket(props) {
 
             </div>
 
-            <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons">
+            <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons " style={{top: '8px'}}>
               <div className="add-ticket py-2 px-3  mr-3">
                 <img src={plus}></img>
                 <a
@@ -449,7 +449,7 @@ function Ticket(props) {
           </div>
         </div>
       </div>
-      <div className="page-inner mt--5 d-flex">
+      <div className=" mt--5 d-flex col-lg-12">
         <div className="card" id="filter-ticket">
           <div className="card-body">
             <form onSubmit={filterSubmitHandler} id="ticket-filter-form">
@@ -642,7 +642,7 @@ function Ticket(props) {
           {error && <p className="text-danger">{error}</p>}
         </div>
       </Modal>
-    </React.Fragment>
+    </>
   );
 }
 
