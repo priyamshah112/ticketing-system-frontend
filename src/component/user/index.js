@@ -361,13 +361,13 @@ function User(props) {
 
                 <div className="col-12 mt-3 text-right">
                   <button
-                    className="btn btn-secondary btn-radius"
+                    className="btn btn-radius primary__save__button"
                     type="submit"
                   >
                     Search
                   </button>
                   <button
-                    className="btn  btn-danger btn-radius ml-3"
+                    className="btn primary__cancel__button ml-3"
                     onClick={() => {
                       setIsFilterActive(false);
                       $('#filter-user-form').trigger('reset');

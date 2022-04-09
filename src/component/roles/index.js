@@ -197,7 +197,7 @@ function Ticket() {
             pageSize: 20,
             emptyRowsWhenPaging: false,
             paging: true,
-            exportButton: true,
+            exportButton: false,
           }}
         />
       </div>

@@ -604,11 +604,14 @@ function HardwareInventory() {
                 </div>
 
                 <div className="col-12 mt-3 text-right">
-                  <button className="btn  btn-primary btn-radius" type="submit">
+                  <button
+                    className="btn btn-radius primary__save__button"
+                    type="submit"
+                  >
                     Search
                   </button>
                   <button
-                    className="btn  btn-primary btn-border ml-3"
+                    className="btn primary__cancel__button ml-3"
                     onClick={() => {
                       $('#filter-inventory').trigger('reset');
                       $('#filter-inventory-wrapper').slideToggle(300);
