@@ -13,6 +13,7 @@ import Calendar from "./calender";
 import TicketCalender from "./calender";
 import RadialBar from "./radialbar";
 import { Link } from "react-router-dom";
+import TicketRequest from "./TicketRequest";
 
 
 
@@ -31,7 +32,7 @@ function AdminDashboard() {
         console.log("Dashboard--- >",data);
         setDashBoardTicketData(data)
       }
-      
+
     const getTicketRequestUser = async () => {
         const data = await getResponse(apipaths.getTicketRequestByUser)
         setUserRequest(data?.data?.data)
@@ -137,9 +138,10 @@ function AdminDashboard() {
                     <HardInventory priorityTickets={priorityTickets} />
                     <div className="col-4">
                         <TrackByCountry />
-                        <TicketCalender />
-
+                        <TicketCalender />  
                     </div>
+                    
+                    
                 </div>
 
 
@@ -307,7 +309,7 @@ function AdminDashboard() {
                                 </table>
                             </div>
                             <div className="category__box category__box__ht__min">
-                                <p className="category__title">ticket requests</p>
+                                <p className="category__title">ticket requestslknd</p>
                             </div>
                         </div>
                         <div className="mansory__lyt__ch">

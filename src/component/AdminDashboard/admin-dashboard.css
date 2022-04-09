@@ -149,7 +149,7 @@ ul {
 .tabPanel>div>div>a {
     min-width: 100px !important;
 }
-.tabPanel>div>div + .PrivateTabIndicator-colorSecondary-5{
+.tabPanel>div>div + .PrivateTabIndicator-colorSecondary-5, .ticketRequestWrapper .PrivateTabIndicator-colorSecondary-5{
     display: none;
 }
 .tabPanel>div>div>a.Mui-selected {
@@ -162,7 +162,14 @@ ul {
     min-height: 32px;
     min-width: 30px!important;
 }
-
+.parentTabs .MuiAppBar-colorPrimary.ticketRequestWrapper{
+    width: 75%;
+    margin: auto;
+    box-shadow: none;
+}
+.ticketRequestWrapper  [aria-label="nav tabs example"] > a{
+    min-width: 0!important;
+}
 .parentTabs .MuiAppBar-colorPrimary {
     background-color: #ffffff;
     color: #000000;
@@ -359,7 +366,27 @@ padding-right: 5%;
     overflow: hidden;
     overflow-y: auto;
 }
+.ticketRequestWrapper [aria-label="nav tabs example"] > a.MuiTab-textColorInherit.Mui-selected{
+    background: #62BC46;
+box-shadow: 0px 10px 30px rgba(112, 136, 210, 0.1);
+border-radius: 16px;
+color: #2D3142;
+}
+.ticketRequestFlex{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    margin: auto;
+    font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+letter-spacing: 2px;
+text-transform: uppercase;
 
+color: #2D3142;
+}
 .category__box:first-child {
     margin-bottom: 50px;
 }
@@ -396,7 +423,6 @@ padding-right: 5%;
     width: 100%;
     padding: 24px;
     padding-bottom: 0px;
-    overflow-y: auto;
 }
 .mixed-chart-title{
     height: 14px;
