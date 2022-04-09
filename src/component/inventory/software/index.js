@@ -472,11 +472,14 @@ function SoftwareInventory() {
                 </div>
 
                 <div className="col-12 mt-3 text-right">
-                  <button className="btn  btn-info btn-radius" type="submit">
+                  <button
+                    className="btn btn-radius primary__save__button"
+                    type="submit"
+                  >
                     Search
                   </button>
                   <button
-                    className="btn  btn-info btn-border ml-3"
+                    className="btn primary__cancel__button ml-3"
                     onClick={() => {
                       let apipath = apipaths.softwareInventoryList;
                       apipath['url'] = apipath['url'].split('?')[0];
