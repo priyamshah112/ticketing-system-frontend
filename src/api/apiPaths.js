@@ -32,6 +32,8 @@ export const apipaths = {
     faqList: {url: "/faqs", method: "GET"},
     addFaq: {url: "/faq/add", method: "POST"},
     getHardwareInventory:{url:"/hardware-inventory",method:"GET"},
-    getTicketRequest:{url:"/request-by-user",method:"GET"},
+    getTicketRequestByUser:{url:"/request-by-user",method:"GET"},
     getTicketPriority:{url:"/ticket-priority-level",method:"GET"},
+    getTicketRequest:{url:"/ticket-request",method:"GET"},
+    getTrackByCountry:{url:"/track-by-contry",method:"GET"}
 }

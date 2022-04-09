@@ -24,6 +24,7 @@ function Dashboard() {
     getTickets();
     const { data } = await getResponse(apipaths.dashboard);
     setData(data.data)
+    console.log("Dashboard--- >",data);
   }
 
   const getTickets = async () => {

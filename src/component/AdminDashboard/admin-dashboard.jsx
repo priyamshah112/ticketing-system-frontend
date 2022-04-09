@@ -12,21 +12,28 @@ import TrackByCountry from "./track-by-country";
 import Calendar from "./calender";
 import TicketCalender from "./calender";
 import RadialBar from "./radialbar";
+import { Link } from "react-router-dom";
 
 
 
 function AdminDashboard() {
     const [userRequest, setUserRequest] = useState([])
     const [priorityTickets, setPriorityTickets] = useState([])
+    const [dashBoardTicketData, setDashBoardTicketData] = useState([])
     useEffect(() => {
         getTicketRequest()
         getTicketPriority()
+        getTicketRequestUser()
+        getData()
     }, [])
-
-
-
-    const getTicketRequest = async () => {
-        const data = await getResponse(apipaths.getTicketRequest)
+    const getData = async () => {
+        const { data } = await getResponse(apipaths.dashboard);
+        console.log("Dashboard--- >",data);
+        setDashBoardTicketData(data)
+      }
+      
+    const getTicketRequestUser = async () => {
+        const data = await getResponse(apipaths.getTicketRequestByUser)
         setUserRequest(data?.data?.data)
     }
 
@@ -34,6 +41,11 @@ function AdminDashboard() {
         const data = await getResponse(apipaths.getTicketPriority)
         setPriorityTickets(data)
     }
+    const getTicketRequest = async () => {
+        const data = await getResponse(apipaths.getTicketRequest)
+        console.log(data)
+    }
+    
     return (
         <>
             <div className="content__section">
@@ -49,8 +61,8 @@ function AdminDashboard() {
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">Open Tickets</h6>
-                                    <p className="tickets__count">25</p>
-                                    <p className="tickets__viewDetails">View Details >></p>
+                                    <p className="tickets__count">{dashBoardTicketData?.data?.counters[0].total}</p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?open=true`}> View Details >></Link></p>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +75,8 @@ function AdminDashboard() {
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">pending Tickets</h6>
-                                    <p className="tickets__count">13</p>
-                                    <p className="tickets__viewDetails">View Details >></p>
+                                    <p className="tickets__count">{dashBoardTicketData?.data?.counters[1].total}</p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?pending=true`}> View Details >></Link></p>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +89,8 @@ function AdminDashboard() {
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">closed</h6>
-                                    <p className="tickets__count">4</p>
-                                    <p className="tickets__viewDetails">View Details >></p>
+                                    <p className="tickets__count">{dashBoardTicketData?.data?.counters[2].total}</p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?closed=true`}> View Details >></Link></p>
                                 </div>
                             </div>
                         </div>
@@ -94,8 +106,8 @@ function AdminDashboard() {
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">total hardware</h6>
-                                    <p className="tickets__count">9</p>
-                                    <p className="tickets__viewDetails">View Details >></p>
+                                    <p className="tickets__count">{dashBoardTicketData?.data?.counters[2].total}</p>
+                                    <p className="tickets__viewDetails"><Link to={`/inventory/hardware`}> View Details >></Link></p>
                                 </div>
                             </div>
                         </div>
@@ -111,8 +123,8 @@ function AdminDashboard() {
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">active users</h6>
-                                    <p className="tickets__count">10</p>
-                                    <p className="tickets__viewDetails">View Details >></p>
+                                    <p className="tickets__count">{dashBoardTicketData?.data?.counters[3].total}</p>
+                                    <p className="tickets__viewDetails" ><Link to={`/user`}> View Details >></Link></p>
                                 </div>
                             </div>
                         </div>
@@ -376,9 +388,9 @@ function AdminDashboard() {
                         </div>
                         <div className="mansory__lyt__ch">
                             <div className="category__box category__box__ht__max">
-                                <p className="category__title">track by country</p>
+                                <p className="category__title"></p>
                             </div>
-                            <div className="category__box category__box__ht__min">
+                            <div className="category__box category__box__ht__min calender">
                                 <p className="category__title">calender</p>
                             </div>
                         </div>
