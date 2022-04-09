@@ -36,11 +36,14 @@ function Login(props) {
       email: email ? email : e.email,
       password: password ? password : e.password,
     });
+    console.log("Login Dispatch:", data);
     if (error)
+    {
       return setError({
         show: true,
         message: "Incorrect credentials entered.",
       });
+    }
     dispatch(addUserDetailsAction(data.data));
     // console.log(data.data)
     if (data.data.userType === "Support") {

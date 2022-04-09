@@ -88,7 +88,7 @@ function Sidebar2() {
                     <div className="card-body">
                         <ul class="nav   flex-column">
                             <li class="nav-item items">
-                                <a class="" href={`/dashboard`}><img src={dashboard}></img>Dashboard</a>
+                                <a class="" href={`/userdashboard`}><img src={dashboard}></img>Dashboard</a>
                             </li>
                             <li class="nav-item items ">
                                 <a class="" href={`/tickets`}><img src={tickets}></img>Tickets</a>
