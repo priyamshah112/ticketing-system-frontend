@@ -398,13 +398,13 @@ function Ticket(props) {
             </div>
             <div className="col-lg filter">
               <img src={filterpic} alt="filter" className="filter-icon"></img>
-              <a
-                href="#"
-                className="btn  ml-3 mr-5"
+              <button
+               
+                className="btn  ml-3 mr-5 filter-btn"
                 onClick={() => $("#filter-ticket").slideToggle(300)}
               >
                 Filters
-              </a>
+              </button>
               <span className="caret filter-caret"></span>
 
             </div>
@@ -412,36 +412,36 @@ function Ticket(props) {
             <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons " style={{ top: '8px' }}>
               <div className="add-ticket py-2 px-3  mr-3">
                 <img src={plus}></img>
-                <a
+                <button
                   href="javascript:void(0);"
                   className="button-font"
                   onClick={() => setTicketModal(true)}
                 >
                   Add Ticket
-                </a>
+                </button>
               </div>
               <div className="export py-2 px-3 mr-3">
                 <img src={export1}></img>
 
-                <a
+                <button
                   href="javascript:void(0);"
                   className="button-font"
 
                   onClick={() => setTicketModal(true)}
                 >
                   Export
-                </a>
+                </button>
               </div>
               <div className="import py-2 px-3 mr-3">
                 <img src={import1}></img>
 
-                <a
+                <button
                   href="javascript:void(0);"
                   className="button-font"
                   onClick={() => setTicketModal(true)}
                 >
                   Import
-                </a>
+                </button>
               </div>
 
             </div>
@@ -449,7 +449,7 @@ function Ticket(props) {
           </div>
         </div>
       </div>
-      <div className=" mt--5 d-flex col-lg-12" style={{ paddingRight: '74px' }}>
+      <div className=" mt--5  col-lg-12" style={{ paddingRight: '74px' }}>
         <div className="card" id="filter-ticket">
           <div className="card-body">
             <form onSubmit={filterSubmitHandler} id="ticket-filter-form">

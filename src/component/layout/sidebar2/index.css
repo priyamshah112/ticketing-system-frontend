@@ -49,7 +49,7 @@
 }
 
 .items>a {
-    color: #5C55BF
+    color: #BEC3CE;
 }
 
 .items>a>img {
@@ -177,4 +177,9 @@
     /* top: 0px; */
     z-index: -1;
   
+  }
+
+  
+  .items > a:hover,:active{
+      color:#5C55BF;
   }

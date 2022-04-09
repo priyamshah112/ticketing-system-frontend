@@ -1,22 +1,15 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import IconTabs from "../sidebar";
-
+import IconTabs from "../../AdminDashboard/sidebar";
+import Header from "../../AdminDashboard/header";
 
 function AdminLayout(props) {
-  let token = localStorage.authToken;
-  
-  if (!token) {
-    return (
-      <Redirect to={{ pathname: "/" }} />
-    );
-  }    
+    
   
     return (
     
       <div ClassName="wrapper">
-                {console.log("in here")}
-
+        <Header/>
         <IconTabs />
         <div className="main-panel">
           <div className="content">
