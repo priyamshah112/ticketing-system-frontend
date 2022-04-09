@@ -12,10 +12,12 @@ import MaterialTable from "material-table";
 import {
   assignInventoryToUser,
   unassignInventory,
+  dateFormatHandler
 } from "../../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 import swal from "sweetalert";
 import { getUserLists } from "../../../actions/userActions";
+import { CSVLink } from "react-csv";
 
 function HardwareInventory() {
   let id = "hardware";
@@ -244,6 +246,15 @@ function HardwareInventory() {
   const inventoryDataModifier = (data) => {
     let mydata = data;
     mydata.map((inv) => {
+      
+      inv.assigned_on =
+      inv.assigned_on &&
+      dateFormatHandler(new Date(inv.assigned_on).getTime());
+
+      inv.warranty_expire_on =
+      inv.warranty_expire_on &&
+      dateFormatHandler(new Date(inv.warranty_expire_on).getTime());
+
       inv.assigned_to_username = inv.user && inv.user.name && inv.user.name;
       let invStatus = "";
       // eslint-disable-next-line default-case
@@ -320,7 +331,6 @@ function HardwareInventory() {
     let path = apipaths.hardwareInventoryList;
     path["url"] = path["url"].split("?")[0] + "?" + elem;
     let { data } = await getResponse(path, formData);
-    console.log(data.data.inventory);
     let inventoryData = inventoryDataModifier(data.data.inventory);
     setInventories(inventoryData);
   };
@@ -424,14 +434,11 @@ function HardwareInventory() {
                   >
                     Import Hardware
                   </button>
-                  <button
-                    onClick={() => {
-                      window.open(inventoryList.exportUrl, "_blank").focus();
-                    }}
+                  <CSVLink data={inventories}
+                    filename={"hardware-inventory-list.csv"}
                     className="btn btn-round btn-primary mr-2"
-                  >
-                    Export Hardware
-                  </button>
+                    target="_blank"
+                  >Export Hardware</CSVLink>
                   <button
                     className="btn btn-primary btn-round"
                     onClick={() => {
@@ -511,7 +518,7 @@ function HardwareInventory() {
                 <div className="col-12 col-md-6 col-lg-3 mt-3">
                   <div>
                     <div>
-                      <label className="mb-2">Serial Number</label>
+                      <label className="mb-2">Service Tag</label>
                     </div>
                     <input
                       name="serial_number"

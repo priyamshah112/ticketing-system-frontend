@@ -1,0 +1,34 @@
+.pg-container{
+    position: relative;
+    width: 100%;
+    height: 54px;
+    border-radius: 5px;
+    background-color: #F4F6FA;
+    margin-bottom: 12px
+}
+.pg-bar{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 54px;
+    border-radius: 5px;
+    z-index: 99;
+}
+.pg-data-labels{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 54px;
+    padding: 0px 24px;
+    font-size: 14px;
+    font-weight: 400
+}
+.pg-label{
+    z-index: 999;
+    margin: 0px;
+}
+.pg-count{
+    z-index: 999;
+    margin: 0px;
+}

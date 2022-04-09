@@ -31,7 +31,8 @@ export const apipaths = {
     usergetlist: {url: "/user/getlist" ,method:"GET"},
     faqList: {url: "/faqs", method: "GET"},
     addFaq: {url: "/faq/add", method: "POST"},
-    viewProfile: {url: "/view-profile", method: "POST"},
-    updateProfile: {url: "/update-profile", method: "POST"}
-
+    getHardwareInventory:{url:"/hardware-inventory",method:"GET"},
+    getTicketRequestByUser:{url:"/request-by-user",method:"GET"},
+    getTicketPriority:{url:"/ticket-priority-level",method:"GET"},
+    getTicketRequest:{url:"/ticket-request",method:"GET"},
 }

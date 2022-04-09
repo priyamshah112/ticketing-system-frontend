@@ -46,7 +46,7 @@ function RoleForm(props) {
                     />
                 </div>
 
-                <div className="col-lg-12 col-md-12 col-12 mt-4">
+                {/* <div className="col-lg-12 col-md-12 col-12 mt-4">
                     <label className="mb-2">Managers<span className="text-danger">*</span></label>
                     {
                         managers && managers.map((m, i) => {
@@ -60,15 +60,15 @@ function RoleForm(props) {
                                     </div>
                                     <div className="col-lg-6 col-md-6 col-6">
                                         <select className="form-control" id={`manager_mode_${m.id}`} onChange={(e) => managerHandler()}>
-                                            <option value={"V"}>View</option>
-                                            <option value={"E"}>Write</option>
+                                            <option value={"Read"}>View</option>
+                                            <option value={"Write"}>Write</option>
                                         </select>
                                     </div>
                                 </div>
                             )
                         })
                     }
-                </div>
+                </div> */}
                 <div className="col-12">
                     <div className="pull-right">
                         <button className="btn btn-success" type="submit">Submit</button>

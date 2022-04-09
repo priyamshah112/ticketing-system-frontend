@@ -5,9 +5,17 @@ import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
+import bg from "./assets/background.png"
+import compliancelogo from "./assets/compliancelogo.png"
+import sciencelogo from "./assets/sciences-logo.png"
+import lifescience from "./assets/life-sciencelogo.png"
+import google from "./assets/google.png"
+import facebook from "./assets/facebook.png"
+
 import logo2 from "./assets/logo2.png";
 import logo3 from "./assets/logo3.png";
 import $ from "jquery"
+import './assets/css/login.css'
 const queryString = require("query-string");
 
 function Login(props) {
@@ -26,7 +34,7 @@ function Login(props) {
     setError({ show: false });
     let { status_code, data, error } = await getResponse(apipaths.login, {
       email: email ? email : e.email,
-      password: password ? password: e.password,
+      password: password ? password : e.password,
     });
     if (error)
       return setError({
@@ -50,11 +58,11 @@ function Login(props) {
       window.location.href = '/dashboard';
     }
     let cred = localStorage.credentials;
-    if(cred){
+    if (cred) {
       cred = JSON.parse(cred);
-      loginHandler(cred) 
+      loginHandler(cred)
     }
-    
+
   }, [])
 
   const createUserHandler = async (e) => {
@@ -79,57 +87,86 @@ function Login(props) {
 
   const saveCredentialsHandler = (elem) => {
     let checked = $(`.${elem}`).prop("checked")
-    if(checked){
+    if (checked) {
       localStorage.setItem("credentials", JSON.stringify({
         email,
         password,
       }))
-    }else{
+    } else {
       localStorage.removeItem("credentials")
     }
   }
+
+
+
 
   return (
     <>
       <div className="content-wrapper">
         <div className="row mx-auto g-0">
-          <div className="col-lg-8 banner-img hide-on-med-and-down">
-            <div className="main-banner">
+          <div className="col-lg-6 hide-on-med-and-down">
+            <div className=" col-lg-12  main-banner">
+              <div>
+                <img
+                  src={compliancelogo}
+                  alt="logo"
+                  className="img-fluid mb-4 d-block  compliance-logo"></img>
+                <img
+                  src={sciencelogo}
+                  alt="logo"
+                  className="img-fluid mb-4 d-block  science-logo"></img>
+                <img
+                  src={lifescience}
+                  alt="logo"
+                  className="img-fluid mb-4 d-block  life-sciencelogo"></img>
+              </div>
               <div className="auth-content-logo">
                 <img
-                  src={logo1}
+                  src={bg}
                   alt=""
-                  className="img-fluid mb-4 d-block login-logo"
+                  className="img-fluid mb-4 d-block bg-logo"
                 />
               </div>
-              <h1 className="text-white my-4">Welcome to Enhance Compliance!</h1>
-              <h5 className="text-white font-weight-normal">
-                Please use your credentials to login.
-              </h5>
+
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-6  px-0">
             <div className="form-container">
               <div className=" auth-content">
-                <h1 className="mb-4 f-w-400 bold">Ticket System</h1>
+                <h1 className="mb-4 f-w-400 bold sign-in-head">Sign In</h1>
 
                 <h5 className=" font-weight-normal">
-                  {create ? "Activate Account" : "LOGIN"}
+                  {create ? <div>
+                    <span className="have-account">Already have an account? </span> <span className="sign-up">Sign Up</span>
+                  </div> :
+                    <div>
+                      <span className="have-account">Already have an account? </span> <span className="sign-up">Sign In</span>
+                    </div>
+                  }
                 </h5>
                 {!create ? (
                   <form>
+
+                    <div className="button-div">
+                      <button type="button" className="btn btn-light google-button " data-toggle="button" aria-pressed="false" ><img src={google} classname="google-icon"></img>Continue with Google</button>
+                      <button type="button" class="btn btn-primary facebook-button" data-toggle="button" aria-pressed="false" ><img src={facebook} classname="  google-icon"></img> Continue with Facebook</button>
+                    </div>
+                    <div className="divider-div">
+                      <div><hr className="divider"></hr></div>  <div>or </div> <div><hr className="divider"></hr></div>
+                    </div>
                     <input
                       type="hidden"
                       name="_token"
                       value="Ba0kkGpzOoHo2USnqX7zrrAD3KeZ9uCXEgbdHGPD"
+
                     />
                     <div className="form-group mb-3">
-                      <label className="floating-label" htmlFor="Email">
+                      <label className="input-label" htmlFor="Email">
                         Email address
                       </label>
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control input-box"
                         onChange={(e) => setEmail(e.target.value)}
                         name="email"
                         id="Email"
@@ -139,12 +176,12 @@ function Login(props) {
                       />
                     </div>
                     <div className="form-group mb-4 position-relative">
-                      <label className="floating-label" htmlFor="Password">
+                      <label className="input-label" htmlFor="Password">
                         Password
                       </label>
                       <input
                         type={passType}
-                        className="form-control"
+                        className="form-control input-box"
                         onChange={(e) => setPassword(e.target.value)}
                         name="password"
                         value={password}
@@ -153,13 +190,13 @@ function Login(props) {
                         required=""
                       />
                       <div>
-                        {
+                        {/*
                           passType === "text" ? (
                             <i className="fas fa-eye show-password" onClick={() => setPassType("password")}></i>
                           ) : (
                             <i className="fas fa-eye-slash show-password" onClick={() => setPassType("text")}></i>
                           )
-                        }
+                          */}
 
                       </div>
                     </div>
@@ -171,26 +208,14 @@ function Login(props) {
                         </div>
                       )}
                     </div>
-                    <div className="custom-control custom-checkbox text-left mb-4 mt-2">
-                      <input
-                        type="checkbox"
-                        className="remember_me custom-control-input"
-                        id="customCheck1"
-                        name="remember_me" 
-                        onChange={() => saveCredentialsHandler("remember_me")}
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="customCheck1"
-                      >
-                        Save credentials.
-                      </label>
+                    <div className="forgot-pwd">
+                      Forgot Password?
                     </div>
                     <div
-                      className="btn btn-block btn-info sign-in mb-4"
+                      className="btn btn-block text-center sign-in-button mb-4"
                       onClick={loginHandler}
                     >
-                      SIGN IN
+                      Sign In
                     </div>
                   </form>
                 ) : (
@@ -203,26 +228,26 @@ function Login(props) {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Email</label>
+                      <label className="input-label">Email</label>
                       <input
-                        className="form-control"
+                        className="form-control input-box" 
                         value={parsed.email}
                         disabled
                       />
                     </div>
                     <div className="form-group">
-                      <label>Password</label>
+                      <label className="input-label">Password</label>
                       <input
-                        className="form-control"
+                        className="form-control input-box"
                         onChange={(e) =>
                           setFormdata({ ...formdata, password: e.target.value })
                         }
                       />
                     </div>
                     <div className="form-group">
-                      <label>Re-Password</label>
+                      <label className="input-label">Re-Password</label>
                       <input
-                        className="form-control"
+                        className="form-control input-box"
                         onChange={(e) =>
                           setFormdata({
                             ...formdata,
@@ -238,12 +263,7 @@ function Login(props) {
                     </div>
                   </form>
                 )}
-                <div className="text-center">
-                  <p className="mb-2 mt-4 text-muted">
-                    <Link className="f-w-400" to="/forgotpassword">Forgot password?{" "} {" "}</Link>
-                    <Link className="f-w-400" to="/user/resetpassword">Reset</Link>
-                  </p>
-                </div>
+
               </div>
             </div>
           </div>

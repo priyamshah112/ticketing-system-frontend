@@ -12,6 +12,7 @@ import $ from "jquery";
 import MaterialTable from "material-table";
 import { dateFormatHandler } from "../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
+import { CSVLink } from "react-csv";
 
 function User(props) {
   const columns = [
@@ -30,6 +31,10 @@ function User(props) {
     {
       title: "Type",
       field: "userType",
+    },
+    {
+      title: "Country",
+      field: "user_details.clientLocation",
     },
     {
       title: "Added On",
@@ -318,12 +323,11 @@ function User(props) {
               >
                 Import User
               </button>
-              <button
-                className="btn btn-primary btn-round mr-2"
-                onClick={() => window.open(exportUrl, "_blank").focus()}
-              >
-                Export User
-              </button>
+              <CSVLink data={isFilterActive ? filterData : userList}
+                    filename={"users-list.csv"}
+                    className="btn btn-round btn-primary mr-2"
+                    target="_blank"
+                  >Export User</CSVLink>
               <button
                 className="btn btn-primary btn-round"
                 onClick={() => {
@@ -355,129 +359,6 @@ function User(props) {
                       <option value="user">User</option>
                       <option value="admin">Admin</option>
                       <option value="support">Co-Admin</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Hire Date</label>
-                      <input type={"text"} className="d-none" />
-                    </div>
-                    <RangePicker
-                      className="form-control"
-                      name="hireDate"
-                      onChange={(val) => {}}
-                    />
-                  </div>
-                </div> */}
-
-                {/* <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Start Date</label>
-                    </div>
-                    <RangePicker
-                      className="form-control"
-                      name="startDate"
-                    />
-                  </div>
-                </div> */}
-
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Project Name</label>
-                    </div>
-                    <select className="form-control" name="projectName">
-                      <option value="">Select One</option>
-                      {userData &&
-                        userData.projectName &&
-                        userData.projectName.map((project, index) => {
-                          if (!project) return null;
-                          return (
-                            <option key={index} value={project}>
-                              {project}
-                            </option>
-                          );
-                        })}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Client Name</label>
-                    </div>
-                    <select className="form-control" name="clientName">
-                      <option value={""}>Select One</option>
-                      {userData &&
-                        userData.clientName &&
-                        userData.clientName.map((project, index) => {
-                          if (!project) return null;
-                          return (
-                            <option key={index} value={project}>
-                              {project}
-                            </option>
-                          );
-                        })}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Work Location</label>
-                    </div>
-                    <select className="form-control" name="workLocation">
-                      <option value={""}>Select One</option>
-                      {userData &&
-                        userData.workLocation &&
-                        userData.workLocation.map((project, index) => {
-                          if (!project) return null;
-                          return (
-                            <option key={index} value={project}>
-                              {project}
-                            </option>
-                          );
-                        })}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Hired As</label>
-                    </div>
-                    <select className="form-control" name="hiredAs">
-                      <option value={""}>Select One</option>
-                      {userData &&
-                        userData.hiredAs &&
-                        userData.hiredAs.map((project, index) => {
-                          if (!project) return null;
-                          return (
-                            <option key={index} value={project}>
-                              {project}
-                            </option>
-                          );
-                        })}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-3 mt-3">
-                  <div>
-                    <div>
-                      <label className="mb-2">Provided Laptop</label>
-                    </div>
-                    <select className="form-control" name="providingLaptop">
-                      <option value={""}>Select One</option>
-                      <option value={"Admin"}>Yes</option>
-                      <option value={"Agent"}>No</option>
                     </select>
                   </div>
                 </div>

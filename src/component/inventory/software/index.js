@@ -13,9 +13,11 @@ import MaterialTable from "material-table";
 import {
   assignInventoryToUser,
   unassignInventory,
+  dateFormatHandler
 } from "../../../actions/commonAction";
 import { Tooltip } from "@material-ui/core";
 import { getUserLists } from "../../../actions/userActions";
+import { CSVLink } from "react-csv";
 
 function SoftwareInventory() {
   const parameters = useParams();
@@ -196,6 +198,15 @@ function SoftwareInventory() {
       );
     }
     data.map((inv) => {
+      
+      inv.assigned_on =
+      inv.assigned_on &&
+      dateFormatHandler(new Date(inv.assigned_on).getTime());
+
+      inv.expiry_date =
+      inv.expiry_date &&
+      dateFormatHandler(new Date(inv.expiry_date).getTime());
+      
       inv.assigned_to_username = inv.user && inv.user.name && inv.user.name;
       let invStatus = "";
       // eslint-disable-next-line default-case
@@ -274,7 +285,7 @@ function SoftwareInventory() {
     path["url"] = path["url"].split("?")[0] + "?" + elem;
     let { data, error } = await getResponse(path, formData);
     if (error) return toast.warn("Error in listing tickets.");
-    console.log(data);
+
     inventoryListDataModifier(data.data.inventory);
   };
 
@@ -373,14 +384,12 @@ function SoftwareInventory() {
                   >
                     Import Software
                   </button>
-                  <button
-                    onClick={() => {
-                      window.open(inventoryList.exportUrl, "_blank").focus();
-                    }}
+                  <CSVLink data={inventories}
+                    filename={"Software-inventory-list.csv"}
                     className="btn btn-round btn-primary mr-2"
-                  >
-                    Export Software
-                  </button>
+                    target="_blank"
+                  >Export Software</CSVLink>
+
                   <button
                     className="btn btn-primary btn-round"
                     onClick={() => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom"; 
+import Layout from '../layout';
 
 function ProtectedRoute({ component: Component, ...rest }) { 
 	let token = localStorage.authToken;
@@ -7,7 +8,9 @@ function ProtectedRoute({ component: Component, ...rest }) {
 		return <Route
 			{...rest}
 			render={(props) => { 
-				return <Component history={props.history}/>				
+				return  <Layout>
+							<Component history={props.history}/>
+						</Layout>				
 			}}
 		/>	
 	} 
