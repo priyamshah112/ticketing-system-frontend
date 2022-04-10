@@ -175,10 +175,11 @@ function Ticket() {
 
   const filterProps = {
     heading: 'User Roles',
+    filterEnableButton: false,
   };
   return (
     <div className="roles__window">
-      <FilterComponent {...{ ...filterProps }} />
+      <FilterComponent {...{ ...filterProps }} />      
 
       <div className="roles__table">
         <MaterialTable

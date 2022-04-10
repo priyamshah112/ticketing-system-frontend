@@ -80,7 +80,7 @@ function TicketDetails(props) {
             let username = ""
             let created_by = ""
             userList.map(user => {
-                if (ticket.assiged_to === user.id) {
+                if (ticket.assigned_to === user.id) {
                     username = user.name
                 }
 
@@ -90,7 +90,7 @@ function TicketDetails(props) {
             })
 
             ticket.created_by = username;
-            ticket.assiged_to = username;
+            ticket.assigned_to = username;
             ticket.subject = (<Link style={{ fontWeight: 600 }} to={`/ticket/details?ticketid=${ticket.id}`}>{ticket.subject}</Link>)
         })
 

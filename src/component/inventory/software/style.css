@@ -11,6 +11,10 @@
   min-height: 0 !important;
 }
 
+#filter-inventory-wrapper{
+  margin-right: 20px;
+}
+
 @media (min-width: 600px) {
   .MuiToolbar-regular {
     min-height: 0 !important;

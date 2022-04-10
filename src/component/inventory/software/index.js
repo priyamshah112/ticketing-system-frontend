@@ -100,7 +100,7 @@ function SoftwareInventory() {
   const brands = ['HP', 'DELL'];
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
-  const userList = useSelector((state) => state.userList);
+  const [userList, setUserList] = useState([]);
 
   const [isAssignInventoryModal, setIsAssignInventoryModal] = useState(false);
 
@@ -110,9 +110,9 @@ function SoftwareInventory() {
   };
 
   const userListHandler = async () => {
-    const { data } = await getResponse(apipaths.listusers, null);
-    const users = data.data.user;
-    dispatch(getUserLists(users));
+    const { data } = await getResponse(apipaths.usergetlist, null);
+    if (error) return toast.warn('Error in listing Users.');
+    setUserList(data.data.user);
   };
 
   const assignInventoryHandleOk = async () => {
@@ -142,11 +142,15 @@ function SoftwareInventory() {
   };
 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(inventoryListAction(id));
-    userListHandler();
     $('#filter-inventory-wrapper').slideToggle(0);
   }, [id]);
+
+  useEffect(() => {
+    userListHandler();
+  }, [])
 
   const editInventory = (inventory, viewOnly) => {
     setEditFormData(inventory);
@@ -434,7 +438,7 @@ function SoftwareInventory() {
                     {userList &&
                       userList.map((user) => (
                         <option value={user.id}>
-                          {user?.user_details?.firstName}
+                          {user?.user_details?.firstName} {user?.user_details?.lastName}
                         </option>
                       ))}
                   </select>

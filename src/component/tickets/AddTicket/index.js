@@ -51,7 +51,7 @@ function AddTicket(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const { message, subject, assiged_to, priority } = formdata;
+          const { message, subject, assigned_to, priority } = formdata;
           if (userType === "User") {
             if (!message || !subject) {
               toast.error("All field are required.");
@@ -59,8 +59,8 @@ function AddTicket(props) {
               return null;
             }
           } else {
-            form_data.append("assiged_to", formdata.assiged_to);
-            if (!message || !subject || !assiged_to || !priority) {
+            form_data.append("assigned_to", formdata.assigned_to);
+            if (!message || !subject || !assigned_to || !priority) {
               toast.error("All field are required.");
               setTicketModal(false);
               return null;
@@ -110,7 +110,7 @@ function AddTicket(props) {
               <select
                 className="form-control"
                 onChange={(e) =>
-                  setFormdata({ ...formdata, assiged_to: e.target.value })
+                  setFormdata({ ...formdata, assigned_to: e.target.value })
                 }
               >
                 <option value="">Choose One</option>

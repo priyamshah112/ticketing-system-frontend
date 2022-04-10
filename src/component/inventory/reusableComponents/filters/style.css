@@ -41,11 +41,13 @@
 }
 .button__export {
   background: #5c55bf;
+  margin-right: 0px;
 }
 .button__import {
   background: #62bc46;
 }
 .button__filter {
+  min-width: 140px;
   background: #ffffff;
   color: #000000 !important;
 }

@@ -31,6 +31,7 @@ function Ticket(props) {
   const [users, setUsers] = useState([]);
   const [isModal, setIsModal] = useState(false);
   const [ticketinfo, setTicketInfo] = useState([]);
+  const [supportUsers, setSupportUsers] = useState([]);
   const userDetails = useSelector((state) => state.userDetails);
   const userList = useSelector((state) => state.userList);
   const userType = JSON.parse(localStorage.user_details).userType;
@@ -112,6 +113,7 @@ function Ticket(props) {
 
   useEffect(() => {
     getTickets();
+    getSupportUsers();
   }, []);
 
   useEffect(() => {
@@ -149,7 +151,7 @@ function Ticket(props) {
       let username = '';
       let created_by = '';
       userList.map((user) => {
-        if (ticket.assiged_to === user.id) {
+        if (ticket.assigned_to === user.id) {
           username = user.name;
         }
 
@@ -163,7 +165,7 @@ function Ticket(props) {
       if (ticket.subject.length > 30)
         ticket.subject = ticket.subject.substring(0, 30) + '...';
 
-      //ticket.assiged_to = username;
+      //ticket.assigned_to = username;
       let ticketStatus = '';
       // eslint-disable-next-line default-case
       switch (ticket.status) {
@@ -242,7 +244,6 @@ function Ticket(props) {
   };
 
   const getTickets = async () => {
-    console.log(apipaths.listticket);
     const { data, error } = await getResponse(apipaths.listticket);
     if (error) return toast.warn('Error in listing tickets.');
 
@@ -252,7 +253,7 @@ function Ticket(props) {
       let username = '';
       let created_by = '';
       userList.map((user) => {
-        if (ticket.assiged_to === user.id) {
+        if (ticket.assigned_to === user.id) {
           username = user.name;
         }
 
@@ -266,7 +267,7 @@ function Ticket(props) {
       if (ticket.subject.length > 30)
         ticket.subject = ticket.subject.substring(0, 30) + '...';
 
-      //ticket.assiged_to = username;
+      //ticket.assigned_to = username;
       let ticketStatus = '';
       // eslint-disable-next-line default-case
       switch (ticket.status) {
@@ -329,7 +330,12 @@ function Ticket(props) {
     });
 
     setTicketDataOnStatus(data.data.tickets);
-    console.log("Tickets Data: ", data.data.tickets);
+  };
+  
+  const getSupportUsers = async () => {
+    const { data, error } = await getResponse(apipaths.supportUsers);
+    if (error) return toast.warn('Error in listing Support Users.');
+    setSupportUsers(data.data.user);
   };
 
   const ticketAssignHandler = (ticket) => {
@@ -414,16 +420,6 @@ function Ticket(props) {
                     className="form-control filter-input"
                   />
                 </div>
-                {/* <div className="form-group col-12 col-md-6 col-lg-4">
-                    <div className="form-group">
-                      <label className="mb-2">Type</label>
-                      <select name="type" className="form-control">
-                        <option>Select Type</option>
-                        <option>Hardware</option>
-                        <option>Software</option>
-                      </select>
-                    </div>
-                  </div> */}
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Status</label>
                   <select name="status" className="form-control filter-status">
@@ -438,21 +434,21 @@ function Ticket(props) {
                     <label className="mb-2">Assigned To</label>
                     <select name="assigned_to" className="form-control">
                       <option value="">Select Assigned To</option>
-                      {/* {ticketList.length &&
-                        ticketList.map((result) => {
-                          if (result.support?.id) {
+                      {supportUsers.length &&
+                        supportUsers.map((user) => {
+                          if (user?.id) {
                             return (
                               <option
-                                value={result.support?.id}
-                                key={result.support?.id}
+                                value={user?.id}
+                                key={user?.id}
                               >
-                                {result.support?.name ? result.support?.name : ''}
+                                {user?.user_details?.firstName ? user?.user_details?.firstName+' '+user?.user_details?.lastName : ''}
                               </option>
                             );
                           }
 
                           return '';
-                        })} */}
+                        })}
                     </select>
                   </div>
                 )}
@@ -677,23 +673,21 @@ function Ticket(props) {
                       <label className="mb-2">Assigned To</label>
                       <select name="assigned_to" className="form-control">
                         <option value="">Select Assigned To</option>
-                        {/* {ticketList.length &&
-                          ticketList.map((result) => {
-                            if (result.support?.id) {
-                              return (
-                                <option
-                                  value={result.support?.id}
-                                  key={result.support?.id}
-                                >
-                                  {result.support?.name
-                                    ? result.support?.name
-                                    : ""}
-                                </option>
-                              );
-                            }
-  
-                            return "";
-                          })} */}
+                        {supportUsers.length &&
+                        supportUsers.map((user) => {
+                          if (user?.id) {
+                            return (
+                              <option
+                                value={user?.id}
+                                key={user?.id}
+                              >
+                                {user?.user_details?.firstName ? user?.user_details?.firstName+' '+user?.user_details?.lastName : ''}
+                              </option>
+                            );
+                          }
+
+                          return '';
+                        })}
                       </select>
                     </div>
                   )}

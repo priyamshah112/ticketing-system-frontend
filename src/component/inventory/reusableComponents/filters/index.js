@@ -16,6 +16,7 @@ function FilterComponent({
   buttonThreeHandler,
   filter,
   inventories,
+  filterEnableButton = true,
 }) {
   return (
     <div className="filter__component">
@@ -32,11 +33,12 @@ function FilterComponent({
               placeholder="Search for tickets"
             />
           </div>
-
-          <button className="button__filter" onClick={filter}>
-            <img src={filterpic} alt="add" /> Filter
-            <span className="filter__caret"></span>
-          </button>
+          { filterEnableButton && (
+            <button className="button__filter" onClick={filter}>
+              <img src={filterpic} alt="add" /> Filter
+              <span className="filter__caret"></span>
+            </button>
+          )}
         </div>
         <div className="right__filters">
           {buttonOne && (

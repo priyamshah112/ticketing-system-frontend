@@ -151,16 +151,16 @@ function HardwareInventory() {
   const brands = ['HP', 'DELL'];
   const [isAssignInventoryModal, setIsAssignInventoryModal] = useState(false);
   const [sampleImport, setSampleImport] = useState('');
-  const userList = useSelector((state) => state.userList);
+  const [userList, setUserList] = useState([]);
 
   const { Option } = Select;
 
   const assInvFormData = new FormData();
 
   const userListHandler = async () => {
-    const { data } = await getResponse(apipaths.listusers, null);
-    const users = data.data.user;
-    dispatch(getUserLists(users));
+    const { data } = await getResponse(apipaths.usergetlist, null);
+    if (error) return toast.warn('Error in listing Users.');
+    setUserList(data.data.user);
   };
 
   const showModal = () => {
@@ -189,9 +189,12 @@ function HardwareInventory() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(inventoryListAction(id));
-    userListHandler();
     $('#filter-inventory-wrapper').slideToggle(0);
   }, [id]);
+
+  useEffect(() => {
+    userListHandler();
+  }, [])
 
   useEffect(() => {
     if (inventories.length > 0) {
@@ -485,13 +488,13 @@ function HardwareInventory() {
                       <label className="mb-2">Service Tag</label>
                     </div>
                     <input
-                      name="serial_number"
+                      name="service_tag"
                       type="text"
                       className="form-control filter-input"
                       onChange={(e) => {
                         setFormdata({
                           ...formData,
-                          serial_number: e.target.value,
+                          service_tag: e.target.value,
                         });
                       }}
                     />
