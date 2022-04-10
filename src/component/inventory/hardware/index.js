@@ -328,8 +328,11 @@ function HardwareInventory() {
         return $(element).val() != '';
       })
       .serialize();
-    let path = apipaths.hardwareInventoryList;
-    path['url'] = path['url'].split('?')[0] + '?' + elem;
+    let path = {
+      url: apipaths.hardwareInventoryList.url,
+      method: apipaths.hardwareInventoryList.method,
+    };
+    path.url = path.url.split('?')[0] + '?' + elem;
     let { data } = await getResponse(path, formData);
     let inventoryData = inventoryDataModifier(data.data.inventory);
     setInventories(inventoryData);

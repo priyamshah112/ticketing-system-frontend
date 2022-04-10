@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./admin-dashboard.css"
-import Header from "./header";
-import IconTabs from "./sidebar";
 import tool from "../../../src/images/admin-dashboard/tool.svg";
 import person from "../../../src/images/admin-dashboard/person.svg";
 import { getResponse } from "../../api/apiResponse";
@@ -400,8 +398,6 @@ function AdminDashboard() {
                 </div>
 
             </div>
-
-            {/* <Footer /> */}
 
         </>
     );

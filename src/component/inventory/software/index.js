@@ -283,8 +283,11 @@ function SoftwareInventory() {
         return $(element).val() != '';
       })
       .serialize();
-    let path = apipaths.softwareInventoryList;
-    path['url'] = path['url'].split('?')[0] + '?' + elem;
+    let path = {
+      url: apipaths.softwareInventoryList.url,
+      method: apipaths.softwareInventoryList.method,
+    };
+    path.url = path.url.split('?')[0] + '?' + elem;
     let { data, error } = await getResponse(path, formData);
     if (error) return toast.warn('Error in listing tickets.');
 
@@ -481,8 +484,11 @@ function SoftwareInventory() {
                   <button
                     className="btn primary__cancel__button ml-3"
                     onClick={() => {
-                      let apipath = apipaths.softwareInventoryList;
-                      apipath['url'] = apipath['url'].split('?')[0];
+                      let path = {
+                        url: apipaths.softwareInventoryList.url,
+                        method: apipaths.softwareInventoryList.method,
+                      };
+                      path.url = path.url.split('?')[0];
                       $('#filter-inventory').trigger('reset');
                       $('#filter-inventory-wrapper').slideToggle(300);
                       dispatch(inventoryListAction(id));

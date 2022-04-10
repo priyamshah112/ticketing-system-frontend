@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addUserDetailsAction } from "../../../actions/userActions";
-import ChangePassword from "../../changepassword";
-import ProfileView from "../../profileView";
-import ProfileUpdate from "../../updateProfile"
+import { addUserDetailsAction } from "../../../../actions/userActions";
 import $ from "jquery";
-import { Modal } from "antd";
-import ".//index.css"
-import dashboard from "../../assets/dashboard.png"
-import calender from "../../assets/calender.png"
-import tickets from "../../assets/tickets.png"
-import settings from "../../assets/settings.png"
-import logout from "../../../images/admin-dashboard/logout.svg"
-import compliancelogo from "../../assets/compliancelogo.png"
-import sciencelogo from "../../assets/sciences-logo.png"
-import lifescience from "../../assets/life-sciencelogo.png"
-import man from "../../assets/man.png"
-import msg from "../../assets/msg.png"
-import corner from "../../assets/corner.png";
+import "./index.css"
+import dashboard from "../../../assets/dashboard.png"
+import calender from "../../../assets/calender.png"
+import tickets from "../../../assets/tickets.png"
+import compliancelogo from "../../../assets/compliancelogo.png"
+import sciencelogo from "../../../assets/sciences-logo.png"
+import lifescience from "../../../assets/life-sciencelogo.png"
+import man from "../../../assets/man.png"
+import msg from "../../../assets/msg.png"
+import corner from "../../../assets/corner.png";
 
-function Sidebar2() {
+function Sidebar() {
     let data = localStorage.user_details;
     let user = JSON.parse(data);
 
@@ -125,4 +119,4 @@ function Sidebar2() {
     );
 }
 
-export default Sidebar2;
+export default Sidebar;

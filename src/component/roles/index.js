@@ -80,13 +80,6 @@ function Ticket() {
     }
   }, [roles]);
 
-  const filterSubmitHandler = async (e) => {
-    e.preventDefault();
-    let path = apipaths.softwareInventoryList;
-    path['url'] = path['url'] + '?' + $('#filter-role').serialize();
-    await getResponse(path);
-  };
-
   const deleteRoleHandler = async (r) => {
     // deleterole
     swal({

@@ -4,18 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { Modal } from "antd";
-import ChangePassword from "../changepassword";
-import ProfileView from "../profileView";
-import ProfileUpdate from "../updateProfile";
-import bi_clipboard from "../../../src/images/admin-dashboard/bi_clipboard-data.svg";
-import solid_users from "../../../src/images/admin-dashboard/fa-solid_users.svg";
-import ic_outline from "../../../src/images/admin-dashboard/ic_outline-inventory-2.svg";
-import Vector from "../../../src/images/admin-dashboard/Vector.svg";
-import wpf_faq from "../../../src/images/admin-dashboard/wpf_faq.svg";
-import dropdown from "../../../src/images/admin-dashboard/dropdown.svg";
-import hardwareInventory from "../../../src/images/admin-dashboard/hardware-inventory.svg";
-import softwareInventory from "../../../src/images/admin-dashboard/software-inventory.svg";
-import role from "../../../src/images/admin-dashboard/roles.svg";
+import ChangePassword from "../../changepassword";
+import ProfileView from "../../profileView";
+import ProfileUpdate from "../../updateProfile";
+import bi_clipboard from "../../../images/admin-dashboard/bi_clipboard-data.svg";
+import solid_users from "../../../images/admin-dashboard/fa-solid_users.svg";
+import Vector from "../../../images/admin-dashboard/Vector.svg";
+import dropdown from "../../../images/admin-dashboard/dropdown.svg";
+import hardwareInventory from "../../../images/admin-dashboard/hardware-inventory.svg";
+import softwareInventory from "../../../images/admin-dashboard/software-inventory.svg";
+import role from "../../../images/admin-dashboard/roles.svg";
 import $ from "jquery";
 
 const useStyles = makeStyles((theme) => ({

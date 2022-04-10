@@ -34,7 +34,6 @@ function Ticket(props) {
   const [isModal, setIsModal] = useState(false);
   const [ticketinfo, setTicketInfo] = useState([]);
   const userDetails = useSelector((state) => state.userDetails);
-  const ticketList = useSelector((state) => state.ticketList);
   const userList = useSelector((state) => state.userList);
   const userType = JSON.parse(localStorage.user_details).userType;
   const { status } = queryString.parse(window.location.search);
@@ -93,7 +92,7 @@ function Ticket(props) {
             field: 'status',
           },
           {
-            title: 'Edit',
+            title: 'Action',
             field: 'edit',
             sorting: false,
           },
@@ -102,26 +101,26 @@ function Ticket(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    userListHandler();
+    // userListHandler();
     $('#filter-ticket').slideToggle(0);
   }, []);
 
   useEffect(() => {
     // // console.log(status)
     if (status) {
-      filterSubmitHandler(status, true);
+      // filterSubmitHandler(status, true);
     }
   }, [status]);
 
   useEffect(() => {
-    if (userList.length > 0) getTickets();
-  }, [userList]);
+    getTickets();
+  }, []);
 
   useEffect(() => {
-    let ticketDataOnStatus = ticketList?.filter(
-      (result) => result.status.props?.children[1] === location?.state?.status
-    );
-    setTicketDataOnStatus(ticketDataOnStatus);
+    // let ticketDataOnStatus = ticketList?.filter(
+    //   (result) => result.status.props?.children[1] === location?.state?.status
+    // );
+    // setTicketDataOnStatus(ticketDataOnStatus);
   }, [location?.state?.status]);
 
   const filterSubmitHandler = async (e, custom = false) => {
@@ -137,9 +136,12 @@ function Ticket(props) {
       elem = `status=${e}`;
     }
 
-    let path = apipaths.listticket;
-    path['url'] = path['url'].split('?')[0] + '?' + elem;
-
+    let path = {
+      url: apipaths.listticket.url,
+      method: apipaths.listticket.method,
+    };
+    path.url = path.url.split('?')[0] + '?' + elem;
+    
     const { data, error } = await getResponse(path);
     if (error) return toast.warn('Error in listing tickets.');
 
@@ -167,21 +169,21 @@ function Ticket(props) {
       let ticketStatus = '';
       // eslint-disable-next-line default-case
       switch (ticket.status) {
-        case 'Closed':
+        case 'closed':
           ticketStatus = (
-            <div className="status status-suspended">
+            <div className="status status-success">
               <span></span> Closed
             </div>
           );
           break;
-        case 'In Progress':
+        case 'open':
           ticketStatus = (
-            <div className="status status-success">
+            <div className="status status-suspended">
               <span></span> Open
             </div>
           );
           break;
-        case 'Pending':
+        case 'pending':
           ticketStatus = (
             <div className="status status-pending">
               <span></span> Pending
@@ -225,7 +227,7 @@ function Ticket(props) {
       );
     });
 
-    dispatch(addTicketsAction(data.data.tickets));
+    setTicketDataOnStatus(data.data.tickets)
   };
 
   const userListHandler = async () => {
@@ -242,6 +244,7 @@ function Ticket(props) {
   };
 
   const getTickets = async () => {
+    console.log(apipaths.listticket);
     const { data, error } = await getResponse(apipaths.listticket);
     if (error) return toast.warn('Error in listing tickets.');
 
@@ -269,21 +272,21 @@ function Ticket(props) {
       let ticketStatus = '';
       // eslint-disable-next-line default-case
       switch (ticket.status) {
-        case 'Closed':
+        case 'closed':
           ticketStatus = (
-            <div className="status status-suspended">
+            <div className="status status-success">
               <span></span> Closed
             </div>
           );
           break;
-        case 'In Progress':
+        case 'open':
           ticketStatus = (
-            <div className="status status-success">
+            <div className="status status-suspended">
               <span></span> Open
             </div>
           );
           break;
-        case 'Pending':
+        case 'pending':
           ticketStatus = (
             <div className="status status-pending">
               <span></span> Pending
@@ -327,7 +330,8 @@ function Ticket(props) {
       );
     });
 
-    dispatch(addTicketsAction(data.data.tickets));
+    setTicketDataOnStatus(data.data.tickets);
+    console.log("Tickets Data: ", data.data.tickets);
   };
 
   const ticketAssignHandler = (ticket) => {
@@ -444,7 +448,7 @@ function Ticket(props) {
                     <label className="mb-2">Assigned To</label>
                     <select name="assigned_to" className="form-control">
                       <option value="">Select Assigned To</option>
-                      {ticketList.length &&
+                      {/* {ticketList.length &&
                         ticketList.map((result) => {
                           if (result.support?.id) {
                             return (
@@ -458,7 +462,7 @@ function Ticket(props) {
                           }
 
                           return '';
-                        })}
+                        })} */}
                     </select>
                   </div>
                 )}
@@ -497,7 +501,7 @@ function Ticket(props) {
           <MaterialTable
             className={classes.toolbarWrapper}
             title=""
-            data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
+            data={ticketDataOnStatus}
             columns={columns}
             disableGutters={true}
             options={{
@@ -706,7 +710,7 @@ function Ticket(props) {
                       <label className="mb-2">Assigned To</label>
                       <select name="assigned_to" className="form-control">
                         <option value="">Select Assigned To</option>
-                        {ticketList.length &&
+                        {/* {ticketList.length &&
                           ticketList.map((result) => {
                             if (result.support?.id) {
                               return (
@@ -722,7 +726,7 @@ function Ticket(props) {
                             }
   
                             return "";
-                          })}
+                          })} */}
                       </select>
                     </div>
                   )}
@@ -764,7 +768,7 @@ function Ticket(props) {
             <div className="card-body p-0 ">
               <MaterialTable className={classes.toolbarWrapper}
                 title=""
-                data={ticketDataOnStatus.length ? ticketDataOnStatus : ticketList}
+                data={ticketDataOnStatus}
                 columns={columns}
                 disableGutters={true}
                 options={{

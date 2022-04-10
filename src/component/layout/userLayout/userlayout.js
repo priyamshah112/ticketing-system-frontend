@@ -1,15 +1,12 @@
 import React from "react";
-import Sidebar2 from '../sidebar2'
+import Sidebar from './sidebar'
 
 
 function UserLayout(props) {
 
     return (
-
         <div ClassName="wrapper">
-            {console.log("in here")}
-
-            <Sidebar2 />
+            <Sidebar />
             <div className="main-panel">
                 <div className="content">
                     {props.children}

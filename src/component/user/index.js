@@ -291,8 +291,11 @@ function User(props) {
         return $(element).val() != '';
       })
       .serialize();
-    let path = apipaths.listusers;
-    path['url'] = path['url'].split('?')[0] + '?' + filterString;
+    let path = {
+      url: apipaths.listusers.url,
+      method: apipaths.listusers.method,
+    };
+    path.url = path.url.split('?')[0] + '?' + filterString;
     // console.log(path);
     let { data } = await getResponse(path);
     path = '';
@@ -372,8 +375,11 @@ function User(props) {
                       setIsFilterActive(false);
                       $('#filter-user-form').trigger('reset');
                       $('#filter-user').slideToggle(300);
-                      let path = apipaths.listusers;
-                      path['url'] = path['url'].split('?')[0];
+                      let path = {
+                        url: apipaths.listusers.url,
+                        method: apipaths.listusers.method,
+                      };
+                      path.url = path.url.split('?')[0];
                       dataHandler();
                     }}
                     type="button"

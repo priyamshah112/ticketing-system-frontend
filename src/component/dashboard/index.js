@@ -217,13 +217,6 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          {/* <footer className="footer">
-            <div className="container-fluid">          
-              <div className="copyright ml-auto">
-               COPYRIGHT &copy; 2022 RXLifeScience,All right Reserved
-              </div>
-            </div>
-          </footer> */}
         </div>
 
         <div className="custom-template">
