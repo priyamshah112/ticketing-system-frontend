@@ -19,8 +19,6 @@ import FilterComponent from '../inventory/reusableComponents/filters';
 import './index.css';
 import filterpic from "../assets/filter.png"
 import plus from "../assets/plus.png"
-import export1 from "../assets/export.png"
-import import1 from "../assets/import.png"
 
 
 function Ticket(props) {
@@ -391,14 +389,6 @@ function Ticket(props) {
     buttonOneHandler: () => {
       setTicketModal(true);
     },
-    buttonTwo: 'Import',
-    buttonTwoHandler: () => {
-      setTicketModal(true);
-    },
-    buttonThree: 'Export',
-    buttonThreeHandler: () => {
-      setTicketModal(true);
-    },
     filter: () => {
       $('#filter-ticket').slideToggle(300);
     },
@@ -638,29 +628,6 @@ function Ticket(props) {
                     onClick={() => setTicketModal(true)}
                   >
                     Add Ticket
-                  </button>
-                </div>
-                <div className="export py-2 px-3 mr-3">
-                  <img src={export1}></img>
-  
-                  <button
-                    href="javascript:void(0);"
-                    className="button-font"
-  
-                    onClick={() => setTicketModal(true)}
-                  >
-                    Export
-                  </button>
-                </div>
-                <div className="import py-2 px-3 mr-0">
-                  <img src={import1}></img>
-  
-                  <button
-                    href="javascript:void(0);"
-                    className="button-font"
-                    onClick={() => setTicketModal(true)}
-                  >
-                    Import
                   </button>
                 </div>
   

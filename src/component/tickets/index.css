@@ -5,6 +5,7 @@
 
 .ticket__window {
   padding-left: 100px;
+  padding-bottom: 20px;
 }
 
 .ticket__table {
@@ -213,4 +214,7 @@
 .filter-ticket{
     position: relative;
     top: 60px;
+}
+#filter-ticket{
+  margin-right: 20px;
 }
