@@ -457,7 +457,7 @@ function Ticket(props) {
                   <input
                     name="created_at"
                     type="date"
-                    className="form-control"
+                    className="form-control pointer"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                   />

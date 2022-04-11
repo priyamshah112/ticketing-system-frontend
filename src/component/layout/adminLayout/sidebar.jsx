@@ -13,7 +13,9 @@ import Vector from "../../../images/admin-dashboard/Vector.svg";
 import dropdown from "../../../images/admin-dashboard/dropdown.svg";
 import hardwareInventory from "../../../images/admin-dashboard/hardware-inventory.svg";
 import softwareInventory from "../../../images/admin-dashboard/software-inventory.svg";
+import inventory from "../../../images/admin-dashboard/inventory.svg"
 import role from "../../../images/admin-dashboard/roles.svg";
+import user from "../../../images/admin-dashboard/user.svg"
 import $ from "jquery";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +29,8 @@ function IconTabs() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const userType = JSON.parse(localStorage.user_details).userType;
+    const [showInventory, setshowInventory] = React.useState(false);
+    const [showUsers, setshowUsers] = React.useState(false);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -35,6 +39,12 @@ function IconTabs() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const toggleInventory = () => {
+        setshowInventory(!showInventory)
+    }
+    const toggleUsers = () => {
+        setshowUsers(!showUsers)
+    }
 
     const [isChangePasswordActive, setIsChangePasswordActive] = useState(false);
     const [isProfileViewActive, setIsProfileViewActive] = useState(false);
@@ -47,6 +57,8 @@ function IconTabs() {
         $(`.sidebar-item`).removeClass("active");
         $(`#${elem}`).addClass("active");
     };
+
+
 
     return (
         <>
@@ -62,6 +74,7 @@ function IconTabs() {
                 <Modal
                     title="My Profile"
                     visible={isProfileViewActive}
+
                     onCancel={() => setIsProfileViewActive(false)}
                     footer={null}
                 >
@@ -69,6 +82,7 @@ function IconTabs() {
                 </Modal>
                 <Modal
                     title="Edit Profile"
+
                     visible={isProfileUpdateActive}
                     onCancel={() => setIsProfileUpdateActive(false)}
                     footer={null}
@@ -80,12 +94,14 @@ function IconTabs() {
                     <div className="profile" onClick={handleClick}>
                         <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                             width="40" height="40" className="profile__img" alt="" />
-                            
+
                         <img className="profile__dropdown" src={dropdown} width="10" height="10" alt="" />
                     </div>
 
                     <Popover
                         id={id}
+                        data-trigger="focus"
+
                         open={open}
                         anchorEl={anchorEl}
                         onClose={handleClose}
@@ -150,10 +166,10 @@ function IconTabs() {
                             onClick={() => activeLinkHandler("dashboard")}
                         >
                             <Link
-                            to={userType === "User" ? "/userdashboard" : "/dashboard"}
+                                to={userType === "User" ? "/userdashboard" : "/dashboard"}
                             >
-                            <img src={bi_clipboard}
-                            width="20" height="20" />
+                                <img src={bi_clipboard}
+                                    width="20" height="20" />
                             </Link>
                         </li>
                     )}
@@ -161,7 +177,7 @@ function IconTabs() {
                         className="sidebar-item"
                         id="tickets-main"
                         onClick={() => activeLinkHandler("tickets-main")}
-                        >
+                    >
                         <Link to={`/tickets`}>
                             <img src={Vector} width="20" height="20" />
                         </Link>
@@ -169,43 +185,75 @@ function IconTabs() {
                     <li class="sidebar__divider">
                     </li>
                     <li
-                       className="sidebar-item"
-                      id="inv-software"
-                      onClick={() => activeLinkHandler("inv-software")}
+                        className="sidebar-item"
+                        id="inventory-main"
+                        onClick={toggleInventory}
                     >
-                      <Link to="/inventory/software">
-                        <img src={softwareInventory} width="20" height="20" />
-                      </Link>
+                        <div >
+                            <img src={inventory} width="20" height="20" />
+                        </div>
                     </li>
-                    <li 
-                    id="inv-hardware"
-                    className="sidebar-item"
-                    onClick={() => activeLinkHandler("inv-hardware")}
-                    >
-                      <Link
-                        to="/inventory/hardware"
-                      >
-                        <img src={hardwareInventory} width="20" height="20" />
-                      </Link>
-                    </li>
+                    {
+                        showInventory ?
+                            <div>
+                                <li
+                                    className="sidebar-item"
+                                    id="inv-software"
+                                    onClick={() => activeLinkHandler("inv-software")}
+                                >
+                                    <Link to="/inventory/software">
+                                        <img src={softwareInventory} width="20" height="20" />
+                                    </Link>
+                                </li>
+                                <li
+                                    id="inv-hardware"
+                                    className="sidebar-item"
+                                    onClick={() => activeLinkHandler("inv-hardware")}
+                                >
+                                    <Link
+                                        to="/inventory/hardware"
+                                    >
+                                        <img src={hardwareInventory} width="20" height="20" />
+                                    </Link>
+                                </li>
+                            </div>
+                            :
+                            ''
+                    }
                     <li
-                    className="sidebar-item"
-                      id="user-role"
-                      onClick={() => activeLinkHandler("user-role")}
+                        className="sidebar-item"
+                        id="user-sub-user"
+                        onClick={toggleUsers}
                     >
-                      <Link to="/role">
-                      <img src={role} width="20" height="20" />
-                      </Link>
+                            <img src={solid_users} width="20" height="20" />
                     </li>
-                    <li
-                    className="sidebar-item"
-                      id="user-sub-user"
-                      onClick={() => activeLinkHandler("user-sub-user")}
-                    >
-                      <Link to="/user">
-                      <img src={solid_users} width="20" height="20" />
-                      </Link>
-                    </li>
+                    {
+                        showUsers ?
+                            <div>
+                                <li
+                                    className="sidebar-item"
+                                    id="user-role"
+                                    onClick={() => activeLinkHandler("user-role")}
+                                >
+                                    <Link to="/role">
+                                        <img src={role} width="20" height="20" />
+                                    </Link>
+                                </li>
+                                <li
+                                    className="sidebar-item"
+                                    id="user"
+                                    onClick={() => activeLinkHandler("user-role")}
+                                >
+                                    <Link to="">
+                                        <img src={user} width="20" height="20" />
+                                    </Link>
+                                </li>
+                            </div>
+                            :
+                            ''
+                    }
+
+
                     {/* <li>
                         <img src={wpf_faq}
                             width="20" height="20" />

@@ -60,7 +60,6 @@ class TrackByCountry extends Component {
         return (
             <div className="category__box category__box__ht__max">
                 <div className="openCategory"><p className="category__title m-0">track by country</p>
-                <button>Open</button>
                 </div>
                 <div className="mixed-chart">
                     <img src={track} className="dashboard__white__icon" />
