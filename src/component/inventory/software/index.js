@@ -312,9 +312,9 @@ function SoftwareInventory() {
             delete_id: inv.id,
           });
           const { success, message } = data;
-          if (success === 1 || success === 0) {
+          if (success) {
+            console.log(data);
             toast.success(<div className="text-capitalize">{message}</div>);
-            dispatch(inventoryListAction(id));
           }
         }
       });
