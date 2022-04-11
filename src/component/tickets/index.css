@@ -214,7 +214,10 @@
 .filter-ticket{
     position: relative;
     top: 60px;
+    cursor: pointer;
 }
 #filter-ticket{
   margin-right: 20px;
+  cursor: pointer;
+
 }

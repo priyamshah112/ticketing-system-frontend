@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 import { addUserDetailsAction } from "../../../../actions/userActions";
 import $ from "jquery";
 import "./index.css"
-import dashboard from "../../../assets/dashboard.png"
+import {ReactComponent as Dashboard} from "../../../assets/Dashboard.svg"
 import calender from "../../../assets/calender.png"
-import tickets from "../../../assets/tickets.png"
+import {ReactComponent as Tickets}  from "../../../assets/tickets.svg"
+import {ReactComponent as Logout}  from "../../../assets/Logout.svg"
 import compliancelogo from "../../../assets/compliancelogo.png"
 import sciencelogo from "../../../assets/sciences-logo.png"
 import lifescience from "../../../assets/life-sciencelogo.png"
 import man from "../../../assets/man.png"
 import msg from "../../../assets/msg.png"
 import corner from "../../../assets/corner.png";
+import { SvgIcon } from '@material-ui/core';
 
 function Sidebar() {
     let data = localStorage.user_details;
@@ -82,14 +84,14 @@ function Sidebar() {
                     <div className="card-body">
                         <ul class="nav   flex-column">
                             <li class="nav-item items">
-                                <a class="" href={`/userdashboard`}><img src={dashboard}></img>Dashboard</a>
+                                <a class="" href={`/userdashboard`}>  <SvgIcon component={Dashboard}   width="25" height="25" viewBox="0 -10 59 59" style={{fontSize:'2.5rem ', width: '45px'  }}/>Dashboard</a>
                             </li>
                             <li class="nav-item items ">
-                                <a class="" href={`/tickets`}><img src={tickets}></img>Tickets</a>
+                                <a class="" href={`/tickets`}><SvgIcon component={Tickets}  width="25" height="25" viewBox="10 -10 59 59 "    style={{fontSize:'2rem'  , width: '45px'}} />Tickets</a>
                             </li>
                            
                             <li class="nav-item items" onClick={() => localStorage.clear()}>
-                                <a class="" href="#"><img src={calender}></img>Logout</a>
+                                <a class="" href="#"><SvgIcon component={Logout}  width="25" height="25" viewBox="0 0 59 59" style={{fontSize:'2rem'   , width: '45px'}}/>Logout</a>
                             </li>
                         </ul>
                     </div>

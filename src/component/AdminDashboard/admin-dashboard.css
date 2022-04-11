@@ -507,4 +507,7 @@ color: #2D3142;
     position: absolute;
       top: -5px;
   }
+  .pointer{
+      cursor:pointer
+  }
   /* Calender Section */

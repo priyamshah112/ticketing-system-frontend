@@ -180,6 +180,12 @@
   }
 
   
-  .items > a:hover,:active{
-      color:#5C55BF;
+  .items > a:hover, a:active {
+      color:#5C55BF !important;
   }
+  path:hover , :active{
+    fill: #5C55BF !important;
+
+  }
+
+  
