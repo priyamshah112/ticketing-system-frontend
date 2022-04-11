@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
-import { getResponse } from "../../api/apiResponse";
-import { apipaths } from "../../api/apiPaths";
-import TicketRequestTabs from "./TicketRequestTabs";
+
 
 class TicketRequest extends Component {
     constructor(props) {
@@ -10,83 +8,89 @@ class TicketRequest extends Component {
         super(props);
 
         this.state = {
-            count: 0,
+            series: [{
+                name: "Tickets",
+                data: [...this.props.seriesData]
+            }],
             options: {
                 chart: {
                     toolbar: { show: false },
-                    id: "basic-bar",
-                },
-                plotOptions: {
-                    bar: {
-                        borderRadius: 5,
-                        startingShape: 'rounded',
-                        columnWidth: '30%',
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
                     }
                 },
-                colors: ['#5C55BF', '#5C55BF', '#5C55BF'
-
-                ],
-                xaxis: {
-                    categories: ["In", "US", "CR"]
+                markers: {
+                    size: [6],
+                    colors: "#5C55BF",
+                    strokeColors: "#5C55BF",
+                    shape: "circle",
+                    radius: 2,
+                    fillOpacity: 0.1,
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                colors: ["#EAD063"],
+                stroke: {
+                    curve: 'smooth'
+                },
+                grid: {
+                    show: true,
+                    row: {
+                        // colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.1
+                    },
+                    yaxis: {
+                        lines: {
+                            show: false
+                        }
+                    },
+                    xaxis: {
+                        lines: {
+                            show: true
+                        }
+                    },
                 },
                 xaxis: {
-                    categories: [
-                      "Jan",
-                      "Feb",
-                      "Mar",
-                      "Apr",
-                      "May",
-                      "Jun",
-                      "Jul",
-                      "Aug",
-                      "Sep"
-                    ]
-                  },
-                  legend: {
-                    position: "bottom"
-                  },
-                  grid: {
-                    show: true
-                  },
-                dataLabels: {
-                    enabled: false,
+                    categories: [...this.props.categories],
+                    labels: {
+                        show: false,
+                    }
+                },
+                yaxis: {
+                    show: false,
                 }
             },
-            series: [
-                {
-                    name: "Open Tickets",
-                    data: [15, 25, 50,]
-                }
-            ]
-        };
-
+        }
     }
-    async componentDidMount() {
-        const { data } = await getResponse(apipaths.getTicketRequest);
-        console.log("getTicketRequest--- >", data);
-        this.setState({
-            count: data?.totalticket[0].count + data?.totalticket[1].count + data?.totalticket[2].count,
-            series: [
-                {
-                    name: "Open Tickets",
-                    data: [data?.totalticket[0].count, data?.totalticket[1].count, data?.totalticket[2].count]
-                }
-            ]
-        })
-    }
+    // async componentDidMount() {
+    //     const { data } = await getResponse(apipaths.getTicketRequest);
+    //     console.log("getTicketRequest--- >", data);
+    //     this.setState({
+    //         count: data?.totalticket[0].count + data?.totalticket[1].count + data?.totalticket[2].count,
+    //         series: [
+    //             {
+    //                 name: "Open Tickets",
+    //                 data: [data?.totalticket[0].count, data?.totalticket[1].count, data?.totalticket[2].count]
+    //             }
+    //         ]
+    //     })
+    // }
 
     render() {
         return (
-            
-                <div className="mixed-chart">
-                    <Chart
-                        options={this.state.options}
-                        series={this.state.series}
-                        type="line"
-                        width="100%"
-                        height="230"
-                    />
-                </div>
+
+            <div className="mixed-chart">
+                <Chart
+                    options={this.state.options}
+                    series={this.state.series}
+                    type="line"
+                    width="100%"
+                    height="230"
+                />
+            </div>
         );
     }
 }

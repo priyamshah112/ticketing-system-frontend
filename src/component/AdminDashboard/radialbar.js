@@ -29,7 +29,7 @@ class RadialBar extends React.Component {
                 },
                 labels: [""],
                 colors: [this.props.color],
-               
+
             },
         };
     }

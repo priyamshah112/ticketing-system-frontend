@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,6 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TicketRequest from './TicketRequest';
+import { getResponse } from '../../api/apiResponse';
+import { apipaths } from '../../api/apiPaths';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,39 +65,96 @@ const useStyles = makeStyles((theme) => ({
 export default function TicketRequestTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [ticketRequest, setTicketRequest] = useState({})
+  const [WeekelySeriesData, SetWeekelySeriesData] = useState([])
+  const [WeekelyCatogoriesData, SetWeekelyCatogoriesData] = useState([])
+  const [MonthlySeriesData, SetMonthlySeriesData] = useState([])
+  const [MonthlyCatogoriesData, SetMonthlyCatogoriesData] = useState([])
+  const [DailySeriesData, SetDailySeriesData] = useState([])
+  const [DailyCatogoriesData, SetDailyCatogoriesData] = useState([])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  useEffect(async () => {
+    const { data } = await getResponse(apipaths.getTicketRequest);
+    const { monthly, weekly, daily } = data
+    console.log("daily", data)
+    monthly?.monthlyCount?.map((monthly) => {
+      MonthlySeriesData.push(monthly.count)
+      MonthlyCatogoriesData.push(monthly.days)
+    })
+    SetMonthlySeriesData(MonthlySeriesData)
+    SetMonthlyCatogoriesData(MonthlyCatogoriesData)
+
+    weekly?.weeklyCount?.map((week) => {
+      WeekelySeriesData.push(week.count)
+      WeekelyCatogoriesData.push(week.days)
+    })
+    SetWeekelySeriesData(WeekelySeriesData)
+    SetWeekelyCatogoriesData(WeekelyCatogoriesData)
+
+    daily?.DailyCount?.map((daily) => {
+      DailySeriesData.push(daily.count)
+      DailyCatogoriesData.push(daily.days)
+    })
+    SetDailySeriesData(DailySeriesData)
+    SetDailyCatogoriesData(DailyCatogoriesData)
+
+    // console.log(DailySeriesData, WeekelyCatogoriesData)
+
+  }, [])
+
+  // useEffect(async () => {
+  //   const { monthly } = ticketRequest
+  //   monthly?.monthlyCount?.map((monthly) => {
+  //     MonthlySeriesData.push(monthly.count)
+  //     MonthlyCatogoriesData.push(monthly.days)
+  //   })
+  //   SetMonthlySeriesData(MonthlySeriesData)
+  //   SetMonthlyCatogoriesData(MonthlyCatogoriesData)
+  // }, [])
+
+  // useEffect(() => {
+  //   const { weekly } = ticketRequest
+  //   weekly?.weeklyCount?.map((week) => {
+  //     WeekelySeriesData.push(week.count)
+  //     WeekelyCatogoriesData.push(week.days)
+  //   })
+  //   SetWeekelySeriesData(WeekelySeriesData)
+  //   SetWeekelyCatogoriesData(WeekelyCatogoriesData)
+  //   console.log(WeekelySeriesData, WeekelyCatogoriesData)
+  // }, [])
+
   return (
     <div className="category__box category__box__ht__min">
-    <div className="openCategory"><p className="category__title m-0">Ticket Request</p>
-    </div>
-    <div className="parentTabs">
-      <AppBar position="static" className="ticketRequestWrapper">
-        <Tabs
-          variant="fullWidth"
-          className="tabPanelTicketRequest"
-          value={value}
-          onChange={handleChange}
-          aria-label="nav tabs example"
-        >
-          <LinkTab label="Daily" href="/Daily" {...a11yProps(0)} />
-          <LinkTab label="Week" href="/Week" {...a11yProps(1)} />
-          <LinkTab label="Month" href="/Month" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <TicketRequest priorityTickets={props?.priorityTickets?.data?.high} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <TicketRequest priorityTickets={props?.priorityTickets?.data?.medium} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <TicketRequest priorityTickets={props?.priorityTickets?.data?.low} />
-      </TabPanel>
-    </div>
+      <div className="openCategory"><p className="category__title m-0">Ticket Request</p>
+      </div>
+      <div className="parentTabs">
+        <AppBar position="static" className="ticketRequestWrapper">
+          <Tabs
+            variant="fullWidth"
+            className="tabPanelTicketRequest"
+            value={value}
+            onChange={handleChange}
+            aria-label="nav tabs example"
+          >
+            <LinkTab label="Daily" href="/Daily" {...a11yProps(0)} />
+            <LinkTab label="Week" href="/Week" {...a11yProps(1)} />
+            <LinkTab label="Month" href="/Month" {...a11yProps(2)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <TicketRequest seriesData={DailySeriesData} categories={DailyCatogoriesData} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <TicketRequest seriesData={WeekelySeriesData} categories={WeekelyCatogoriesData} />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <TicketRequest seriesData={MonthlySeriesData} categories={MonthlyCatogoriesData} />
+        </TabPanel>
+      </div>
     </div>
   );
 }
