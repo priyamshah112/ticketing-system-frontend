@@ -17,9 +17,8 @@ import { Tooltip } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './index.css';
-import filterpic from "../assets/filter.png"
-import plus from "../assets/plus.png"
-
+import filterpic from '../assets/filter.png';
+import plus from '../assets/plus.png';
 
 function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
@@ -38,6 +37,7 @@ function Ticket(props) {
   const { status } = queryString.parse(window.location.search);
   const location = useLocation();
   const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
+  const [ticketsMasterData, setTicketMasterData] = useState([]);
 
   const columns =
     userType !== 'User'
@@ -141,11 +141,13 @@ function Ticket(props) {
       method: apipaths.listticket.method,
     };
     path.url = path.url.split('?')[0] + '?' + elem;
-    
+
     const { data, error } = await getResponse(path);
     if (error) return toast.warn('Error in listing tickets.');
 
+    console.log(data);
     setUsers(data.data.support);
+    setTicketMasterData(data.data.tickets);
 
     data.data.tickets.map((ticket) => {
       let username = '';
@@ -227,7 +229,7 @@ function Ticket(props) {
       );
     });
 
-    setTicketDataOnStatus(data.data.tickets)
+    setTicketDataOnStatus(data.data.tickets);
   };
 
   const userListHandler = async () => {
@@ -248,6 +250,7 @@ function Ticket(props) {
     if (error) return toast.warn('Error in listing tickets.');
 
     setUsers(data.data.support);
+    setTicketMasterData(JSON.parse(JSON.stringify(data.data.tickets)));
 
     data.data.tickets.map((ticket) => {
       let username = '';
@@ -331,7 +334,7 @@ function Ticket(props) {
 
     setTicketDataOnStatus(data.data.tickets);
   };
-  
+
   const getSupportUsers = async () => {
     const { data, error } = await getResponse(apipaths.supportUsers);
     if (error) return toast.warn('Error in listing Support Users.');
@@ -389,6 +392,13 @@ function Ticket(props) {
   });
   const classes = useStyles();
 
+  const handleFilterSearch = (val) => {
+    const filteredData = ticketsMasterData?.filter((item) =>
+      item?.subject?.toLowerCase().includes(val.toLowerCase())
+    );
+    setTicketDataOnStatus(filteredData);
+  };
+
   const filterProps = {
     heading: 'Ticket',
     buttonOne: 'Add Ticket',
@@ -398,9 +408,10 @@ function Ticket(props) {
     filter: () => {
       $('#filter-ticket').slideToggle(300);
     },
+    handleFilterSearch,
   };
 
-  if(userType !== 'User'){
+  if (userType !== 'User') {
     return (
       <div className="ticket__window">
         <FilterComponent {...{ ...filterProps }} />
@@ -438,11 +449,12 @@ function Ticket(props) {
                         supportUsers.map((user) => {
                           if (user?.id) {
                             return (
-                              <option
-                                value={user?.id}
-                                key={user?.id}
-                              >
-                                {user?.user_details?.firstName ? user?.user_details?.firstName+' '+user?.user_details?.lastName : ''}
+                              <option value={user?.id} key={user?.id}>
+                                {user?.user_details?.firstName
+                                  ? user?.user_details?.firstName +
+                                    ' ' +
+                                    user?.user_details?.lastName
+                                  : ''}
                               </option>
                             );
                           }
@@ -467,7 +479,10 @@ function Ticket(props) {
                       <RangePicker className="form-control" name="assigned_date" /> */}
                 </div>
                 <div className="col-12 mt-3 text-right">
-                  <button className="btn  btn-secondary btn-radius" type="submit">
+                  <button
+                    className="btn  btn-secondary btn-radius"
+                    type="submit"
+                  >
                     Search
                   </button>
                   <button
@@ -582,40 +597,40 @@ function Ticket(props) {
         </Modal>
       </div>
     );
-  }
-  else
-  {
+  } else {
     return (
       <>
         <div className="panel-header ">
           <div className="page-inner py-5">
             <div>
               <h2 className=" pb-2 fw-bold ticket-heading">Tickets</h2>
-  
             </div>
             <div className=" d-flex align-items-left align-items-md-center flex-column flex-md-row col-lg-12">
-  
-              <div className="col-lg-6" >
+              <div className="col-lg-6">
                 <div class="form-group ">
                   <span class="fa fa-search search-icon"></span>
-                  <input type="search" class="form-control text-padding " placeholder="Search for tickets" />
+                  <input
+                    type="search"
+                    class="form-control text-padding "
+                    placeholder="Search for tickets"
+                  />
                 </div>
-  
               </div>
               <div className="col-lg filter">
                 <img src={filterpic} alt="filter" className="filter-icon"></img>
                 <button
-                 
                   className="btn  ml-3 mr-5 filter-btn"
-                  onClick={() => $("#filter-ticket").slideToggle(300)}
+                  onClick={() => $('#filter-ticket').slideToggle(300)}
                 >
                   Filters
                 </button>
                 <span className="caret filter-caret"></span>
-  
               </div>
-  
-              <div className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons " style={{ top: '8px' }}>
+
+              <div
+                className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons "
+                style={{ top: '8px' }}
+              >
                 <div className="add-ticket py-2 px-3  mr-3">
                   <img src={plus}></img>
                   <button
@@ -626,9 +641,7 @@ function Ticket(props) {
                     Add Ticket
                   </button>
                 </div>
-  
               </div>
-  
             </div>
           </div>
         </div>
@@ -640,7 +653,7 @@ function Ticket(props) {
                   <div className="form-group col-md-12">
                     <h4 className="fw-bold">Search Ticket</h4>
                   </div>
-  
+
                   <div className="form-group col-12 col-md-6 col-lg-4">
                     <label className="mb-2">Subject</label>
                     <input
@@ -661,33 +674,37 @@ function Ticket(props) {
                   </div> */}
                   <div className="form-group col-12 col-md-6 col-lg-4">
                     <label className="mb-2">Status</label>
-                    <select name="status" className="form-control filter-status">
+                    <select
+                      name="status"
+                      className="form-control filter-status"
+                    >
                       <option value="">Select Status</option>
                       <option value="pending">Pending</option>
                       <option value="open">Open</option>
                       <option value="closed">Closed</option>
                     </select>
                   </div>
-                  {userType !== "User" && (
+                  {userType !== 'User' && (
                     <div className="form-group col-12 col-md-6 col-lg-4">
                       <label className="mb-2">Assigned To</label>
                       <select name="assigned_to" className="form-control">
                         <option value="">Select Assigned To</option>
                         {supportUsers.length &&
-                        supportUsers.map((user) => {
-                          if (user?.id) {
-                            return (
-                              <option
-                                value={user?.id}
-                                key={user?.id}
-                              >
-                                {user?.user_details?.firstName ? user?.user_details?.firstName+' '+user?.user_details?.lastName : ''}
-                              </option>
-                            );
-                          }
+                          supportUsers.map((user) => {
+                            if (user?.id) {
+                              return (
+                                <option value={user?.id} key={user?.id}>
+                                  {user?.user_details?.firstName
+                                    ? user?.user_details?.firstName +
+                                      ' ' +
+                                      user?.user_details?.lastName
+                                    : ''}
+                                </option>
+                              );
+                            }
 
-                          return '';
-                        })}
+                            return '';
+                          })}
                       </select>
                     </div>
                   )}
@@ -714,7 +731,7 @@ function Ticket(props) {
                     </button>
                     <button
                       className="btn  btn-secondary btn-border ml-3"
-                      onClick={() => $("#filter-ticket").slideToggle(300)}
+                      onClick={() => $('#filter-ticket').slideToggle(300)}
                       type="button"
                     >
                       Close
@@ -724,10 +741,11 @@ function Ticket(props) {
               </form>
             </div>
           </div>
-  
+
           <div className="card tickets-table col-lg-12 ">
             <div className="card-body p-0 ">
-              <MaterialTable className={classes.toolbarWrapper}
+              <MaterialTable
+                className={classes.toolbarWrapper}
                 title=""
                 data={ticketDataOnStatus}
                 columns={columns}
@@ -737,14 +755,14 @@ function Ticket(props) {
                   paging: true,
                   pageSize: 20,
                   showTitle: false,
-  
+
                   emptyRowsWhenPaging: false,
                   exportButton: false,
                 }}
               />
             </div>
           </div>
-  
+
           <div className="">
             {ticketModal && (
               <AddTicket
@@ -824,7 +842,7 @@ function Ticket(props) {
           </div>
         </Modal>
       </>
-    );  
+    );
   }
 }
 

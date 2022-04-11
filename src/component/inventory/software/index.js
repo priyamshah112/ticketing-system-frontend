@@ -142,7 +142,7 @@ function SoftwareInventory() {
   };
 
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(inventoryListAction(id));
     $('#filter-inventory-wrapper').slideToggle(0);
@@ -150,7 +150,7 @@ function SoftwareInventory() {
 
   useEffect(() => {
     userListHandler();
-  }, [])
+  }, []);
 
   const editInventory = (inventory, viewOnly) => {
     setEditFormData(inventory);
@@ -358,6 +358,13 @@ function SoftwareInventory() {
     showModal();
   };
 
+  const handleFilterSearch = (val) => {
+    const filteredData = inventoryList?.software?.filter((item) =>
+      item.name.toLowerCase().includes(val.toLowerCase())
+    );
+    setInventories(filteredData);
+  };
+
   const filterProps = {
     heading: 'Inventory Software',
     buttonOne: 'Add Software',
@@ -375,6 +382,7 @@ function SoftwareInventory() {
       $('#filter-inventory-wrapper').slideToggle(300);
     },
     inventories,
+    handleFilterSearch,
   };
   return (
     <div className="software__inventory">
@@ -438,7 +446,8 @@ function SoftwareInventory() {
                     {userList &&
                       userList.map((user) => (
                         <option value={user.id}>
-                          {user?.user_details?.firstName} {user?.user_details?.lastName}
+                          {user?.user_details?.firstName}{' '}
+                          {user?.user_details?.lastName}
                         </option>
                       ))}
                   </select>

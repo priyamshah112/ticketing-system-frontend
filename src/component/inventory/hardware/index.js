@@ -194,7 +194,7 @@ function HardwareInventory() {
 
   useEffect(() => {
     userListHandler();
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (inventories.length > 0) {
@@ -409,6 +409,13 @@ function HardwareInventory() {
     setIsAssignInventoryModal(false);
   };
 
+  const handleFilterSearch = (val) => {
+    const filteredData = inventoryList?.hardware?.filter((item) =>
+      item?.asset_name?.toLowerCase().includes(val.toLowerCase())
+    );
+    setInventories(filteredData);
+  };
+
   const filterProps = {
     heading: 'Inventory Hardware',
     buttonOne: 'Add Hardware',
@@ -427,6 +434,7 @@ function HardwareInventory() {
     },
     buttonThree: 'Export',
     inventories,
+    handleFilterSearch,
   };
 
   return (
