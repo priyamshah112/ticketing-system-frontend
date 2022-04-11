@@ -173,13 +173,21 @@ function Ticket() {
     });
   };
 
+  const handleFilterSearch = (val) => {
+    const filteredData = roles?.filter((item) =>
+      item?.role_name?.toLowerCase().includes(val.toLowerCase())
+    );
+    setRoleList(filteredData);
+  };
+
   const filterProps = {
     heading: 'User Roles',
     filterEnableButton: false,
+    handleFilterSearch,
   };
   return (
     <div className="roles__window">
-      <FilterComponent {...{ ...filterProps }} />      
+      <FilterComponent {...{ ...filterProps }} />
 
       <div className="roles__table">
         <MaterialTable
