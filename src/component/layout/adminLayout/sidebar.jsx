@@ -244,7 +244,7 @@ function IconTabs() {
                                     id="user"
                                     onClick={() => activeLinkHandler("user-role")}
                                 >
-                                    <Link to="">
+                                    <Link to="/user">
                                         <img src={user} width="20" height="20" />
                                     </Link>
                                 </li>
