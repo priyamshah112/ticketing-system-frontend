@@ -196,6 +196,7 @@ function IconTabs() {
                     {
                         showInventory ?
                             <div>
+                          
                                 <li
                                     className="sidebar-item"
                                     id="inv-software"

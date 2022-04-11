@@ -511,3 +511,9 @@ color: #2D3142;
       cursor:pointer
   }
   /* Calender Section */
+
+ li > a > img::before{
+   
+        content: ' \004C';
+    
+  }
