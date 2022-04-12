@@ -512,8 +512,33 @@ color: #2D3142;
   }
   /* Calender Section */
 
- li > a > img::before{
-   
-        content: ' \004C';
-    
+   .vertical-line:before {
+    background-image: url('../../images/admin-dashboard/vertical.svg');
+    background-size: 21px 75px;
+    display: inline-block;
+    width: 15px;
+    height: 90px;
+    content: "";
+       
+
+            
+  }
+  .horizontal-line:before{
+    content: url('../../images/admin-dashboard/horizontal-line.svg');
+    position: relative;
+    top: 11px;
+    left:-4px
+  }
+
+  .shift-line{
+    position: relative;
+    left: -4px;
+  }
+
+  .icon-color > path :hover{
+fill:black;
+  }
+
+  .MuiSvgIcon-root{
+      fill:transparent !important
   }

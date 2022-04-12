@@ -7,16 +7,19 @@ import { Modal } from "antd";
 import ChangePassword from "../../changepassword";
 import ProfileView from "../../profileView";
 import ProfileUpdate from "../../updateProfile";
-import bi_clipboard from "../../../images/admin-dashboard/bi_clipboard-data.svg";
-import solid_users from "../../../images/admin-dashboard/fa-solid_users.svg";
-import Vector from "../../../images/admin-dashboard/Vector.svg";
+import { ReactComponent as Clipboard } from "../../../images/admin-dashboard/bi_clipboard-data.svg";
+import { ReactComponent as Solidusers } from "../../../images/admin-dashboard/fa-solid_users.svg";
+import{ ReactComponent as Vector } from "../../../images/admin-dashboard/Vector.svg";
 import dropdown from "../../../images/admin-dashboard/dropdown.svg";
-import hardwareInventory from "../../../images/admin-dashboard/hardware-inventory.svg";
-import softwareInventory from "../../../images/admin-dashboard/software-inventory.svg";
-import inventory from "../../../images/admin-dashboard/inventory.svg"
-import role from "../../../images/admin-dashboard/roles.svg";
-import user from "../../../images/admin-dashboard/user.svg"
+import { ReactComponent as Hardware } from "../../../images/admin-dashboard/hardware-inventory.svg";
+import { ReactComponent as Software } from "../../../images/admin-dashboard/software-inventory.svg";
+import { ReactComponent as Inventory } from "../../../images/admin-dashboard/inventory.svg"
+import { ReactComponent as Roles } from "../../../images/admin-dashboard/roles.svg";
+import { ReactComponent as User } from "../../../images/admin-dashboard/user.svg"
+import { ReactComponent as Faq } from "../../../images/admin-dashboard/wpf_faq.svg";
+import { ReactComponent as Logout } from "../../../images/admin-dashboard/logout.svg"
 import $ from "jquery";
+import { SvgIcon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -168,8 +171,8 @@ function IconTabs() {
                             <Link
                                 to={userType === "User" ? "/userdashboard" : "/dashboard"}
                             >
-                                <img src={bi_clipboard}
-                                    width="20" height="20" />
+                                <SvgIcon component={Clipboard} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+
                             </Link>
                         </li>
                     )}
@@ -179,44 +182,64 @@ function IconTabs() {
                         onClick={() => activeLinkHandler("tickets-main")}
                     >
                         <Link to={`/tickets`}>
-                            <img src={Vector} width="20" height="20" />
+                            <SvgIcon component={Vector} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
                         </Link>
                     </li>
                     <li class="sidebar__divider">
                     </li>
                     <li
-                        className="sidebar-item"
+                        className="sidebar-item "
                         id="inventory-main"
-                        onClick={toggleInventory}
+                        onClick={() => { activeLinkHandler("inventory-main"); toggleInventory() }}
                     >
-                        <div >
-                            <img src={inventory} width="20" height="20" />
-                        </div>
+                        <SvgIcon component={Inventory} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+
                     </li>
                     {
                         showInventory ?
-                            <div>
-                          
-                                <li
-                                    className="sidebar-item"
-                                    id="inv-software"
-                                    onClick={() => activeLinkHandler("inv-software")}
-                                >
-                                    <Link to="/inventory/software">
-                                        <img src={softwareInventory} width="20" height="20" />
-                                    </Link>
-                                </li>
-                                <li
-                                    id="inv-hardware"
-                                    className="sidebar-item"
-                                    onClick={() => activeLinkHandler("inv-hardware")}
-                                >
-                                    <Link
-                                        to="/inventory/hardware"
-                                    >
-                                        <img src={hardwareInventory} width="20" height="20" />
-                                    </Link>
-                                </li>
+                            <div className=" ">
+                                <div className=" d-flex " >
+                                    <div className="vertical-line shift-line">
+
+                                    </div>
+                                    <div classname="flex-column ">
+                                        <div className=" d-flex shift-line">
+                                            <div className="horizontal-line">
+
+                                            </div>
+                                            <li
+                                                className="sidebar-item pl-0 pr-0 "
+                                                id="inv-software"
+                                                onClick={() => activeLinkHandler("inv-software")}
+                                            >
+                                                <Link to="/inventory/software">
+                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                </Link>
+                                            </li>
+                                        </div>
+
+                                        <div className=" d-flex shift-line">
+                                            <div className="horizontal-line ">
+
+                                            </div>
+                                            <li
+                                                id="inv-hardware"
+                                                className="sidebar-item pl-0 pr-0"
+                                                onClick={() => activeLinkHandler("inv-hardware")}
+                                            >
+                                                <Link
+                                                    to="/inventory/hardware"
+                                                >
+                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                </Link>
+                                            </li>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
                             </div>
                             :
                             ''
@@ -224,37 +247,76 @@ function IconTabs() {
                     <li
                         className="sidebar-item"
                         id="user-sub-user"
-                        onClick={toggleUsers}
+                        onClick={() => { activeLinkHandler("user-sub-user"); toggleUsers() }}
                     >
-                            <img src={solid_users} width="20" height="20" />
+                        <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
                     </li>
                     {
                         showUsers ?
-                            <div>
-                                <li
-                                    className="sidebar-item"
-                                    id="user-role"
-                                    onClick={() => activeLinkHandler("user-role")}
-                                >
-                                    <Link to="/role">
-                                        <img src={role} width="20" height="20" />
-                                    </Link>
-                                </li>
-                                <li
-                                    className="sidebar-item"
-                                    id="user"
-                                    onClick={() => activeLinkHandler("user-role")}
-                                >
-                                    <Link to="">
-                                        <img src={user} width="20" height="20" />
-                                    </Link>
-                                </li>
+                            <div className=" ">
+                                <div className=" d-flex " >
+                                    <div className="vertical-line shift-line">
+
+                                    </div>
+                                    <div classname="flex-column ">
+                                        <div className=" d-flex shift-line">
+                                            <div className="horizontal-line  ">
+
+                                            </div>
+                                            <li
+                                                className="sidebar-item pl-0 pr-0"
+                                                id="user-role"
+                                                onClick={() => activeLinkHandler("user-role")}
+                                            >
+                                                <Link to="/role">
+                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                </Link>
+                                            </li>
+                                        </div>
+
+                                        <div className=" d-flex shift-line">
+                                            <div className="horizontal-line ">
+
+                                            </div>
+                                            <li
+                                                className="sidebar-item pl-0 pr-0"
+                                                id="user"
+                                                onClick={() => activeLinkHandler("user-role")}
+                                            >
+                                                <Link to="">
+                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                </Link>
+                                            </li>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
                             </div>
+
                             :
                             ''
                     }
 
+                    <li
+                        className="sidebar-item"
+                        id="faq-main"
+                        onClick={() => activeLinkHandler("faq-main")}
+                    >
+                        <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                    </li>
 
+                    <li
+                        className="sidebar-item"
+                        id="logout-main"
+                        onClick={() => activeLinkHandler("logout-main")}
+                    >
+                        <Link to={`/`}>
+                            <SvgIcon component={Logout} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                        </Link>
+                    </li>
                     {/* <li>
                         <img src={wpf_faq}
                             width="20" height="20" />
