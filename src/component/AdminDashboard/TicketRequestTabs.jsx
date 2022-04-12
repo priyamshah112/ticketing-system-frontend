@@ -77,20 +77,32 @@ export default function TicketRequestTabs(props) {
     setValue(newValue);
   };
 
+
+
   useEffect(async () => {
     const { data } = await getResponse(apipaths.getTicketRequest);
-    const { monthly, weekly, daily } = data
-    console.log("daily", data)
-    monthly?.monthlyCount?.map((monthly) => {
+    const { monthly, weekly, daily } = data?.data
+    console.log("daily", monthly, weekly, daily)
+    monthly?.map((monthly) => {
+      if (monthly.Date) {
+        getDayName(monthly.Date)
+      } else {
+        MonthlyCatogoriesData.push(monthly.days)
+      }
       MonthlySeriesData.push(monthly.count)
-      MonthlyCatogoriesData.push(monthly.days)
+
     })
     SetMonthlySeriesData(MonthlySeriesData)
     SetMonthlyCatogoriesData(MonthlyCatogoriesData)
 
-    weekly?.weeklyCount?.map((week) => {
+    weekly?.map((week) => {
+      if (week.Date) {
+        getWeekDayName(week.Date)
+      } else {
+        WeekelyCatogoriesData.push(week.days)
+      }
       WeekelySeriesData.push(week.count)
-      WeekelyCatogoriesData.push(week.days)
+
     })
     SetWeekelySeriesData(WeekelySeriesData)
     SetWeekelyCatogoriesData(WeekelyCatogoriesData)
@@ -106,26 +118,20 @@ export default function TicketRequestTabs(props) {
 
   }, [])
 
-  // useEffect(async () => {
-  //   const { monthly } = ticketRequest
-  //   monthly?.monthlyCount?.map((monthly) => {
-  //     MonthlySeriesData.push(monthly.count)
-  //     MonthlyCatogoriesData.push(monthly.days)
-  //   })
-  //   SetMonthlySeriesData(MonthlySeriesData)
-  //   SetMonthlyCatogoriesData(MonthlyCatogoriesData)
-  // }, [])
+  
+  const getDayName = (data) => {
+    let date = new Date(data);
+    let day = date.toLocaleString('en-us', { weekday: 'long' });
+    MonthlyCatogoriesData.push(...MonthlyCatogoriesData, day)
+    SetMonthlyCatogoriesData(MonthlyCatogoriesData)
+  }
 
-  // useEffect(() => {
-  //   const { weekly } = ticketRequest
-  //   weekly?.weeklyCount?.map((week) => {
-  //     WeekelySeriesData.push(week.count)
-  //     WeekelyCatogoriesData.push(week.days)
-  //   })
-  //   SetWeekelySeriesData(WeekelySeriesData)
-  //   SetWeekelyCatogoriesData(WeekelyCatogoriesData)
-  //   console.log(WeekelySeriesData, WeekelyCatogoriesData)
-  // }, [])
+  const getWeekDayName=(data)=>{
+    let date = new Date(data);
+    let day = date.toLocaleString('en-us', { weekday: 'long' });
+    WeekelyCatogoriesData.push(...WeekelyCatogoriesData, day)
+    SetWeekelyCatogoriesData(WeekelyCatogoriesData)
+  }
 
   return (
     <div className="category__box category__box__ht__min">
