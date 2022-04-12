@@ -356,7 +356,7 @@ function HardwareInventory() {
             enable: 0,
           });
           const { success, message } = data;
-          if (success === 1 || success === 0) {
+          if (success) {
             toast.success(message);
             dispatch(inventoryListAction(id));
           }

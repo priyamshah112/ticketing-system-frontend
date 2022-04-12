@@ -9,7 +9,9 @@ import { Modal } from "antd";
 
 function AddTicket(props) {
   let form_data = new FormData();
-  const [formdata, setFormdata] = useState({});
+  const [formdata, setFormdata] = useState({
+    priority: 'low',
+  });
   const [process, setProcess] = useState(false);
   const [file, setFile] = useState({});
   const [userListOnCoAdmin, setUSerListOnCoAdmin] = useState([]);

@@ -17,8 +17,6 @@ import {
   dateFormatHandler,
 } from '../../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
-import { getUserLists } from '../../../actions/userActions';
-import { CSVLink } from 'react-csv';
 import FilterComponent from '../reusableComponents/filters';
 import './style.css';
 
@@ -313,8 +311,8 @@ function SoftwareInventory() {
           });
           const { success, message } = data;
           if (success) {
-            console.log(data);
             toast.success(<div className="text-capitalize">{message}</div>);
+            dispatch(inventoryListAction(id));
           }
         }
       });
