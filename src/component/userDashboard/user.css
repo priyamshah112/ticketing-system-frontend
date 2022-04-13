@@ -30,6 +30,7 @@ a
 } */
 body {
   background-color: #ffffff;
+  cursor:pointer;
 }
 
 .card {
@@ -506,26 +507,38 @@ body {
 
 .info-buttons {
 
-  width: 181px;
-  height: 33px;
+  width: 181px !important;
+  height: 33px !important;
   /* box-shadow: 0px 4px 15px rgb(0 0 0 / 25%); */
-  border-radius: 20px;
-  background: white;
-  line-height: 2px;
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 2px;
-  position: relative;
-  top: 7px;
-  left: 20px;
+  border-radius: 20px !important;
+  line-height: 2px!important;
+  font-family: 'Rubik'!important;
+  font-style: normal!important;
+  font-weight: 400!important;
+  font-size: 15px!important;
+  line-height: 2px!important;
+  position: relative!important;
+  top: 7px!important;
+  left: 20px!important;
 }
 
-.button-div .active {
-  background: #BF5555;
+.info-button-active {
+  background: #BF5555 !important;
   color: white;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  width: 181px !important;
+  height: 33px !important;
+  /* box-shadow: 0px 4px 15px rgb(0 0 0 / 25%); */
+  border-radius: 20px !important;
+  line-height: 2px!important;
+  font-family: 'Rubik'!important;
+  font-style: normal!important;
+  font-weight: 400!important;
+  font-size: 15px!important;
+  line-height: 2px!important;
+  position: relative!important;
+  top: 7px!important;
+  left: 20px!important;
 }
 
 
@@ -587,7 +600,6 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   position: relative;
-  top: 95px;
 }
 
 ::-webkit-scrollbar {
@@ -651,4 +663,14 @@ body {
 
 .ant-collapse{
   background-color: transparent;
+  border: none;
+
+}
+
+.css-ueukts-MuiButtonBase-root-MuiToggleButton-root:checked{
+  background: #BF5555 !important;
+
+}
+.toggle-button-checked {
+  background-color: brown;    
 }

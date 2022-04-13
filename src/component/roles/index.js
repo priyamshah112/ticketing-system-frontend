@@ -80,13 +80,6 @@ function Ticket() {
     }
   }, [roles]);
 
-  const filterSubmitHandler = async (e) => {
-    e.preventDefault();
-    let path = apipaths.softwareInventoryList;
-    path['url'] = path['url'] + '?' + $('#filter-role').serialize();
-    await getResponse(path);
-  };
-
   const deleteRoleHandler = async (r) => {
     // deleterole
     swal({
@@ -180,8 +173,17 @@ function Ticket() {
     });
   };
 
+  const handleFilterSearch = (val) => {
+    const filteredData = roles?.filter((item) =>
+      item?.role_name?.toLowerCase().includes(val.toLowerCase())
+    );
+    setRoleList(filteredData);
+  };
+
   const filterProps = {
     heading: 'User Roles',
+    filterEnableButton: false,
+    handleFilterSearch,
   };
   return (
     <div className="roles__window">

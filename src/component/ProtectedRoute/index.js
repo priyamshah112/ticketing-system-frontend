@@ -1,8 +1,5 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import Header from "../AdminDashboard/header";
-import IconTabs from "../AdminDashboard/sidebar";
-import Layout from '../layout';
 import AdminLayout from '../layout/adminLayout/adminlayout';
 import UserLayout from '../layout/userLayout/userlayout';
 
