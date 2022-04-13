@@ -44,7 +44,7 @@ function Login(props) {
         message: "Incorrect credentials entered.",
       });
     }
-    dispatch(addUserDetailsAction(data.data));
+    dispatch(addUserDetailsAction(data?.data));
     // console.log(data.data)
     if (data.data.userType === "Support") {
       props.history.push("/tickets");

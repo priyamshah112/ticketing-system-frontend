@@ -298,7 +298,8 @@ function AddInventoryForm(props) {
               <button
                 type="button"
                 className="btn btn-danger ml-3"
-                onClick={() => {setFormdata({});isOpen(false)}}
+                onClick={() => {isOpen(false)}}
+                // setFormdata({});
               >
                 Close
               </button>
