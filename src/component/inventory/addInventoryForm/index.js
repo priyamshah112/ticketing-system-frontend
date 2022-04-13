@@ -48,7 +48,7 @@ function AddInventoryForm(props) {
       data.id = inventoryId;
     } else data.operation = "add";
 
-    let resp =  await getResponse(apipaths.addInventorySoftware, data);
+    let resp = await getResponse(apipaths.addInventorySoftware, data);
 
     if (resp.status === 200) {
       toast.success(resp.data.message);
@@ -58,7 +58,7 @@ function AddInventoryForm(props) {
     } else {
       toast.error(resp.error.message);
     }
-    
+
   };
 
   const submitHandlerHardware = async (formdata) => {
@@ -117,12 +117,10 @@ function AddInventoryForm(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if(type == "software")
-          {
+          if (type == "software") {
             submitHandlerSoftware(formdata);
           }
-          else
-          {
+          else {
             submitHandlerHardware(formdata);
           }
         }}
@@ -295,13 +293,14 @@ function AddInventoryForm(props) {
               ) : (
                 ""
               )}
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-danger ml-3"
-                onClick={() => {setFormdata({});isOpen(false)}}
+                onClick={() => {isOpen(false)}}
+                // setFormdata({});
               >
                 Close
-              </button>
+              </button> */}
             </div>
           </div>
         ) : (
@@ -375,7 +374,7 @@ function AddInventoryForm(props) {
               <label>Notes<span className="text-danger"> * </span></label>
               <textarea
                 label="Serial Number"
-                value={formdata.notes ? formdata.notes : '' }
+                value={formdata.notes ? formdata.notes : ''}
                 className="form-control"
                 onChange={(e) =>
                   setFormdata({ ...formdata, notes: e.target.value })
@@ -395,7 +394,8 @@ function AddInventoryForm(props) {
               <button
                 type="button"
                 className="btn btn-danger ml-3"
-                onClick={() => {setFormdata({});isOpen(false)}}
+                onClick={() => { isOpen(false) }}
+              // setFormdata({});
               >
                 Close
               </button>

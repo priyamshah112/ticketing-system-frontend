@@ -30,7 +30,7 @@ function Dashboard() {
   const getTickets = async () => {
     const { data, error } = await getResponse(apipaths.listticket);
     if (error) return toast.warn("Error in listing tickets.");
-    dispatch(addTicketsAction(data.data.tickets));
+    dispatch(addTicketsAction(data?.data?.tickets));
   };
   return (
     <>

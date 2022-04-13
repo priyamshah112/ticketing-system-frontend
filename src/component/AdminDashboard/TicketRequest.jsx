@@ -80,6 +80,7 @@ class TicketRequest extends Component {
     // }
 
     render() {
+        console.log(this.props.seriesData)
         return (
 
             <div className="mixed-chart">
