@@ -83,7 +83,7 @@ class TicketRequest extends Component {
         console.log(this.props.seriesData)
         return (
 
-            <div className="mixed-chart">
+            <div className="mixed-chart mixed-chart-vh">
                 <Chart
                     options={this.state.options}
                     series={this.state.series}

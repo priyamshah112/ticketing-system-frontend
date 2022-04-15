@@ -52,7 +52,7 @@ function AdminDashboard() {
                 <h1 className="section__title">Dashboard</h1>
 
                 <div className="row pb-4">
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -66,7 +66,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -80,7 +80,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -94,7 +94,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box">
                             <div className="row align-items-center">
                                 <div className="col-auto">
@@ -111,7 +111,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box">
                             <div className="row align-items-center">
                                 <div className="col-auto">
@@ -134,7 +134,7 @@ function AdminDashboard() {
                 <div className="row">
                     <UserRequest userRequest={userRequest} />
                     <HardInventory priorityTickets={priorityTickets} />
-                    <div className="col-4">
+                    <div className="col-sm-4 mb-3 mb-sm-0">
                         <TrackByCountry />
                         <TicketCalender />  
                     </div>
