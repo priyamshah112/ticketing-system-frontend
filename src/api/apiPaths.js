@@ -4,6 +4,7 @@ export const apipaths = {
     addrole: { url: "/role/add", method: "POST" },
     deleterole: { url: "/role/delete", method: "POST" },
     listusers: { url: "/users", method: "GET" },
+    supportUsers: { url: "/support-users", method: "GET" },
     adduser: { url: "/user/add", method: "POST" },
     deleteuser: { url: "/user/delete", method: "POST" },
     listticket: { url: "/tickets", method: "GET" },

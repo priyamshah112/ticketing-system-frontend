@@ -81,36 +81,25 @@ export default function TicketRequestTabs(props) {
 
   useEffect(async () => {
     const { data } = await getResponse(apipaths.getTicketRequest);
-    const { monthly, weekly, daily } = data?.data
-    console.log("daily", monthly, weekly, daily)
+    const { monthly = [], weekly = [], daily = 0 } = data?.data
+    console.log("daily", data.data)
     monthly?.map((monthly) => {
-      if (monthly.Date) {
-        getDayName(monthly.Date)
-      } else {
-        MonthlyCatogoriesData.push(monthly.days)
-      }
       MonthlySeriesData.push(monthly.count)
-
+      MonthlyCatogoriesData.push(monthly.Date)
     })
     SetMonthlySeriesData(MonthlySeriesData)
     SetMonthlyCatogoriesData(MonthlyCatogoriesData)
 
     weekly?.map((week) => {
-      if (week.Date) {
-        getWeekDayName(week.Date)
-      } else {
-        WeekelyCatogoriesData.push(week.days)
-      }
       WeekelySeriesData.push(week.count)
 
     })
     SetWeekelySeriesData(WeekelySeriesData)
     SetWeekelyCatogoriesData(WeekelyCatogoriesData)
 
-    daily?.DailyCount?.map((daily) => {
-      DailySeriesData.push(daily.count)
-      DailyCatogoriesData.push(daily.days)
-    })
+    DailySeriesData.push(daily)
+    DailyCatogoriesData.push('Today')
+
     SetDailySeriesData(DailySeriesData)
     SetDailyCatogoriesData(DailyCatogoriesData)
 
@@ -118,7 +107,7 @@ export default function TicketRequestTabs(props) {
 
   }, [])
 
-  
+
   const getDayName = (data) => {
     let date = new Date(data);
     let day = date.toLocaleString('en-us', { weekday: 'long' });
@@ -126,7 +115,7 @@ export default function TicketRequestTabs(props) {
     SetMonthlyCatogoriesData(MonthlyCatogoriesData)
   }
 
-  const getWeekDayName=(data)=>{
+  const getWeekDayName = (data) => {
     let date = new Date(data);
     let day = date.toLocaleString('en-us', { weekday: 'long' });
     WeekelyCatogoriesData.push(...WeekelyCatogoriesData, day)
@@ -135,32 +124,35 @@ export default function TicketRequestTabs(props) {
 
   return (
     <div className="category__box category__box__ht__min">
-      <div className="openCategory"><p className="category__title m-0">Ticket Request</p>
+      <div className="openCategory">
+        <p className="ticket__title m-0">Ticket Request</p>
       </div>
-      <div className="parentTabs">
-        <AppBar position="static" className="ticketRequestWrapper">
-          <Tabs
-            variant="fullWidth"
-            className="tabPanelTicketRequest"
-            value={value}
-            onChange={handleChange}
-            aria-label="nav tabs example"
-          >
-            <LinkTab label="Daily" href="/Daily" {...a11yProps(0)} />
-            <LinkTab label="Week" href="/Week" {...a11yProps(1)} />
-            <LinkTab label="Month" href="/Month" {...a11yProps(2)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          <TicketRequest seriesData={DailySeriesData} categories={DailyCatogoriesData} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <TicketRequest seriesData={WeekelySeriesData} categories={WeekelyCatogoriesData} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <TicketRequest seriesData={MonthlySeriesData} categories={MonthlyCatogoriesData} />
-        </TabPanel>
-      </div>
+      
+        <div className="parentTabs">
+          <AppBar position="static" className="ticketRequestWrapper">
+            <Tabs
+              variant="fullWidth"
+              className="tabPanelTicketRequest"
+              value={value}
+              onChange={handleChange}
+              aria-label="nav tabs example"
+            >
+              <LinkTab label="Daily" href="/Daily" {...a11yProps(0)} />
+              <LinkTab label="Week" href="/Week" {...a11yProps(1)} />
+              <LinkTab label="Month" href="/Month" {...a11yProps(2)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+            <TicketRequest seriesData={DailySeriesData} categories={DailyCatogoriesData} />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <TicketRequest seriesData={WeekelySeriesData} categories={WeekelyCatogoriesData} />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <TicketRequest seriesData={MonthlySeriesData} categories={MonthlyCatogoriesData} />
+          </TabPanel>
+        </div>
+      
     </div>
   );
 }

@@ -17,8 +17,6 @@ import {
   dateFormatHandler,
 } from '../../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
-import { getUserLists } from '../../../actions/userActions';
-import { CSVLink } from 'react-csv';
 import FilterComponent from '../reusableComponents/filters';
 import './style.css';
 
@@ -100,7 +98,7 @@ function SoftwareInventory() {
   const brands = ['HP', 'DELL'];
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
-  const userList = useSelector((state) => state.userList);
+  const [userList, setUserList] = useState([]);
 
   const [isAssignInventoryModal, setIsAssignInventoryModal] = useState(false);
 
@@ -110,9 +108,9 @@ function SoftwareInventory() {
   };
 
   const userListHandler = async () => {
-    const { data } = await getResponse(apipaths.listusers, null);
-    const users = data.data.user;
-    dispatch(getUserLists(users));
+    const { data } = await getResponse(apipaths.usergetlist, null);
+    if (error) return toast.warn('Error in listing Users.');
+    setUserList(data.data.user);
   };
 
   const assignInventoryHandleOk = async () => {
@@ -142,11 +140,15 @@ function SoftwareInventory() {
   };
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(inventoryListAction(id));
-    userListHandler();
     $('#filter-inventory-wrapper').slideToggle(0);
   }, [id]);
+
+  useEffect(() => {
+    userListHandler();
+  }, []);
 
   const editInventory = (inventory, viewOnly) => {
     setEditFormData(inventory);
@@ -283,8 +285,11 @@ function SoftwareInventory() {
         return $(element).val() != '';
       })
       .serialize();
-    let path = apipaths.softwareInventoryList;
-    path['url'] = path['url'].split('?')[0] + '?' + elem;
+    let path = {
+      url: apipaths.softwareInventoryList.url,
+      method: apipaths.softwareInventoryList.method,
+    };
+    path.url = path.url.split('?')[0] + '?' + elem;
     let { data, error } = await getResponse(path, formData);
     if (error) return toast.warn('Error in listing tickets.');
 
@@ -305,7 +310,7 @@ function SoftwareInventory() {
             delete_id: inv.id,
           });
           const { success, message } = data;
-          if (success === 1 || success === 0) {
+          if (success) {
             toast.success(<div className="text-capitalize">{message}</div>);
             dispatch(inventoryListAction(id));
           }
@@ -351,6 +356,13 @@ function SoftwareInventory() {
     showModal();
   };
 
+  const handleFilterSearch = (val) => {
+    const filteredData = inventoryList?.software?.filter((item) =>
+      item.name.toLowerCase().includes(val.toLowerCase())
+    );
+    setInventories(filteredData);
+  };
+
   const filterProps = {
     heading: 'Inventory Software',
     buttonOne: 'Add Software',
@@ -368,6 +380,7 @@ function SoftwareInventory() {
       $('#filter-inventory-wrapper').slideToggle(300);
     },
     inventories,
+    handleFilterSearch,
   };
   return (
     <div className="software__inventory">
@@ -431,7 +444,8 @@ function SoftwareInventory() {
                     {userList &&
                       userList.map((user) => (
                         <option value={user.id}>
-                          {user?.user_details?.firstName}
+                          {user?.user_details?.firstName}{' '}
+                          {user?.user_details?.lastName}
                         </option>
                       ))}
                   </select>
@@ -481,8 +495,11 @@ function SoftwareInventory() {
                   <button
                     className="btn primary__cancel__button ml-3"
                     onClick={() => {
-                      let apipath = apipaths.softwareInventoryList;
-                      apipath['url'] = apipath['url'].split('?')[0];
+                      let path = {
+                        url: apipaths.softwareInventoryList.url,
+                        method: apipaths.softwareInventoryList.method,
+                      };
+                      path.url = path.url.split('?')[0];
                       $('#filter-inventory').trigger('reset');
                       $('#filter-inventory-wrapper').slideToggle(300);
                       dispatch(inventoryListAction(id));

@@ -1,13 +1,9 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import IconTabs from "../../AdminDashboard/sidebar";
-import Header from "../../AdminDashboard/header";
+import IconTabs from "./sidebar";
+import Header from "./header";
 
-function AdminLayout(props) {
-    console.log("AdminLayout:",props);
-  
-    return (
-    
+function AdminLayout(props) {  
+    return (    
       <>
         <Header/>
         <IconTabs />

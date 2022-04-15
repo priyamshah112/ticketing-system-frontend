@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./admin-dashboard.css"
-import Header from "./header";
-import IconTabs from "./sidebar";
 import tool from "../../../src/images/admin-dashboard/tool.svg";
 import person from "../../../src/images/admin-dashboard/person.svg";
 import { getResponse } from "../../api/apiResponse";
@@ -54,7 +52,7 @@ function AdminDashboard() {
                 <h1 className="section__title">Dashboard</h1>
 
                 <div className="row pb-4">
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -68,7 +66,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -82,7 +80,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -96,7 +94,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box">
                             <div className="row align-items-center">
                                 <div className="col-auto">
@@ -113,7 +111,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box">
                             <div className="row align-items-center">
                                 <div className="col-auto">
@@ -136,7 +134,7 @@ function AdminDashboard() {
                 <div className="row">
                     <UserRequest userRequest={userRequest} />
                     <HardInventory priorityTickets={priorityTickets} />
-                    <div className="col-4">
+                    <div className="col-sm-4 mb-3 mb-sm-0">
                         <TrackByCountry />
                         <TicketCalender />  
                     </div>
@@ -144,264 +142,7 @@ function AdminDashboard() {
                     
                 </div>
 
-
-                <div className="statistics__section d-none">
-                    <h5 className="support__title">Support Tracker</h5>
-                    <div className="mansory__lyt">
-                        <div className="mansory__lyt__ch">
-                            <div className="category__box category__box__ht__max">
-                                <p className="category__title">requests by users</p>
-                                <table className="table__style">
-                                    <tr>
-                                        <th
-                                            className="table__box table__boxborder">
-                                        </th>
-                                        <th
-                                            className="table__box table__boxborder">
-                                            Open</th>
-                                        <th
-                                            className="table__box table__boxborder">
-                                            Pending</th>
-                                        <th
-                                            className="table__box table__boxborder">
-                                            Closed</th>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Md Shan</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Prakash</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Md Shan</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Prakash</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Md Shan</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Prakash</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Md Shan</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Prakash</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Md Shan</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Prakash</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            2</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            5</td>
-                                        <td
-                                            className="table__box table_number_color">
-                                            10</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div className="category__box category__box__ht__min">
-                                <p className="category__title">ticket requestslknd</p>
-                            </div>
-                        </div>
-                        <div className="mansory__lyt__ch">
-                            <div className="category__box category__box__ht__min">
-                                <p className="category__title">hardware inventory</p>
-                            </div>
-                            <div className="category__box category__box__ht__max">
-                                <p className="category__title">ticket priority level</p>
-                                <table className="table__style">
-                                    <tr>
-                                        <th
-                                            className="table__box table__boxborder">
-                                        </th>
-                                        <th
-                                            className="table__box table__boxborder">
-                                            Date</th>
-                                        <th
-                                            className="table__box table__boxborder">
-                                            Assigned To</th>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Ticket 1</td>
-                                        <td
-                                            className="table__box">
-                                            01/03/2022</td>
-                                        <td
-                                            className="table__box">
-                                            Ashwin Rao</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Ticket 1</td>
-                                        <td
-                                            className="table__box">
-                                            01/03/2022</td>
-                                        <td
-                                            className="table__box">
-                                            Ashwin Rao</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Ticket 1</td>
-                                        <td
-                                            className="table__box">
-                                            01/03/2022</td>
-                                        <td
-                                            className="table__box">
-                                            Ashwin Rao</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Ticket 1</td>
-                                        <td
-                                            className="table__box">
-                                            01/03/2022</td>
-                                        <td
-                                            className="table__box">
-                                            Ashwin Rao</td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            className="table__box">
-                                            Ticket 1</td>
-                                        <td
-                                            className="table__box">
-                                            01/03/2022</td>
-                                        <td
-                                            className="table__box">
-                                            Ashwin Rao</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div className="mansory__lyt__ch">
-                            <div className="category__box category__box__ht__max">
-                                <p className="category__title"></p>
-                            </div>
-                            <div className="category__box category__box__ht__min calender">
-                                <p className="category__title">calender</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
-            {/* <Footer /> */}
 
         </>
     );

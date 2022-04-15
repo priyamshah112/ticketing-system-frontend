@@ -1,5 +1,6 @@
 .hardware__inventory {
   margin-left: 100px;
+  padding-bottom: 20px;
 }
 
 .hardware__inventory .table__view {
@@ -8,6 +9,10 @@
 
 .MuiToolbar-regular {
   min-height: 0 !important;
+}
+
+#filter-inventory-wrapper{
+  margin-right: 20px;
 }
 
 @media (min-width: 600px) {

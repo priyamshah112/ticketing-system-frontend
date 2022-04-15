@@ -194,10 +194,11 @@ ul {
 /* content__section */
 .content__section {
     width: calc(100% - 80px);
-    height: calc(100vh - 66px);
+    /* height: calc(100vh - 66px); */
     /* margin-top: 65px; */
     margin-left: auto;
-    padding: 32px
+    padding: 32px;
+    padding-bottom: 20px;
     /* overflow: hidden; */
 }
 
@@ -364,7 +365,7 @@ padding-right: 5%;
 .category__box__ht__min {
     height: 300px;
     overflow: hidden;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 .ticketRequestWrapper [aria-label="nav tabs example"] > a.MuiTab-textColorInherit.Mui-selected{
     background: #62BC46;
@@ -396,6 +397,13 @@ color: #2D3142;
 }
 
 .category__title {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.ticket__title {
     text-transform: capitalize;
     margin-bottom: 1rem;
     font-weight: 400;
@@ -506,4 +514,80 @@ color: #2D3142;
     position: absolute;
       top: -5px;
   }
+  .pointer{
+      cursor:pointer
+  }
   /* Calender Section */
+
+   .vertical-line:before {
+    background-image: url('../../images/admin-dashboard/vertical.svg');
+    background-size: 21px 75px;
+    display: inline-block;
+    width: 15px;
+    height: 90px;
+    content: "";
+       
+
+            
+  }
+  .horizontal-line:before{
+    content: url('../../images/admin-dashboard/horizontal-line.svg');
+    position: relative;
+    top: 11px;
+    left:-4px
+  }
+
+  .shift-line{
+    position: relative;
+    left: -4px;
+  }
+
+  .icon-color > path :hover{
+fill:black;
+  }
+
+  .MuiSvgIcon-root{
+      fill:transparent !important
+  }
+
+.inner__category__box{
+    height: 100%;
+}
+
+  @media (max-width: 575.98px) {
+    .category__box__ht__max, .category__box__ht__min {
+        min-height: 300px;
+        height: auto;
+    }
+
+    .category__box:first-child {
+        margin-bottom: inherit;
+    }
+
+    .content__section {
+        padding: 1rem;
+        /* overflow: hidden; */
+    }
+
+    .category__box{
+        position: relative;
+    }
+
+    /* .category__title {
+        position: absolute;
+        top: 1rem;
+        z-index: 9;
+    } */
+
+    /* .inner__category__box {
+        overflow-y: auto;
+        min-height: calc(300px - 30px);
+        padding-top: 40px;
+        height: 100%;
+    } */
+  }
+
+  .mixed-chart-vh{
+    height: calc(300px - 60px);
+    overflow-y: auto;
+  }

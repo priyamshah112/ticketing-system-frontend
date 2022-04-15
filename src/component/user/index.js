@@ -54,25 +54,23 @@ function User(props) {
       sorting: false,
     },
   ];
+  const userList = useSelector((state) => state.userList);
+  const userDetails = useSelector((state) => state.userDetails);
   const [isCreateUserModal, setIsCreateModal] = useState(false);
   const [operation, setOperation] = useState('');
   const [userImportFile, setUserImportFile] = useState('');
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [error, setError] = useState();
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState('');
   const [userInfo, setUserInfo] = useState([]);
   const [exportUrl, setExportUrl] = useState('');
-
-  const [filterData, setFilterData] = useState([]);
-  const [isFilterActive, setIsFilterActive] = useState();
-
   const [sampleImport, setSampleImport] = useState('');
-
-  const userList = useSelector((state) => state.userList);
-  const userDetails = useSelector((state) => state.userDetails);
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setUserData(userList);
+  }, [userList]);
 
   useEffect(() => {
     dataHandler();
@@ -101,7 +99,6 @@ function User(props) {
     const { data } = await getResponse(apipaths.listusers, null);
     setSampleImport(data.data.sampleImport);
     let users = data.data.user;
-    setUserData(data.data);
     users = usersAddMoreData(users);
     setExportUrl(data.data.exportUrl);
     dispatch(getUserLists(users));
@@ -110,6 +107,7 @@ function User(props) {
   const usersAddMoreData = (users) => {
     let data = users;
     data.map((user) => {
+      console.log(user);
       user.created_at = dateFormatHandler(user.created_at);
       user.updated_at = new Date(user.updated_at).toDateString();
 
@@ -291,16 +289,34 @@ function User(props) {
         return $(element).val() != '';
       })
       .serialize();
-    let path = apipaths.listusers;
-    path['url'] = path['url'].split('?')[0] + '?' + filterString;
+    let path = {
+      url: apipaths.listusers.url,
+      method: apipaths.listusers.method,
+    };
+    path.url = path.url.split('?')[0] + '?' + filterString;
     // console.log(path);
     let { data } = await getResponse(path);
     path = '';
-    setIsFilterActive(true);
 
     let users = data.data.user;
     users = usersAddMoreData(users);
-    setFilterData(users);
+    setUserData(users);
+  };
+
+  const handleFilterSearch = (val) => {
+    const filteredData = userList?.filter(
+      (item) =>
+        item?.user_details?.firstName
+          ?.toLowerCase()
+          .includes(val.toLowerCase()) ||
+        item?.user_details?.lastName
+          ?.toLowerCase()
+          .includes(val.toLowerCase()) ||
+        item?.user_details?.middleName
+          ?.toLowerCase()
+          .includes(val.toLowerCase())
+    );
+    setUserData(filteredData);
   };
 
   const filterProps = {
@@ -319,8 +335,12 @@ function User(props) {
       $('#filter-user').slideToggle(300);
     },
     buttonThree: 'Export',
-    inventories: isFilterActive ? filterData : userList,
+    inventories: userList,
+    handleFilterSearch,
   };
+
+  console.log(userData);
+
   return (
     <div className="user__window">
       <FilterComponent {...{ ...filterProps }} />
@@ -369,11 +389,13 @@ function User(props) {
                   <button
                     className="btn primary__cancel__button ml-3"
                     onClick={() => {
-                      setIsFilterActive(false);
                       $('#filter-user-form').trigger('reset');
                       $('#filter-user').slideToggle(300);
-                      let path = apipaths.listusers;
-                      path['url'] = path['url'].split('?')[0];
+                      let path = {
+                        url: apipaths.listusers.url,
+                        method: apipaths.listusers.method,
+                      };
+                      path.url = path.url.split('?')[0];
                       dataHandler();
                     }}
                     type="button"
@@ -389,7 +411,7 @@ function User(props) {
         <div className="user__table">
           <MaterialTable
             title=""
-            data={isFilterActive ? filterData : userList}
+            data={userData}
             columns={columns}
             options={{
               search: false,
