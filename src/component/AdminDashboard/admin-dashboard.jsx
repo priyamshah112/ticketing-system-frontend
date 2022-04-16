@@ -52,7 +52,7 @@ function AdminDashboard() {
                 <h1 className="section__title">Dashboard</h1>
 
                 <div className="row pb-4">
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -61,12 +61,12 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">Open Tickets</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[0].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/tickets?open=true`}> View Details >></Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?open=true`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -75,12 +75,12 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">pending Tickets</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[1].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/tickets?pending=true`}> View Details >></Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?pending=true`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -89,12 +89,12 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">closed</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[2].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/tickets?closed=true`}> View Details >></Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?closed=true`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box">
                             <div className="row align-items-center">
                                 <div className="col-auto">
@@ -106,12 +106,12 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">total hardware</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[2].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/inventory/hardware`}> View Details >></Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/inventory/hardware`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg">
+                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box">
                             <div className="row align-items-center">
                                 <div className="col-auto">
@@ -123,7 +123,7 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">active users</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[3].total}</p>
-                                    <p className="tickets__viewDetails" ><Link to={`/user`}> View Details >></Link></p>
+                                    <p className="tickets__viewDetails" ><Link to={`/user`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@ function AdminDashboard() {
                 <div className="row">
                     <UserRequest userRequest={userRequest} />
                     <HardInventory priorityTickets={priorityTickets} />
-                    <div className="col-4">
+                    <div className="col-sm-4 mb-3 mb-sm-0">
                         <TrackByCountry />
                         <TicketCalender />  
                     </div>
