@@ -63,6 +63,7 @@ function AddInventoryForm(props) {
 
   const submitHandlerHardware = async (formdata) => {
     let data = formdata;
+    data.type = "Hardware";
 
     const {
       // brand,
@@ -81,6 +82,7 @@ function AddInventoryForm(props) {
       description,
       warranty_expire_on,
     } = data;
+
     if (
       !asset_name ||
       !unit_price ||
