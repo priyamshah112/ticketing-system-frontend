@@ -151,11 +151,6 @@ function IconTabs() {
                                         <span className="link-collapse">Edit Profile</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <Link onClick={() => localStorage.clear()} to="/">
-                                        <span className="link-collapse">Logout</span>
-                                    </Link>
-                                </li>
                             </ul>
                         </Typography>
                     </Popover>
@@ -300,20 +295,21 @@ function IconTabs() {
                             ''
                     }
 
-                    <li
+                    {/* <li
                         className="sidebar-item"
                         id="faq-main"
                         onClick={() => activeLinkHandler("faq-main")}
                     >
                         <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
-                    </li>
+                    </li> */}
+
 
                     <li
                         className="sidebar-item"
                         id="logout-main"
                         onClick={() => activeLinkHandler("logout-main")}
                     >
-                        <Link to={`/`}>
+                        <Link  onClick={() => localStorage.clear()} to="/">
                             <SvgIcon component={Logout} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                         </Link>
                     </li>

@@ -12,18 +12,6 @@ function Header() {
                                 height="" />
                         </figure>
                     </li>
-                    <li>
-                        <figure>
-                            <img src={logo} width="120"
-                                height="" />
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src={logo} width="120"
-                                height="" />
-                        </figure>
-                    </li>
                 </ul>
             </div>
         </>

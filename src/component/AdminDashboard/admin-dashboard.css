@@ -516,11 +516,11 @@ color: #2D3142;
   
   
   .react-calendar__navigation__label {
-    position: relative;
+    position: absolute;
     top: 2px !important;
-    left: 175px !important;
-
-    background: white;
+    left: auto;
+    right: 15px !important;
+    background: transparent;
     border: none;
   
   }
@@ -528,8 +528,7 @@ color: #2D3142;
       margin-top:10px
   }
   .react-calendar__navigation{
-    position: absolute;
-      top: -5px;
+    position: relative;
   }
   .pointer{
       cursor:pointer
