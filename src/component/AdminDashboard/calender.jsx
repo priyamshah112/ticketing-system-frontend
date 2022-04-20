@@ -8,7 +8,7 @@ function TicketCalender() {
 
     return (
         <div className="category__box category__box__ht__min">
-            <p className="category__title calender">calender</p>
+            <p className="category__title calender">Calendar</p>
             {/* <Calendar onChange={onChange} value={value} /> */}
             
             <Calendar onChange={onChange}

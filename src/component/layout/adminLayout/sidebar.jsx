@@ -7,17 +7,17 @@ import { Modal } from "antd";
 import ChangePassword from "../../changepassword";
 import ProfileView from "../../profileView";
 import ProfileUpdate from "../../updateProfile";
-import { ReactComponent as Clipboard } from "../../../images/admin-dashboard/bi_clipboard-data.svg";
-import { ReactComponent as Solidusers } from "../../../images/admin-dashboard/fa-solid_users.svg";
-import{ ReactComponent as Vector } from "../../../images/admin-dashboard/Vector.svg";
+import { ReactComponent as Clipboard } from "../../../images/admin-dashboard/Category.svg";
+import { ReactComponent as Solidusers } from "../../../images/admin-dashboard/Plus.svg";
+import{ ReactComponent as Vector } from "../../../images/admin-dashboard/File.svg";
 import dropdown from "../../../images/admin-dashboard/dropdown.svg";
-import { ReactComponent as Hardware } from "../../../images/admin-dashboard/hardware-inventory.svg";
-import { ReactComponent as Software } from "../../../images/admin-dashboard/software-inventory.svg";
-import { ReactComponent as Inventory } from "../../../images/admin-dashboard/inventory.svg"
-import { ReactComponent as Roles } from "../../../images/admin-dashboard/roles.svg";
-import { ReactComponent as User } from "../../../images/admin-dashboard/user.svg"
-import { ReactComponent as Faq } from "../../../images/admin-dashboard/wpf_faq.svg";
-import { ReactComponent as Logout } from "../../../images/admin-dashboard/logout.svg"
+import { ReactComponent as Hardware } from "../../../images/admin-dashboard/Hardware1.svg";
+import { ReactComponent as Software } from "../../../images/admin-dashboard/Software.svg";
+import { ReactComponent as Inventory } from "../../../images/admin-dashboard/Invoice.svg"
+import { ReactComponent as Roles } from "../../../images/admin-dashboard/Education.svg";
+import { ReactComponent as User } from "../../../images/admin-dashboard/Plus.svg"
+import { ReactComponent as Faq } from "../../../images/admin-dashboard/Comment.svg";
+import { ReactComponent as Logout } from "../../../images/admin-dashboard/Logout1.svg"
 import $ from "jquery";
 import { SvgIcon } from '@material-ui/core';
 
@@ -171,7 +171,7 @@ function IconTabs() {
                             <Link
                                 to={userType === "User" ? "/userdashboard" : "/dashboard"}
                             >
-                                <SvgIcon component={Clipboard} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                <SvgIcon component={Clipboard} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
 
                             </Link>
                         </li>
@@ -182,7 +182,7 @@ function IconTabs() {
                         onClick={() => activeLinkHandler("tickets-main")}
                     >
                         <Link to={`/tickets`}>
-                            <SvgIcon component={Vector} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                            <SvgIcon component={Vector} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
                         </Link>
                     </li>
                     <li class="sidebar__divider">
@@ -192,7 +192,7 @@ function IconTabs() {
                         id="inventory-main"
                         onClick={() => { activeLinkHandler("inventory-main"); toggleInventory() }}
                     >
-                        <SvgIcon component={Inventory} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                        <SvgIcon component={Inventory} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
 
                     </li>
                     {
@@ -213,7 +213,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("inv-software")}
                                             >
                                                 <Link to="/inventory/software">
-                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                                                 </Link>
                                             </li>
                                         </div>
@@ -230,7 +230,7 @@ function IconTabs() {
                                                 <Link
                                                     to="/inventory/hardware"
                                                 >
-                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                                                 </Link>
                                             </li>
 
@@ -249,7 +249,7 @@ function IconTabs() {
                         id="user-sub-user"
                         onClick={() => { activeLinkHandler("user-sub-user"); toggleUsers() }}
                     >
-                        <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                        <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                     </li>
                     {
                         showUsers ?
@@ -269,7 +269,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("user-role")}
                                             >
                                                 <Link to="/role">
-                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                                                 </Link>
                                             </li>
                                         </div>
@@ -284,7 +284,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("user-role")}
                                             >
                                                 <Link to="/user">
-                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                                                 </Link>
                                             </li>
 
@@ -305,7 +305,7 @@ function IconTabs() {
                         id="faq-main"
                         onClick={() => activeLinkHandler("faq-main")}
                     >
-                        <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                        <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                     </li>
 
                     <li
@@ -314,7 +314,7 @@ function IconTabs() {
                         onClick={() => activeLinkHandler("logout-main")}
                     >
                         <Link to={`/`}>
-                            <SvgIcon component={Logout} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />
+                            <SvgIcon component={Logout} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                         </Link>
                     </li>
                     {/* <li>

@@ -184,7 +184,7 @@
       color:#5C55BF !important;
   }
   path:hover , :active{
-    fill: #5C55BF !important;
+    fill: transparent !important;
 
   }
 

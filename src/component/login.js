@@ -5,7 +5,7 @@ import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
-import bg from "./assets/background.png"
+import bg from "./assets/login.png"
 import compliancelogo from "./assets/compliancelogo.png"
 import sciencelogo from "./assets/sciences-logo.png"
 import lifescience from "./assets/life-sciencelogo.png"
@@ -114,14 +114,7 @@ function Login(props) {
                   src={compliancelogo}
                   alt="logo"
                   className="img-fluid mb-4 d-block  compliance-logo"></img>
-                <img
-                  src={sciencelogo}
-                  alt="logo"
-                  className="img-fluid mb-4 d-block  science-logo"></img>
-                <img
-                  src={lifescience}
-                  alt="logo"
-                  className="img-fluid mb-4 d-block  life-sciencelogo"></img>
+                
               </div>
               <div className="auth-content-logo px-3 py-3">
                 <img
@@ -136,9 +129,9 @@ function Login(props) {
           <div className="col-lg-6  px-0">
             <div className="form-container">
               <div className=" auth-content">
-                <h1 className="mb-4 f-w-400 bold sign-in-head">Sign In</h1>
+                <h1 className="mb-4 f-w-400 bold sign-in-head">Welcome to Enhance Compliance Ticketing System</h1>
 
-                <h5 className=" font-weight-normal">
+               {/* <h5 className=" font-weight-normal">
                   {create ? <div>
                     <span className="have-account">Already have an account? </span> <span className="sign-up">Sign Up</span>
                   </div> :
@@ -146,17 +139,17 @@ function Login(props) {
                       <span className="have-account">Already have an account? </span> <span className="sign-up">Sign In</span>
                     </div>
                   }
-                </h5>
+                </h5>*/}
                 {!create ? (
                   <form>
 
-                    <div className="button-div">
+                   {/* <div className="button-div">
                       <button type="button" className="btn btn-light google-button " data-toggle="button" aria-pressed="false" ><img src={google} classname="google-icon"></img>Continue with Google</button>
                       <button type="button" class="btn btn-primary facebook-button" data-toggle="button" aria-pressed="false" ><img src={facebook} classname="  google-icon"></img> Continue with Facebook</button>
                     </div>
                     <div className="divider-div">
                       <div><hr className="divider"></hr></div>  <div>or </div> <div><hr className="divider"></hr></div>
-                    </div>
+                </div>*/}
                     <input
                       type="hidden"
                       name="_token"

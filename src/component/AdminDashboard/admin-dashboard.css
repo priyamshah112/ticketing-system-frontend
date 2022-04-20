@@ -64,6 +64,10 @@ body {
 /* header */
 
 /* sidebar */
+
+
+.side__bar::-webkit-scrollbar-thumb {max-height: 50%; height: 50%; background-color: transparent !important}
+
 .side__bar {
     position: fixed;
     left: 0;
@@ -77,6 +81,8 @@ body {
     padding-top: 24px;
     width: 80px;
     cursor:pointer;
+    overflow-y:scroll;
+    overflow-x:hidden;
 }
 
 .profile__img__layout {
@@ -113,7 +119,7 @@ body {
     top: 12px;
     right: -16px;
     width: 2px;
-    height: 24px;
+    height: 40px;
     background-color: #5C55BF;
     border-radius: 5px;
 }
@@ -148,6 +154,12 @@ ul {
 }
 .tabPanel>div>div>a {
     min-width: 100px !important;
+
+}
+.tabPanel>div>div>a:active {
+color:white !important;
+text-decoration: none !important;
+text-decoration-line: none !important;    
 }
 .tabPanel>div>div + .PrivateTabIndicator-colorSecondary-5, .ticketRequestWrapper .PrivateTabIndicator-colorSecondary-5{
     display: none;
@@ -156,11 +168,13 @@ ul {
     background: #BF5555;
     box-shadow: 0px 4px 15px rgb(0 0 0 / 25%)!important;
     border-radius: 20px;
-    color: white;
+    color: white !important;
     margin: 8px 15px;
     height: 32px;
     min-height: 32px;
     min-width: 30px!important;
+    text-decoration: none !important;
+text-decoration-line: none !important;    
 }
 .parentTabs .MuiAppBar-colorPrimary.ticketRequestWrapper{
     width: 75%;
@@ -462,6 +476,8 @@ color: #2D3142;
     color: #2D3142;
     position: relative;
     top: -34px;
+    width: 100%;
+    overflow: hidden;
   
   }
   
@@ -501,8 +517,9 @@ color: #2D3142;
   
   .react-calendar__navigation__label {
     position: relative;
-    top: 2px;
-    left: 300px;
+    top: 2px !important;
+    left: 175px !important;
+
     background: white;
     border: none;
   
@@ -524,7 +541,7 @@ color: #2D3142;
     background-size: 21px 75px;
     display: inline-block;
     width: 15px;
-    height: 90px;
+    height: 113px;
     content: "";
        
 
@@ -533,9 +550,10 @@ color: #2D3142;
   .horizontal-line:before{
     content: url('../../images/admin-dashboard/horizontal-line.svg');
     position: relative;
-    top: 11px;
-    left:-4px
-  }
+    top: 17px;
+    left: -4px;
+}
+  
 
   .shift-line{
     position: relative;
@@ -591,3 +609,7 @@ fill:black;
     height: calc(300px - 60px);
     overflow-y: auto;
   }
+
+  .jss5 {
+    background-color: transparent;
+}
