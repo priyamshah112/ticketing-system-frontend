@@ -250,7 +250,7 @@ function AddUser(props) {
 
         <div className="col-12 px-4 mt-3 text-right">
           {operation !== "view" && (
-            <input type="submit" className="btn btn-success" />
+            <input type="submit" className="btn submit-btn" />
           )}
           <input
             type="button"

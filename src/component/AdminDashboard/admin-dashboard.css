@@ -612,3 +612,21 @@ fill:black;
   .jss5 {
     background-color: transparent;
 }
+
+.ant-modal-header{
+    background: #5c55bf !important;
+
+}
+.ant-modal-title{
+    color: white ;
+
+}
+.submit-btn{
+    background: #5c55bf;
+    color: white;
+}
+
+.ant-btn-primary{
+    background: #5c55bf;
+    color: white;   
+}
