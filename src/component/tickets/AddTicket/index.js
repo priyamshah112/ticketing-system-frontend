@@ -165,7 +165,7 @@ function AddTicket(props) {
           </div>
           <div className="col-lg-6 col-md-6 col-12">
             <div className="mt-4">
-              <input type="submit" className="btn btn-success" />
+              <input type="submit" className="btn submit-btn" />
               <input
                 type="button"
                 value="Close"

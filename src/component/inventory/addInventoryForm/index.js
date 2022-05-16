@@ -289,7 +289,7 @@ function AddInventoryForm(props) {
 
             <div className=" col-12 mt-3 pull-right text-right ">
               {editForm == 0 ? (
-                <button className="btn btn-success">
+                <button className="btn submit-btn">
                   {inventoryId ? "Update" : "Add"}
                 </button>
               ) : (
@@ -386,7 +386,7 @@ function AddInventoryForm(props) {
             </div>
             <div className="col-12 mt-3 pull-right text-right">
               {editForm == 0 ? (
-                <button className="btn btn-success">
+                <button className="btn submit-btn">
                   {inventoryId ? "Update" : "Add"}
                 </button>
               ) : (
