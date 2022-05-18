@@ -208,7 +208,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("inv-software")}
                                             >
                                                 <Link to="/inventory/software">
-                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px' , marginLeft:'-4px' }}  />
                                                 </Link>
                                             </li>
                                         </div>
@@ -225,7 +225,7 @@ function IconTabs() {
                                                 <Link
                                                     to="/inventory/hardware"
                                                 >
-                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ' , width: '55px' , marginLeft:'-4px' }}  />
                                                 </Link>
                                             </li>
 
@@ -264,7 +264,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("user-role")}
                                             >
                                                 <Link to="/role">
-                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ',width: '55px' , marginLeft:'-4px' }}  />
                                                 </Link>
                                             </li>
                                         </div>
@@ -279,7 +279,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("user-role")}
                                             >
                                                 <Link to="/user">
-                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px' , marginLeft:'-4px' }}  />
                                                 </Link>
                                             </li>
 

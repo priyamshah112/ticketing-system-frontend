@@ -35,7 +35,7 @@ function ProfileUpdate(props) {
   }, [img]);
 
 
- 
+
 
   const uploadProfilePicture = (formData) => {
     return dispatch => {
@@ -66,73 +66,68 @@ function ProfileUpdate(props) {
   }
   return (
     <>
-    <form className="row">
-      <div className="form-group col-12 d-flex justify-content-center align-items-center">
-        <div className="avatar-sm float-left mr-2">
-          <img
-            src="../assets/img/profile.jpg"
-            alt="..."
-            className="avatar-img rounded-circle"
-          />
+      <form className="row">
+        <div className="form-group col-12 d-flex justify-content-center align-items-center">
+          <div className="avatar-sm float-left mr-2">
+            <img
+              src="../assets/img/profile.jpg"
+              alt="..."
+              className="avatar-img rounded-circle"
+            />
+          </div>
         </div>
-      </div>
-      <div className="form-group col-6">
-        <label>First Name</label>
-        <input
-          onChange={e => { }}
-          className="form-control"
-          value={userDetails?.firstName}
-          disabled     ></input>
-        <div className="form-group col-6">
-          <label>First Name</label>
-          <input
-            onChange={e => { }}
-            className="form-control"
-            value={userDetails?.firstName}
-            disabled
+        <div className="form-group col-12">
 
-          />
+
+
+          <div className="form-group ">
+            <label>First Name</label>
+            <input
+              onChange={e => { }}
+              className="form-control"
+              value={userDetails?.firstName}
+              disabled     ></input>
+          </div>
+          <div className="form-group ">
+            <label>Middle Name</label>
+            <input
+              className="form-control"
+              value={userDetails?.middleName}
+              disabled
+            />
+          </div>
+          <div className="form-group ">
+            <label>Last Name</label>
+            <input
+              className="form-control"
+              value={userDetails?.lastName}
+              disabled
+            />
+          </div>
+          <div className="form-group ">
+            <label>Email</label>
+            <input className="form-control" value={userDetails?.email} disabled />
+          </div>
+          <div className="form-group ">
+            <label>Phone</label>
+            <input
+              className="form-control"
+              value={userDetails?.cellPhone}
+              disabled
+            />
+          </div>
+          <div className="form-group ">
+            <label>Country</label>
+            <input
+              className="form-control"
+              value={userDetails?.clientLocation}
+              disabled
+            />
+          </div>
         </div>
-        <div className="form-group col-6">
-          <label>Middle Name</label>
-          <input
-            className="form-control"
-            value={userDetails?.middleName}
-            disabled
-          />
-        </div>
-        <div className="form-group col-6">
-          <label>Last Name</label>
-          <input
-            className="form-control"
-            value={userDetails?.lastName}
-            disabled
-          />
-        </div>
-        <div className="form-group col-6">
-          <label>Email</label>
-          <input className="form-control" value={userDetails?.email} disabled />
-        </div>
-        <div className="form-group col-6">
-          <label>Phone</label>
-          <input
-            className="form-control"
-            value={userDetails?.cellPhone}
-            disabled
-          />
-        </div>
-        <div className="form-group col-6">
-          <label>Country</label>
-          <input
-            className="form-control"
-            value={userDetails?.clientLocation}
-            disabled
-          />
-        </div>
-      </div>
-    </form>
-        </>
-    );
+      </form>
+    </>
+  );
 }
 
 export default ProfileUpdate;

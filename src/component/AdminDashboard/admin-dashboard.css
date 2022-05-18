@@ -630,3 +630,18 @@ fill:black;
     background: #5c55bf;
     color: white;   
 }
+.ant-select{
+    font-size: 14px;
+    border-color: #ebedf2;
+    padding: 0.6rem 1rem;
+    height: inherit!important;
+    border: none;
+    border-bottom: 1px solid;
+    padding-left: 45px;
+    border-radius: 0.25rem;
+
+}
+
+.ant-select-selector{
+    border:none !important
+}
