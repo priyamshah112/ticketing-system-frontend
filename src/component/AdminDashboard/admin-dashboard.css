@@ -645,3 +645,11 @@ fill:black;
 .ant-select-selector{
     border:none !important
 }
+
+.ant-select-dropdown{
+    min-width: 221px;
+    width: 221px;
+    left: 425.2px;
+    top: 505.2px;
+    position: relative;
+}
