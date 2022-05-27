@@ -8,7 +8,7 @@ body {
 }
 body {
   width: 125% !important;
-  height: 200% !important;
+  height: 125% !important;
   transform-origin: top left;
   transform: scale(80%);
   overflow-x:hidden;
