@@ -38,7 +38,7 @@ function AddInventoryForm(props) {
   const submitHandlerSoftware = async (formdata) => {
     let data = formdata;
     const { name, key, assigned_to, version, notes } = data;
-    if (!name || !key || !assigned_to || !version || !notes) {
+    if (!name  || !assigned_to || !version || !notes) {
       return toast.warn("All * fields are mandatory.");
     }
 
@@ -328,7 +328,7 @@ function AddInventoryForm(props) {
               />
             </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Key<span className="text-danger"> * </span></label>
+              <label>Key</label>
               <InputFeild
                 value={formdata.key ? formdata.key : ''}
                 onChange={(e) =>

@@ -5,7 +5,7 @@ import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
-import bg from "./assets/login.png"
+import bg from "./assets/background.png"
 import compliancelogo from "./assets/compliancelogo.png"
 import sciencelogo from "./assets/sciences-logo.png"
 import lifescience from "./assets/life-sciencelogo.png"

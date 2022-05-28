@@ -13,8 +13,8 @@
 
 .compliance-logo {
     position: absolute;
-    width: 140px;
-    height: 46px;
+    width: 200px;
+    height: 70px;
     left: 26px;
     top: 29px;
 }
@@ -219,9 +219,8 @@
 
 .sign-in-button {
     left: 32.1%;
-    position: absolute;
+    position: relative;
     right: 64.72%;
-    top: 88.33%;
     bottom: 16.44%;
     height: 47px;
     width: 253px;

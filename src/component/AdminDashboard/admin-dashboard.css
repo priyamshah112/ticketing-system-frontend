@@ -653,3 +653,8 @@ fill:black;
     top: 505.2px;
     position: relative;
 }
+
+.MuiPopover-paper{
+    top:22px !important;
+    left:80px !important;
+}

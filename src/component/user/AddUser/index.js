@@ -52,6 +52,7 @@ function AddUser(props) {
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <InputFeild
             label="Middle Initial"
+
             value={formdata !== null ? formdata.middleName : ""}
             onChange={(e) =>
               setFormdata({ ...formdata, middleName: e.target.value })
@@ -60,7 +61,11 @@ function AddUser(props) {
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <InputFeild
-            label="Last Name"
+            label={
+              <span>
+                Last Name <span className="text-danger">*</span>
+              </span>
+            }
             value={formdata !== null ? formdata.lastName : ""}
             onChange={(e) =>
               setFormdata({ ...formdata, lastName: e.target.value })
@@ -231,15 +236,6 @@ function AddUser(props) {
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <InputFeild
-            label="Home Phone"
-            value={formdata !== null ? formdata.homePhone : ""}
-            onChange={(e) =>
-              setFormdata({ ...formdata, homePhone: e.target.value })
-            }
-          />
-        </div>
-        <div className="col-lg-6 col-md-6 col-6 mt-3">
-          <InputFeild
             label="Cell Phone"
             value={formdata !== null ? formdata.cellPhone : ""}
             onChange={(e) =>
@@ -247,6 +243,16 @@ function AddUser(props) {
             }
           />
         </div>
+        <div className="col-lg-6 col-md-6 col-6 mt-3">
+          <InputFeild
+            label="Home Phone"
+            value={formdata !== null ? formdata.homePhone : ""}
+            onChange={(e) =>
+              setFormdata({ ...formdata, homePhone: e.target.value })
+            }
+          />
+        </div>
+
 
         <div className="col-12 px-4 mt-3 text-right">
           {operation !== "view" && (
