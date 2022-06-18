@@ -4,6 +4,8 @@
 }
 
 .hardware__inventory .table__view {
+  transform: scale(0.9);
+
   padding: 20px 20px 0 0;
 }
 

@@ -42,60 +42,60 @@ function Ticket(props) {
   const columns =
     userType !== 'User'
       ? [
-          {
-            title: 'ID',
-            field: 'id',
-            width: '10%',
-          },
-          {
-            title: 'Subject',
-            field: 'subject',
-          },
-          {
-            title: 'Created By',
-            field: 'user.name',
-          },
-          {
-            title: 'Created At',
-            field: 'created_at',
-          },
-          {
-            title: 'Assigned To',
-            field: 'support.name',
-          },
-          {
-            title: 'Status',
-            field: 'status',
-          },
-          {
-            title: 'Action',
-            field: 'edit',
-            sorting: false,
-          },
-        ]
+        {
+          title: 'ID',
+          field: 'id',
+          width: '10%',
+        },
+        {
+          title: 'Subject',
+          field: 'subject',
+        },
+        {
+          title: 'Created By',
+          field: 'user.name',
+        },
+        {
+          title: 'Created At',
+          field: 'created_at',
+        },
+        {
+          title: 'Assigned To',
+          field: 'support.name',
+        },
+        {
+          title: 'Status',
+          field: 'status',
+        },
+        {
+          title: 'Action',
+          field: 'edit',
+          sorting: false,
+        },
+      ]
       : [
-          {
-            title: 'Subject',
-            field: 'subject',
-          },
-          {
-            title: 'Created By',
-            field: 'user.name',
-          },
-          {
-            title: 'Created At',
-            field: 'created_at',
-          },
-          {
-            title: 'Status',
-            field: 'status',
-          },
-          {
-            title: 'Action',
-            field: 'edit',
-            sorting: false,
-          },
-        ];
+        {
+          title: 'Subject',
+          field: 'subject',
+        },
+        {
+          title: 'Created By',
+          field: 'user.name',
+        },
+        {
+          title: 'Created At',
+          field: 'created_at',
+        },
+        {
+          title: 'Status',
+          field: 'status',
+        },
+        {
+          title: 'Action',
+          field: 'edit',
+          sorting: false,
+        },
+      ];
 
   const dispatch = useDispatch();
 
@@ -224,15 +224,13 @@ function Ticket(props) {
           style={{ fontWeight: 600 }}
           to={`/ticket/details?ticketid=${ticket.id}`}
         >
-          {ticket.subject}
+          {ticket.subject}  
         </Link>
       );
     });
 
-    setTicketDataOnStatus(data.data.tickets);
-  };
-
-  const userListHandler = async () => {
+    setTicketDataOnStatus(data.data.tickets)
+  }; const userListHandler = async () => {
     const { data } = await getResponse(apipaths.listusers, null);
     const users = data.data.user;
     dispatch(getUserLists(users));
@@ -323,9 +321,17 @@ function Ticket(props) {
         </div>
       );
       ticket.subject = (
+        userType !== 'User' ?
         <Link
           style={{ fontWeight: 600 }}
           to={`/ticket/details?ticketid=${ticket.id}`}
+        >
+          {ticket.subject}
+        </Link>
+        :
+
+        <Link
+          style={{ fontWeight: 600 }}
         >
           {ticket.subject}
         </Link>
@@ -452,8 +458,8 @@ function Ticket(props) {
                               <option value={user?.id} key={user?.id}>
                                 {user?.user_details?.firstName
                                   ? user?.user_details?.firstName +
-                                    ' ' +
-                                    user?.user_details?.lastName
+                                  ' ' +
+                                  user?.user_details?.lastName
                                   : ''}
                               </option>
                             );
@@ -696,8 +702,8 @@ function Ticket(props) {
                                 <option value={user?.id} key={user?.id}>
                                   {user?.user_details?.firstName
                                     ? user?.user_details?.firstName +
-                                      ' ' +
-                                      user?.user_details?.lastName
+                                    ' ' +
+                                    user?.user_details?.lastName
                                     : ''}
                                 </option>
                               );

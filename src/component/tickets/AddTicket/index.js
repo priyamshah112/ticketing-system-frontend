@@ -6,6 +6,7 @@ import { apipaths } from "../../../api/apiPaths";
 import { getResponse } from "../../../api/apiResponse";
 import TextEditor from "../../TextEditor";
 import { Modal } from "antd";
+import Select from 'react-select'
 
 function AddTicket(props) {
   let form_data = new FormData();
@@ -29,9 +30,11 @@ function AddTicket(props) {
     let userListOnCoAdmin = userList?.filter(
       (result) => result.userType === "Support"
     );
+    console.log(userListOnCoAdmin ,"coadmin") 
     setUSerListOnCoAdmin(userListOnCoAdmin);
-  }, userList);
-
+  }, [userList]);
+ 
+console.log(userListOnCoAdmin,"coadmin list")
   const userListHandler = async () => {
     const { data } = await getResponse(apipaths.listusers, null);
     const users = data.data.user;
@@ -41,7 +44,17 @@ function AddTicket(props) {
   const handleFileInput = (e) => {
     setFile(e.target.files[0]);
   };
+  var options = [];
+  {
+    userListOnCoAdmin.map((user) => (
 
+      options.push[{
+        value: user.id,
+        label: user.name
+      }]
+
+    ))
+  }
   return (
     <Modal
       title="Create Ticket"
@@ -78,7 +91,7 @@ function AddTicket(props) {
         }}
       >
         <div className="row">
-        {userType !== "User" && ( <div className="col-lg-6 col-md-6 col-12">
+          {userType !== "User" && (<div className="col-lg-6 col-md-6 col-12">
             <label>
               Subject<span className="text-danger">*</span>
             </label>
@@ -91,7 +104,7 @@ function AddTicket(props) {
             />
           </div>
           )}
-          {userType == "User" && ( <div className="col-lg-12 col-md-12 col-12">
+          {userType == "User" && (<div className="col-lg-12 col-md-12 col-12">
             <label>
               Subject<span className="text-danger">*</span>
             </label>
@@ -106,6 +119,8 @@ function AddTicket(props) {
           )}
           {userType !== "User" && (
             <div className="col-lg-6 col-md-6 col-12">
+
+
               <label>
                 Assigned To<span className="text-danger">*</span>
               </label>
@@ -140,7 +155,9 @@ function AddTicket(props) {
               />
             </div>
           </div>
-          <div className="col-lg-6 col-md-6 col-12 mt-4">
+
+          {
+            userType !== "User" ? <div className="col-lg-6 col-md-6 col-12 mt-4">
               <label>
                 Priority<span className="text-danger">*</span>
               </label>
@@ -154,7 +171,9 @@ function AddTicket(props) {
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
               </select>
-            </div>
+            </div> : ''
+          }
+
           <div className="col-lg-12 col-md-12 col-12 mt-4">
             <lable>
               Message<span className="text-danger">*</span>

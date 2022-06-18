@@ -11,6 +11,8 @@
 .ticket__table {
   width: 100%;
   padding: 20px 20px 0px 0;
+  transform: scale(0.9);
+
 }
 
 .ticket-heading {

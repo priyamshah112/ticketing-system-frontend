@@ -18,7 +18,6 @@ function ProfileUpdate(props) {
   const [error, setError] = useState({ show: false, message: "" });
   const updateImage = async (e) => {
     setError({ show: false, message: "" });
-    e.preventDefault();
     const res = await getResponse(apipaths.updateProfile, data);
     data.append("image_name", res.data);
     setImg(res.data.data.image_name)
@@ -31,11 +30,15 @@ function ProfileUpdate(props) {
   }
 
   useEffect(() => {
-    updateImage();
+    uploadProfilePicture(img);
   }, [img]);
 
 
+  const ImageThumb = ({ image }) => {
+    uploadProfilePicture(image);
 
+    return <img src={image}  />;
+  };
 
   const uploadProfilePicture = (formData) => {
     return dispatch => {
@@ -64,16 +67,24 @@ function ProfileUpdate(props) {
         .catch(error => console.log(error))
     }
   }
+  function handleUpload(event) {
+    setImg(event.target.value)
+    // Add code here to upload file to server
+    // ...
+  }
   return (
     <>
       <form className="row">
         <div className="form-group col-12 d-flex justify-content-center align-items-center">
           <div className="avatar-sm float-left mr-2">
-            <img
-              src="../assets/img/profile.jpg"
-              alt="..."
-              className="avatar-img rounded-circle"
-            />
+          <ImageThumb  className="avatar-img rounded-circle" image={img} />
+           
+
+
+
+          </div>
+          <div>
+            <input type="file" onChange={handleUpload} />
           </div>
         </div>
         <div className="form-group col-12">

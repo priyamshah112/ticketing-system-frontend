@@ -180,7 +180,7 @@ function UserDashboard() {
 
   };
 
-
+  console.log(ticketinfo)
 
   const [checked, setChecked] = React.useState(false);
   const theme = createTheme({

@@ -21,18 +21,19 @@
 
 .science-logo {
     position: absolute;
-    width: 140px;
-    height: 46px;
-    left: 212px;
-    top: 29px;
+    top: 32px;
+    left: 259px;
+    width: 200px;
+    height: 70px
 }
 
 .life-sciencelogo {
     position: absolute;
-    width: 140px;
-    height: 43px;
-    left: 398px;
-    top: 32px;
+    left: 475px;
+    top: 29px;
+    position: absolute;
+    width: 200px;
+    height: 70px
 }
 
 .sign-in-head {

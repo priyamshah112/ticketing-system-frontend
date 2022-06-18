@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inventoryListAction } from "../../../actions/inventoryAction";
-import { DatePicker, Select } from "antd";
+import { DatePicker } from "antd";
 import InputFeild from "../../forms/InputFeild";
 import { getResponse } from "../../../api/apiResponse";
 import { apipaths } from "../../../api/apiPaths";
 import moment from "moment";
 import { toast } from "react-toastify";
+import Select from 'react-select'
+import { LocalConvenienceStoreOutlined } from "@material-ui/icons";
 
 function AddInventoryForm(props) {
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ function AddInventoryForm(props) {
 
   const userlist = async () => {
     const { data } = await getResponse(apipaths.usergetlist);
+    console.log("data")
     setUsers(data.data?.user);
   };
 
@@ -34,12 +37,12 @@ function AddInventoryForm(props) {
     setFormdata(editFormData);
     console.log(editFormData);
   }, [editFormData]);
-
+console.log(formdata.assigned_to);
   const submitHandlerSoftware = async (formdata) => {
     let data = formdata;
     const { name, key, assigned_to, version, notes } = data;
-    if (!name  || !assigned_to || !version || !notes) {
-      return toast.warn("All * fields are mandatory.");
+    if (!name || !assigned_to) {
+      return toast.warn("* fields are mandatory.");
     }
 
     if (inventoryId) {
@@ -60,6 +63,12 @@ function AddInventoryForm(props) {
     }
 
   };
+  var options = [];
+  const locations = [
+    { value: 'USA', label: 'ChocolUSAate' },
+    { value: 'Costa Rica', label: 'Costa Rica' },
+    { value: 'India', label: 'India' }
+  ]
 
   const submitHandlerHardware = async (formdata) => {
     let data = formdata;
@@ -77,7 +86,7 @@ function AddInventoryForm(props) {
       assigned_to,
       Test,
       // device_name,
-      // assigned_to,
+      //assigned_to,
       location,
       description,
       warranty_expire_on,
@@ -212,7 +221,27 @@ function AddInventoryForm(props) {
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Assigned To<span className="text-danger"> * </span></label>
-              <Select
+
+              {users &&
+                users.map((user) => (
+                  options.push({
+                    value: user.user_details?.firstName,
+                    label: user.user_details?.firstName
+                  })
+
+                ))}
+              <Select options={options}
+                className="w-100"
+                onChange={(value) => {
+
+                  console.log(value.value)
+                  setFormdata({ ...formdata, assigned_to: value.value })
+                }}
+                value={formdata.assigned_to ? formdata.assigned_to : ''}
+                disabled={editForm ? "disabled" : ""}
+
+              />
+              {/* <Select
                 className="w-100"
                 value={formdata.assigned_to ? formdata.assigned_to : ''}
                 showSearch
@@ -231,7 +260,7 @@ function AddInventoryForm(props) {
                       </Option>
                     </>
                   ))}
-              </Select>
+                  </Select>*/}
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
@@ -252,8 +281,22 @@ function AddInventoryForm(props) {
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Location<span className="text-danger"> * </span></label>
-              <Select
+
+              <Select options={locations}
                 className="w-100"
+                onChange={(value) => {
+                  console.log(value)
+                  setFormdata({ ...formdata, location: value.value })
+
+                }
+                 }
+                value={formdata.location ? formdata.location : ''}
+                disabled={editForm ? "disabled" : ""}
+
+              />
+              {/* <Select
+                className="w-100"
+                options={locations}
                 value={formdata.location ? formdata.location : ''}
                 showSearch
                 placeholder="Select a Location"
@@ -268,10 +311,8 @@ function AddInventoryForm(props) {
                 }
                 disabled={editForm ? "disabled" : ""}
               >
-                <Option value={"USA"}>{"USA"}</Option>
-                <Option value={"Costa Rica"}>{"Costa Rica"}</Option>
-                <Option value={"India"}>{"India"}</Option>
-              </Select>
+
+              </Select>*/}
             </div>
 
             <div className="col-12 mt-3">
@@ -318,7 +359,7 @@ function AddInventoryForm(props) {
               />
             </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Version<span className="text-danger"> * </span></label>
+              <label>Version<span className="text-danger"> </span></label>
               <InputFeild
                 value={formdata.version ? formdata.version : ''}
                 onChange={(e) =>
@@ -339,8 +380,23 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
+
               <label>Users<span className="text-danger"> * </span></label>
-              <select
+              {users &&
+                users.map((user) => (
+                  options.push({
+                    value: user.user_details?.firstName,
+                    label: user.user_details?.firstName
+                  })
+
+                ))}
+              <Select options={options} onChange={(value) =>
+                setFormdata({ ...formdata, assigned_to: value.value })
+              } value={formdata.assigned_to ? formdata.assigned_to : ''}
+              />
+
+
+              {/*<select
                 className="form-control"
                 value={formdata.assigned_to ? formdata.assigned_to : ''}
                 onChange={(e) =>
@@ -353,13 +409,14 @@ function AddInventoryForm(props) {
                   users.map((user) => (
                     <option value={user.id}>
                       {user.user_details?.firstName}
+                      {console.log(user)}
                     </option>
                   ))}
-              </select>
+                  </select>*/}
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Expiry Date<span className="text-danger"> * </span></label>
+              <label>Expiry Date<span className="text-danger">  </span></label>
 
               <DatePicker
                 format={"DD/MM/YYYY"}
@@ -373,7 +430,7 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Notes<span className="text-danger"> * </span></label>
+              <label>Notes<span className="text-danger">  </span></label>
               <textarea
                 label="Serial Number"
                 value={formdata.notes ? formdata.notes : ''}

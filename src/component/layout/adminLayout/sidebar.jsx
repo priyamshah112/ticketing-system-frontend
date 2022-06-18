@@ -104,7 +104,7 @@ function IconTabs() {
                     <Popover
                         id={id}
                         data-trigger="focus"
-
+                        className="adminmenu-popup"
                         open={open}
                         anchorEl={anchorEl}
                         onClose={handleClose}
@@ -226,7 +226,7 @@ function IconTabs() {
                                                     to="/inventory/hardware"
                                                 >
                                                     <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px', marginLeft: '-4px' }}  >
-                                    </SvgIcon>
+                                                    </SvgIcon>
                                                 </Link>
                                             </li>
 
