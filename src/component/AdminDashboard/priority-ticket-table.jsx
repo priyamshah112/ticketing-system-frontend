@@ -1,7 +1,6 @@
 
 
 function PriorityTable(props) {
-   
     return (
         <>
             <table className="table__style mt-4">
@@ -17,10 +16,11 @@ function PriorityTable(props) {
                         Assigned To</th>
                 </tr>
                 {props?.priorityTickets?.map((ticket) => (
+                
                     <tr>
                         <td
                             className="table__box">
-                            {ticket.ticket}</td>
+                            {ticket.ticket}   { console.log(ticket)}</td>
                         <td
                             className="table__box">
                             {ticket.created}</td>

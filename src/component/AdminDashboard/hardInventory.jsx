@@ -20,7 +20,6 @@ class HardInventory extends React.Component {
     componentDidMount() {
         this.getHardwareData()
     }
-
     getHardwareData = async () => {
         const { data } = await getResponse(apipaths.getHardwareInventory)
         this.setState({
@@ -31,8 +30,9 @@ class HardInventory extends React.Component {
             assignedLaptop : (data.data[0].assign / data.data[0].totalinventory)*100,
             assignedLaptopValue : data.data[0].assign
         })
-    }
 
+
+    }
 
 
     render() {

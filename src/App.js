@@ -22,7 +22,10 @@ import AdminDashboard from "./component/AdminDashboard/admin-dashboard";
 function App() {
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer
+      rtl
+      theme="light"
+      />
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />

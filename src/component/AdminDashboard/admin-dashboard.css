@@ -57,7 +57,8 @@ body {
     margin-top: 24px;
     margin-right: 32px;
 }
-.menu__navigation li figure{
+
+.menu__navigation li figure {
     margin: 0 !important;
 }
 
@@ -66,7 +67,11 @@ body {
 /* sidebar */
 
 
-.side__bar::-webkit-scrollbar-thumb {max-height: 50%; height: 50%; background-color: transparent !important}
+.side__bar::-webkit-scrollbar-thumb {
+    max-height: 50%;
+    height: 50%;
+    background-color: transparent !important
+}
 
 .side__bar {
     position: fixed;
@@ -80,21 +85,24 @@ body {
     padding: 16px;
     padding-top: 24px;
     width: 80px;
-    cursor:pointer;
-    overflow-y:scroll;
-    overflow-x:hidden;
+    cursor: pointer;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .profile__img__layout {
     margin-bottom: 3rem;
 }
-.profile__img__layout .profile{
+
+.profile__img__layout .profile {
     position: relative;
 }
+
 .profile__img__layout .profile__img {
     object-fit: cover;
     border-radius: 50%;
 }
+
 .profile__img__layout .profile__dropdown {
     position: absolute;
     top: 50%;
@@ -108,7 +116,7 @@ body {
     position: relative;
 }
 
-.sidebar__ul li img{
+.sidebar__ul li img {
     width: 24px;
     height: 24px;
 }
@@ -123,22 +131,26 @@ body {
     background-color: #5C55BF;
     border-radius: 5px;
 }
-.sidebar__divider{
+
+.sidebar__divider {
     width: 100%;
     height: 2px;
     background-color: #BEC3CE;
-    padding: 0px !important; 
+    padding: 0px !important;
     margin-top: 6px;
     margin-bottom: 6px;
 }
+
 ul {
     list-style-type: none;
 }
-.openCategory{
-    display:flex;
-    justify-content:space-between;
+
+.openCategory {
+    display: flex;
+    justify-content: space-between;
 }
-.openCategory>button{
+
+.openCategory>button {
     width: 120px;
     height: 30px;
     background: #F4F4F4;
@@ -149,41 +161,50 @@ ul {
     padding-left: 10px;
     cursor: pointer;
 }
-.tickets__viewDetails>a{
-    color:#000;
+
+.tickets__viewDetails>a {
+    color: #000;
 }
+
 .tabPanel>div>div>a {
     min-width: 100px !important;
 
 }
+
 .tabPanel>div>div>a:active {
-color:white !important;
-text-decoration: none !important;
-text-decoration-line: none !important;    
+    color: white !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
 }
-.tabPanel>div>div + .PrivateTabIndicator-colorSecondary-5, .ticketRequestWrapper .PrivateTabIndicator-colorSecondary-5{
+
+.tabPanel>div>div+.PrivateTabIndicator-colorSecondary-5,
+.ticketRequestWrapper .PrivateTabIndicator-colorSecondary-5 {
     display: none;
 }
+
 .tabPanel>div>div>a.Mui-selected {
     background: #BF5555;
-    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%)!important;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%) !important;
     border-radius: 20px;
     color: white !important;
     margin: 8px 15px;
     height: 32px;
     min-height: 32px;
-    min-width: 30px!important;
+    min-width: 30px !important;
     text-decoration: none !important;
-text-decoration-line: none !important;    
+    text-decoration-line: none !important;
 }
-.parentTabs .MuiAppBar-colorPrimary.ticketRequestWrapper{
+
+.parentTabs .MuiAppBar-colorPrimary.ticketRequestWrapper {
     width: 75%;
     margin: auto;
     box-shadow: none;
 }
-.ticketRequestWrapper  [aria-label="nav tabs example"] > a{
-    min-width: 0!important;
+
+.ticketRequestWrapper [aria-label="nav tabs example"]>a {
+    min-width: 0 !important;
 }
+
 .parentTabs .MuiAppBar-colorPrimary {
     background-color: #ffffff;
     color: #000000;
@@ -271,11 +292,12 @@ text-decoration-line: none !important;
 .table_number_color {
     color: #000000;
 }
-.tableWrapper{
-overflow-y: auto;
-height: 90%;
-width: 105%;
-padding-right: 5%;
+
+.tableWrapper {
+    overflow-y: auto;
+    height: 90%;
+    width: 105%;
+    padding-right: 5%;
 }
 
 .table__style {
@@ -285,7 +307,7 @@ padding-right: 5%;
 
 }
 
-.table__style tr .table__box:not(:first-child){
+.table__style tr .table__box:not(:first-child) {
     text-align: center;
 }
 
@@ -349,11 +371,13 @@ padding-right: 5%;
 .category__box__ht__max {
     height: 450px;
     overflow: hidden;
-    
+
 }
-.category__box__ht__max> .parentTabs{
+
+.category__box__ht__max>.parentTabs {
     height: 100%;
 }
+
 .category__box__ht__max div[role="tabpanel"] {
     overflow-y: auto;
     height: 70%;
@@ -381,31 +405,35 @@ padding-right: 5%;
     overflow: hidden;
     /* overflow-y: auto; */
 }
-.ticketRequestWrapper [aria-label="nav tabs example"] > a.MuiTab-textColorInherit.Mui-selected{
+
+.ticketRequestWrapper [aria-label="nav tabs example"]>a.MuiTab-textColorInherit.Mui-selected {
     background: #62BC46;
-box-shadow: 0px 10px 30px rgba(112, 136, 210, 0.1);
-border-radius: 16px;
-color: #2D3142;
+    box-shadow: 0px 10px 30px rgba(112, 136, 210, 0.1);
+    border-radius: 16px;
+    color: #2D3142;
 }
-.ticketRequestFlex{
+
+.ticketRequestFlex {
     display: flex;
     justify-content: space-between;
     width: 75%;
     margin: auto;
     font-family: 'Rubik';
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: 2px;
-text-transform: uppercase;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
-color: #2D3142;
+    color: #2D3142;
 }
+
 .category__box:first-child {
     margin-bottom: 50px;
 }
-.col-4{
+
+.col-4 {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -441,21 +469,23 @@ color: #2D3142;
     flex: 1;
 }
 
-.mixed-chart{
+.mixed-chart {
     width: 100%;
     padding: 24px;
     padding-bottom: 0px;
 }
-.mixed-chart-title{
+
+.mixed-chart-title {
     height: 14px;
     font-weight: 600;
     font-size: 18px;
-    line-height: 24px;    
+    line-height: 24px;
     letter-spacing: 2px;
-    text-transform: uppercase;    
+    text-transform: uppercase;
     color: #BF5555;
 }
-.mixed-chart-count{
+
+.mixed-chart-count {
     height: 32px;
     font-weight: 500;
     font-size: 48px;
@@ -463,9 +493,10 @@ color: #2D3142;
     color: #2D3142;
     margin-bottom: 0px;
 }
+
 /* content__section */
 
-  /* Calender Section */
+/* Calender Section */
 .react-calendar {
 
     font-family: 'Rubik';
@@ -478,25 +509,24 @@ color: #2D3142;
     top: -34px;
     width: 100%;
     overflow: hidden;
-  
-  }
-  
-  .react-calendar__tile {
-  
+
+}
+
+.react-calendar__tile {
+
     font-family: Rubik;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     background-color: white;
     border: none;
-    padding:8px
-  
-  }
-  
-  
-  
-  
-  .react-calendar__viewContainer {
+    padding: 8px
+}
+
+
+
+
+.react-calendar__viewContainer {
     line-height: 23px;
     font-size: 12px;
     font-family: Rubik;
@@ -506,73 +536,80 @@ color: #2D3142;
     top: 32px;
     position: relative;
     text-align: center;
-  
-  }
-  
-  .react-calendar__month-view__weekdays__weekday abbr {
+
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
     text-decoration: none;
-  
-  }
-  
-  
-  .react-calendar__navigation__label {
+
+}
+
+
+.react-calendar__navigation__label {
     position: absolute;
     top: 2px !important;
     left: auto;
     right: 15px !important;
     background: transparent;
     border: none;
-  
-  }
-  .calender{
-      margin-top:10px
-  }
-  .react-calendar__navigation{
-    position: relative;
-  }
-  .pointer{
-      cursor:pointer
-  }
-  /* Calender Section */
 
-   .vertical-line:before {
+}
+
+.calender {
+    margin-top: 10px
+}
+
+.react-calendar__navigation {
+    position: relative;
+}
+
+.pointer {
+    cursor: pointer
+}
+
+/* Calender Section */
+
+.vertical-line:before {
     background-image: url('../../images/admin-dashboard/vertical.svg');
     background-size: 21px 75px;
     display: inline-block;
     width: 15px;
     height: 113px;
     content: "";
-       
 
-            
-  }
-  .horizontal-line:before{
+
+
+}
+
+.horizontal-line:before {
     content: url('../../images/admin-dashboard/horizontal-line.svg');
     position: relative;
     top: 17px;
     left: -4px;
 }
-  
 
-  .shift-line{
+
+.shift-line {
     position: relative;
     left: -4px;
-  }
+}
 
-  .icon-color > path :hover{
-fill:black;
-  }
+.icon-color>path :hover {
+    fill: black;
+}
 
-  .MuiSvgIcon-root{
-      fill:transparent !important
-  }
+.MuiSvgIcon-root {
+    fill: transparent !important
+}
 
-.inner__category__box{
+.inner__category__box {
     height: 100%;
 }
 
-  @media (max-width: 575.98px) {
-    .category__box__ht__max, .category__box__ht__min {
+@media (max-width: 575.98px) {
+
+    .category__box__ht__max,
+    .category__box__ht__min {
         min-height: 300px;
         height: auto;
     }
@@ -586,7 +623,7 @@ fill:black;
         /* overflow: hidden; */
     }
 
-    .category__box{
+    .category__box {
         position: relative;
     }
 
@@ -602,39 +639,42 @@ fill:black;
         padding-top: 40px;
         height: 100%;
     } */
-  }
+}
 
-  .mixed-chart-vh{
+.mixed-chart-vh {
     height: calc(300px - 60px);
     overflow-y: auto;
-  }
+}
 
-  .jss5 {
+.jss5 {
     background-color: transparent;
 }
 
-.ant-modal-header{
+.ant-modal-header {
     background: #5c55bf !important;
 
 }
-.ant-modal-title{
-    color: white ;
+
+.ant-modal-title {
+    color: white;
 
 }
-.submit-btn{
+
+.submit-btn {
     background: #5c55bf;
     color: white;
 }
 
-.ant-btn-primary{
+.ant-btn-primary {
     background: #5c55bf;
-    color: white;   
+    color: white;
 }
-.ant-select{
+
+.ant-select {
     font-size: 14px;
     border-color: #ebedf2;
     padding: 0.6rem 1rem;
-    height: inherit!important;
+    height: inherit !important;
     border: none;
     border-bottom: 1px solid;
     padding-left: 45px;
@@ -642,14 +682,34 @@ fill:black;
 
 }
 
-.ant-select-selector{
-    border:none !important
+.ant-select-selector {
+    border: none !important
 }
 
-.ant-select-dropdown{
+.ant-select-dropdown {
     min-width: 221px;
     width: 221px;
     left: 425.2px;
     top: 505.2px;
     position: relative;
+}
+
+.adminmenu-popup   {
+    position: absolute;
+    z-index: 1300;
+    inset: 0px;
+    left: 77px;
+}
+
+.Toastify__toast {
+    direction: ltr !important;
+}
+
+.page-inner {
+    padding-left: 10rem
+}
+
+.css-1s2u09g-control {
+    border: none !important;
+    border-bottom: 1px solid !important;
 }

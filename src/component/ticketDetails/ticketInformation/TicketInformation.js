@@ -24,8 +24,8 @@ function TicketInformation(props) {
                                     <button className="w-100 btn btn-success" disabled>Resolved</button>
                                 ) : (
                                     <>
-                                        <button className="btn btn-success">Open</button>
-                                        <button className="btn btn-danger ml-3" onClick={() => closeTicketHandler(ticket)}>Close</button>
+                                        {/*<button className="btn btn-success">Open</button>
+                                        <button className="btn btn-danger ml-3" onClick={() => closeTicketHandler(ticket)}>Close</button>*/}
                                     </>
                                 )
                             }

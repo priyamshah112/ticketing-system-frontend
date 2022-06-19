@@ -180,7 +180,7 @@ function UserDashboard() {
 
   };
 
-
+  console.log(ticketinfo)
 
   const [checked, setChecked] = React.useState(false);
   const theme = createTheme({
@@ -215,7 +215,7 @@ function UserDashboard() {
                     src={create}
                     alt="create"
                     className="img-fluid ticket-card-img  "
-                    style={{ width: "20%" }}
+                    style={{ width: "15%" }}
                   />
                 </div>
                 <h4>Create Ticket</h4>

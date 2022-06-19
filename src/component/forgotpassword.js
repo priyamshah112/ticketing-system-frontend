@@ -37,17 +37,16 @@ function ForgotPassword(props) {
             <div className="content-wrapper">
                 <div className="row mx-auto g-0">
                     <div className="col-lg-8 banner-img hide-on-med-and-down">
-                        <div className="main-banner">
+                        <div className="main-banner" style={{width:'80%'}}>
                             <div className="auth-content-logo">
                                 <img
                                     src={logo1}
                                     alt=""
-                                    className="img-fluid mb-4 d-block login-logo"
+                                    className="img-fluid mb-4 d-block  compliance-logo"
                                 />
                             </div>
-                            <h1 className="text-white my-4">Welcome!</h1>
-                            <h5 className="text-white font-weight-normal">
-                                Please use your credentials to login.
+                            <h1 className=" my-4 ml-5" style={{fontSize:'50px'}}>Welcome!</h1>
+                            <h5 className="font-weight-normal  ml-5" style={{fontSize:'20px'}}>Please use your credentials to login.
                             </h5>
                         </div>
                     </div>

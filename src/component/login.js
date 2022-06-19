@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
-import bg from "./assets/login.png"
+import bg from "./assets/background.png"
 import compliancelogo from "./assets/compliancelogo.png"
 import sciencelogo from "./assets/sciences-logo.png"
 import lifescience from "./assets/life-sciencelogo.png"
 import google from "./assets/google.png"
 import facebook from "./assets/facebook.png"
-
 import logo2 from "./assets/logo2.png";
 import logo3 from "./assets/logo3.png";
 import $ from "jquery"
@@ -19,6 +18,8 @@ import './assets/css/login.css'
 const queryString = require("query-string");
 
 function Login(props) {
+  const childRef = useRef(null)
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ show: false, message: "" });
@@ -30,15 +31,15 @@ function Login(props) {
   const parsed = queryString.parse(window.location.search);
   const dispatch = useDispatch();
   const loginHandler = async (e) => {
+    console.log("in here" ,e)
     e.preventDefault && e.preventDefault();
     setError({ show: false });
     let { status_code, data, error } = await getResponse(apipaths.login, {
       email: email ? email : e.email,
       password: password ? password : e.password,
     });
-    console.log("Login Dispatch:", data);
-    if (error)
-    {
+    
+    if (error) {
       return setError({
         show: true,
         message: "Incorrect credentials entered.",
@@ -54,6 +55,9 @@ function Login(props) {
       props.history.push("/dashboard");
     }
   };
+
+
+  
 
   useEffect(() => {
     let token = localStorage.authToken;
@@ -114,7 +118,7 @@ function Login(props) {
                   src={compliancelogo}
                   alt="logo"
                   className="img-fluid mb-4 d-block  compliance-logo"></img>
-                
+
               </div>
               <div className="auth-content-logo px-3 py-3">
                 <img
@@ -131,7 +135,7 @@ function Login(props) {
               <div className=" auth-content">
                 <h1 className="mb-4 f-w-400 bold sign-in-head">Welcome to Enhance Compliance Ticketing System</h1>
 
-               {/* <h5 className=" font-weight-normal">
+                {/* <h5 className=" font-weight-normal">
                   {create ? <div>
                     <span className="have-account">Already have an account? </span> <span className="sign-up">Sign Up</span>
                   </div> :
@@ -143,7 +147,7 @@ function Login(props) {
                 {!create ? (
                   <form>
 
-                   {/* <div className="button-div">
+                    {/* <div className="button-div">
                       <button type="button" className="btn btn-light google-button " data-toggle="button" aria-pressed="false" ><img src={google} classname="google-icon"></img>Continue with Google</button>
                       <button type="button" class="btn btn-primary facebook-button" data-toggle="button" aria-pressed="false" ><img src={facebook} classname="  google-icon"></img> Continue with Facebook</button>
                     </div>
@@ -204,8 +208,8 @@ function Login(props) {
                         </div>
                       )}
                     </div>
-                    <div className="forgot-pwd">
-                      Forgot Password?
+                    <div className="forgot-pwd" onClick={() => props.history.push('/forgotpassword')}>
+                      Forgot Password? 
                     </div>
                     <div
                       className="btn btn-block text-center sign-in-button mb-4"
@@ -226,7 +230,7 @@ function Login(props) {
                     <div className="form-group">
                       <label className="input-label">Email</label>
                       <input
-                        className="form-control input-box" 
+                        className="form-control input-box"
                         value={parsed.email}
                         disabled
                       />

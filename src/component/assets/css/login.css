@@ -13,26 +13,27 @@
 
 .compliance-logo {
     position: absolute;
-    width: 140px;
-    height: 46px;
+    width: 200px;
+    height: 70px;
     left: 26px;
     top: 29px;
 }
 
 .science-logo {
     position: absolute;
-    width: 140px;
-    height: 46px;
-    left: 212px;
-    top: 29px;
+    top: 32px;
+    left: 259px;
+    width: 200px;
+    height: 70px
 }
 
 .life-sciencelogo {
     position: absolute;
-    width: 140px;
-    height: 43px;
-    left: 398px;
-    top: 32px;
+    left: 475px;
+    top: 29px;
+    position: absolute;
+    width: 200px;
+    height: 70px
 }
 
 .sign-in-head {
@@ -219,9 +220,8 @@
 
 .sign-in-button {
     left: 32.1%;
-    position: absolute;
+    position: relative;
     right: 64.72%;
-    top: 88.33%;
     bottom: 16.44%;
     height: 47px;
     width: 253px;

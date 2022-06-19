@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./admin-dashboard.css"
 import tool from "../../../src/images/admin-dashboard/tool.svg";
+import open from "../../../src/images/admin-dashboard/open.svg";
+import pending from "../../../src/images/admin-dashboard/pending.svg";
+import close from "../../../src/images/admin-dashboard/close.svg";
 import person from "../../../src/images/admin-dashboard/person.svg";
 import { getResponse } from "../../api/apiResponse";
 import { apipaths } from "../../api/apiPaths";
@@ -27,9 +30,9 @@ function AdminDashboard() {
     }, [])
     const getData = async () => {
         const { data } = await getResponse(apipaths.dashboard);
-        console.log("Dashboard--- >",data);
+        console.log("Dashboard--- >", data);
         setDashBoardTicketData(data)
-      }
+    }
 
     const getTicketRequestUser = async () => {
         const data = await getResponse(apipaths.getTicketRequestByUser)
@@ -44,7 +47,7 @@ function AdminDashboard() {
         const data = await getResponse(apipaths.getTicketRequest)
         console.log(data)
     }
-    
+
     return (
         <>
             <div className="content__section">
@@ -55,8 +58,11 @@ function AdminDashboard() {
                     <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-5 p-0">
-                                    <RadialBar color={"#BF5555"} series={70} />
+                                <div className="col-auto">
+                                    <figure>
+                                        <img src={open}
+                                            className="dashboard__icon" />
+                                    </figure>
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">Open Tickets</h6>
@@ -69,8 +75,11 @@ function AdminDashboard() {
                     <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-5 p-0">
-                                    <RadialBar color={"#EAD063"} series={13} />
+                                <div className="col-auto">
+                                    <figure>
+                                        <img src={pending}
+                                            className="dashboard__icon" />
+                                    </figure>
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">pending Tickets</h6>
@@ -83,8 +92,11 @@ function AdminDashboard() {
                     <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-5 p-0">
-                                    <RadialBar color={"#62BC46"} series={40} />
+                                <div className="col-auto">
+                                    <figure>
+                                        <img src={close}
+                                            className="dashboard__icon" />
+                                    </figure>
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">closed</h6>
@@ -136,10 +148,10 @@ function AdminDashboard() {
                     <HardInventory priorityTickets={priorityTickets} />
                     <div className="col-sm-4 mb-3 mb-sm-0">
                         <TrackByCountry />
-                        <TicketCalender />  
+                        <TicketCalender />
                     </div>
-                    
-                    
+
+
                 </div>
 
             </div>

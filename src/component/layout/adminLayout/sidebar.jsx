@@ -9,7 +9,7 @@ import ProfileView from "../../profileView";
 import ProfileUpdate from "../../updateProfile";
 import { ReactComponent as Clipboard } from "../../../images/admin-dashboard/Category.svg";
 import { ReactComponent as Solidusers } from "../../../images/admin-dashboard/Plus.svg";
-import{ ReactComponent as Vector } from "../../../images/admin-dashboard/File.svg";
+import { ReactComponent as Vector } from "../../../images/admin-dashboard/File.svg";
 import dropdown from "../../../images/admin-dashboard/dropdown.svg";
 import { ReactComponent as Hardware } from "../../../images/admin-dashboard/Hardware1.svg";
 import { ReactComponent as Software } from "../../../images/admin-dashboard/Software.svg";
@@ -104,7 +104,7 @@ function IconTabs() {
                     <Popover
                         id={id}
                         data-trigger="focus"
-
+                        className="adminmenu-popup"
                         open={open}
                         anchorEl={anchorEl}
                         onClose={handleClose}
@@ -208,7 +208,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("inv-software")}
                                             >
                                                 <Link to="/inventory/software">
-                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px' , marginLeft:'-4px' }}  />
+                                                    <SvgIcon component={Software} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px', marginLeft: '-4px' }} />
                                                 </Link>
                                             </li>
                                         </div>
@@ -225,7 +225,8 @@ function IconTabs() {
                                                 <Link
                                                     to="/inventory/hardware"
                                                 >
-                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ' , width: '55px' , marginLeft:'-4px' }}  />
+                                                    <SvgIcon component={Hardware} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px', marginLeft: '-4px' }}  >
+                                                    </SvgIcon>
                                                 </Link>
                                             </li>
 
@@ -244,7 +245,7 @@ function IconTabs() {
                         id="user-sub-user"
                         onClick={() => { activeLinkHandler("user-sub-user"); toggleUsers() }}
                     >
-                        <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                        <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
                     </li>
                     {
                         showUsers ?
@@ -264,7 +265,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("user-role")}
                                             >
                                                 <Link to="/role">
-                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ',width: '55px' , marginLeft:'-4px' }}  />
+                                                    <SvgIcon component={Roles} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px', marginLeft: '-4px' }} />
                                                 </Link>
                                             </li>
                                         </div>
@@ -279,7 +280,7 @@ function IconTabs() {
                                                 onClick={() => activeLinkHandler("user-role")}
                                             >
                                                 <Link to="/user">
-                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px' , marginLeft:'-4px' }}  />
+                                                    <SvgIcon component={User} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '55px', marginLeft: '-4px' }} />
                                                 </Link>
                                             </li>
 
@@ -309,8 +310,8 @@ function IconTabs() {
                         id="logout-main"
                         onClick={() => activeLinkHandler("logout-main")}
                     >
-                        <Link  onClick={() => localStorage.clear()} to="/">
-                            <SvgIcon component={Logout} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                        <Link onClick={() => localStorage.clear()} to="/">
+                            <SvgIcon component={Logout} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
                         </Link>
                     </li>
                     {/* <li>
