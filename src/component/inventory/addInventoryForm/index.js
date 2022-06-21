@@ -22,6 +22,7 @@ function AddInventoryForm(props) {
   const { Option } = Select;
   const [formdata, setFormdata] = useState({});
   const [users, setUsers] = useState([]);
+  const [selectedOption, setSelectedOption] = useState([]);
 
   useEffect(() => {
     userlist();
@@ -30,14 +31,18 @@ function AddInventoryForm(props) {
   const userlist = async () => {
     const { data } = await getResponse(apipaths.usergetlist);
     console.log("data")
-    setUsers(data.data?.user);
+    let userOptions = [];
+    data.data?.user.map((user) => (
+      userOptions.push({
+        value: user.user_details?.id,
+        label: user.user_details?.firstName
+      })
+      
+    ))
+    setUsers(userOptions);
+
   };
 
-  useEffect(() => {
-    setFormdata(editFormData);
-    console.log(editFormData);
-  }, [editFormData]);
-console.log(formdata.assigned_to);
   const submitHandlerSoftware = async (formdata) => {
     let data = formdata;
     const { name, key, assigned_to, version, notes } = data;
@@ -65,7 +70,7 @@ console.log(formdata.assigned_to);
   };
   var options = [];
   const locations = [
-    { value: 'USA', label: 'ChocolUSAate' },
+    { value: 'USA', label: 'USA' },
     { value: 'Costa Rica', label: 'Costa Rica' },
     { value: 'India', label: 'India' }
   ]
@@ -221,23 +226,17 @@ console.log(formdata.assigned_to);
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Assigned To<span className="text-danger"> * </span></label>
-
-              {users &&
-                users.map((user) => (
-                  options.push({
-                    value: user.user_details?.firstName,
-                    label: user.user_details?.firstName
-                  })
-
-                ))}
-              <Select options={options}
+              <Select options={users}
                 className="w-100"
                 onChange={(value) => {
-
-                  console.log(value.value)
-                  setFormdata({ ...formdata, assigned_to: value.value })
+                  console.log(value);
+                  setSelectedOption(value);
+                  // setFormdata({ ...formdata, assigned_to: {
+                  //   selectedOption: value
+                  // }
+                //  })
                 }}
-                value={formdata.assigned_to ? formdata.assigned_to : ''}
+                value={selectedOption}
                 disabled={editForm ? "disabled" : ""}
 
               />
