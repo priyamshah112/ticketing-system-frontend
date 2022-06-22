@@ -87,39 +87,39 @@ function ProfileUpdate(props) {
             <input type="file" onChange={handleUpload} />
           </div>
         </div>
-        <div className="form-group col-12">
+        <div className="form-group col-12" style={{display: 'contents'}}>
 
 
 
-          <div className="form-group ">
+          <div className="form-group col-6 ">
             <label>First Name</label>
             <input
               onChange={e => { }}
-              className="form-control"
+              className="form-control "
               value={userDetails?.firstName}
               disabled     ></input>
           </div>
-          <div className="form-group ">
+          <div className="form-group col-6">
             <label>Middle Name</label>
             <input
-              className="form-control"
+              className="form-control "
               value={userDetails?.middleName}
               disabled
             />
           </div>
-          <div className="form-group ">
+          <div className="form-group col-6">
             <label>Last Name</label>
             <input
-              className="form-control"
+              className="form-control "
               value={userDetails?.lastName}
               disabled
             />
           </div>
-          <div className="form-group ">
+          <div className="form-group col-6">
             <label>Email</label>
             <input className="form-control" value={userDetails?.email} disabled />
           </div>
-          <div className="form-group ">
+          <div className="form-group col-6">
             <label>Phone</label>
             <input
               className="form-control"
@@ -127,7 +127,7 @@ function ProfileUpdate(props) {
               disabled
             />
           </div>
-          <div className="form-group ">
+          <div className="form-group col-6">
             <label>Country</label>
             <input
               className="form-control"

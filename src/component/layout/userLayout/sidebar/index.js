@@ -125,12 +125,18 @@ function Sidebar() {
                         data-toggle="collapse"
                         href="#collapseExample"
                         aria-expanded="true"
+                        onClick={handleClick}
                     >
                         <span>
                             <span className="user-level">{user.name}</span>
                         </span>
+                        <span> <i style={{
+                            position: 'absolute',
+                            top: '100px',
+                            left: '230px',
+                            color:'white'
+                        }} class="fas fa-caret-down fa-2x"></i></span>
 
-                        <img className="user-dropdown" onClick={handleClick} src={dropdown} width="10" height="10" alt="" />
 
                     </a>
                     <div className="clearfix"></div>

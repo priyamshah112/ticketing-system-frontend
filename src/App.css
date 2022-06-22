@@ -252,6 +252,12 @@ form label {
   padding-left: 30px !important;
 }
 
+.MuiTable-root td,
+.MuiTable-root th {
+  /* text-align: center; */
+  padding-left: 30px !important;
+}
+
 .MuiTable-root td {
   text-transform: capitalize;
   padding: 10px 0 !important;
@@ -332,3 +338,8 @@ form label {
   border: 1px solid #5c55bf;
   background: transparent;
 }
+.MuiPopover-paper{
+  top:130px !important;
+  left:266px !important
+}
+

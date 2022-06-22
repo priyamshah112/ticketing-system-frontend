@@ -16,7 +16,7 @@ function ProfileView(props) {
     setError({ show: false, message: "" });
 
     const res = await getResponse(apipaths.viewProfile, { image_name: img });
-    
+
     setImg(res.data.data.image_name)
     if (res.error) {
       toast.error(res.error.message)
@@ -36,7 +36,7 @@ function ProfileView(props) {
       <div className="form-group col-12 d-flex justify-content-center align-items-center">
         <div className="avatar-sm float-left mr-2">
           <img
-            src={img}
+            src="../assets/img/profile.jpg"
             alt="..."
             className="avatar-img rounded-circle"
           />
