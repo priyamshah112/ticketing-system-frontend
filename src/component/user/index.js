@@ -261,7 +261,7 @@ function User(props) {
   const importUserFileHandler = async () => {
     setError('Importing file please wait');
     const formdata = new FormData();
-    formdata.append('file', userImportFile);
+    formdata.append('imports', userImportFile);
     if (
       userImportFile.type ===
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
