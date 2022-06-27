@@ -157,7 +157,7 @@ function IconTabs() {
 
                 </div>
 
-                <ul className="sidebar__ul">
+                <ul className="sidebar__ul" style={{paddingLeft:0}}>
                     {userType !== "Support" && (
                         <li className="sidebar-item active"
                             id="dashboard"
