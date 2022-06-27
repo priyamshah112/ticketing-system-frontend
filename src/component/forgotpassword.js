@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
 import logo1 from "./assets/logo1.png";
@@ -22,7 +23,12 @@ function ForgotPassword(props) {
             })
             setMessage(message);            
             setEmail('')
-            props.history.push("/")
+            swal(message,'success',{
+                button:"Ok"
+            }).then(()=>{
+                props.history.push("/")
+            })
+            //props.history.push("/")
           
         } else {
             setError({
@@ -80,7 +86,7 @@ function ForgotPassword(props) {
                                             Forgot Password
                                         </button>
                                         <button className="btn btn-info ml-4">
-                                            <Link className="f-w-500" to="/">Back</Link>                                            
+                                            <Link style={{color:'white'}} className="f-w-500" to="/">Back</Link>                                            
                                         </button>
                                     </div>
                                     <div>
