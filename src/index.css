@@ -64,3 +64,6 @@ code {
   font-size: 25px;
   line-height: 40px;
 }
+.MuiTable-root > th {
+padding-left: 10px;
+}

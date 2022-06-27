@@ -11,7 +11,6 @@
 .ticket__table {
   width: 100%;
   padding: 20px 20px 0px 0;
-  transform: scale(0.9);
 
 }
 
@@ -100,7 +99,7 @@
 .filter-caret {
   position: absolute;
   color: black;
-  right: 15px;
+  right: 8px;
   top: 24px;
 }
 
@@ -212,6 +211,7 @@
     font-size: 18px;
     line-height: 28px;
     color: #2D3142;
+    box-shadow: none !important;
 }
 .filter-ticket{
     position: relative;

@@ -58,12 +58,10 @@ function AdminDashboard() {
                     <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-auto">
-                                    <figure>
-                                        <img src={open}
-                                            className="dashboard__icon" />
-                                    </figure>
+                                <div className="col-5 p-0">
+                                    <RadialBar color={"#BF5555"} series={70} />
                                 </div>
+
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">Open Tickets</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[0].total}</p>
@@ -75,12 +73,17 @@ function AdminDashboard() {
                     <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-auto">
-                                    <figure>
+
+                                <div className="col-5 p-0">
+                                    <RadialBar color={"#EAD063"} series={13} />
+                                </div>
+                                {/* <div className="col-auto">
+                                    <RadialBar color={"#EAD063"} series={13} />
+                                  <figure>
                                         <img src={pending}
                                             className="dashboard__icon" />
-                                    </figure>
-                                </div>
+                                 </figure>
+                            </div>*/}
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">pending Tickets</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[1].total}</p>
@@ -92,11 +95,8 @@ function AdminDashboard() {
                     <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-auto">
-                                    <figure>
-                                        <img src={close}
-                                            className="dashboard__icon" />
-                                    </figure>
+                                <div className="col-5 p-0">
+                                    <RadialBar color={"#62BC46"} series={40} />
                                 </div>
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">closed</h6>

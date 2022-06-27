@@ -13,16 +13,16 @@ function ChangePassword(props) {
 
   const createUserHandler = async (e) => {
     e.preventDefault();
-    setError({ show: false, message: "" });  
+    setError({ show: false, message: "" });
     if (newpassword === conpassword) {
       const res = await getResponse(apipaths.changePassword, {
         current_password: oldpassword,
         new_password: newpassword,
         new_confirm_password: conpassword,
-      }); 
-      if(res.error){
+      });
+      if (res.error) {
         toast.error(res.error.message)
-      }else{
+      } else {
         toast.success(res.data.message)
         setIsChangePasswordActive(false);
       }
@@ -46,6 +46,7 @@ function ChangePassword(props) {
       <div className="form-group">
         <label>Old Password</label>
         <input
+          type="password"
           className="form-control"
           onChange={(e) => setOldPassword(e.target.value)}
         />
@@ -53,6 +54,7 @@ function ChangePassword(props) {
       <div className="form-group">
         <label>New Password</label>
         <input
+          type="password"
           className="form-control"
           onChange={(e) => setNewPassword(e.target.value)}
         />
@@ -60,6 +62,8 @@ function ChangePassword(props) {
       <div className="form-group">
         <label>Confirm-Password</label>
         <input
+          type="password"
+
           className="form-control"
           onChange={(e) => setConPassword(e.target.value)}
         />

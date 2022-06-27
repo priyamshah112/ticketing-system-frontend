@@ -473,6 +473,7 @@ function SoftwareInventory() {
                 <div className="form-group col-12 col-md-6 col-lg-4">
                   <label className="mb-2">Expiry Date</label>
                   <input
+                  style={{top:0}}
                     type={'date'}
                     name="expiry_date"
                     className="form-control"
