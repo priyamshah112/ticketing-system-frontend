@@ -14,8 +14,8 @@
     position: absolute;
     width: 70px;
     height: 70px;
-    left: 47px;
-    top: 77px;
+    left: 25px;
+    top: 85px;
 
 }
 
@@ -23,14 +23,15 @@
     position: absolute;
     width: 126px;
     height: 40px;
-    left: 139px;
-    top: 93px;
+    left: 110px;
+    top: 100px;
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 600;
     font-size: 25px;
     line-height: 40px;
     color: #5C55BF;
+    overflow: hidden;
 }
 
 .items {
@@ -187,5 +188,29 @@
     fill: transparent !important;
 
   }
+  .user-menu-popup .MuiPopover-paper{
+    top: 135px !important;
+    left: 285px !important
+  }
+  .user-menu-popup .MuiPopover-paper ul{
+    padding-left: 0px; 
+    margin: 0px !important;
+  }
+  .user-menu-popup .MuiPopover-paper .link-collapse{
+    padding: 0px;
+  }
+  .user-menu-popup .MuiPopover-paper ul li{
+    padding: 0px 10px 10px 10px;
+    font-size: 18px;
+  }
 
+  .logos{
+    position: absolute;
+    display: flex;
+    margin-left: 25px;
+  }
+  .logos img{
+    width: 185px;
+    margin: 20px 40px 0px 0px;
+  }
   

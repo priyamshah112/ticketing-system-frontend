@@ -341,8 +341,20 @@ form label {
   border: 1px solid #5c55bf;
   background: transparent;
 }
-.MuiPopover-paper{
-  top:130px !important;
-  left:266px !important
+
+.adminmenu-popup{
+  top: 0px !important;
+  left: 65px !important
+}
+.adminmenu-popup ul{
+  padding-left: 0px; 
+  margin: 0px !important;
+}
+.adminmenu-popup .link-collapse{
+  padding: 0px;
+}
+.adminmenu-popup ul li{
+  padding: 0px 10px 10px 10px;
+  font-size: 18px;
 }
 

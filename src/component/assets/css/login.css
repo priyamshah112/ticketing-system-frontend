@@ -11,29 +11,8 @@
     top: 52px;
 }
 
-.compliance-logo {
-    position: absolute;
-    width: 200px;
-    height: 70px;
-    left: 26px;
-    top: 29px;
-}
-
-.science-logo {
-    position: absolute;
-    top: 32px;
-    left: 259px;
-    width: 200px;
-    height: 70px
-}
-
-.life-sciencelogo {
-    position: absolute;
-    left: 475px;
-    top: 29px;
-    position: absolute;
-    width: 200px;
-    height: 70px
+.user-dashboard-logo {
+    width: 165px;
 }
 
 .sign-in-head {

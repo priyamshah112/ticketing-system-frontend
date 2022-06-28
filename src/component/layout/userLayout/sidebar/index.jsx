@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addUserDetailsAction } from "../../../../actions/userActions";
 import $ from "jquery";
-import "./index.css"
+import "./style.css"
 import "../../../userDashboard/user.css"
 import { ReactComponent as Dashboard } from "../../../assets/Dashboard.svg"
 import calender from "../../../assets/calender.png"
@@ -69,48 +69,21 @@ function Sidebar() {
     return (
         <div className="col-lg-6">
             <div>
-                <Modal
-                    title="Change Password"
-                    visible={isChangePasswordActive}
-                    onCancel={() => setIsChangePasswordActive(false)}
-                    footer={null}
-                >
-                    <ChangePassword setIsChangePasswordActive={setIsChangePasswordActive} />
-                </Modal>
-                <Modal
-                    title="My Profile"
-                    visible={isProfileViewActive}
-
-                    onCancel={() => setIsProfileViewActive(false)}
-                    footer={null}
-                >
-                    <ProfileView setIsProfileViewActive={setIsProfileViewActive} />
-                </Modal>
-                <Modal
-                    title="Edit Profile"
-
-                    visible={isProfileUpdateActive}
-                    onCancel={() => setIsProfileUpdateActive(false)}
-                    footer={null}
-                >
-                    <ProfileUpdate setIsProfileUpdateActive={setIsProfileUpdateActive} />
-                </Modal>
-
                 <img className="corner" src={corner}></img>
-
-                <img
-                    src={compliancelogo}
-                    alt="logo"
-                    className="img-fluid mb-4 d-block  compliance-logo"></img>
-                <img
-                    src={sciencelogo}
-                    alt="logo"
-                    className="img-fluid mb-4 d-block  science-logo"></img>
-                <img
-                    src={lifescience}
-                    alt="logo"
-                    className="img-fluid mb-4 d-block  life-sciencelogo"></img>
-
+                <div className="logos">                    
+                    <img
+                        src={compliancelogo}
+                        alt="logo"
+                        className="img-fluid mb-4 d-block  compliance-logo"></img>
+                    <img
+                        src={sciencelogo}
+                        alt="logo"
+                        className="img-fluid mb-4 d-block  science-logo"></img>
+                    <img
+                        src={lifescience}
+                        alt="logo"
+                        className="img-fluid mb-4 d-block  life-sciencelogo"></img>
+                </div>
             </div>
             <div className=" col-lg-4 user">
                 <div className="avatar-sm float-left mr-2 user-profile">
@@ -236,6 +209,33 @@ function Sidebar() {
                     </div>
                 </div>
             </div>
+
+            <Modal
+                title="Change Password"
+                visible={isChangePasswordActive}
+                onCancel={() => setIsChangePasswordActive(false)}
+                footer={null}
+            >
+                <ChangePassword setIsChangePasswordActive={setIsChangePasswordActive} />
+            </Modal>
+            <Modal
+                title="My Profile"
+                visible={isProfileViewActive}
+
+                onCancel={() => setIsProfileViewActive(false)}
+                footer={null}
+            >
+                <ProfileView setIsProfileViewActive={setIsProfileViewActive} />
+            </Modal>
+            <Modal
+                title="Edit Profile"
+
+                visible={isProfileUpdateActive}
+                onCancel={() => setIsProfileUpdateActive(false)}
+                footer={null}
+            >
+                <ProfileUpdate setIsProfileUpdateActive={setIsProfileUpdateActive} />
+            </Modal>
         </div>
     );
 }
