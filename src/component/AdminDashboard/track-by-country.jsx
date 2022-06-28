@@ -43,7 +43,6 @@ class TrackByCountry extends Component {
     }
     async componentDidMount (){
             const { data } = await getResponse(apipaths.getTrackByCountry);
-            console.log("Dashboard--- >",data);
             this.setState({
                 count : data?.totalticket[0].count + data?.totalticket[1].count + data?.totalticket[2].count,
                 series: [

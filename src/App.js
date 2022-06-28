@@ -13,8 +13,8 @@ import HardwareInventory from './component/inventory/hardware';
 import SoftwareInventory from './component/inventory/software';
 import Faq from './component/faqs';
 import UserDashboard from './component/userDashboard';
-import ForgotPassword from './component/forgotpassword';
-import ResetPassword from './component/resetpassword';
+import ForgotPassword from './component/ForgetPassword';
+import ResetPassword from './component/ResetPassword';
 import ChangePassword from './component/changepassword';
 import AdminDashboard from "./component/AdminDashboard/admin-dashboard";
 
@@ -29,8 +29,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/forgotpassword" component={ForgotPassword} />
-          <Route exact path="/user/resetpassword" component={ResetPassword} />
+          <Route exact path="/forgot-password" component={ForgotPassword} />
+          <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/changepassword" component={ChangePassword} />
           <ProtectedRoute exact path="/dashboard" component={AdminDashboard} />
           <ProtectedRoute exact path="/userdashboard" component={UserDashboard} />

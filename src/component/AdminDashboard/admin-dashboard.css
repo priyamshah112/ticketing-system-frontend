@@ -598,9 +598,9 @@ ul {
     fill: black;
 }
 
-.MuiSvgIcon-root {
+/* .MuiSvgIcon-root {
     fill: transparent !important
-}
+} */
 
 .inner__category__box {
     height: 100%;

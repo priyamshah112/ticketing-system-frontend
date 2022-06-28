@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
-import { counterReducer, testReducer } from './reducers/testReducers';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { userListReducer, userLoginReducer } from './reducers/userReducer';

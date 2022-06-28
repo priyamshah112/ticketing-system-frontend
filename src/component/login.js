@@ -208,9 +208,9 @@ function Login(props) {
                         </div>
                       )}
                     </div>
-                    <div className="forgot-pwd" onClick={() => props.history.push('/forgotpassword')}>
-                      Forgot Password? 
-                    </div>
+                    <Link className="forgot-pwd" to="/forgot-password">
+                      Forgot Password?                                          
+                    </Link>
                     <div
                       className="btn btn-block text-center sign-in-button mb-4"
                       onClick={loginHandler}

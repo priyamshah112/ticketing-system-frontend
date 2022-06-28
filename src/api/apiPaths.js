@@ -20,7 +20,7 @@ export const apipaths = {
     addInventoryHardware: { url: "/inventory/Hardware/add", method: "POST" },
     assignInventory: { url: "/user/inventory", method: "POST" },
     unAssignInventory: { url: "/user/inventory/remove", method: "POST" },
-    resetPassword: { url: "/reset", method: "POST" },
+    resetPassword: { url: "/reset-password", method: "POST" },
     changePassword: { url: "/change-password", method: "POST" },
     forgotPassword: {url: "/forgot-password", method:"POST"},
     getInventory: { url: "/user/get/inventory", method: "POST" },

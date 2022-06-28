@@ -30,7 +30,6 @@ function AdminDashboard() {
     }, [])
     const getData = async () => {
         const { data } = await getResponse(apipaths.dashboard);
-        console.log("Dashboard--- >", data);
         setDashBoardTicketData(data)
     }
 
@@ -45,7 +44,6 @@ function AdminDashboard() {
     }
     const getTicketRequest = async () => {
         const data = await getResponse(apipaths.getTicketRequest)
-        console.log(data)
     }
 
     return (

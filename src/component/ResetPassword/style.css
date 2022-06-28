@@ -1,0 +1,65 @@
+.reset-password .auth-content{
+    max-width: 540px;
+}
+
+.reset-password .error-msg{
+    font-size: 18px;
+    padding: 10px 10px;
+}
+
+.reset-password h1{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.reset-password p{
+    font-size: 24px;
+    color: #808080
+}
+.reset-password .form-control, .reset-password .form-control:hover, .reset-password .form-control:active{
+    border-radius: 8px;
+    padding: 16px 16px;
+    line-height: 24px;
+    font-size: 24px;
+    border: 0px;
+    color: #808080;
+    box-shadow: #80808066 0px 1px 8px 0px !important;
+}
+
+.reset-password .form-control::placeholder{
+    line-height: 20px;
+    font-size: 20px;
+    color: #8080809b;
+    font-weight: 700;
+}
+
+.reset-password label{
+    font-size: 20px !important;
+    color: #504b4b !important;
+}
+
+.reset-password button{
+    padding: 20px;
+    color: #FFFFFF;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: none !important;
+}
+
+.reset-password .back-link{
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    color: #808080;
+    font-weight: bold;
+}
+
+.MIcons{
+    fill: #808080 !important;
+    font-size: 24px !important;
+    margin-right: 10px;
+}

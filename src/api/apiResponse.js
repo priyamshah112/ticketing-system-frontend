@@ -8,10 +8,10 @@ const getResponse = async (apipath, data) => {
         let token = localStorage.authToken;
         if (localStorage.authToken)
             headers["Authorization"] = `Bearer ` + token;
-        return await axios({
-            url: `${process.env.REACT_APP_API_URL}${url}`,
-            method, data, headers
-        })
+            return await axios({
+                url: `${process.env.REACT_APP_API_URL}${url}`,
+                method, data, headers
+            })
     } catch (error) {
         return { error: error.response.data };
     }
