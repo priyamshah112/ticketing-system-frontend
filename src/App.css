@@ -123,11 +123,14 @@ td {
   top: 0px;
   border-radius: 0px;
 
-  background: #dde9ff;
+  background: url("./component/assets/office-support-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .form-container {
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
   background-color: #ffffff;

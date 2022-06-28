@@ -217,6 +217,7 @@ function HardwareInventory() {
       data = data.filter((d) => parseInt(d.assigned_to) === parseInt(userid));
     }
     let mydata = inventoryDataModifier(data);
+    console.log(mydata);
     setInventories(mydata);
     setSampleImport(inventoryList.hardwareSampleImport);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -4,15 +4,8 @@ import { Link } from "react-router-dom";
 import { addUserDetailsAction } from "../actions/userActions";
 import { apipaths } from "../api/apiPaths";
 import { getResponse } from "../api/apiResponse";
-import logo1 from "./assets/logo1.png";
-import bg from "./assets/background.png"
 import compliancelogo from "./assets/compliancelogo.png"
-import sciencelogo from "./assets/sciences-logo.png"
-import lifescience from "./assets/life-sciencelogo.png"
-import google from "./assets/google.png"
-import facebook from "./assets/facebook.png"
-import logo2 from "./assets/logo2.png";
-import logo3 from "./assets/logo3.png";
+import officeSupport from "./assets/office-support-1.jpg"
 import $ from "jquery"
 import './assets/css/login.css'
 const queryString = require("query-string");
@@ -112,7 +105,7 @@ function Login(props) {
       <div className="content-wrapper">
         <div className="row mx-auto g-0">
           <div className="col-lg-6 hide-on-med-and-down">
-            <div className=" col-lg-12  main-banner">
+            <div className="col-lg-12 main-banner">
               <div>
                 <img
                   src={compliancelogo}
@@ -120,13 +113,13 @@ function Login(props) {
                   className="img-fluid mb-4 d-block  compliance-logo"></img>
 
               </div>
-              <div className="auth-content-logo px-3 py-3">
+              {/* <div className="auth-content-logo px-3 py-3">
                 <img
-                  src={bg}
+                  src={officeSupport}
                   alt=""
                   className="img-fluid mb-4 d-block bg-logo"
                 />
-              </div>
+              </div> */}
 
             </div>
           </div>

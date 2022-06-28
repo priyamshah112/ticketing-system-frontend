@@ -28,9 +28,12 @@ function AddInventoryForm(props) {
     userlist();
   }, []);
 
+  useEffect(() => {
+    setFormdata(editFormData);
+  }, [editFormData]);
+
   const userlist = async () => {
     const { data } = await getResponse(apipaths.usergetlist);
-    console.log("data")
     let userOptions = [];
     data.data?.user.map((user) => (
       userOptions.push({
@@ -45,9 +48,10 @@ function AddInventoryForm(props) {
 
   const submitHandlerSoftware = async (formdata) => {
     let data = formdata;
-    const { name, key, assigned_to, version, notes } = data;
-    if (!name || !assigned_to) {
-      return toast.warn("* fields are mandatory.");
+    data.assigned_to = selectedOption?.value
+    const { name, key, version, notes,expiry_date } = data;
+    if (!name || !key || !version || !expiry_date || !selectedOption?.value) {
+      return toast.warn("All * fields are mandatory.");
     }
 
     if (inventoryId) {
@@ -68,7 +72,7 @@ function AddInventoryForm(props) {
     }
 
   };
-  var options = [];
+
   const locations = [
     { value: 'USA', label: 'USA' },
     { value: 'Costa Rica', label: 'Costa Rica' },
@@ -87,9 +91,6 @@ function AddInventoryForm(props) {
       service_tag,
       model,
       express_service_code,
-      serial_number,
-      assigned_to,
-      Test,
       // device_name,
       //assigned_to,
       location,
@@ -97,13 +98,15 @@ function AddInventoryForm(props) {
       warranty_expire_on,
     } = data;
 
+    data.assigned_to = selectedOption?.value
+
     if (
       !asset_name ||
       !unit_price ||
       !service_tag ||
       !model ||
       !express_service_code ||
-      !assigned_to ||
+      !selectedOption?.value ||
       !warranty_expire_on ||
       !location ||
       !description
@@ -225,41 +228,18 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Assigned To<span className="text-danger"> * </span></label>
-              <Select options={users}
-                className="w-100"
-                onChange={(value) => {
-                  console.log(value);
-                  setSelectedOption(value);
-                  // setFormdata({ ...formdata, assigned_to: {
-                  //   selectedOption: value
-                  // }
-                //  })
-                }}
-                value={selectedOption}
-                disabled={editForm ? "disabled" : ""}
-
-              />
-              {/* <Select
-                className="w-100"
-                value={formdata.assigned_to ? formdata.assigned_to : ''}
-                showSearch
-                placeholder="Select a device"
-                optionFilterProp="children"
-                disabled={editForm ? "disabled" : ""}
-                onChange={(value) =>
-                  setFormdata({ ...formdata, assigned_to: value })
-                }
-              >
-                {users &&
-                  users.map((data, i) => (
-                    <>
-                      <Option value={data.id} key={i}>
-                        {data.name}
-                      </Option>
-                    </>
-                  ))}
-                  </Select>*/}
+                <label>Assigned To<span className="text-danger"> * </span></label>
+                <Select 
+                  name="assigned_to"
+                  options={users}
+                  className="w-100"
+                  onChange={(value) => {
+                    setSelectedOption(value);
+                  }}
+                  value={selectedOption}
+                  disabled={editForm ? "disabled" : ""}
+                  required
+                />
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
@@ -358,7 +338,7 @@ function AddInventoryForm(props) {
               />
             </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Version<span className="text-danger"> </span></label>
+              <label>Version<span className="text-danger"> *</span></label>
               <InputFeild
                 value={formdata.version ? formdata.version : ''}
                 onChange={(e) =>
@@ -368,7 +348,7 @@ function AddInventoryForm(props) {
               />
             </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Key</label>
+              <label>Key <span className="text-danger"> * </span></label>
               <InputFeild
                 value={formdata.key ? formdata.key : ''}
                 onChange={(e) =>
@@ -380,42 +360,21 @@ function AddInventoryForm(props) {
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
 
-              <label>Users<span className="text-danger"> * </span></label>
-              {users &&
-                users.map((user) => (
-                  options.push({
-                    value: user.user_details?.firstName,
-                    label: user.user_details?.firstName
-                  })
-
-                ))}
-              <Select options={options} onChange={(value) =>
-                setFormdata({ ...formdata, assigned_to: value.value })
-              } value={formdata.assigned_to ? formdata.assigned_to : ''}
-              />
-
-
-              {/*<select
-                className="form-control"
-                value={formdata.assigned_to ? formdata.assigned_to : ''}
-                onChange={(e) =>
-                  setFormdata({ ...formdata, assigned_to: e.target.value })
-                }
+              <label>Assign To<span className="text-danger"> * </span></label>
+              <Select options={users}
+                className="w-100"
+                name="assigned_to"
+                onChange={(value) => {
+                  setSelectedOption(value);
+                }}
+                value={selectedOption}
                 disabled={editForm ? "disabled" : ""}
-              >
-                <option value={""}>Select User</option>
-                {users &&
-                  users.map((user) => (
-                    <option value={user.id}>
-                      {user.user_details?.firstName}
-                      {console.log(user)}
-                    </option>
-                  ))}
-                  </select>*/}
+                required
+              />
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Expiry Date<span className="text-danger">  </span></label>
+              <label>Expiry Date<span className="text-danger"> *</span></label>
 
               <DatePicker
                 format={"DD/MM/YYYY"}
@@ -429,7 +388,7 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Notes<span className="text-danger">  </span></label>
+              <label>Notes </label>
               <textarea
                 label="Serial Number"
                 value={formdata.notes ? formdata.notes : ''}

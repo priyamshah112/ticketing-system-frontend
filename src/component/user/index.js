@@ -107,7 +107,6 @@ function User(props) {
   const usersAddMoreData = (users) => {
     let data = users;
     data.map((user) => {
-      console.log(user);
       user.created_at = dateFormatHandler(user.created_at);
       user.updated_at = new Date(user.updated_at).toDateString();
 
