@@ -408,6 +408,9 @@ body {
   top: -34px;
 
 }
+.react-calendar .react-calendar__month-view {
+  min-height: 320px;
+}
 
 .react-calendar__tile {
 

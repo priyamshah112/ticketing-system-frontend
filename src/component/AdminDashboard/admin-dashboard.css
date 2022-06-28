@@ -401,7 +401,7 @@ ul {
 }
 
 .category__box__ht__min {
-    height: 300px;
+    height: 400px;
     overflow: hidden;
     /* overflow-y: auto; */
 }
@@ -512,15 +512,18 @@ ul {
 
 }
 
-.react-calendar__tile {
+.admin-dashboard .react-calendar__tile {
 
     font-family: Rubik;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     background-color: white;
     border: none;
-    padding: 8px
+    padding: 16px
+}
+.category__box .react-calendar__month-view {
+    min-height: 320px;
 }
 
 
@@ -528,11 +531,10 @@ ul {
 
 .react-calendar__viewContainer {
     line-height: 23px;
-    font-size: 12px;
+    font-size: 16px;
     font-family: Rubik;
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
     top: 32px;
     position: relative;
     text-align: center;
@@ -642,7 +644,7 @@ ul {
 }
 
 .mixed-chart-vh {
-    height: calc(300px - 60px);
+    height: calc(300px - 20px);
     overflow-y: auto;
 }
 
@@ -707,9 +709,6 @@ ul {
 
 .page-inner {
     padding-left: 2rem
-}
-.page-inner {
-    padding-left: 10rem
 }
 
 .css-1s2u09g-control {

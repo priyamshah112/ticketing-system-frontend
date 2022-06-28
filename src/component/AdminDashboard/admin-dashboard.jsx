@@ -48,7 +48,7 @@ function AdminDashboard() {
 
     return (
         <>
-            <div className="content__section">
+            <div className="content__section admin-dashboard">
 
                 <h1 className="section__title">Dashboard</h1>
 

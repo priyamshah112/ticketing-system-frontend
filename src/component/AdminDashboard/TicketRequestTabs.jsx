@@ -82,7 +82,6 @@ export default function TicketRequestTabs(props) {
   useEffect(async () => {
     const { data } = await getResponse(apipaths.getTicketRequest);
     const { monthly = [], weekly = [], daily = 0 } = data?.data
-    console.log("daily", data.data)
     monthly?.map((monthly) => {
       MonthlySeriesData.push(monthly.count)
       MonthlyCatogoriesData.push(monthly.Date)
@@ -146,10 +145,10 @@ export default function TicketRequestTabs(props) {
             <TicketRequest seriesData={DailySeriesData} categories={DailyCatogoriesData} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <TicketRequest seriesData={WeekelySeriesData} categories={WeekelyCatogoriesData} />
+            {WeekelySeriesData.length > 0 ? (<TicketRequest seriesData={WeekelySeriesData} categories={WeekelyCatogoriesData} />) : (<p className="fs-18 text-center mt-2">No Data</p>)}
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <TicketRequest seriesData={MonthlySeriesData} categories={MonthlyCatogoriesData} />
+            {MonthlySeriesData.length > 0 ? (<TicketRequest seriesData={MonthlySeriesData} categories={MonthlyCatogoriesData} />) : (<p className="fs-18 text-center mt-2">No Data</p>)}
           </TabPanel>
         </div>
       
