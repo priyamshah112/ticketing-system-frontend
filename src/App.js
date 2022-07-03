@@ -17,6 +17,7 @@ import ForgotPassword from './component/ForgetPassword';
 import ResetPassword from './component/ResetPassword';
 import ChangePassword from './component/changepassword';
 import AdminDashboard from "./component/AdminDashboard/admin-dashboard";
+import Error from "./component/Error";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} />
           <ProtectedRoute exact path="/inventory/software" component={SoftwareInventory} />
           <ProtectedRoute exact path="/inventory/software/:userid" component={SoftwareInventory} />
+          <Route exact path="*" component={() => <Error errorMsg="404 - Not Found" /> } />
         </Switch>
       </Router>
     </div>
