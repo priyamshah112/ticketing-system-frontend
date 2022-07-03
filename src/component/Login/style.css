@@ -1,9 +1,9 @@
 @font-face {
     font-family: Roboto;
-    src: url("../fonts/Roboto-Regular.ttf");
+    src: url("../assets/fonts/Roboto-Regular.ttf");
 }
 
-.bg-logo {
+.login-page .bg-logo {
     margin: auto;
     max-width: 100%;
     max-height: 100%;

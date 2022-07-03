@@ -1,13 +1,12 @@
 import React, { useEffect, useState,useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addUserDetailsAction } from "../actions/userActions";
-import { apipaths } from "../api/apiPaths";
-import { getResponse } from "../api/apiResponse";
-import compliancelogo from "./assets/compliancelogo.png"
-import officeSupport from "./assets/office-support-1.jpg"
+import { addUserDetailsAction } from "../../actions/userActions";
+import { apipaths } from "../../api/apiPaths";
+import { getResponse } from "../../api/apiResponse";
+import compliancelogo from "../assets/compliancelogo.png"
 import $ from "jquery"
-import './assets/css/login.css'
+import './style.css'
 const queryString = require("query-string");
 
 function Login(props) {
@@ -102,7 +101,7 @@ function Login(props) {
 
   return (
     <>
-      <div className="content-wrapper">
+      <div className="login-page content-wrapper">
         <div className="row mx-auto g-0">
           <div className="col-lg-6 hide-on-med-and-down">
             <div className="col-lg-12 main-banner">
