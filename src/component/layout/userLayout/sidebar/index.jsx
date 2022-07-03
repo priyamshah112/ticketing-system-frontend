@@ -78,7 +78,7 @@ function Sidebar() {
                     <img
                         src={sciencelogo}
                         alt="logo"
-                        className="img-fluid mb-4 d-block  science-logo"></img>
+                        className="img-flui                                                                                                                                         d mb-4 d-block  science-logo"></img>
                     <img
                         src={lifescience}
                         alt="logo"

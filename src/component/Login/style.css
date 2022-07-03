@@ -10,27 +10,58 @@
     position: relative;
     top: 52px;
 }
-
+.login-page .form-container{
+    flex-direction: column;
+}
+.login-page>.row{
+    flex-direction: row-reverse;
+}
+.login-page .subHead{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #BBB5B5;
+}
+.login-page .logoContainer{
+    display: flex;
+    position: absolute;
+    top: 25px;
+    left: 10%;
+    justify-content: space-between;
+    width: 70%;
+}
 .user-dashboard-logo {
     width: 165px;
 }
-
+.login-page form{
+    margin-top: 50px;
+    align-items: center;
+}
+.login-page .btnWrap{
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+.login-page .form-controls{
+    font-size: 14px;
+    padding: 0.6rem 1rem;
+    height: inherit!important;
+  }
+  .login-page .form-group{
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+  }
 .sign-in-head {
-
-    left: 3.68%;
-    right: 87.64%;
-    top: 16.33%;
-    bottom: 78.44%;
-
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
     line-height: 47px;
-    /* identical to box height */
-
-
     color: #13213C;
+    margin-bottom: 12px!important;
 }
 
 .have-account {
@@ -198,11 +229,6 @@
 }
 
 .sign-in-button {
-    left: 32.1%;
-    position: relative;
-    right: 64.72%;
-    bottom: 16.44%;
-    height: 47px;
     width: 253px;
     border-radius: 10px;
     font-family: 'Roboto';

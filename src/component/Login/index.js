@@ -5,6 +5,8 @@ import { addUserDetailsAction } from "../../actions/userActions";
 import { apipaths } from "../../api/apiPaths";
 import { getResponse } from "../../api/apiResponse";
 import compliancelogo from "../assets/compliancelogo.png"
+import sciencelogo from "../assets/sciences-logo.png"
+import lifescience from "../assets/life-sciencelogo.png"
 import $ from "jquery"
 import './style.css'
 const queryString = require("query-string");
@@ -105,13 +107,7 @@ function Login(props) {
         <div className="row mx-auto g-0">
           <div className="col-lg-6 hide-on-med-and-down">
             <div className="col-lg-12 main-banner">
-              <div>
-                <img
-                  src={compliancelogo}
-                  alt="logo"
-                  className="img-fluid mb-4 d-block  compliance-logo"></img>
-
-              </div>
+              
               {/* <div className="auth-content-logo px-3 py-3">
                 <img
                   src={officeSupport}
@@ -124,8 +120,24 @@ function Login(props) {
           </div>
           <div className="col-lg-6  px-0">
             <div className="form-container">
+            <div className="logoContainer">
+                <img
+                  src={compliancelogo}
+                  alt="logo"
+                  className="img-fluid mb-4 d-block  compliance-logo"></img>
+                  <img
+                  src={sciencelogo}
+                  alt="logo"
+                  className="img-fluid mb-4 d-block  compliance-logo"></img>
+                  <img
+                  src={lifescience}
+                  alt="logo"
+                  className="img-fluid mb-4 d-block  compliance-logo"></img>
+
+              </div>
               <div className=" auth-content">
-                <h1 className="mb-4 f-w-400 bold sign-in-head">Welcome to Enhance Compliance Ticketing System</h1>
+                <h1 className="mb-4 f-w-400 bold sign-in-head">Welcome to Enhance Compliance</h1>
+                <span className='subHead'>Please use credentials to login.</span>
 
                 {/* <h5 className=" font-weight-normal">
                   {create ? <div>
@@ -154,11 +166,11 @@ function Login(props) {
                     />
                     <div className="form-group mb-3">
                       <label className="input-label" htmlFor="Email">
-                        Email address
+                        Email Address
                       </label>
                       <input
                         type="text"
-                        className="form-control input-box"
+                        className="form-controls input-box"
                         onChange={(e) => setEmail(e.target.value)}
                         name="email"
                         id="Email"
@@ -173,7 +185,7 @@ function Login(props) {
                       </label>
                       <input
                         type={passType}
-                        className="form-control input-box"
+                        className="form-controls input-box"
                         onChange={(e) => setPassword(e.target.value)}
                         name="password"
                         value={password}
@@ -203,11 +215,13 @@ function Login(props) {
                     <Link className="forgot-pwd" to="/forgot-password">
                       Forgot Password?                                          
                     </Link>
+                    <div className='btnWrap'>
                     <div
                       className="btn btn-block text-center sign-in-button mb-4"
                       onClick={loginHandler}
                     >
                       Sign In
+                    </div>
                     </div>
                   </form>
                 ) : (

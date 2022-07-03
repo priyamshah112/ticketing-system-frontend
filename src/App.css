@@ -1,7 +1,9 @@
 .App {
   background: #fafafa;
 }
-
+body{
+  cursor: auto!important;
+}
 .alert,
 .brand,
 .btn-simple,
@@ -116,7 +118,7 @@ td {
   justify-content: center;
   flex-direction: column;
   position: absolute;
-
+  opacity: 0.8;
   bottom: 0%;
   height: 100%;
   left: 0px;
