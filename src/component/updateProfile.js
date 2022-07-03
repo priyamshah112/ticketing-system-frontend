@@ -76,7 +76,7 @@ function ProfileUpdate(props) {
     <>
       <form className="row">
         <div className="form-group col-12 d-flex justify-content-center align-items-center">
-          <div className="avatar-sm float-left mr-2">
+          <div className=" float-left mr-2">
           <ImageThumb  className="avatar-img rounded-circle" image={img} />
            
 
@@ -84,7 +84,7 @@ function ProfileUpdate(props) {
 
           </div>
           <div>
-            <input type="file" onChange={handleUpload} />
+            <input type="file" onChange={handleUpload} accept="image/*" />
           </div>
         </div>
         <div className="form-group col-12" style={{display: 'contents'}}>

@@ -34,7 +34,7 @@ function ProfileView(props) {
   return (
     <form className="row">
       <div className="form-group col-12 d-flex justify-content-center align-items-center">
-        <div className="avatar-sm float-left mr-2">
+        <div className=" float-left mr-2">
           <img
             src="../assets/img/profile.jpg"
             alt="..."
