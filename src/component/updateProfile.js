@@ -28,12 +28,26 @@ function ProfileUpdate(props) {
       console.log(res.data);
     }
   }
-
+  const getUserDetails = async (e) => {
+    //setError({ show: false, message: "" });
+    const res = await getResponse(apipaths.getUSerData);
+   // setFirstName(res.data.data.firstName)
+    // if (res.error) {
+    //   toast.error(res.error.message)
+    // } else {
+    //   toast.success(res.data.message)
+    //   console.log(res.data);
+    // }
+    console.log(res);
+  }
+  
   useEffect(() => {
     uploadProfilePicture(img);
   }, [img]);
-
-
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+  
   const ImageThumb = ({ image }) => {
     uploadProfilePicture(image);
 
