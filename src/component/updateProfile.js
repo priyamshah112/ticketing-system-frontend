@@ -15,6 +15,12 @@ function ProfileUpdate(props) {
 
 
   const [img, setImg] = useState();
+  const [firstName, setFirstName] = useState('');
+  const [middleName, setMiddleName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('');
   const [error, setError] = useState({ show: false, message: "" });
   const updateImage = async (e) => {
     setError({ show: false, message: "" });
@@ -29,16 +35,19 @@ function ProfileUpdate(props) {
     }
   }
   const getUserDetails = async (e) => {
-    //setError({ show: false, message: "" });
+    setError({ show: false, message: "" });
     const res = await getResponse(apipaths.getUSerData);
-   // setFirstName(res.data.data.firstName)
-    // if (res.error) {
-    //   toast.error(res.error.message)
-    // } else {
-    //   toast.success(res.data.message)
-    //   console.log(res.data);
-    // }
-    console.log(res);
+    setFirstName(res.data.first_name);
+    setLastName(res.data.last_name);
+    setMiddleName(res.data.middle_name);
+    setCountry(res.data.location);
+    setPhone(res.data.phone);
+    setEmail(res.data.email);
+    if (res.error) {
+      toast.error(res.error.message)
+    } else {
+      toast.success(res.data.message)
+    }
   }
   
   useEffect(() => {
@@ -110,14 +119,14 @@ function ProfileUpdate(props) {
             <input
               onChange={e => { }}
               className="form-control "
-              value={userDetails?.firstName}
+              value={firstName}
               disabled     ></input>
           </div>
           <div className="form-group col-6">
             <label>Middle Name</label>
             <input
               className="form-control "
-              value={userDetails?.middleName}
+              value={middleName}
               disabled
             />
           </div>
@@ -125,19 +134,19 @@ function ProfileUpdate(props) {
             <label>Last Name</label>
             <input
               className="form-control "
-              value={userDetails?.lastName}
+              value={lastName}
               disabled
             />
           </div>
           <div className="form-group col-6">
             <label>Email</label>
-            <input className="form-control" value={userDetails?.email} disabled />
+            <input className="form-control" value={email} disabled />
           </div>
           <div className="form-group col-6">
             <label>Phone</label>
             <input
               className="form-control"
-              value={userDetails?.cellPhone}
+              value={phone}
               disabled
             />
           </div>
@@ -145,7 +154,7 @@ function ProfileUpdate(props) {
             <label>Country</label>
             <input
               className="form-control"
-              value={userDetails?.clientLocation}
+              value={country}
               disabled
             />
           </div>
