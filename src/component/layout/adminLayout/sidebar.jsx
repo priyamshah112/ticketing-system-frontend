@@ -17,9 +17,13 @@ import { ReactComponent as Inventory } from "../../../images/admin-dashboard/Inv
 import { ReactComponent as Roles } from "../../../images/admin-dashboard/Education.svg";
 import { ReactComponent as User } from "../../../images/admin-dashboard/Plus.svg"
 import { ReactComponent as Faq } from "../../../images/admin-dashboard/Comment.svg";
-import { ReactComponent as Logout } from "../../../images/admin-dashboard/Logout1.svg"
+import { ReactComponent as Logout } from "../../../images/admin-dashboard/Logout1.svg";
+
 import $ from "jquery";
 import { SvgIcon } from '@material-ui/core';
+import { getResponse } from "../../../api/apiResponse";
+import { toast } from "react-toastify";
+import { apipaths } from "../../../api/apiPaths";
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -52,6 +56,13 @@ function IconTabs() {
     const [isChangePasswordActive, setIsChangePasswordActive] = useState(false);
     const [isProfileViewActive, setIsProfileViewActive] = useState(false);
     const [isProfileUpdateActive, setIsProfileUpdateActive] = useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [middleName, setMiddleName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [country, setCountry] = useState('');
+    const [error, setError] = useState({ show: false, message: "" });
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -60,6 +71,21 @@ function IconTabs() {
         $(`.sidebar-item`).removeClass("active");
         $(`#${elem}`).addClass("active");
     };
+    const getUserDetails = async (e) => {
+        setError({ show: false, message: "" });
+        const res = await getResponse(apipaths.getUSerData);
+        setFirstName(res.data.data.first_name);
+        setLastName(res.data.data.last_name);
+        setMiddleName(res.data.data.middle_name);
+        setCountry(res.data.data.location);
+        setPhone(res.data.data.phone);
+        setEmail(res.data.data.email);
+        if (res.error) {
+          toast.error(res.error.message)
+        } else {
+          toast.success(res.data.message)
+        }
+      }
 
 
 
@@ -81,9 +107,9 @@ function IconTabs() {
                     onCancel={() => setIsProfileViewActive(false)}
                     footer={null}
                 >
-                    <ProfileView setIsProfileViewActive={setIsProfileViewActive} />
+                     <ProfileView setIsProfileViewActive={setIsProfileViewActive} firstName={firstName} lastName={lastName} middleName={middleName} email={email} country={country} phone={phone}/>
                 </Modal>
-                <Modal
+                {/* <Modal
                     title="Edit Profile"
 
                     visible={isProfileUpdateActive}
@@ -91,7 +117,7 @@ function IconTabs() {
                     footer={null}
                 >
                     <ProfileUpdate setIsProfileUpdateActive={setIsProfileUpdateActive} />
-                </Modal>
+                </Modal> */}
 
                 <div className="profile__img__layout">
                     <div className="profile" onClick={handleClick}>
@@ -136,12 +162,13 @@ function IconTabs() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             setIsProfileViewActive(true);
+                                            getUserDetails();
                                         }}
                                     >
                                         <span className="link-collapse">My Profile</span>
                                     </a>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <a href="#edit"
                                         onClick={(e) => {
                                             e.preventDefault();
@@ -150,7 +177,7 @@ function IconTabs() {
                                     >
                                         <span className="link-collapse">Edit Profile</span>
                                     </a>
-                                </li>
+                                </li> */}
                             </ul>
                         </Typography>
                     </Popover>

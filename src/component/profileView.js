@@ -8,10 +8,11 @@ import { toast } from "react-toastify";
 
 
 function ProfileView(props) {
-  const { isProfileViewActive, setIsProfileViewActive } = props;
+  const { isProfileViewActive, setIsProfileViewActive, firstName, lastName, middleName, phone, email, country } = props;
   const userDetails = useSelector((state) => state.userDetails.user_details);
-  const [img, setImg] = useState('');
   const [error, setError] = useState({ show: false, message: "" });
+  const [img, setImg] = useState();
+  console.log(firstName, lastName, email, phone)
   const createUserHandler = async (e) => {
     setError({ show: false, message: "" });
 
@@ -34,19 +35,26 @@ function ProfileView(props) {
   return (
     <form className="row">
       <div className="form-group col-12 d-flex justify-content-center align-items-center">
-        <div className=" float-left mr-2">
+        <div className=" float-left mr-2 myprofile">
           <img
             src="../assets/img/profile.jpg"
             alt="..."
             className="avatar-img rounded-circle"
           />
+          <div class="image-upload">
+            <label for="file-input">
+              <img src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png" />
+            </label>
+
+            <input id="file-input" type="file" />
+          </div>
         </div>
       </div>
       <div className="form-group col-6">
         <label>First Name</label>
         <input
           className="form-control"
-          value={userDetails?.firstName}
+          value={firstName}
           disabled
         />
       </div>
@@ -54,7 +62,7 @@ function ProfileView(props) {
         <label>Middle Name</label>
         <input
           className="form-control"
-          value={userDetails?.middleName}
+          value={middleName}
           disabled
         />
       </div>
@@ -62,19 +70,19 @@ function ProfileView(props) {
         <label>Last Name</label>
         <input
           className="form-control"
-          value={userDetails?.lastName}
+          value={lastName}
           disabled
         />
       </div>
       <div className="form-group col-6">
         <label>Email</label>
-        <input className="form-control" value={userDetails?.email} disabled />
+        <input className="form-control" value={email} disabled />
       </div>
       <div className="form-group col-6">
         <label>Phone</label>
         <input
           className="form-control"
-          value={userDetails?.cellPhone}
+          value={phone}
           disabled
         />
       </div>
@@ -82,7 +90,7 @@ function ProfileView(props) {
         <label>Country</label>
         <input
           className="form-control"
-          value={userDetails?.clientLocation}
+          value={country}
           disabled
         />
       </div>

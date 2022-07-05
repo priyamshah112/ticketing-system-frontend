@@ -43,6 +43,17 @@ td {
   height: -webkit-fill-available;
   position: absolute;
 }
+.image-upload>input {
+  display: none;
+}
+.image-upload>label>img{
+  width: 35px;
+  cursor: pointer;
+}
+.myprofile{
+  display: flex;
+  align-items: center;
+}
 
 .content-wrapper .row {
   height: 100%;
