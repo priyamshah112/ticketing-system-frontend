@@ -23,7 +23,10 @@ import { Modal } from "antd";
 import ChangePassword from "../../../changepassword";
 import ProfileView from "../../../profileView";
 import ProfileUpdate from "../../../updateProfile";
-import dropdown from "../../../../images/admin-dashboard/dropdown.svg"
+import { getResponse } from "../../../../api/apiResponse";
+import { toast } from "react-toastify";
+import { apipaths } from "../../../../api/apiPaths";
+
 const useStyles = makeStyles((theme) => ({
     typography: {
         padding: theme.spacing(2),
@@ -44,6 +47,13 @@ function Sidebar() {
     const [isChangePasswordActive, setIsChangePasswordActive] = useState(false);
     const [isProfileViewActive, setIsProfileViewActive] = useState(false);
     const [isProfileUpdateActive, setIsProfileUpdateActive] = useState(false);
+    const [firstName, setFirstName] = useState('');
+    const [middleName, setMiddleName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [country, setCountry] = useState('');
+    const [error, setError] = useState({ show: false, message: "" });
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -54,7 +64,21 @@ function Sidebar() {
     useEffect(() => {
         if (data) return dispatch(addUserDetailsAction(JSON.parse(data)));
     }, []);
-
+    const getUserDetails = async (e) => {
+        setError({ show: false, message: "" });
+        const res = await getResponse(apipaths.getUSerData);
+        setFirstName(res.data.data.first_name);
+        setLastName(res.data.data.last_name);
+        setMiddleName(res.data.data.middle_name);
+        setCountry(res.data.data.location);
+        setPhone(res.data.data.phone);
+        setEmail(res.data.data.email);
+        if (res.error) {
+          toast.error(res.error.message)
+        } else {
+          toast.success(res.data.message)
+        }
+      }
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     const activeLinkHandler = (elem) => {
@@ -140,6 +164,7 @@ function Sidebar() {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         setIsChangePasswordActive(true);
+                                        handleClose();
                                     }}
                                 >
                                     <span className="link-collapse">Change Password</span>
@@ -151,12 +176,15 @@ function Sidebar() {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         setIsProfileViewActive(true);
+                                        getUserDetails();
+                                        handleClose();
+                                        
                                     }}
                                 >
                                     <span className="link-collapse">My Profile</span>
                                 </a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a href="#edit"
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -165,7 +193,7 @@ function Sidebar() {
                                 >
                                     <span className="link-collapse">Edit Profile</span>
                                 </a>
-                            </li>
+                            </li> */}
                         </ul>
                     </Typography>
                 </Popover>
@@ -225,7 +253,7 @@ function Sidebar() {
                 onCancel={() => setIsProfileViewActive(false)}
                 footer={null}
             >
-                <ProfileView setIsProfileViewActive={setIsProfileViewActive} />
+                 <ProfileView setIsProfileViewActive={setIsProfileViewActive} firstName={firstName} lastName={lastName} middleName={middleName} email={email} country={country} phone={phone}/>
             </Modal>
             <Modal
                 title="Edit Profile"
