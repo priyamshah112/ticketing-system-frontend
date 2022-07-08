@@ -151,6 +151,7 @@ function IconTabs() {
                                         onClick={(e) => {
                                             e.preventDefault();
                                             setIsChangePasswordActive(true);
+                                            handleClose();
                                         }}
                                     >
                                         <span className="link-collapse">Change Password</span>
@@ -163,6 +164,7 @@ function IconTabs() {
                                             e.preventDefault();
                                             setIsProfileViewActive(true);
                                             getUserDetails();
+                                            handleClose();
                                         }}
                                     >
                                         <span className="link-collapse">My Profile</span>
