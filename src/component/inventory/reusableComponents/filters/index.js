@@ -46,8 +46,9 @@ function FilterComponent({
         </div>
         <div className="right__filters">
           {buttonOne && (
-            <button title="Add Ticket" className="button__add" onClick={buttonOneHandler}>
+            <button className="button__add" onClick={buttonOneHandler}>
               <img src={plus} alt="add" /> {buttonOne}
+              <span class="hiddenHover"> {buttonOne}</span>
             </button>
           )}
           {buttonTwo && (

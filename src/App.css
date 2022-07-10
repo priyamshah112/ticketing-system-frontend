@@ -37,7 +37,23 @@ td {
 .sidebar.sidebar-style-2 .nav.nav-primary > .nav-item.active > a {
   background-color: #5c55bf !important;
 }
-
+.hiddenHover, .hiddenHoverIn{
+  display: none;
+  position: absolute;
+  background-color: black;
+  color: #fff;
+  top: 55px;
+  left: -20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  z-index: 99;
+}
+.hiddenHoverIn{
+  left: -50px;
+}
+button:hover>.hiddenHover, button:hover>.hiddenHoverIn{
+  display: block;
+}
 .content-wrapper {
   width: 100%;
   height: -webkit-fill-available;
