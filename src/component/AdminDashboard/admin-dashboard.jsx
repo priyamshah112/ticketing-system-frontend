@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./admin-dashboard.css"
 import tool from "../../../src/images/admin-dashboard/tool.svg";
-import open from "../../../src/images/admin-dashboard/open.svg";
-import pending from "../../../src/images/admin-dashboard/pending.svg";
-import close from "../../../src/images/admin-dashboard/close.svg";
 import person from "../../../src/images/admin-dashboard/person.svg";
 import { getResponse } from "../../api/apiResponse";
 import { apipaths } from "../../api/apiPaths";
 import HardInventory from "./hardInventory";
 import UserRequest from "./user-request";
 import TrackByCountry from "./track-by-country";
-import Calendar from "./calender";
 import TicketCalender from "./calender";
 import RadialBar from "./radialbar";
 import { Link } from "react-router-dom";
-import TicketRequest from "./TicketRequest";
 
 
 

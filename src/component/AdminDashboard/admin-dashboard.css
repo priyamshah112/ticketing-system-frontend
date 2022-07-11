@@ -180,8 +180,8 @@ ul {
     text-decoration-line: none !important;
 }
 
-.tabPanel>div>div+.PrivateTabIndicator-colorSecondary-5,
-.ticketRequestWrapper .PrivateTabIndicator-colorSecondary-5 {
+.tabPanel>div>div+.MuiTabs-indicator,
+.ticketRequestWrapper .MuiTabs-indicator {
     display: none;
 }
 
