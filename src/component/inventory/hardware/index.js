@@ -286,7 +286,7 @@ function HardwareInventory() {
               <Tooltip title="View Hardware Inventory">
                 <div>
                   <i
-                    className="fa fa-file bg-success table-icon"
+                    className="fa fa-eye bg-secondary ml-3 table-icon"
                     onClick={() => editInventory(inv, 0)}
                   ></i>
                 </div>

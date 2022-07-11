@@ -591,7 +591,9 @@ ul {
     top: 17px;
     left: -4px;
 }
-
+.horizontal-line+li.active::after{
+    right: 15px;
+}
 
 .shift-line {
     position: relative;

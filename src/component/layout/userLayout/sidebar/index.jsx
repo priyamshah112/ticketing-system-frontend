@@ -143,7 +143,7 @@ function Sidebar() {
                         </span>
                         <span> <i style={{
                             position: 'absolute',
-                            top: '100px',
+                            top: '106px',
                             left: '230px',
                             color:'white'
                         }} class="fas fa-caret-down fa-2x"></i></span>

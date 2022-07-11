@@ -48,6 +48,12 @@ td {
   border-radius: 10px;
   z-index: 99;
 }
+#apexchartsbasicxbar path:active{
+  fill:#5C55BF!important;
+}
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
 .hiddenHoverIn{
   left: -50px;
 }
