@@ -38,6 +38,7 @@
 }
 .button__add {
   background: #bf5555;
+  position: relative;
 }
 .button__export {
   background: #5c55bf;
