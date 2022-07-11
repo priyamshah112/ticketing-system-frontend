@@ -323,11 +323,11 @@ function SoftwareInventory() {
     setError('Importing file please wait');
     const formdata = new FormData();
     formdata.append('file', inventoryFile);
-    if (
-      inventoryFile.type ===
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-      inventoryFile.type === 'application/vnd.ms-excel'
-    ) {
+    // if (
+    //   inventoryFile.type ===
+    //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+    //   inventoryFile.type === 'application/vnd.ms-excel'
+    // ) {
       let { data, error } = await getResponse(
         apipaths.importInventory,
         formdata
@@ -343,9 +343,9 @@ function SoftwareInventory() {
 
       setIsModalVisible();
       userListHandler();
-    } else {
-      setError('File type not allowed.');
-    }
+    // } else {
+    //   setError('File type not allowed.');
+    // }
   };
 
   const assignInventoryHandler = (inventoryId) => {

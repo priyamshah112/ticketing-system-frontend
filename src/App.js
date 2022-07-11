@@ -44,7 +44,7 @@ function App() {
           <ProtectedRoute exact path="/inventory/hardware/:userid" component={HardwareInventory} />
           <ProtectedRoute exact path="/inventory/software" component={SoftwareInventory} />
           <ProtectedRoute exact path="/inventory/software/:userid" component={SoftwareInventory} />
-          <Route exact path="*" component={() => <Error errorMsg="404 - Not Found" /> } />
+          <Route exact path="*" component={() => <Error errorMsg="404 | Page Not Found" /> } />
         </Switch>
       </Router>
     </div>

@@ -7,10 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  width: 125% !important;
-  height: 125% !important;
+  width: 100% !important;
+  height: 100vh !important;
   transform-origin: top left;
-  transform: scale(80%);
   overflow-x:hidden;
 }
 code {

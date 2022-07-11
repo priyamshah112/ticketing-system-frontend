@@ -66,11 +66,6 @@ button:hover>.hiddenHover, button:hover>.hiddenHoverIn{
   width: 35px;
   cursor: pointer;
 }
-.myprofile{
-  display: flex;
-  align-items: center;
-}
-
 .content-wrapper .row {
   height: 100%;
 }

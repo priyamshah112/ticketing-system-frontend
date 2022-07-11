@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inventoryListAction } from "../../../actions/inventoryAction";
-import { DatePicker } from "antd";
 import InputFeild from "../../forms/InputFeild";
 import { getResponse } from "../../../api/apiResponse";
 import { apipaths } from "../../../api/apiPaths";
 import moment from "moment";
 import { toast } from "react-toastify";
 import Select from 'react-select'
-import { LocalConvenienceStoreOutlined } from "@material-ui/icons";
+import { dateFormatYYMMDD } from "../../../actions/commonAction"
 
 function AddInventoryForm(props) {
   const dispatch = useDispatch();
@@ -29,7 +28,29 @@ function AddInventoryForm(props) {
   }, []);
 
   useEffect(() => {
-    setFormdata(editFormData);
+    if(type === 'hardware')
+    {
+      setFormdata({
+        ...editFormData,
+        warranty_expire_on: dateFormatYYMMDD(editFormData.warranty_expire_on),
+        assigned_on: dateFormatYYMMDD(editFormData.assigned_on),
+      });
+    }
+    else
+    {
+      setFormdata({
+        ...editFormData,
+        expiry_date: dateFormatYYMMDD(editFormData.expiry_date),
+      });
+    }
+
+    if(editFormData.user !== undefined && editFormData.user !== null)
+    {
+      setSelectedOption({
+        value: editFormData.user.id,
+        label: editFormData.user.name
+      });
+    }
   }, [editFormData]);
 
   const userlist = async () => {
@@ -64,6 +85,7 @@ function AddInventoryForm(props) {
 
     if (resp.status === 200) {
       toast.success(resp.data.message);
+      setSelectedOption([]);
       setFormdata({});
       dispatch(inventoryListAction(type));
       isOpen(false);
@@ -73,11 +95,7 @@ function AddInventoryForm(props) {
 
   };
 
-  const locations = [
-    { value: 'USA', label: 'USA' },
-    { value: 'Costa Rica', label: 'Costa Rica' },
-    { value: 'India', label: 'India' }
-  ]
+  const locations = ['USA','Costa Rica','India' ]
 
   const submitHandlerHardware = async (formdata) => {
     let data = formdata;
@@ -144,7 +162,7 @@ function AddInventoryForm(props) {
           }
         }}
       >
-        {type !== "software" ? (
+        {type == "hardware" ? (
           <div className="row">
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <InputFeild
@@ -237,7 +255,7 @@ function AddInventoryForm(props) {
                     setSelectedOption(value);
                   }}
                   value={selectedOption}
-                  disabled={editForm ? "disabled" : ""}
+                  isDisabled={editForm ? true : false}
                   required
                 />
             </div>
@@ -261,37 +279,23 @@ function AddInventoryForm(props) {
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Location<span className="text-danger"> * </span></label>
 
-              <Select options={locations}
-                className="w-100"
-                onChange={(value) => {
-                  console.log(value)
-                  setFormdata({ ...formdata, location: value.value })
-
+              <select
+                className="form-control"
+                onChange={(e) => {
+                  setFormdata({ ...formdata, location: e.target.value });
                 }
-                 }
+                }
                 value={formdata.location ? formdata.location : ''}
-                disabled={editForm ? "disabled" : ""}
-
-              />
-              {/* <Select
-                className="w-100"
-                options={locations}
-                value={formdata.location ? formdata.location : ''}
-                showSearch
-                placeholder="Select a Location"
-                optionFilterProp="children"
-                onChange={(value) =>
-                  setFormdata({ ...formdata, location: value })
-                }
-                // onSearch={(value) => setFormdata({ ...formdata, location: value })}
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                }
                 disabled={editForm ? "disabled" : ""}
               >
-
-              </Select>*/}
+                <option value={''}>Select Country</option>
+                  {locations &&
+                    locations.map((location) => (
+                      <option value={location}>
+                        {location}
+                      </option>
+                    ))}
+              </select>
             </div>
 
             <div className="col-12 mt-3">
@@ -368,21 +372,24 @@ function AddInventoryForm(props) {
                   setSelectedOption(value);
                 }}
                 value={selectedOption}
-                disabled={editForm ? "disabled" : ""}
+                isDisabled={editForm ? true : false}
                 required
               />
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <label>Expiry Date<span className="text-danger"> *</span></label>
-
-              <DatePicker
-                format={"DD/MM/YYYY"}
-                value={formdata.expiry_date ? moment(formdata.expiry_date, 'DD/MM/YYYY') : ''}
-                className="form-control"
-                onChange={(date, string) =>
-                  setFormdata({ ...formdata, expiry_date: string })
+              <input
+                type="date"
+                mandatory={true}
+                value={formdata.expiry_date ? formdata.expiry_date : ''}
+                onChange={(e) =>
+                  setFormdata({
+                    ...formdata,
+                    expiry_date: e.target.value,
+                  })
                 }
+                className="form-control"
                 disabled={editForm ? "disabled" : ""}
               />
             </div>

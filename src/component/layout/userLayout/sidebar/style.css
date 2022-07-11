@@ -18,6 +18,19 @@
     top: 85px;
 
 }
+.user-profile .default-profile-container{    
+    padding: 5px;
+    background: #c7c3f563;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.user-profile .default-profile{
+    font-size: 48px;
+}
 
 .user-level {
     position: absolute;

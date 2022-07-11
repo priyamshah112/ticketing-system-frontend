@@ -21,6 +21,14 @@ function dateFormatHandler(data) {
     return month + "/" + date + "/" + year;
 }
 
+function dateFormatYYMMDD(data) {
+    let d = new Date(data);
+    let date = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+    let month = d.getMonth() + 1 < 10 ? ("0" + (parseInt(d.getMonth()) + 1)) : (d.getMonth() + 1);
+    let year = d.getFullYear();
+    return year + "-" + month + "-" + date;
+}
+
 function capitalize(str) {
     Object.defineProperty(String.prototype, str, {
         value: function () {
@@ -43,4 +51,4 @@ const assignInventoryToUser = (formdata) => {
     return getResponse(apipaths.assignInvToUser, formdata)
 
 }
-export { dateHandler, capitalize, assignInventoryToUser, dateFormatHandler, unassignInventory };
+export { dateHandler, capitalize, assignInventoryToUser, dateFormatHandler, dateFormatYYMMDD, unassignInventory };

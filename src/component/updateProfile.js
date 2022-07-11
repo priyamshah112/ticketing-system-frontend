@@ -36,7 +36,7 @@ function ProfileUpdate(props) {
   }
   const getUserDetails = async (e) => {
     setError({ show: false, message: "" });
-    const res = await getResponse(apipaths.getUSerData);
+    const res = await getResponse(apipaths.getUserData);
     setFirstName(res.data.first_name);
     setLastName(res.data.last_name);
     setMiddleName(res.data.middle_name);

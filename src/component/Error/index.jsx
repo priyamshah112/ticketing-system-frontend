@@ -1,11 +1,12 @@
 import React from 'react';
-
+import './style.css';
 
 function Error(props) {
 
-    console.log(props);
     return(
-        <h1>{props.errorMsg}</h1>
+        <div className="error-container">
+            <h1 className="error-message">{props.errorMsg}</h1>
+        </div>
     )
 }
 

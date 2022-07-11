@@ -1,0 +1,38 @@
+
+.myprofile{
+    position: relative;
+}
+
+.myprofile img{
+    width: 100px;
+    height: 100px;
+}
+.myprofile .default-profile-container{    
+    padding: 20px;
+    background: #c7c3f563;
+    border-radius: 50%;
+}
+.myprofile .default-profile{
+    font-size: 48px;
+}
+.image-upload {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.profile-edit-button-container{
+    padding: 5px;
+    background: #f1f1f1;
+    margin-bottom: 0px !important;
+    border-radius: 5px;
+    opacity: 0.8;
+}
+.profile-edit-button {
+    fill: #5c55bf !important;
+    font-size: 28px !important;
+    margin: 0px;
+}
+.myprofile .MuiSvgIcon-root:hover {
+    fill: #5c55bf !important;
+}
+

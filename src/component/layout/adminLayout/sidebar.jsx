@@ -5,8 +5,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { Modal } from "antd";
 import ChangePassword from "../../changepassword";
-import ProfileView from "../../profileView";
-import ProfileUpdate from "../../updateProfile";
+import ProfileView from "../../Profile";
 import { ReactComponent as Clipboard } from "../../../images/admin-dashboard/Category.svg";
 import { ReactComponent as Solidusers } from "../../../images/admin-dashboard/Plus.svg";
 import { ReactComponent as Vector } from "../../../images/admin-dashboard/File.svg";
@@ -16,14 +15,15 @@ import { ReactComponent as Software } from "../../../images/admin-dashboard/Soft
 import { ReactComponent as Inventory } from "../../../images/admin-dashboard/Invoice.svg"
 import { ReactComponent as Roles } from "../../../images/admin-dashboard/Education.svg";
 import { ReactComponent as User } from "../../../images/admin-dashboard/Plus.svg"
-import { ReactComponent as Faq } from "../../../images/admin-dashboard/Comment.svg";
 import { ReactComponent as Logout } from "../../../images/admin-dashboard/Logout1.svg";
+import PersonIcon from '@mui/icons-material/Person';
 
 import $ from "jquery";
 import { SvgIcon } from '@material-ui/core';
 import { getResponse } from "../../../api/apiResponse";
 import { toast } from "react-toastify";
 import { apipaths } from "../../../api/apiPaths";
+import './style.css';
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -38,6 +38,10 @@ function IconTabs() {
     const userType = JSON.parse(localStorage.user_details).userType;
     const [showInventory, setshowInventory] = React.useState(false);
     const [showUsers, setshowUsers] = React.useState(false);
+
+    useEffect(() => {
+        getUserDetails();
+    }, []);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -55,12 +59,12 @@ function IconTabs() {
 
     const [isChangePasswordActive, setIsChangePasswordActive] = useState(false);
     const [isProfileViewActive, setIsProfileViewActive] = useState(false);
-    const [isProfileUpdateActive, setIsProfileUpdateActive] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [middleName, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [img, setImg] = useState("");
     const [country, setCountry] = useState('');
     const [error, setError] = useState({ show: false, message: "" });
 
@@ -71,15 +75,18 @@ function IconTabs() {
         $(`.sidebar-item`).removeClass("active");
         $(`#${elem}`).addClass("active");
     };
+    
     const getUserDetails = async (e) => {
         setError({ show: false, message: "" });
-        const res = await getResponse(apipaths.getUSerData);
+        const res = await getResponse(apipaths.getUserData);
+
         setFirstName(res.data.data.first_name);
         setLastName(res.data.data.last_name);
         setMiddleName(res.data.data.middle_name);
         setCountry(res.data.data.location);
         setPhone(res.data.data.phone);
         setEmail(res.data.data.email);
+        setImg(res.data.data.image_name);
         if (res.error) {
           toast.error(res.error.message)
         } else {
@@ -121,9 +128,20 @@ function IconTabs() {
 
                 <div className="profile__img__layout">
                     <div className="profile" onClick={handleClick}>
-                        <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                            width="40" height="40" className="profile__img" alt="" />
-
+                        {
+                            img !== "" ? 
+                                <img
+                                    src={ img }
+                                    alt="..."
+                                    width="40" 
+                                    height="40"
+                                    className="profile__img"
+                                />
+                            :
+                            <div className="default-profile-container">  
+                                <PersonIcon className="default-profile" />
+                            </div>
+                        }
                         <img className="profile__dropdown" src={dropdown} width="10" height="10" alt="" />
                     </div>
 

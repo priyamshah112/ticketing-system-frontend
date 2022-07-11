@@ -21,11 +21,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from "antd";
 import ChangePassword from "../../../changepassword";
-import ProfileView from "../../../profileView";
+import ProfileView from "../../../Profile";
 import ProfileUpdate from "../../../updateProfile";
 import { getResponse } from "../../../../api/apiResponse";
 import { toast } from "react-toastify";
 import { apipaths } from "../../../../api/apiPaths";
+import PersonIcon from '@mui/icons-material/Person';
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -53,6 +54,7 @@ function Sidebar() {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [country, setCountry] = useState('');
+    const [img, setImg] = useState("");
     const [error, setError] = useState({ show: false, message: "" });
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -62,17 +64,20 @@ function Sidebar() {
         setAnchorEl(null);
     };
     useEffect(() => {
+        getUserDetails();
         if (data) return dispatch(addUserDetailsAction(JSON.parse(data)));
     }, []);
+    
     const getUserDetails = async (e) => {
         setError({ show: false, message: "" });
-        const res = await getResponse(apipaths.getUSerData);
+        const res = await getResponse(apipaths.getUserData);
         setFirstName(res.data.data.first_name);
         setLastName(res.data.data.last_name);
         setMiddleName(res.data.data.middle_name);
         setCountry(res.data.data.location);
         setPhone(res.data.data.phone);
         setEmail(res.data.data.email);
+        setImg(res.data.data.image_name);
         if (res.error) {
           toast.error(res.error.message)
         } else {
@@ -111,11 +116,20 @@ function Sidebar() {
             </div>
             <div className=" col-lg-4 user">
                 <div className="avatar-sm float-left mr-2 user-profile">
-                    <img
-                        src="../assets/img/profile.jpg"
-                        alt="..."
-                        className="avatar-img rounded-circle "
-                    />
+                {
+                    img !== "" ? 
+                        <img
+                            src={ img }
+                            alt="..."
+                            width="40" 
+                            height="40"
+                            className="avatar-img rounded-circle"
+                        />
+                    :
+                    <div className="default-profile-container">  
+                        <PersonIcon className="default-profile" />
+                    </div>
+                }
                 </div>
                 <div className="info">
                     <a
@@ -219,7 +233,7 @@ function Sidebar() {
 
 
 
-                <div className="card  contact-card">
+                <div className="card  contact-card d-none">
                     <div className="card-body">
                         <div className="contact-title">
                             Contact Support
