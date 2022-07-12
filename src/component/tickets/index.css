@@ -177,7 +177,7 @@
   font-size: 16px !important;
   line-height: 28px;
   color: #ffffff;
-  text-align: start !important;
+  text-align: center !important;
 }
 
 .MuiTableCell-root a {
@@ -200,7 +200,7 @@
     font-size: 17px!important;
     line-height: 28px;
     color: #2D3142;
-    text-align: start !important;
+    text-align: center !important;
 
 }
 

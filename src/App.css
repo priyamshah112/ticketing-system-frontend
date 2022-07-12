@@ -186,23 +186,29 @@ button:hover>.hiddenHover, button:hover>.hiddenHoverIn{
 .status-active {
   background: #e6e6f2;
   color: #4a4aff;
+  margin: auto;
 }
 
 .status-suspended {
   background: #e6e6f2;
+  margin: auto;
   color: rgb(241 88 96);
 }
 
 .status-success {
   background: #e6e6f2;
   color: rgb(36, 145, 22);
+  margin: auto;
 }
 
 .status-pending {
   background: #ede7b3;
   color: rgb(110, 104, 147);
+  margin: auto;
 }
-
+td> .d-flex{
+  justify-content: center;
+}
 .status:before {
   content: '\A';
   width: 8px;
