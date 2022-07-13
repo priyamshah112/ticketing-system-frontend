@@ -4,7 +4,7 @@ const getResponse = async (apipath, data) => {
     try {
         const { url, method } = apipath;
         const headers = {};
-        headers["Content-Type"] = "application/json";        
+        headers["Content-Type"] = "application/json";  
         let token = localStorage.authToken;
         if (localStorage.authToken)
             headers["Authorization"] = `Bearer ` + token;
@@ -13,6 +13,11 @@ const getResponse = async (apipath, data) => {
                 method, data, headers
             })
     } catch (error) {
+        if(error.response.status === 401)
+        { 
+            localStorage.clear();
+            window.location.reload();
+        }
         return { error: error.response.data };
     }
 }

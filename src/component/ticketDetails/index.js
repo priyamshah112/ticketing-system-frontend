@@ -14,6 +14,8 @@ import { getUserLists } from "../../actions/userActions";
 import { dateHandler } from "../../actions/commonAction";
 import $ from "jquery"
 import { isCompositeComponent } from "react-dom/cjs/react-dom-test-utils.production.min";
+import DownloadIcon from '@mui/icons-material/Download';
+import './style.css';
 
 function TicketDetails(props) {
 
@@ -62,7 +64,7 @@ function TicketDetails(props) {
         if (!t) return null
         let ticket_data = t;
         ticket_data.ticket_activity.map(ta => {
-            ta.images = ta.images ? JSON.parse(ta.images) : []
+            ta.files = ta.files ? JSON.parse(ta.files) : []
         })
         setTicket(ticket_data)
     }
@@ -116,8 +118,9 @@ function TicketDetails(props) {
     }
 
     const fileHandler = (e) => {
+        formdata.delete('files[]');
         for (let i = 0; i < (e.target.files).length; i++)
-            formdata.append("uploadImages[]", e.target.files[i])
+            formdata.append("files[]", e.target.files[i])
     }
 
     const submitHandler = async (e) => {
@@ -147,7 +150,6 @@ function TicketDetails(props) {
 
                         {
                             ticket.ticket_activity && ticket.ticket_activity.map((t, i) => {
-
                                 return (
                                     <div className="ticket-details-content">
                                         <div className="ticket-post-info">
@@ -178,10 +180,30 @@ function TicketDetails(props) {
                                             <p id={`${ticket.id}_${t.id}`}>{ticketMessageHandler(ticket.id + '_' + t.id, t.message)}</p>
                                             <div className="activity-image">
                                                 {
-                                                    t.images && t.images.map((img, i) => {
-                                                        return (
-                                                            <img className="img_reply mr-3 mb-3" key={i} src={`${process.env.REACT_APP_BASE_URL}${img}`} width={100} height={100} />
-                                                        )
+                                                    t.files && t.files.map((file, i) => {
+                                                        if(file.type.toLowerCase() === 'jpg' || file.type.toLowerCase() === 'png' || file.type.toLowerCase() === 'jpeg' || file.type.toLowerCase() === 'gif')
+                                                        {
+                                                            return (
+                                                                <a href={`${process.env.REACT_APP_BASE_URL}${file.path}`} target="_blank">
+                                                                    <img className="img_reply mr-3 mb-3" key={i} src={`${process.env.REACT_APP_BASE_URL}${file.path}`} width={100} height={100} />
+                                                                </a>
+                                                            )
+                                                        }
+                                                        else                               
+                                                        {
+                                                            return(
+                                                                <a
+                                                                    href={`${process.env.REACT_APP_BASE_URL}${file.path}`}
+                                                                    class="other-attachment"
+                                                                    shape="round"
+                                                                    size="small"
+                                                                    download
+                                                                    target="_blank"
+                                                                >
+                                                                    <DownloadIcon className="MIcons" /> {file.name !== undefined ? file.name : ''}
+                                                                </a>
+                                                            )
+                                                        }
                                                     })
                                                 }
                                             </div>

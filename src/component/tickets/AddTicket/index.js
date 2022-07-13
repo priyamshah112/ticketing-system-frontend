@@ -6,19 +6,20 @@ import { apipaths } from "../../../api/apiPaths";
 import { getResponse } from "../../../api/apiResponse";
 import TextEditor from "../../TextEditor";
 import { Modal } from "antd";
-import Select from 'react-select'
+import Select from 'react-select';
 
 function AddTicket(props) {
-  let form_data = new FormData();
+  const form_data = new FormData();
   const [formdata, setFormdata] = useState({
     priority: 'low',
   });
   const [process, setProcess] = useState(false);
-  const [file, setFile] = useState({});
   const [userListOnCoAdmin, setUSerListOnCoAdmin] = useState([]);
   const userList = useSelector((state) => state.userList);
   const dispatch = useDispatch();
   const userType = JSON.parse(localStorage.user_details).userType;
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const { setTicketModal, onSubmit } = props;
 
@@ -29,21 +30,61 @@ function AddTicket(props) {
   useEffect(() => {
     let userListOnCoAdmin = userList?.filter(
       (result) => result.userType === "Support"
-    );
-    console.log(userListOnCoAdmin ,"coadmin") 
+    ); 
     setUSerListOnCoAdmin(userListOnCoAdmin);
   }, [userList]);
  
-console.log(userListOnCoAdmin,"coadmin list")
   const userListHandler = async () => {
     const { data } = await getResponse(apipaths.listusers, null);
-    const users = data.data.user;
-    dispatch(getUserLists(users));
+    let userOptions = [];
+    data.data?.user.map((user) => {
+      if(user.userType === "Support")
+      {
+        userOptions.push({
+          value: user.user_details?.id,
+          label: user.user_details?.firstName + " " + user.user_details?.lastName
+        })
+      }     
+    });
+    setUsers(userOptions);
+    // dispatch(getUserLists(users));
   };
 
-  const handleFileInput = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const fileHandler = (e) => {
+    form_data.delete('files[]');
+    for (let i = 0; i < (e.target.files).length; i++)
+    {
+      form_data.append("files[]", e.target.files[i]);
+    }
+    console.log("Hitted files");
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const { message, subject, assigned_to, priority } = formdata;
+    if (userType === "User") {
+      if (!message || !subject) {
+        toast.error("All field are required.");
+        setTicketModal(false);
+        return null;
+      }
+    } else {
+      form_data.append("assigned_to", selectedOption?.value);
+      if (!message || !subject || !selectedOption?.value || !priority) {
+        toast.error("All field are required.");
+        setTicketModal(false);
+        return null;
+      }
+    }
+
+    form_data.append("message", formdata.message);
+    form_data.append("subject", formdata.subject);
+    form_data.append("priority", formdata.priority);
+
+    onSubmit(form_data);
+    setProcess(true);
+  }
+
   var options = [];
   {
     userListOnCoAdmin.map((user) => (
@@ -64,31 +105,7 @@ console.log(userListOnCoAdmin,"coadmin list")
       footer={null}
     >
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const { message, subject, assigned_to, priority } = formdata;
-          if (userType === "User") {
-            if (!message || !subject) {
-              toast.error("All field are required.");
-              setTicketModal(false);
-              return null;
-            }
-          } else {
-            form_data.append("assigned_to", formdata.assigned_to);
-            if (!message || !subject || !assigned_to || !priority) {
-              toast.error("All field are required.");
-              setTicketModal(false);
-              return null;
-            }
-          }
-          form_data.append("message", formdata.message);
-          form_data.append("subject", formdata.subject);
-          form_data.append("priority", formdata.priority);
-          form_data.append("file", file);
-
-          onSubmit(form_data);
-          setProcess(true);
-        }}
+        onSubmit={submitHandler}
       >
         <div className="row">
           {userType !== "User" && (<div className="col-lg-6 col-md-6 col-12">
@@ -124,24 +141,16 @@ console.log(userListOnCoAdmin,"coadmin list")
               <label>
                 Assigned To<span className="text-danger">*</span>
               </label>
-              <select
-                className="form-control"
-                onChange={(e) =>
-                  setFormdata({ ...formdata, assigned_to: e.target.value })
-                }
-              >
-                <option value="">Choose One</option>
-
-                {userListOnCoAdmin.map((user) => (
-                  <option
-                    className="text-capitalize"
-                    key={user.id}
-                    value={user.id}
-                  >
-                    {user.name}
-                  </option>
-                ))}
-              </select>
+              <Select 
+                  name="assigned_to"
+                  options={users}
+                  className="w-100"
+                  onChange={(value) => {
+                    setSelectedOption(value);
+                  }}
+                  value={selectedOption}
+                  required
+                />
             </div>
           )}
 
@@ -151,7 +160,8 @@ console.log(userListOnCoAdmin,"coadmin list")
               <input
                 type={"file"}
                 className="form-control"
-                onChange={handleFileInput}
+                onChange={fileHandler}
+                multiple
               />
             </div>
           </div>

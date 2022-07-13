@@ -117,7 +117,7 @@ function Sidebar() {
             <div className=" col-lg-4 user">
                 <div className="avatar-sm float-left mr-2 user-profile">
                 {
-                    img !== "" ? 
+                    img !== "" && img !== null ? 
                         <img
                             src={ img }
                             alt="..."

@@ -129,7 +129,7 @@ function IconTabs() {
                 <div className="profile__img__layout">
                     <div className="profile" onClick={handleClick}>
                         {
-                            img !== "" ? 
+                            img !== "" && img !== null ? 
                                 <img
                                     src={ img }
                                     alt="..."

@@ -7,8 +7,8 @@ function ProtectedRoute({ component: Component, ...rest }) {
 
 	let token = localStorage.authToken;
 
-	const userType = JSON.parse(localStorage.user_details).userType;
 	if (token) {
+		const userType = JSON.parse(localStorage.user_details).userType;
 		return <Route
 			{...rest}
 			render={(props) => {

@@ -51,7 +51,7 @@ function ProfileView(props) {
       <div className="form-group col-12 d-flex justify-content-center align-items-center">
         <div className=" float-left mr-2 myprofile">
           {
-            img !== "" ?          
+            img !== "" && img !== null ?          
               <img
                 src={ img }
                 alt="..."
