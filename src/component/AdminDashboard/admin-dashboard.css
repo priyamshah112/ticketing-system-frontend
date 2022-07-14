@@ -712,9 +712,11 @@ ul {
 }
 
 .page-inner {
-    padding-left: 8rem
+    padding-left: 2rem
 }
-
+.usetTicket{
+    padding-left: 8rem;
+}
 .css-1s2u09g-control {
     border: none !important;
     border-bottom: 1px solid !important;

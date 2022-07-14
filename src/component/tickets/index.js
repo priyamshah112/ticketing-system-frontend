@@ -607,7 +607,7 @@ function Ticket(props) {
     return (
       <>
         <div className="panel-header ">
-          <div className="page-inner py-5">
+          <div className="page-inner py-5 userTicket">
             <div>
               <h2 className=" pb-2 fw-bold ticket-heading">Tickets</h2>
             </div>

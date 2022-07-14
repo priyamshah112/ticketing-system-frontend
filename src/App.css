@@ -194,7 +194,9 @@ button:hover>.hiddenHover, button:hover>.hiddenHoverIn{
   margin: auto;
   color: rgb(241 88 96);
 }
-
+.form-control {
+  padding-left: 0!important;
+}
 .status-success {
   background: #e6e6f2;
   color: rgb(36, 145, 22);

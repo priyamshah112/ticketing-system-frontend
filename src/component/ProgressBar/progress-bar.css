@@ -24,11 +24,8 @@
     font-size: 14px;
     font-weight: 400
 }
-.pg-label{
+.pg-label, .pg-count{
     z-index: 999;
     margin: 0px;
-}
-.pg-count{
-    z-index: 999;
-    margin: 0px;
+    color: black;
 }

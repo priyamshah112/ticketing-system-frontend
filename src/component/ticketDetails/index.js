@@ -136,7 +136,7 @@ function TicketDetails(props) {
 
 
     return (
-        <div className="page-inner">
+        <div className="page-inner usetTicket">
             <div className="row">
                 <div className="col-lg-4 col-12">
                     <TicketInformation ticket={ticket} closeTicketHandler={closeTicketHandler} />

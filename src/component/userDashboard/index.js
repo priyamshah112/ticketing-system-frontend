@@ -234,7 +234,7 @@ function UserDashboard() {
             }
           >
             <div className="card-body">
-              <div className="card-details d-inline-flex align-items-center">
+              <div className="card-details d-inline-flex align-items-center addedcircle">
                 <div>
                   <img src={ellipse} alt="create" className="img-fluid inprogress-circle" />
                   <img src={inprogress} alt="create" className="img-fluid inprogress-icon" style={{ width: "25%" }} />
@@ -256,7 +256,7 @@ function UserDashboard() {
         >
           <div className="card ticket-card">
             <div className="card-body">
-              <div className="card-details d-inline-flex align-items-center">
+              <div className="card-details d-inline-flex align-items-center addedcircle">
                 <div>
                   <img src={ellipse} alt="create" className="img-fluid inprogress-circle" />
 
@@ -269,7 +269,7 @@ function UserDashboard() {
         </div>
         {/* <div className="col-lg-3 my-2">
                             <div className="card small-card">
-                                <div className="card-body">
+                                <div className="card-bodfy">
                                     <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
                                         <div>
                                             <img src={message} alt="create" className="img-fluid" />
@@ -281,7 +281,7 @@ function UserDashboard() {
                         </div> */}
       </div>
       <div className="row my-4">
-        <div className="col-lg-4 my-2">
+        <div className="col-lg-3 my-2">
           <div className="card medium-card calendar-card">
             <div className="card-body d-flex flex-column justify-content-between">
               <div className="d-flex flex-row justify-content-between ">
@@ -309,7 +309,7 @@ function UserDashboard() {
         </div>
 
         <div
-          className="col-lg-4 my-2 pointer information"
+          className="col-lg-6 my-2 pointer information"
 
         >
           <div className="card medium-card info-card">
