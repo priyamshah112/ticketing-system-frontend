@@ -261,10 +261,11 @@ function User(props) {
     setError('Importing file please wait');
     const formdata = new FormData();
     formdata.append('imports', userImportFile);
+    console.log(userImportFile.type);
     if (
       userImportFile.type ===
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-      userImportFile.type === 'application/vnd.ms-excel'
+      userImportFile.type === 'application/vnd.ms-excel' || userImportFile.type === 'text/csv'
     ) {
       let { data, error } = await getResponse(apipaths.importUser, formdata);
 
@@ -320,6 +321,7 @@ function User(props) {
 
   const filterProps = {
     heading: 'User Management',
+    exportFileName: 'users-list.csv',
     buttonOne: 'Add User',
     buttonOneHandler: () => {
       setOperation('add');

@@ -323,13 +323,13 @@ function SoftwareInventory() {
     setError('Importing file please wait');
     const formdata = new FormData();
     formdata.append('file', inventoryFile);
-    // if (
-    //   inventoryFile.type ===
-    //     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-    //   inventoryFile.type === 'application/vnd.ms-excel'
-    // ) {
+    if (
+      inventoryFile.type ===
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+      inventoryFile.type === 'application/vnd.ms-excel' || inventoryFile.type === 'text/csv'
+    ) {
       let { data, error } = await getResponse(
-        apipaths.importInventory,
+        apipaths.importSoftwareInventory,
         formdata
       );
 
@@ -342,10 +342,10 @@ function SoftwareInventory() {
       else toast.error(data.message);
 
       setIsModalVisible();
-      userListHandler();
-    // } else {
-    //   setError('File type not allowed.');
-    // }
+      dispatch(inventoryListAction('software'));
+    } else {
+      setError('File type not allowed.');
+    }
   };
 
   const assignInventoryHandler = (inventoryId) => {
@@ -365,6 +365,7 @@ function SoftwareInventory() {
 
   const filterProps = {
     heading: 'Inventory Software',
+    exportFileName: 'Software-inventory-list.csv',
     buttonOne: 'Add Software',
     buttonOneHandler: () => {
       setModal(true);

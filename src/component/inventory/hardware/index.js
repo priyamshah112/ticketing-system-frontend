@@ -373,7 +373,7 @@ function HardwareInventory() {
     if (
       inventoryFile.type ===
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-      inventoryFile.type === 'application/vnd.ms-excel'
+      inventoryFile.type === 'application/vnd.ms-excel' || inventoryFile.type === 'text/csv'
     ) {
       let { data, error } = await getResponse(
         apipaths.importInventory,
@@ -419,6 +419,7 @@ function HardwareInventory() {
 
   const filterProps = {
     heading: 'Inventory Hardware',
+    exportFileName: 'Hardware-inventory-list.csv',
     buttonOne: 'Add Hardware',
     buttonOneHandler: () => {
       setModal(true);

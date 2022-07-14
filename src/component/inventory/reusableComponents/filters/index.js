@@ -8,6 +8,7 @@ import './style.css';
 
 function FilterComponent({
   heading,
+  exportFileName,
   buttonOne,
   buttonOneHandler,
   buttonTwo,
@@ -62,7 +63,7 @@ function FilterComponent({
               {inventories ? (
                 <CSVLink
                   data={inventories}
-                  filename={'Software-inventory-list.csv'}
+                  filename={exportFileName}
                   className="button__export button"
                   target="_blank"
                 >

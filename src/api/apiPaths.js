@@ -26,6 +26,7 @@ export const apipaths = {
     forgotPassword: {url: "/forgot-password", method:"POST"},
     getInventory: { url: "/user/get/inventory", method: "POST" },
     importInventory: { url: "/inventory/import", method: "POST" },
+    importSoftwareInventory: { url: "/software/inventory/import", method: "POST" },
     importUser: { url: "/user/import", method: "POST" },
     assignInvToUser: { url: "/user/inventory", method: "POST" },
     usergetlist: {url: "/user/getlist" ,method:"GET"},
