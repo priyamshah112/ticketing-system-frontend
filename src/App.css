@@ -296,7 +296,8 @@ form label {
 .MuiTable-root td,
 .MuiTable-root th {
   /* text-align: center; */
-  padding-left: 30px !important;
+  padding-left: 15px !important;
+  padding-right: 15px!important;
 }
 
 .MuiTable-root td {
