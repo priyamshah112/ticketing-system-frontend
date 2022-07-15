@@ -6,7 +6,7 @@ function PriorityTable(props) {
             <table className="table__style mt-4">
                 <tr>
                     <th
-                        className="table__box table__boxborder">
+                        className="table__box table__boxborder">Title
                     </th>
                     <th
                         className="table__box table__boxborder">

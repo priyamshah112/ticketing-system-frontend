@@ -108,18 +108,6 @@ function Login(props) {
           <div className="col-lg-6 hide-on-med-and-down">
             <div className="col-lg-12 main-banner">
               
-              {/* <div className="auth-content-logo px-3 py-3">
-                <img
-                  src={officeSupport}
-                  alt=""
-                  className="img-fluid mb-4 d-block bg-logo"
-                />
-              </div> */}
-
-            </div>
-          </div>
-          <div className="col-lg-6  px-0">
-            <div className="form-container">
             <div className="logoContainer">
                 <img
                   src={compliancelogo}
@@ -135,6 +123,12 @@ function Login(props) {
                   className="img-fluid mb-4 d-block  compliance-logo"></img>
 
               </div>
+
+            </div>
+          </div>
+          <div className="col-lg-6  px-0">
+            <div className="form-container">
+            
               <div className=" auth-content">
                 <h1 className="mb-4 f-w-400 bold sign-in-head">Welcome to Enhance Compliance</h1>
                 <span className='subHead'>Please use credentials to login.</span>
