@@ -309,8 +309,9 @@ ul {
 
 }
 
-.table__style tr .table__box:not(:first-child) {
+.table__style tr .table__box {
     text-align: center;
+    min-width: 100px;
 }
 
 .table__style::-webkit-scrollbar {

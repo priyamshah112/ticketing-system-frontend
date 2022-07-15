@@ -13,9 +13,7 @@
 .login-page .form-container{
     flex-direction: column;
 }
-.login-page>.row{
-    flex-direction: row-reverse;
-}
+
 .login-page .subHead{
     font-family: 'Roboto';
     font-style: normal;
