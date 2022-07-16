@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import inprogress from "../assets/inprogress.png"
 import ellipse from "../assets/Ellipse.png"
 import hardware from "../assets/hardware.png"
-import file from "../assets/file.png"
+import fileImage from "../assets/file.png"
 import Calendar from 'react-calendar';
 import queryString from 'query-string';
 import { dateFormatHandler } from '../../actions/commonAction';
@@ -131,44 +131,6 @@ function UserDashboard() {
       if (ticket.subject.length > 30)
         ticket.subject = ticket.subject.substring(0, 30) + '...';
 
-      //ticket.assigned_to = username;
-      let ticketStatus = '';
-      // eslint-disable-next-line default-case
-      switch (ticket.status) {
-        case 'closed':
-          ticketStatus = (
-            <div className="status status-success">
-              <span></span> Closed
-            </div>
-          );
-          break;
-        case 'open':
-          ticketStatus = (
-            <div className="status status-suspended">
-              <span></span> Open
-            </div>
-          );
-          break;
-        case 'pending':
-          ticketStatus = (
-            <div className="status status-pending">
-              <span></span> Pending
-            </div>
-          );
-          break;
-      }
-      ticket.status = ticketStatus;
-      if (userType === 'User') {
-      }
-
-      ticket.subject = (
-        <Link
-          style={{ fontWeight: 600 }}
-          to={`/ticket/details?ticketid=${ticket.id}`}
-        >
-          {ticket.subject}
-        </Link>
-      );
     });
 
     setTicketDataOnStatus(data.data.tickets);
@@ -179,8 +141,6 @@ function UserDashboard() {
     setAlignment(newAlignment);
 
   };
-
-  console.log(ticketinfo)
 
   const [checked, setChecked] = React.useState(false);
   const theme = createTheme({
@@ -313,7 +273,7 @@ function UserDashboard() {
 
         >
           <div className="card medium-card info-card">
-            <div className="card-body d-flex flex-column justify-content-between">
+            <div className="card-body d-flex flex-column">
               <div className="d-flex text-center">
                 <h5>Useful Information</h5>
               </div>
@@ -322,7 +282,7 @@ function UserDashboard() {
 
 
 
-                <ThemeProvider theme={theme}>
+                {/* <ThemeProvider theme={theme}>
                   <ToggleButtonGroup
                     value={alignment}
                     exclusive
@@ -335,32 +295,50 @@ function UserDashboard() {
                     <ToggleButton className="info-buttons" value="links">Links</ToggleButton>
 
                   </ToggleButtonGroup>
-                </ThemeProvider>
+                </ThemeProvider> */}
 
 
 
 
-                <div className="table-div  table-responsive">
+                <div className="table-div">
                   <table class="table table-sm info-table">
                     <thead>
                       <tr className="row-height">
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Attachment</th>
                         <th scope="col">Created Date</th>
-                        <th scope="col">Created By</th>
                       </tr>
                     </thead>
                     <tbody className="scrollit">
 
-                      {ticketinfo.map((ticket) =>
+                      {ticketinfo.map((ticket) => {
+                        console.log(ticket);
+                        return (
                         <tr className="row-height" >
-                          <th scope="row">File1</th>
+                          <th scope="row">{ticket.subject}</th>
 
-                          <td><img src={file}></img></td>
+                          <td>
+                            {
+                              ticket.ticket_activity && ticket.ticket_activity.map((t, i) => (
+                                t.files && JSON.parse(t.files).map((file, i) => (
+                                    <a
+                                        href={`${process.env.REACT_APP_BASE_URL}${file.path}`}
+                                        class="other-attachment"
+                                        shape="round"
+                                        size="small"
+                                        download
+                                        target="_blank"
+                                    >
+                                      <img src={fileImage} />
+                                    </a>
+                                ))
+                              ))
+                            }
+                          </td>
 
                           <td>{ticket.created_at}</td>
-                          <td>{ticket.created_by}</td>
                         </tr>
+                        )}
                       )}
 
                     </tbody>

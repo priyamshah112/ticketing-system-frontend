@@ -9,11 +9,11 @@ import { Modal } from "antd";
 import Select from 'react-select';
 
 function AddTicket(props) {
-  const form_data = new FormData();
-  const [formdata, setFormdata] = useState({
+  const [ticketForm, setTicketForm] = useState({
     priority: 'low',
   });
   const [process, setProcess] = useState(false);
+  const [files, setFiles] = useState([]);
   const [userListOnCoAdmin, setUSerListOnCoAdmin] = useState([]);
   const userList = useSelector((state) => state.userList);
   const dispatch = useDispatch();
@@ -51,37 +51,39 @@ function AddTicket(props) {
   };
 
   const fileHandler = (e) => {
-    form_data.delete('files[]');
+    setFiles([]);
     for (let i = 0; i < (e.target.files).length; i++)
     {
-      form_data.append("files[]", e.target.files[i]);
+      setFiles([...files,e.target.files[i]]);
     }
-    console.log("Hitted files");
   }
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const { message, subject, assigned_to, priority } = formdata;
+    const formdata = new FormData();
+    const { message, subject, assigned_to, priority } = ticketForm;
     if (userType === "User") {
       if (!message || !subject) {
         toast.error("All field are required.");
-        setTicketModal(false);
         return null;
       }
     } else {
-      form_data.append("assigned_to", selectedOption?.value);
+      formdata.delete("assigned_to");
+      formdata.append("assigned_to", selectedOption?.value);
       if (!message || !subject || !selectedOption?.value || !priority) {
         toast.error("All field are required.");
-        setTicketModal(false);
         return null;
       }
     }
 
-    form_data.append("message", formdata.message);
-    form_data.append("subject", formdata.subject);
-    form_data.append("priority", formdata.priority);
+    formdata.append("message", ticketForm.message);
+    formdata.append("subject", ticketForm.subject);
+    formdata.append("priority", ticketForm.priority);
+    files.map((file) => {
+      formdata.append("files[]", file);
+    })
 
-    onSubmit(form_data);
+    onSubmit(formdata);
     setProcess(true);
   }
 
@@ -116,7 +118,7 @@ function AddTicket(props) {
               type="text"
               className="form-control"
               onChange={(e) =>
-                setFormdata({ ...formdata, subject: e.target.value })
+                setTicketForm({ ...ticketForm, subject: e.target.value })
               }
             />
           </div>
@@ -129,7 +131,7 @@ function AddTicket(props) {
               type="text"
               className="form-control"
               onChange={(e) =>
-                setFormdata({ ...formdata, subject: e.target.value })
+                setTicketForm({ ...ticketForm, subject: e.target.value })
               }
             />
           </div>
@@ -174,7 +176,7 @@ function AddTicket(props) {
               <select
                 className="form-control"
                 onChange={(e) =>
-                  setFormdata({ ...formdata, priority: e.target.value })
+                  setTicketForm({ ...ticketForm, priority: e.target.value })
                 }
               >
                 <option value="low">Low</option>
@@ -189,7 +191,7 @@ function AddTicket(props) {
               Message<span className="text-danger">*</span>
             </lable>
             <TextEditor
-              onChange={(e) => setFormdata({ ...formdata, message: e })}
+              onChange={(e) => setTicketForm({ ...ticketForm, message: e })}
             />
           </div>
           <div className="col-lg-6 col-md-6 col-12">

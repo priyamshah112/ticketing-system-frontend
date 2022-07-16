@@ -23,10 +23,10 @@ function TicketDetails(props) {
     const [ticketMessage, setTicketMessage] = useState("");
     const [apiMess, setApiMess] = useState("");
     const [ticket, setTicket] = useState("");
+    const [files, setFiles] = useState([]);
     const ticketList = useSelector(state => state.ticketList);
     const userList = useSelector(state => state.userList);
     const userDetails = useSelector(state => state.userDetails);
-    const formdata = new FormData();
 
     const dispatch = useDispatch();
 
@@ -118,19 +118,26 @@ function TicketDetails(props) {
     }
 
     const fileHandler = (e) => {
-        formdata.delete('files[]');
+        setFiles([]);
         for (let i = 0; i < (e.target.files).length; i++)
-            formdata.append("files[]", e.target.files[i])
+        {
+            setFiles([...files,e.target.files[i]]);
+        }
     }
 
     const submitHandler = async (e) => {
         e.preventDefault();
         setApiMess("uploading your reply...")
+        const formdata = new FormData();
         formdata.append("message", ticketMessage)
         formdata.append("ticket_id", ticket.id)
         formdata.append("operation", "add")
+        files.map((file) => {
+            formdata.append("files[]", file);
+        })
         await getResponse(apipaths.replyTicket, formdata)
         userListHandler();
+        setTicketMessage("");
         setApiMess("")
     }
 
@@ -218,7 +225,7 @@ function TicketDetails(props) {
                                 <div className="ticket-details-form-wrapper mx-3 mt-2">
                                     <div>
                                         <lable>Message <span className="text-danger">*</span></lable>
-                                        <TextEditor
+                                        <TextEditor value={ticketMessage}
                                             onChange={(e) => setTicketMessage(e)} />
                                     </div>
 
