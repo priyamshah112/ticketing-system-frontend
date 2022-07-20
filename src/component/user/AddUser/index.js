@@ -38,11 +38,8 @@ function AddUser(props) {
       <div className="row">
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <InputFeild
-            label={
-              <span>
-                First Name <span className="text-danger">*</span>
-              </span>
-            }
+            label="First Name"
+            mandatory={true}
             value={formdata !== null ? formdata.firstName : ""}
             onChange={(e) =>
               setFormdata({ ...formdata, firstName: e.target.value })
@@ -51,8 +48,7 @@ function AddUser(props) {
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <InputFeild
-            label="Middle Initial"
-
+            label="Middle Name"
             value={formdata !== null ? formdata.middleName : ""}
             onChange={(e) =>
               setFormdata({ ...formdata, middleName: e.target.value })
@@ -61,11 +57,8 @@ function AddUser(props) {
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <InputFeild
-            label={
-              <span>
-                Last Name <span className="text-danger">*</span>
-              </span>
-            }
+            label="Last Name"
+            mandatory={true}
             value={formdata !== null ? formdata.lastName : ""}
             onChange={(e) =>
               setFormdata({ ...formdata, lastName: e.target.value })
@@ -75,7 +68,7 @@ function AddUser(props) {
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           {/* <div className="form-group"> */}
           <label>
-            Email<span className="text-danger">*</span>
+            Email <span className="text-danger">*</span>
           </label>
           <input
             type="email"
@@ -90,7 +83,7 @@ function AddUser(props) {
 
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           {/* <div className="form-group"> */}
-          <label>User Type</label>
+          <label>User Type <span className="text-danger">*</span></label>
           <select
             className="form-control"
             onChange={(e) =>
@@ -112,14 +105,7 @@ function AddUser(props) {
 
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <div>
-            <label>Date of Hire</label>
-            {/* <input
-                            onChange={(e) =>
-                                setFormdata({ ...formdata, hireDate: e.target.value })
-                            }
-                            type="date"
-                            className="form-control"
-                        /> */}
+            <label>Date of Hire <span className="text-danger">*</span></label>
             <div>
               <DatePicker
                 format={"MM/DD/YYYY"}
@@ -138,7 +124,7 @@ function AddUser(props) {
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
           <div>
-            <label>Start Date</label>
+            <label>Start Date <span className="text-danger">*</span></label>
 
             <DatePicker
               className="form-control"
@@ -154,7 +140,7 @@ function AddUser(props) {
           </div>
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
-          <label className="form-label d-block mb-1">Hired As</label>
+          <label className="form-label d-block mb-1">Hired As <span className="text-danger">*</span></label>
           <div className="selectgroup selectgroup-pills">
             <label className="selectgroup-item">
               <InputFeild
@@ -216,7 +202,7 @@ function AddUser(props) {
           />
         </div>
         <div className="col-lg-6 col-md-6 col-6 mt-3">
-          <label>Location</label>
+          <label>Location <span className="text-danger">*</span></label>
           <select
             onChange={(e) =>
               setFormdata({ ...formdata, permanantAddress: e.target.value })

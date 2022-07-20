@@ -22,18 +22,7 @@ function ProfileUpdate(props) {
   const [phone, setPhone] = useState('');
   const [country, setCountry] = useState('');
   const [error, setError] = useState({ show: false, message: "" });
-  const updateImage = async (e) => {
-    setError({ show: false, message: "" });
-    const res = await getResponse(apipaths.updateProfile, data);
-    data.append("image_name", res.data);
-    setImg(res.data.data.image_name)
-    if (res.error) {
-      toast.error(res.error.message)
-    } else {
-      toast.success(res.data.message)
-      console.log(res.data);
-    }
-  }
+  
   const getUserDetails = async (e) => {
     setError({ show: false, message: "" });
     const res = await getResponse(apipaths.getUserData);

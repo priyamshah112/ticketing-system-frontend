@@ -58,7 +58,7 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">Open Tickets</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[0].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/tickets?open=true`}> View Details {`>>`}</Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?status=open`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">pending Tickets</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[1].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/tickets?pending=true`}> View Details {`>>`}</Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?status=pending`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ function AdminDashboard() {
                                 <div className="col p-0 pl-2">
                                     <h6 className="tickets__title">closed</h6>
                                     <p className="tickets__count">{dashBoardTicketData?.data?.counters[2].total}</p>
-                                    <p className="tickets__viewDetails"><Link to={`/tickets?closed=true`}> View Details {`>>`}</Link></p>
+                                    <p className="tickets__viewDetails"><Link to={`/tickets?status=closed`}> View Details {`>>`}</Link></p>
                                 </div>
                             </div>
                         </div>

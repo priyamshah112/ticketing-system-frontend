@@ -3,18 +3,16 @@ import { getResponse } from '../../api/apiResponse';
 import { apipaths } from '../../api/apiPaths';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTicketsAction } from '../../actions/ticketAction';
 import AddTicket from './AddTicket';
 import { getUserLists } from '../../actions/userActions';
 import { Link } from 'react-router-dom';
-import MaterialTable, { MTableToolbar } from 'material-table';
+import MaterialTable from 'material-table';
 import { makeStyles } from '@material-ui/core/styles';
 import { Modal } from 'antd';
 import $ from 'jquery';
 import queryString from 'query-string';
 import { dateFormatHandler } from '../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
-import { useLocation } from 'react-router-dom';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './index.css';
 import filterpic from '../assets/filter.png';
@@ -35,7 +33,6 @@ function Ticket(props) {
   const userList = useSelector((state) => state.userList);
   const userType = JSON.parse(localStorage.user_details).userType;
   const { status } = queryString.parse(window.location.search);
-  const location = useLocation();
   const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
   const [ticketsMasterData, setTicketMasterData] = useState([]);
 
@@ -100,28 +97,19 @@ function Ticket(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // userListHandler();
     $('#filter-ticket').slideToggle(0);
-  }, []);
-
-  useEffect(() => {
-    // // console.log(status)
-    if (status) {
-      // filterSubmitHandler(status, true);
+    if(!status)
+    {
+      getTickets();
     }
-  }, [status]);
-
-  useEffect(() => {
-    getTickets();
     getSupportUsers();
   }, []);
 
   useEffect(() => {
-    // let ticketDataOnStatus = ticketList?.filter(
-    //   (result) => result.status.props?.children[1] === location?.state?.status
-    // );
-    // setTicketDataOnStatus(ticketDataOnStatus);
-  }, [location?.state?.status]);
+    if (status) {
+      filterSubmitHandler(status, true);
+    }
+  }, [status]);
 
   const filterSubmitHandler = async (e, custom = false) => {
     e && e.preventDefault && e.preventDefault();
@@ -515,6 +503,7 @@ function Ticket(props) {
               search: false,
               paging: true,
               pageSize: 20,
+              pageSizeOptions: [10, 20, 50, 100, 250],
               showTitle: false,
 
               emptyRowsWhenPaging: false,
@@ -760,6 +749,7 @@ function Ticket(props) {
                   search: false,
                   paging: true,
                   pageSize: 20,
+                  pageSizeOptions: [10, 20, 50, 100, 250],
                   showTitle: false,
 
                   emptyRowsWhenPaging: false,

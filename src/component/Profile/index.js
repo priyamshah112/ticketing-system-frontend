@@ -36,12 +36,18 @@ function ProfileView(props) {
     formdata.append('image_name', imageFile);
 
     let resp = await getResponse(apipaths.updateProfile, formdata);
-
     if (resp.status === 200) {
       toast.success(resp.data.message);
       getUserDetails();
     } else {
-      toast.error(resp.error.message);
+      if(resp.error.message.image_name !== undefined)
+      {
+        toast.error(resp.error.message?.image_name);
+      }
+      else
+      {
+        toast.error(resp.error.message);
+      }
     }
 
   }

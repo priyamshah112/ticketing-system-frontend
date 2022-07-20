@@ -221,9 +221,8 @@ function User(props) {
   };
 
   const createUserHandler = async (data, setFormdata) => {
-    if (!data.firstName || !data.email) {
-      setIsCreateModal(false);
-      toast.warn('Name and Email is required');
+    if (data == null || !data.firstName || !data.lastName || !data.email || !data.userType || !data.hireDate || !data.startDate || !data.hiredAs || !data.permanantAddress) {
+      toast.warn("All * fields are mandatory.");
       return null;
     }
     let user = data;
@@ -261,7 +260,6 @@ function User(props) {
     setError('Importing file please wait');
     const formdata = new FormData();
     formdata.append('imports', userImportFile);
-    console.log(userImportFile.type);
     if (
       userImportFile.type ===
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
@@ -417,6 +415,7 @@ function User(props) {
             options={{
               search: false,
               pageSize: 20,
+              pageSizeOptions: [10, 20, 50, 100, 250],
               emptyRowsWhenPaging: false,
               paging: true,
               exportButton: false,

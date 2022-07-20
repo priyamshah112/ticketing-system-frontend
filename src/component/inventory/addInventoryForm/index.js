@@ -32,15 +32,15 @@ function AddInventoryForm(props) {
     {
       setFormdata({
         ...editFormData,
-        warranty_expire_on: dateFormatYYMMDD(editFormData.warranty_expire_on),
-        assigned_on: dateFormatYYMMDD(editFormData.assigned_on),
+        warranty_expire_on: editFormData.warranty_expire_on !== undefined ? dateFormatYYMMDD(editFormData.warranty_expire_on) : '',
+        assigned_on: editFormData.assigned_on !== undefined ? dateFormatYYMMDD(editFormData.assigned_on) : '',
       });
     }
     else
     {
       setFormdata({
         ...editFormData,
-        expiry_date: dateFormatYYMMDD(editFormData.expiry_date),
+        expiry_date: editFormData.expiry_date !== undefined ? dateFormatYYMMDD(editFormData.expiry_date) : '',
       });
     }
 
@@ -70,8 +70,8 @@ function AddInventoryForm(props) {
   const submitHandlerSoftware = async (formdata) => {
     let data = formdata;
     data.assigned_to = selectedOption?.value
-    const { name, key, version, notes,expiry_date } = data;
-    if (!name || !key || !version || !expiry_date || !selectedOption?.value) {
+    const { name } = data;
+    if (!name || !selectedOption?.value) {
       return toast.warn("All * fields are mandatory.");
     }
 
@@ -178,7 +178,7 @@ function AddInventoryForm(props) {
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <InputFeild
-                label="Unit Price"
+                label="Unit Price ( USD )"
                 type="number"
                 mandatory={true}
                 value={formdata.unit_price ? formdata.unit_price : ''}
@@ -342,7 +342,7 @@ function AddInventoryForm(props) {
               />
             </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Version<span className="text-danger"> *</span></label>
+              <label>Version</label>
               <InputFeild
                 value={formdata.version ? formdata.version : ''}
                 onChange={(e) =>
@@ -352,7 +352,7 @@ function AddInventoryForm(props) {
               />
             </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Key <span className="text-danger"> * </span></label>
+              <label>Key </label>
               <InputFeild
                 value={formdata.key ? formdata.key : ''}
                 onChange={(e) =>
@@ -378,7 +378,7 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-lg-6 col-md-6 col-12 mt-3">
-              <label>Expiry Date<span className="text-danger"> *</span></label>
+              <label>Expiry Date</label>
               <input
                 type="date"
                 mandatory={true}

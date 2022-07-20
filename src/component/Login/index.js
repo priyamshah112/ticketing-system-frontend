@@ -143,7 +143,7 @@ function Login(props) {
                   }
                 </h5>*/}
                 {!create ? (
-                  <form>
+                  <form onSubmit={loginHandler}>
 
                     {/* <div className="button-div">
                       <button type="button" className="btn btn-light google-button " data-toggle="button" aria-pressed="false" ><img src={google} classname="google-icon"></img>Continue with Google</button>
@@ -210,12 +210,12 @@ function Login(props) {
                       Forgot Password?                                          
                     </Link>
                     <div className='btnWrap'>
-                    <div
+                    <button
+                      type="submit"
                       className="btn btn-block text-center sign-in-button mb-4"
-                      onClick={loginHandler}
                     >
                       Sign In
-                    </div>
+                    </button>
                     </div>
                   </form>
                 ) : (
