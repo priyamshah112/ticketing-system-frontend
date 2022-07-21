@@ -595,50 +595,8 @@ function Ticket(props) {
   } else {
     return (
       <>
-        <div className="panel-header ">
-          <div className="page-inner py-5 userTicket">
-            <div>
-              <h2 className=" pb-2 fw-bold ticket-heading">Tickets</h2>
-            </div>
-            <div className=" d-flex align-items-left align-items-md-center flex-column flex-md-row col-lg-12">
-              <div className="col-lg-6">
-                <div class="form-group ">
-                  <span class="fa fa-search search-icon"></span>
-                  <input
-                    type="search"
-                    class="form-control text-padding "
-                    placeholder="Search for tickets"
-                  />
-                </div>
-              </div>
-              <div className="col-lg filter">
-                <img src={filterpic} alt="filter" className="filter-icon"></img>
-                <button
-                  className="btn  ml-3 mr-5 filter-btn"
-                  onClick={() => $('#filter-ticket').slideToggle(300)}
-                >
-                  Filters
-                </button>
-                <span className="caret filter-caret"></span>
-              </div>
-
-              <div
-                className=" col-lg-8 d-flex align-items-left align-items-md-center flex-column flex-md-row buttons "
-                style={{ top: '8px' }}
-              >
-                <div className="add-ticket py-2 px-3  mr-3">
-                  <img src={plus}></img>
-                  <button
-                    href="javascript:void(0);"
-                    className="button-font"
-                    onClick={() => setTicketModal(true)}
-                  >
-                    Add Ticket
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="user-ticket-filter">
+          <FilterComponent {...{ ...filterProps }} />
         </div>
         <div className=" mt--5  col-lg-12" style={{ paddingRight: '2rem',paddingLeft:'2rem' }}>
           <div className="card" id="filter-ticket">
@@ -657,16 +615,6 @@ function Ticket(props) {
                       className="form-control filter-input"
                     />
                   </div>
-                  {/* <div className="form-group col-12 col-md-6 col-lg-4">
-                    <div className="form-group">
-                      <label className="mb-2">Type</label>
-                      <select name="type" className="form-control">
-                        <option>Select Type</option>
-                        <option>Hardware</option>
-                        <option>Software</option>
-                      </select>
-                    </div>
-                  </div> */}
                   <div className="form-group col-12 col-md-6 col-lg-4">
                     <label className="mb-2">Status</label>
                     <select
