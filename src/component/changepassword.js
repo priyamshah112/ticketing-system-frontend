@@ -35,7 +35,7 @@ function ChangePassword(props) {
   };
 
   return (
-    <form onSubmit={createUserHandler}>
+    <form className="changepassModal" onSubmit={createUserHandler}>
       <div>
         {error.show && error.message && (
           <div>

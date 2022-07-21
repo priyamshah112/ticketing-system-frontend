@@ -61,7 +61,14 @@
     color: #13213C;
     margin-bottom: 12px!important;
 }
-
+.paraHead{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #13213C;
+    text-align: center;
+}
 .have-account {
     left: 3.68%;
     right: 85.07%;

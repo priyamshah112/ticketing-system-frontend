@@ -131,6 +131,7 @@ function Login(props) {
             
               <div className=" auth-content">
                 <h1 className="mb-4 f-w-400 bold sign-in-head">Welcome to Enhance Compliance</h1>
+                <p className='paraHead'>Ticketing System</p>
                 <span className='subHead'>Please use credentials to login.</span>
 
                 {/* <h5 className=" font-weight-normal">
