@@ -212,21 +212,6 @@ body {
   height: 50px !important;
 }
 
-.calender-card:before {
-  position: absolute;
-  content: "Future Scope";
-  background-color: #484848;
-  width: 100%;
-  height: 100%;
-  opacity: 0.5;
-  font-weight: bold;
-  color: white;
-  font-size: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .large-card .btn-link {
   text-decoration: none !important;
 }
@@ -381,6 +366,11 @@ body {
   left: -55px;
   top: 2px;
 }
+.create-icon {
+  position: relative;
+  left: -57px;
+  top: 2px;
+}
 
 .month {
   width: 30px;
@@ -458,20 +448,6 @@ body {
   position: absolute;
     top: -5px;
 }
-.content {
-  font-size: 20px;
-  color: blue;
-}
-
-.calendar-card {
-  width: 330px;
-    height: 223px;
-    /* left: 503px; */
-    /* top: 447px; */
-    background: #FFFFFF;
-    border-radius: 20px;
-    position: relative;
-}
 
 .information {
   position: relative;
@@ -480,9 +456,8 @@ body {
     left: 66px;
 }
 
-.info-card {
-  width: 480px;
-  height: 330px;
+.info-card { 
+  height: 400px;
   background: #FFFFFF;
   box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
   border-radius: 20px;

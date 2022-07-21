@@ -7,7 +7,7 @@ import { apipaths } from "../../api/apiPaths";
 import HardInventory from "./hardInventory";
 import UserRequest from "./user-request";
 import TrackByCountry from "./track-by-country";
-import TicketCalender from "./calender";
+import TicketCalender from "../Calender";
 import RadialBar from "./radialbar";
 import { Link } from "react-router-dom";
 
@@ -48,7 +48,7 @@ function AdminDashboard() {
                 <h1 className="section__title">Dashboard</h1>
 
                 <div className="row pb-4">
-                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl mb-3">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -63,7 +63,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl mb-3">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
 
@@ -85,7 +85,7 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl mb-3">
                         <div className="tickets__box py-0">
                             <div className="row align-items-center">
                                 <div className="col-5 p-0">
@@ -99,10 +99,10 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
-                        <div className="tickets__box">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl mb-3">
+                        <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-auto">
+                                <div className="col-5 p-0">
                                     <figure>
                                         <img src={tool}
                                             className="dashboard__icon" />
@@ -116,10 +116,10 @@ function AdminDashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md col-lg mb-3 mb-sm-0">
-                        <div className="tickets__box">
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl mb-3">
+                        <div className="tickets__box py-0">
                             <div className="row align-items-center">
-                                <div className="col-auto">
+                                <div className="col-5 p-0">
                                     <figure>
                                         <img src={person}
                                             className="dashboard__icon" />
@@ -139,9 +139,15 @@ function AdminDashboard() {
                 <div className="row">
                     <UserRequest userRequest={userRequest} />
                     <HardInventory priorityTickets={priorityTickets} />
-                    <div className="col-sm-4 mb-3 mb-sm-0">
-                        <TrackByCountry />
-                        <TicketCalender />
+                    <div className="col-12 col-xl mb-3 mb-sm-0">
+                        <div className="row">
+                            <div className="col-12 col-md-6 col-lg-6 col-xl-12">
+                                <TrackByCountry />
+                            </div>
+                            <div className="col-12 col-md-6 col-lg-6 col-xl-12">
+                                <TicketCalender />
+                            </div>
+                        </div>
                     </div>
 
 

@@ -38,7 +38,7 @@ class HardInventory extends React.Component {
     render() {
         return (
             <>
-                <div className="col-sm-4 mb-3 mb-sm-0">
+                <div className="col-12 col-md-6 col-lg-6 col-xl mb-3 mb-sm-0">
                     <div className="category__box category__box__ht__min" style={{ overflowY: "hidden" }}>
                         <p className="category__title m-0">hardware inventory</p>
                         <div className="p-4">

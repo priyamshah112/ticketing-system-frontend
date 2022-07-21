@@ -69,7 +69,7 @@ function ChangePassword(props) {
         />
       </div>
       <div className="form-group">
-        <button className="btn btn-info" type="submit">
+        <button className="btn btn-secondary" type="submit">
           Change Password
         </button>
       </div>

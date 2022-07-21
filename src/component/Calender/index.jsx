@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+import './style.css';
 
 function TicketCalender() {
     const [value, onChange] = useState(new Date());

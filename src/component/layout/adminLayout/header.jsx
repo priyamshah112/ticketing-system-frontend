@@ -4,15 +4,9 @@ import React from 'react'
 function Header() {
     return (
         <>
-            <div className="header__section">
-                <ul className="menu__navigation">
-                    <li>
-                        <figure>
-                            <img src={logo} width="120"
-                                height="" />
-                        </figure>
-                    </li>
-                </ul>
+            <div className="header__section"> 
+                <img src={logo} width="120"
+                    height="" />     
             </div>
         </>
     );

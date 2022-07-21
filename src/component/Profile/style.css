@@ -36,4 +36,24 @@
 .myprofile .MuiSvgIcon-root:hover {
     fill: #5c55bf !important;
 }
+.profile-details .name{
+    text-align: center;
+    margin-top: 16px;
+    font-size: 18px;
 
+}
+.contact-details, .location{
+    margin-bottom: 16px;
+}
+.contact-details h3, .location h3 {
+    font-size: 16px;
+}
+.contact-details .label, .location .label{
+    font-size: 14px;
+    margin: 0px;
+}
+.contact-details p, .location p{
+    font-size: 16px;
+    margin: 0px;
+    font-weight: 600;
+}

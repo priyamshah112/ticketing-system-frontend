@@ -4,15 +4,12 @@
 }
 
 .ticket__window {
-  margin-left: 180px;
-  margin-right: 60px;
-  padding-bottom: 20px;
+  margin-left: 100px;
+  padding: 32px;
 }
 
 .ticket__table {
   width: 100%;
-  padding: 20px 20px 0px 0;
-
 }
 
 .ticket-heading {
@@ -218,13 +215,6 @@
     position: relative;
     top: 60px;
     cursor: pointer;
-}
-#filter-ticket{
-  margin-right: 20px;
-  cursor: pointer;
-  top: 50px;
-
-
 }
 .submit-btn{
   background: #5c55bf;

@@ -53,8 +53,8 @@ function ProfileView(props) {
   }
 
   return (
-    <form className="row">
-      <div className="form-group col-12 d-flex justify-content-center align-items-center">
+    <div>
+      <div className="col-12 d-flex justify-content-center align-items-center">
         <div className=" float-left mr-2 myprofile">
           {
             img !== "" && img !== null ?          
@@ -82,51 +82,29 @@ function ProfileView(props) {
           </div>
         </div>
       </div>
-      <div className="form-group col-6">
-        <label>First Name</label>
-        <input
-          className="form-control"
-          value={firstName}
-          disabled
-        />
+      <div className="profile-details">
+        <p className="name">{firstName+' '+middleName+''+lastName}</p>
+        {/* <h3 className="basic-label">Basic Details</h3> */}
+        <div className="row">
+          <div className="col-6 contact-details">
+            <div className="mb-2">
+              <h2 className="label">Email Address</h2>
+              <p>{email ? email : '---'}</p>
+            </div>
+            <div className="mb-2">
+              <h2 className="label">Phone Number</h2>
+              <p>{phone ? phone : '---'}</p>
+            </div>
+          </div>
+          <div className="col-6 location">
+            <div className="mb-2">
+              <h2 className="label">Country</h2>
+              <p>{country ? country : '---'}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="form-group col-6">
-        <label>Middle Name</label>
-        <input
-          className="form-control"
-          value={middleName}
-          disabled
-        />
-      </div>
-      <div className="form-group col-6">
-        <label>Last Name</label>
-        <input
-          className="form-control"
-          value={lastName}
-          disabled
-        />
-      </div>
-      <div className="form-group col-6">
-        <label>Email</label>
-        <input className="form-control" value={email} disabled />
-      </div>
-      <div className="form-group col-6">
-        <label>Phone</label>
-        <input
-          className="form-control"
-          value={phone}
-          disabled
-        />
-      </div>
-      <div className="form-group col-6">
-        <label>Country</label>
-        <input
-          className="form-control"
-          value={country}
-          disabled
-        />
-      </div>
-    </form>
+    </div>
   );
 }
 

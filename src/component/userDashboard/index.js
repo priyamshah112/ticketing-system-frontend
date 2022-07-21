@@ -31,6 +31,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@mui/material/Button';
+import TicketCalender from "../Calender";
 
 function UserDashboard() {
   const [userdata, setUserDate] = useState([]);
@@ -165,25 +166,21 @@ function UserDashboard() {
 
       </div>
       <div className="row my-4">
-        <div className="col-lg-3 col-md-6 my-2 pointer">
+        <div className="col-12 col-md-12 col-lg-4 my-2 pointer">
           <div className="card ticket-card" >
             <div className="card-body " onClick={() => setTicketModal(true)}>
               {console.log("in here")}
-              <div className="card-details d-inline-flex align-items-center">
+              <div className="card-details d-inline-flex align-items-center addedcircle">
                 <div>
-                  <img
-                    src={create}
-                    alt="create"
-                    className="img-fluid ticket-card-img  "
-                    style={{ width: "15%" }}
-                  />
+                  <img src={ellipse} alt="create" className="img-fluid inprogress-circle" />
+                  <img src={create} alt="create" className="img-fluid create-icon" style={{ width: "25%" }} />
                 </div>
                 <h4>Create Ticket</h4>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-lg-3 col-md-6 my-2 pointer">
+        <div className="col-12 col-md-12 col-lg-4 my-2 pointer">
           <div
             className="card ticket-card"
             onClick={() =>
@@ -206,7 +203,7 @@ function UserDashboard() {
           </div>
         </div>
         <div
-          className="col-lg-3 col-md-6 my-2 pointer"
+          className="col-12 col-md-12 col-lg-4 my-2 pointer"
           onClick={() =>
             history.push({
               pathname: "/tickets",
@@ -227,51 +224,13 @@ function UserDashboard() {
             </div>
           </div>
         </div>
-        {/* <div className="col-lg-3 my-2">
-                            <div className="card small-card">
-                                <div className="card-bodfy">
-                                    <div className="card-details d-flex flex-column text-center justify-content-center align-items-center">
-                                        <div>
-                                            <img src={message} alt="create" className="img-fluid" />
-                                        </div>
-                                        <h4>New Messages</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
       </div>
       <div className="row my-4">
-        <div className="col-lg-3 my-2">
-          <div className="card medium-card calendar-card">
-            <div className="card-body d-flex flex-column justify-content-between">
-              <div className="d-flex flex-row justify-content-between ">
-                <h5>Calendar</h5>
-
-              </div>
-
-              <div>
-                <Calendar onChange={onChange}
-                  next2Label={null}
-                  prev2Label={null}
-                  prevLabel={null}
-                  nextLabel={null}
-                  showNeighboringMonth={false}
-
-                  showNavigation={true}
-                  defaultValue={new Date()}
-                  value={value}
-                  formatShortWeekday={formatShortWeekday}
-                />
-
-              </div>
-            </div>
-          </div>
+        <div className="col-12 col-lg-6 my-2">
+          <TicketCalender />
         </div>
 
-        <div
-          className="col-lg-6 my-2 pointer information"
-
-        >
+        <div className="col-12 col-lg-6 my-2">
           <div className="card medium-card info-card">
             <div className="card-body d-flex flex-column">
               <div className="d-flex text-center">
@@ -350,7 +309,7 @@ function UserDashboard() {
           </div>
         </div>
       </div>
-      <div className="row my-4 h-100">
+      <div className="row my-2 h-100">
         {/* <div className="col-lg-6 my-2">
           <div className="card large-card calender-card">
             <div className="card-body">

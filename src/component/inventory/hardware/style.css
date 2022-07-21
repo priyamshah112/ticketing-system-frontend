@@ -1,21 +1,10 @@
 .hardware__inventory {
-  margin-left: 180px;
-  margin-right: 60px;
-  padding-bottom: 20px;
-}
-
-.hardware__inventory .table__view {
-  /*transform: scale(0.9);*/
-
-  padding: 20px 20px 0 0;
+  margin-left: 100px;
+  padding: 32px;
 }
 
 .MuiToolbar-regular {
   min-height: 0 !important;
-}
-
-#filter-inventory-wrapper{
-  margin-right: 20px;
 }
 
 @media (min-width: 600px) {

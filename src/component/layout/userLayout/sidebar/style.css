@@ -10,10 +10,9 @@
 }
 
 .user-profile {
-
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     left: 25px;
     top: 85px;
 
@@ -37,11 +36,11 @@
     width: 126px;
     height: 40px;
     left: 110px;
-    top: 100px;
+    top: 92px;
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 600;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 40px;
     color: #5C55BF;
     overflow: hidden;
@@ -202,8 +201,8 @@
 
   }
   .user-menu-popup .MuiPopover-paper{
-    top: 135px !important;
-    left: 285px !important
+    top: 131px !important;
+    left: 266px !important
   }
   .user-menu-popup .MuiPopover-paper ul{
     padding-left: 0px; 
@@ -223,7 +222,7 @@
     margin-left: 25px;
   }
   .logos img{
-    width: 185px;
+    width: 145px;
     margin: 20px 40px 0px 0px;
   }
   

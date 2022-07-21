@@ -1,6 +1,5 @@
 .filter__component {
-  padding: 40px 0;
-  padding-right: 20px;
+  padding: 0px 0px 32px 0px;
 }
 .filter__component .filters__view {
   display: flex;

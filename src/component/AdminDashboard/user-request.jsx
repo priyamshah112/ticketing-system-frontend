@@ -3,7 +3,7 @@ const { default: TicketRequestTabs } = require("./TicketRequestTabs");
 function UserRequest(props) {
     return (
         <>
-            <div className="col-sm-4 mb-3 mb-sm-0">
+            <div className="col-12 col-md-6 col-lg-6 col-xl mb-3 mb-sm-0">
                 <div className="category__box category__box__ht__max">
                     <p className="category__title">requests by users</p>
                     <div className="inner__category__box">

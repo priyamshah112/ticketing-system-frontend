@@ -1,20 +1,10 @@
 .software__inventory {
-  margin-left: 180px;
-  margin-right: 60px;
-  padding-bottom: 20px;
-}
-
-.software__inventory .table__view {
-
-  padding: 20px 20px 0 0;
+  margin-left: 100px;
+  padding: 32px;
 }
 
 .MuiToolbar-regular {
   min-height: 0 !important;
-}
-
-#filter-inventory-wrapper{
-  margin-right: 20px;
 }
 
 @media (min-width: 600px) {
