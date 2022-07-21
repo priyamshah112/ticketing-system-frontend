@@ -598,7 +598,7 @@ function Ticket(props) {
         <div className="user-ticket-filter">
           <FilterComponent {...{ ...filterProps }} />
         </div>
-        <div className=" mt--5  col-lg-12" style={{ paddingRight: '2rem',paddingLeft:'2rem' }}>
+        <div className="col-lg-12" style={{ paddingRight: '2rem',paddingLeft:'2rem' }}>
           <div className="card" id="filter-ticket">
             <div className="card-body">
               <form onSubmit={filterSubmitHandler} id="ticket-filter-form">

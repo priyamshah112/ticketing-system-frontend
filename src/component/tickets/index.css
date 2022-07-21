@@ -144,8 +144,6 @@
 }
 
 .tickets-table {
-  /* left: 510px; */
-  top: 48px;
   background: #ffffff;
   box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
   padding: 0px;
@@ -219,4 +217,7 @@
 .submit-btn{
   background: #5c55bf;
   color: white;
+}
+.user-ticket-filter{
+  padding: 32px 32px 0px 32px;
 }
