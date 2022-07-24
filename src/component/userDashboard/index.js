@@ -245,7 +245,7 @@ function UserDashboard() {
     
                         </tbody>
                       </table>
-                      <Link className="more-link" to="/useful-information">view more</Link>
+                      {uiFilesInfo && (<Link className="more-link" to="/useful-information">view more</Link>)}
                     </div>
                     </>
                   )
@@ -293,7 +293,7 @@ function UserDashboard() {
                         </tbody>
                       </table>
                     </div>
-                    <Link className="more-link" to="/useful-information">view more</Link>
+                    {uiLinksInfo && (<Link className="more-link" to="/useful-information">view more</Link>)}
                     </>
                   )
                 }
@@ -339,7 +339,7 @@ function UserDashboard() {
             </div>
 
           </div>
-          <Link className="more-link" to="/faqs">view more</Link>
+          {faqsData && (<Link className="more-link" to="/faqs">view more</Link>)}          
         </div>
 
         {<div className="">

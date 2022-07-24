@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Modal } from "antd";
+import fileImage from "../../assets/file.png"
 
 function UsefulIModal(props) {
   const [uiForm, setUIForm] = useState({
     category: 'link',
   });
-  const [process, setProcess] = useState(false);
+  const [waitMsg, setWaitMsg] = useState(false);
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState('')
 
@@ -62,7 +63,7 @@ function UsefulIModal(props) {
     }
 
     onSubmit(formdata);
-    setProcess(true);
+    setWaitMsg(true);
   }
 
   const fileHandler = (e) => {
@@ -131,7 +132,7 @@ function UsefulIModal(props) {
           )
           }
           {
-            uiForm.category === 'file' && (
+            uiForm.category === 'file' && modalCode !== 1 && (
             <div className="col-12 mt-4">
               <label>
                 File <span className="text-danger">*</span>
@@ -144,6 +145,24 @@ function UsefulIModal(props) {
               />
             </div>
           )
+          }
+
+          {
+            uiForm.category === 'file' && modalCode === 1 && (
+              <div className="col-12 mt-4">
+                <label> Attached File </label>
+                <a
+                    href={`${process.env.REACT_APP_BASE_URL}${uiForm.file}`}
+                    class="other-attachment"
+                    shape="round"
+                    size="small"
+                    download
+                    target="_blank"
+                >
+                  <img src={fileImage} />
+                </a>
+              </div>
+            )
           }
 
           <div className="col-lg-6 col-md-6 col-12">
@@ -163,7 +182,7 @@ function UsefulIModal(props) {
           </div>
         </div>
         <div className="text-center mt-4">
-          {process && <p>Please Wait ...</p>}
+          {waitMsg && <p>Please Wait ...</p>}
         </div>
       </form>
     </Modal>
