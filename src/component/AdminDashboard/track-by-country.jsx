@@ -39,25 +39,25 @@ class TrackByCountry extends Component {
                 }
             ]
         };
-    
+
     }
-    async componentDidMount (){
-            const { data } = await getResponse(apipaths.getTrackByCountry);
-            this.setState({
-                count : data?.totalticket[0].count + data?.totalticket[1].count + data?.totalticket[2].count,
-                series: [
-                    {
-                        name: "Open Tickets",
-                        data: [data?.totalticket[0].count , data?.totalticket[1].count , data?.totalticket[2].count]
-                    }
-                ]
-            })
-          }
-    
+    async componentDidMount() {
+        const { data } = await getResponse(apipaths.getTrackByCountry);
+        this.setState({
+            count: data?.totalticket[0].count + data?.totalticket[1].count + data?.totalticket[2].count,
+            series: [
+                {
+                    name: "Open Tickets",
+                    data: [data?.totalticket[0].count, data?.totalticket[1].count, data?.totalticket[2].count]
+                }
+            ]
+        })
+    }
+
 
     render() {
         return (
-            <div className="category__box category__box__ht__max">
+            <div className="category__box category__box__ht__max calender">
                 <div className="openCategory"><p className="category__title m-0">track by country</p>
                 </div>
                 <div className="mixed-chart">

@@ -1,15 +1,15 @@
-
 .react-calendar__viewContainer {
-    line-height: 23px;
-    font-size: 16px;
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: 400;
-    top: 32px;
-    position: relative;
-    text-align: center;
+    line-height: 23px !important;
+    font-size: 16px !important;
+    font-family: Rubik !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    top: 32px !important;
+    position: relative !important;
+    text-align: center !important;
 
 }
+
 .category__title {
     text-transform: capitalize;
     margin-bottom: 1rem;
@@ -18,7 +18,7 @@
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {
-    text-decoration: none;
+    text-decoration: none !important;
 
 }
 
@@ -31,6 +31,26 @@
     background: transparent;
     border: none;
 
+}
+
+.react-calendar__tile--now {
+    font-weight: bold;
+    color: #323232;
+    
+    background-color: #6f48eb33;
+    border-radius: 50%;
+    border-color: #323232;
+    border-width: 1px;
+}
+.react-calendar__month-view__weekdays__weekday{
+}
+
+.react-calendar__tile--active {
+    background-color: #6f48eb;
+    border-radius: 50%;
+    width:20%  !important;
+    font-weight: bold;
+    color: white;
 }
 
 .calender {
@@ -50,7 +70,7 @@
     top: -34px;
     width: 100%;
     overflow: hidden;
-    height: 320px;
+    height: 350px;
 
 }
 
@@ -60,10 +80,10 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    background-color: white;
     border: none;
     padding: 16px
 }
+
 .category__box .react-calendar__month-view {
     min-height: 330px;
 }

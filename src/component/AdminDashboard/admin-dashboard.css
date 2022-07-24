@@ -1,3 +1,5 @@
+
+
 /* global */
 *,
 html {
@@ -82,9 +84,11 @@ body {
     position: relative;
 }
 
-li:hover>.hiddenHover, li:hover>.hiddenHoverIn{
+li:hover>.hiddenHover,
+li:hover>.hiddenHoverIn {
     display: block;
 }
+
 .sidebar__ul li img {
     width: 24px;
     height: 24px;
@@ -163,6 +167,19 @@ ul {
     text-decoration-line: none !important;
 }
 
+.tabPanel>div>div>a :hover{
+    background: #BF5555;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%) !important;
+    border-radius: 20px;
+    color: white !important;
+    height: 46px;
+    min-height: 32px;
+    min-width: 30px !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    opacity: 1;
+}
+
 .parentTabs .MuiAppBar-colorPrimary.ticketRequestWrapper {
     width: 75%;
     margin: auto;
@@ -196,8 +213,8 @@ ul {
 
 /* content__section */
 .content__section {
-  margin-left: 100px;
-  padding: 32px;
+    margin-left: 100px;
+    padding: 32px;
 }
 
 .dashboard__icon {
@@ -367,8 +384,11 @@ ul {
 
 .category__box__ht__min {
     height: 400px;
-    overflow: auto!important;
+    overflow: auto !important;
     margin-bottom: 50px;
+}
+.MuiTab-textColorInherit{
+    opacity: 1;
 }
 
 .ticketRequestWrapper [aria-label="nav tabs example"]>a.MuiTab-textColorInherit.Mui-selected {
@@ -485,7 +505,8 @@ ul {
     top: 17px;
     left: -4px;
 }
-.horizontal-line+li.active::after{
+
+.horizontal-line+li.active::after {
     right: 15px;
 }
 
@@ -546,8 +567,7 @@ ul {
 }
 
 .ant-modal-header {
-    background: #5c55bf!important
-
+    background: #5c55bf !important
 }
 
 .ant-modal-title {
@@ -589,7 +609,7 @@ ul {
     position: relative;
 }
 
-.adminmenu-popup   {
+.adminmenu-popup {
     position: absolute;
     z-index: 1300;
     inset: 0px;
@@ -603,10 +623,96 @@ ul {
 .page-inner {
     padding-left: 2rem
 }
-.usetTicket{
+
+.usetTicket {
     padding-left: 8rem;
 }
+
 .css-1s2u09g-control {
     border: none !important;
     border-bottom: 1px solid !important;
+}
+.highlight {
+    color:red;
+ }
+ .MuiPaper-elevation4{
+    box-shadow: none !important;
+ }
+ a:hover{
+    color:black !important;
+ }
+
+
+ @media (min-width: 1200px) { 
+
+    .MuiTableRow-root > td{
+        text-decoration: none;
+        color: inherit;
+        font-family: 'Rubik'!important;
+        font-style: normal!important;
+        font-size: 13px !important;
+        line-height: 28px;
+        color: #2D3142;
+        text-align: center !important;
+    
+    }
+    .MuiTableRow-head > th {
+        background-color: #5c55bf !important;
+        font-family: 'Rubik' !important;
+        font-style: normal;
+        font-weight: 400 !important;
+        font-size: 13px !important;
+        line-height: 28px;
+        color: #ffffff;
+        text-align: center !important;
+    }
+
+
+  }
+
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+
+    .react-calendar {
+        width: 100% !important
+    }
+
+    body{
+        font-size: 15px !important;
+    }
+   
+.MuiTableRow-root > td{
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Rubik'!important;
+    font-style: normal!important;
+    font-size: 15px !important;
+    line-height: 28px;
+    color: #2D3142;
+    text-align: center !important;
+
+}
+.MuiTableRow-root > td >a{
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Rubik'!important;
+    font-style: normal!important;
+    font-size: 15px !important;
+    line-height: 28px;
+    color: #2D3142;
+    text-align: center !important;
+
+}
+
+.MuiTableRow-head > th {
+    background-color: #5c55bf !important;
+    font-family: 'Rubik' !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+    line-height: 28px;
+    color: #ffffff;
+    text-align: center !important;
+}
+
 }
