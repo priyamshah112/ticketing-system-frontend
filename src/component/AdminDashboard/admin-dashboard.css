@@ -168,13 +168,8 @@ ul {
 }
 
 .tabPanel>div>div>a :hover{
-    background: #BF5555;
-    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%) !important;
-    border-radius: 20px;
-    color: white !important;
-    height: 46px;
-    min-height: 32px;
-    min-width: 30px !important;
+    color: #BF5555 !important;
+   
     text-decoration: none !important;
     text-decoration-line: none !important;
     opacity: 1;
@@ -714,5 +709,31 @@ ul {
     color: #ffffff;
     text-align: center !important;
 }
+
+
+.side__bar {
+
+    width:80px;
+}
+.ticket__window {
+    margin-left: 80px !important;
+    padding: 32px;
+  }
+  .software__inventory{
+    margin-left: 80px !important;
+    padding: 32px;
+  }
+  .roles__window{
+    margin-left: 80px !important;
+    padding: 32px;
+  }
+  .user__window{
+    margin-left: 80px !important;
+    padding: 32px;
+  }
+  .hardware__inventory{
+    margin-left: 80px !important;
+    padding: 32px;
+  }
 
 }

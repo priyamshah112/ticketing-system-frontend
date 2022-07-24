@@ -146,30 +146,27 @@ function TicketDetails(props) {
     return (
         <div className="page-inner usetTicket">
             <div className="row">
-                <Breadcrumbs aria-label="breadcrumb">
-                <Link
+                <Breadcrumbs separator="›" aria-label="breadcrumb">
+                <Link underline="hover" color="#5C55BF" 
                         //to={`/ticket`}
-                        to="/"
-
-                        color="inherit"
-                        
+                        to="/"                        
                     >
                         Home
                     </Link>
-                    <Link
+                    <Link underline="hover" color="#5C55BF" 
                         //to={`/ticket`}
                         to="/tickets"
 
-                        color="inherit"
+                       
                         
                     >
                         Tickets
                     </Link>
-                    <Link
-                        to={`/ticket/details?ticketid=${ticket.id}`} color="inherit"
+                    <Link underline="hover"color="#5C55BF"
+                        to={`/ticket/details?ticketid=${ticket.id}`} 
                         
                     >
-                        Ticket Details
+                        ${ticket.id}
                     </Link>
                 </Breadcrumbs>
             </div>
