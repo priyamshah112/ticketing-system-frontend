@@ -65,8 +65,30 @@ export default [
   ],
   },
  {
+  component: SoftwareInventory,
+  path: '/inventory/software/:userid',
+  title: 'Software Inventory',
+  exact: true,
+  permission: [
+   Roles.ADMIN,
+   Roles.SUPPORT,
+   Roles.USER,
+  ],
+  },
+ {
   component: HardwareInventory,
   path: '/inventory/hardware',
+  title: 'Hardware Inventory',
+  exact: true,
+  permission: [
+   Roles.ADMIN,
+   Roles.SUPPORT,
+   Roles.USER,
+  ],
+  },
+ {
+  component: HardwareInventory,
+  path: '/inventory/hardware/:userid',
   title: 'Hardware Inventory',
   exact: true,
   permission: [

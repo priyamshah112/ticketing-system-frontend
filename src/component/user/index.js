@@ -14,6 +14,7 @@ import { dateFormatHandler } from '../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 function User(props) {
   const columns = [
@@ -150,24 +151,24 @@ function User(props) {
       user.status = userStatus;
       user.action = (
         <div className="d-flex justify-content-center">
-          <Tooltip title="Edit User">
-            <div>
-              <i
-                className="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
-                onClick={() => {
-                  setOperation('update');
-                  setIsCreateModal(true);
-                  setUserInfo(user);
-                }}
-              ></i>
-            </div>
-          </Tooltip>
           <Tooltip title="View User">
             <div>
               <i
                 className="table-icon fa fa-eye bg-secondary text-white cursor-pointer mr-2"
                 onClick={() => {
                   setOperation('view');
+                  setIsCreateModal(true);
+                  setUserInfo(user);
+                }}
+              ></i>
+            </div>
+          </Tooltip>
+          <Tooltip title="Edit User">
+            <div>
+              <i
+                className="table-icon fa fa-edit bg-warning text-white cursor-pointer mr-2"
+                onClick={() => {
+                  setOperation('update');
                   setIsCreateModal(true);
                   setUserInfo(user);
                 }}
@@ -188,32 +189,26 @@ function User(props) {
         <div className="d-flex justify-content-center">
           <Tooltip title="view software inventories assigned">
             <div>
+              <Link to={`${'/inventory/software/'}${user.id}`}>
               <i
                 className="table-icon fas fa-laptop-code bg-secondary text-white cursor-pointer mr-2"
-                onClick={() => assignSoftwareInventoryHandler(user)}
               ></i>
+              </Link>
             </div>
           </Tooltip>
           <Tooltip title="view hardware inventories assigned">
             <div>
+              <Link to={`${'/inventory/hardware/'}${user.id}`}>
               <i
                 className="table-icon fa fa-laptop bg-secondary text-white cursor-pointer"
-                onClick={() => assignHardwareInventoryHandler(user)}
               ></i>
+              </Link>
             </div>
           </Tooltip>
         </div>
       );
     });
     return data;
-  };
-
-  const assignSoftwareInventoryHandler = async (user) => {
-    props.history.push(`/inventory/software/${user.id}`);
-  };
-
-  const assignHardwareInventoryHandler = async (user) => {
-    props.history.push(`/inventory/hardware/${user.id}`);
   };
 
   const getData = async () => {

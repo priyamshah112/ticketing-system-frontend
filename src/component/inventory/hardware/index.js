@@ -33,6 +33,7 @@ function HardwareInventory() {
   const [editForm, setEditForm] = useState(false);
   const [formData, setFormdata] = useState({});
 
+  console.log(userid);
   let columns = userid
     ? [
         {
