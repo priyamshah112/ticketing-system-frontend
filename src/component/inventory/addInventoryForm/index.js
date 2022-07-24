@@ -48,7 +48,7 @@ function AddInventoryForm(props) {
       label: 'TV'
     },
     {
-      value: 'Led Display',
+      value: 'LED Display',
       label: 'LED Display'
     },
     {
@@ -64,7 +64,7 @@ function AddInventoryForm(props) {
       label: 'Webcam'
     },
     {
-      value: 'Wpeaker',
+      value: 'Speaker',
       label: 'Speaker'
     },
     {
