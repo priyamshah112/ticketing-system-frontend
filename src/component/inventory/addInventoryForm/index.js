@@ -18,10 +18,60 @@ function AddInventoryForm(props) {
     type,
     editForm,
   } = props;
-  const { Option } = Select;
   const [formdata, setFormdata] = useState({});
   const [users, setUsers] = useState([]);
   const [selectedOption, setSelectedOption] = useState([]);
+  const [selectedHardwareOption, setSelectedHardwareOption] = useState([]);
+  const hardwareType = [
+    {
+      value: 'Laptop',
+      label: 'Laptop'
+    },
+    {
+      value: 'Monitor',
+      label: 'Monitor'
+    },
+    {
+      value: 'Keyboard',
+      label: 'Keyboard'
+    },
+    {
+      value: 'Mouse',
+      label: 'Mouse'
+    },
+    {
+      value: 'Headset',
+      label: 'Headset'
+    },
+    {
+      value: 'TV',
+      label: 'TV'
+    },
+    {
+      value: 'Led Display',
+      label: 'LED Display'
+    },
+    {
+      value: 'Switch',
+      label: 'Switch'
+    },
+    {
+      value: 'Printer',
+      label: 'Printer'
+    },
+    {
+      value: 'Webcam',
+      label: 'Webcam'
+    },
+    {
+      value: 'Wpeaker',
+      label: 'Speaker'
+    },
+    {
+      value: 'Other',
+      label: 'Other'
+    },
+  ];
 
   useEffect(() => {
     userlist();
@@ -49,6 +99,13 @@ function AddInventoryForm(props) {
       setSelectedOption({
         value: editFormData.user.id,
         label: editFormData.user.name
+      });
+    }
+    if(editFormData.hardware_type !== undefined && editFormData.hardware_type !== null)
+    {
+      setSelectedHardwareOption({
+        value: editFormData.hardware_type,
+        label:  editFormData.hardware_type
       });
     }
   }, [editFormData]);
@@ -117,6 +174,7 @@ function AddInventoryForm(props) {
     } = data;
 
     data.assigned_to = selectedOption?.value
+    data.hardware_type = selectedHardwareOption?.value
 
     if (
       !asset_name ||
@@ -124,10 +182,10 @@ function AddInventoryForm(props) {
       !service_tag ||
       !model ||
       !express_service_code ||
-      !selectedOption?.value ||
+      !selectedOption?.value || 
+      !selectedHardwareOption?.value || 
       !warranty_expire_on ||
-      !location ||
-      !description
+      !location
     ) {
       toast.warn("All * feilds are mandatory.");
     } else {
@@ -141,6 +199,8 @@ function AddInventoryForm(props) {
       if (resp.status === 200) {
         toast.success(resp.data.message);
         setFormdata({});
+        setSelectedOption([]);
+        setSelectedHardwareOption([]);
         dispatch(inventoryListAction(type));
         isOpen(false);
       } else {
@@ -188,7 +248,21 @@ function AddInventoryForm(props) {
                 disabled={editForm ? "disabled" : ""}
               />
             </div>
+            <div className="col-lg-6 col-md-6 col-12 mt-3">
+              <label>Type<span className="text-danger"> * </span></label>
 
+              <Select 
+                  name="hardware_type"
+                  options={hardwareType}
+                  className="w-100"
+                  onChange={(value) => {
+                    setSelectedHardwareOption(value);
+                  }}
+                  value={selectedHardwareOption}
+                  isDisabled={editForm ? true : false}
+                  required
+                />
+            </div>
             <div className="col-lg-6 col-md-6 col-12 mt-3">
               <InputFeild
                 label="Model/version"
@@ -299,7 +373,7 @@ function AddInventoryForm(props) {
             </div>
 
             <div className="col-12 mt-3">
-              <label>Description<span className="text-danger"> * </span></label>
+              <label>Description</label>
               <textarea
                 value={formdata.description ? formdata.description : ''}
                 rows="4"

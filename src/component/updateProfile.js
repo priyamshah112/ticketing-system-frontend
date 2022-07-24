@@ -67,7 +67,6 @@ function ProfileUpdate(props) {
             alert(photo.error)
           } else {
             // this is where I will dispatch an action creator function to update my store
-            console.log("success", photo)
             const mapDispatchToProps = dispatch => {
               return {
                 //toggleForm: () => dispatch(setFormStateToActive()),

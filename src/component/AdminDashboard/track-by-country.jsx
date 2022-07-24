@@ -26,7 +26,7 @@ class TrackByCountry extends Component {
 
                 ],
                 xaxis: {
-                    categories: ["In", "US", "CR"]
+                    categories: ["IN", "US", "CR"]
                 },
                 dataLabels: {
                     enabled: false,

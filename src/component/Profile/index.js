@@ -22,7 +22,6 @@ function ProfileView(props) {
       toast.error(res.error.message)
     } else {
       toast.success(res.data.message)
-      console.log(res.data.data.image_name);
     }
   }
 

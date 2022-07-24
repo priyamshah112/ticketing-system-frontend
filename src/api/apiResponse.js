@@ -18,7 +18,6 @@ const getResponse = async (apipath, data) => {
             localStorage.clear();
             window.location.reload();
         }
-        console.log(error.response);
         return { error: error.response.data };
     }
 }

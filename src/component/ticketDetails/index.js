@@ -162,7 +162,7 @@ function TicketDetails(props) {
                                         <div className="ticket-post-info">
                                             <div className="px-3 flex align-items-center justify-content-between">
                                                 <p className="mb-0">Posted By {getUserNameById(t.activity_by)} on {dateHandler(t.created_at)}</p>
-                                                {
+                                                {/* {
                                                     userDetails.id === t.activity_by ? (
                                                         <Button
                                                             type="primary"
@@ -180,7 +180,7 @@ function TicketDetails(props) {
                                                             Operator
                                                         </Button>
                                                     )
-                                                }
+                                                } */}
                                             </div>
                                         </div>
                                         <div className="ticket-post-content mx-3">
@@ -248,7 +248,7 @@ function TicketDetails(props) {
 
                                             <div className="container text-center">
                                                 <button className="btn btn-info" type="submit">Submit</button>
-                                                <button type="reset" id="form-reset-btn" className="btn btn-danger ml-3">Cancel</button>
+                                                <button type="reset" id="form-reset-btn" className="btn btn-danger ml-3">Reset</button>
                                             </div>
                                         </form>
                                     </div>

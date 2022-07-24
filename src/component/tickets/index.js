@@ -15,8 +15,6 @@ import { dateFormatHandler } from '../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './index.css';
-import filterpic from '../assets/filter.png';
-import plus from '../assets/plus.png';
 
 function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
@@ -119,7 +117,6 @@ function Ticket(props) {
         return $(element).val() != '';
       })
       .serialize();
-    // // console.log("custom: ", custom)
     if (custom) {
       elem = `status=${e}`;
     }
@@ -132,8 +129,6 @@ function Ticket(props) {
 
     const { data, error } = await getResponse(path);
     if (error) return toast.warn('Error in listing tickets.');
-
-    console.log(data);
     setUsers(data.data.support);
     setTicketMasterData(data.data.tickets);
 

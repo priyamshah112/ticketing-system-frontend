@@ -2,35 +2,22 @@ import React, { useEffect, useState } from "react";
 import "../userDashboard/user.css";
 import create from "./imges/noun-create-1409600.svg";
 import process from "./imges/noun-process-1372543.svg";
-import close from "./imges/noun-close-4502796.svg";
-import pc from "./imges/noun-pc-3667149.svg";
-import software from "./imges/noun-software-2519404.svg";
-import create1 from "./imges/noun-create-1409600.svg";
 import { Link } from "react-router-dom";
 import { apipaths } from "../../api/apiPaths";
 import { getResponse } from "../../api/apiResponse";
 import AddTicket from "../tickets/AddTicket";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import $ from "jquery";
 import { Collapse } from "antd";
 import { useHistory } from "react-router-dom";
 import inprogress from "../assets/inprogress.png"
 import ellipse from "../assets/Ellipse.png"
 import hardware from "../assets/hardware.png"
 import fileImage from "../assets/file.png"
-import Calendar from 'react-calendar';
-import queryString from 'query-string';
 import { dateFormatHandler } from '../../actions/commonAction';
-import { Tooltip } from '@material-ui/core';
-import { useLocation } from 'react-router-dom';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { buttonBaseClasses } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@mui/material/Button';
 import TicketCalender from "../Calender";
 
 function UserDashboard() {
@@ -41,48 +28,20 @@ function UserDashboard() {
   const userDetails = useSelector((state) => state.userDetails);
   const { Panel } = Collapse;
   const history = useHistory();
-
-  const [ticketId, setTicketId] = useState('');
-  const [date, setDate] = useState('');
-  const [error, setError] = useState('');
-  const [users, setUsers] = useState([]);
-
-  const [isModal, setIsModal] = useState(false);
-  const [ticketinfo, setTicketInfo] = useState([]);
-  const [supportUsers, setSupportUsers] = useState([]);
-  const userList = useSelector((state) => state.userList);
-  const userType = JSON.parse(localStorage.user_details).userType;
-  const { status } = queryString.parse(window.location.search);
-  const location = useLocation();
-  const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
-  const [faq, setFaqDate] = useState([{
-    questions: "Is there a free trial available?",
-    answer: "2 Hours Ago",
-  },
-  {
-    questions: "What is Cancellation fee?",
-    answer: "2 Hours Ago",
-  },
-  {
-    questions: "How does your billing work?",
-    answer: "2 Hours Ago",
-  },
-  {
-    questions: "How do I change my account email?",
-    answer: "2 Hours Ago",
-  }
-
-  ]);
+  const [uiLinksInfo, setUILinksInfo] = useState([]);
+  const [uiFilesInfo, setUIFilesInfo] = useState([]);
+  const [faqsData, setFaqsData] = useState([]);
+  const [toggleTab, setToggleTab] = useState('files');
   useEffect(() => {
     userinfo();
-    getTickets();
+    getUsefulInformationsLinks();
+    getUsefulInformationsFiles();
+    getFaqs();
 
   }, []);
 
 
   const userinfo = async (e) => {
-    // e.preventDefault();
-    // setError({ show: false });
     let { data } = await getResponse(apipaths.userDashboard);
     setUserDate(data.data);
   };
@@ -101,46 +60,37 @@ function UserDashboard() {
     }
   };
 
-  const faqAnsHandler = (elem, faq) => {
-    setTimeout(() => {
-      $(`.${elem}`).html(faq.answer);
-    }, 1000);
-  };
 
-
-  const getTickets = async () => {
-    const { data, error } = await getResponse(apipaths.listticket);
-    if (error) return toast.warn('Error in listing tickets.');
-    console.log("ticket info", data);
-    setUsers(data.data.support);
-    setTicketInfo(data.data.tickets);
-    data.data.tickets.map((ticket) => {
-      let username = '';
-      let created_by = '';
-      userList.map((user) => {
-        if (ticket.assigned_to === user.id) {
-          username = user.name;
-        }
-
-        if (ticket.created_by === user.id) {
-          created_by = user.name;
-        }
-      });
-
-      ticket.created_by = username;
-      ticket.created_at = dateFormatHandler(ticket.created_at);
-      if (ticket.subject.length > 30)
-        ticket.subject = ticket.subject.substring(0, 30) + '...';
-
+  const getUsefulInformationsLinks = async () => {
+    const { data, error } = await getResponse(apipaths.uiLinksList);
+    if (error) return toast.warn('Error in listing UI Links.');
+    data.data.usefulInformations.map((ui) => {
+      ui.created_at = dateFormatHandler(ui.created_at);
     });
 
-    setTicketDataOnStatus(data.data.tickets);
+    setUILinksInfo(data.data.usefulInformations);
+  };
+  
+  const getUsefulInformationsFiles = async () => {
+    const { data, error } = await getResponse(apipaths.uiFilesList);
+    if (error) return toast.warn('Error in listing UI Files.');
+    data.data.usefulInformations.map((ui) => {
+      ui.created_at = dateFormatHandler(ui.created_at);
+    });
+
+    setUIFilesInfo(data.data.usefulInformations);
+  };
+
+  const getFaqs = async () => {
+    const { data, error } = await getResponse(apipaths.dashboardFaqList);
+    if (error) return toast.warn('Error in listing faq.');
+    setFaqsData(data.data.faqs);
   };
 
   const [alignment, setAlignment] = React.useState('web');
   const handleChange = (event, newAlignment,) => {
+    setToggleTab(newAlignment);
     setAlignment(newAlignment);
-
   };
 
   const [checked, setChecked] = React.useState(false);
@@ -169,7 +119,6 @@ function UserDashboard() {
         <div className="col-12 col-md-12 col-lg-4 my-2 pointer">
           <div className="card ticket-card" >
             <div className="card-body " onClick={() => setTicketModal(true)}>
-              {console.log("in here")}
               <div className="card-details d-inline-flex align-items-center addedcircle">
                 <div>
                   <img src={ellipse} alt="create" className="img-fluid inprogress-circle" />
@@ -237,11 +186,8 @@ function UserDashboard() {
                 <h5>Useful Information</h5>
               </div>
 
-              <div >
-
-
-
-                {/* <ThemeProvider theme={theme}>
+              <div>
+                <ThemeProvider theme={theme}>
                   <ToggleButtonGroup
                     value={alignment}
                     exclusive
@@ -250,59 +196,107 @@ function UserDashboard() {
                     className="button-div"
 
                   >
-                    <ToggleButton className="info-buttons" value="files">Files</ToggleButton>
-                    <ToggleButton className="info-buttons" value="links">Links</ToggleButton>
+                    <ToggleButton className={toggleTab == 'files' ? 'info-buttons info-button-active' : 'info-buttons'} value="files">Files</ToggleButton>
+                    <ToggleButton className={toggleTab == 'links' ? 'info-buttons info-button-active' : 'info-buttons'} value="links">Links</ToggleButton>
 
                   </ToggleButtonGroup>
-                </ThemeProvider> */}
+                </ThemeProvider>
 
-
-
-
-                <div className="table-div">
-                  <table class="table table-sm info-table">
-                    <thead>
-                      <tr className="row-height">
-                        <th scope="col">Subject</th>
-                        <th scope="col">Attachment</th>
-                        <th scope="col">Created Date</th>
-                      </tr>
-                    </thead>
-                    <tbody className="scrollit">
-
-                      {ticketinfo.map((ticket) => {
-                        console.log(ticket);
-                        return (
-                        <tr className="row-height" >
-                          <th scope="row">{ticket.subject}</th>
-
-                          <td>
-                            {
-                              ticket.ticket_activity && ticket.ticket_activity.map((t, i) => (
-                                t.files && JSON.parse(t.files).map((file, i) => (
+                {
+                  toggleTab == 'files' && (
+                    <>
+                    <div className="table-div">
+                      <table class="table table-sm info-table">
+                        <thead>
+                          <tr className="row-height">
+                            <th scope="col">Subject</th>
+                            <th scope="col">Attachment</th>
+                            <th scope="col">Created Date</th>
+                          </tr>
+                        </thead>
+                        <tbody className="scrollit">
+    
+                          {uiFilesInfo.map((ui) => {
+                            return (
+                            <tr className="row-height" >
+                              <th scope="row">{ui.subject}</th>
+    
+                              <td>
+                                {
+                                  ui.file !== null && ui.file !== '' && (
                                     <a
-                                        href={`${process.env.REACT_APP_BASE_URL}${file.path}`}
-                                        class="other-attachment"
-                                        shape="round"
-                                        size="small"
-                                        download
-                                        target="_blank"
-                                    >
-                                      <img src={fileImage} />
-                                    </a>
-                                ))
-                              ))
-                            }
-                          </td>
-
-                          <td>{ticket.created_at}</td>
-                        </tr>
-                        )}
-                      )}
-
-                    </tbody>
-                  </table>
-                </div>
+                                      href={`${process.env.REACT_APP_BASE_URL}${ui.file}`}
+                                      class="other-attachment"
+                                      shape="round"
+                                      size="small"
+                                      download
+                                      target="_blank"
+                                  >
+                                    <img src={fileImage} />
+                                  </a>
+                                  )
+                                }
+                              </td>
+    
+                              <td>{ui.created_at}</td>
+                            </tr>
+                            )}
+                          )}
+    
+                        </tbody>
+                      </table>
+                      <Link className="more-link" to="/useful-information">view more</Link>
+                    </div>
+                    </>
+                  )
+                }
+                {
+                  toggleTab == 'links' && (
+                    <>
+                    <div className="table-div">
+                      <table class="table table-sm info-table">
+                        <thead>
+                          <tr className="row-height">
+                            <th scope="col">Subject</th>
+                            <th scope="col">Link</th>
+                            <th scope="col">Created Date</th>
+                          </tr>
+                        </thead>
+                        <tbody className="scrollit">
+    
+                          {uiLinksInfo.map((ui) => {
+                            return (
+                            <tr className="row-height" >
+                              <th scope="row">{ui.subject}</th>
+    
+                              <td>
+                                {
+                                  ui.link && (
+                                    <a
+                                      href={ui.link}
+                                      class="other-attachment"
+                                      shape="round"
+                                      size="small"
+                                      target="_blank"
+                                  >
+                                    {ui.link}
+                                  </a>
+                                  )
+                                }
+                              </td>
+    
+                              <td>{ui.created_at}</td>
+                            </tr>
+                            )}
+                          )}
+    
+                        </tbody>
+                      </table>
+                    </div>
+                    <Link className="more-link" to="/useful-information">view more</Link>
+                    </>
+                  )
+                }
               </div>
 
             </div>
@@ -317,7 +311,7 @@ function UserDashboard() {
             </div>
           </div>
         </div> */}
-        <div className="col-lg-12 my-2">
+        <div className="col-lg-12 my-2 faqs-card">
           <div className=" acc-card">
             <div className="pt-3 px-4">
               <h3 className="mb-0">FAQs</h3>
@@ -325,22 +319,19 @@ function UserDashboard() {
 
           </div>
           <div className=" d-flex flex-column pt-0">
-            {/* <div className="d-flex text-left">
-                                        <h5>FAQs</h5>
-                                    </div> */}
             <div id="accordion my-3 ">
               <Collapse accordion>
-                {faq &&
-                  faq.map((faqdata, i) => (
+                {faqsData &&
+                  faqsData.map((faqdata, i) => (
                     <Panel
                       header={
-                        <h4 className=" mb-0 ">{faqdata.questions}<i class="indicator glyphicon glyphicon-chevron-right  pull-right"></i></h4>
+                        <h4 className=" mb-0 ">{faqdata.question}<i class="indicator glyphicon glyphicon-chevron-right  pull-right"></i></h4>
                       }
                       key={i}
                     >
                       <p
                         className={`faq_${i}`}
-                        dangerouslySetInnerHTML={{ __html: faq.answer }}
+                        dangerouslySetInnerHTML={{ __html: faqdata.answer }}
                       ></p>
                     </Panel>
                   ))}
@@ -348,6 +339,7 @@ function UserDashboard() {
             </div>
 
           </div>
+          <Link className="more-link" to="/faqs">view more</Link>
         </div>
 
         {<div className="">

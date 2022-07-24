@@ -2,23 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { getResponse } from '../../api/apiResponse';
 import { apipaths } from '../../api/apiPaths';
 import { toast } from 'react-toastify';
-import FaqModal from './FaqModal';
+import UsefulIModal from './UsefulIModal';
 import MaterialTable from 'material-table';
 import { dateFormatHandler } from '../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
-import FilterComponent from '../inventory/reusableComponents/filters';
 import { makeStyles } from '@material-ui/core/styles';
+import fileImage from "../assets/file.png"
 import swal from 'sweetalert';
 import './index.css';
+import FilterComponent from '../inventory/reusableComponents/filters';
 
-function Faqs(props) {
-  const [faqModal, setFaqModal] = useState(false);
-  const [faqsMasterData, setFaqMasterData] = useState([]);
+function UsefulInformation(props) {
+  const [uiModal, setUIModal] = useState(false);
+  const [uiMasterData, setUIMasterData] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [faqsFilterData, setFaqFilterData] = useState([]);
+  const [uiFilterData, setUIFilterData] = useState([]);
   const [modalCode, setModalCode] = useState(0);
   const [editFormData, setEditFormData] = useState({});
-  const [faqId, setFaqId] = useState('');
+  const [uiId, setUIId] = useState('');
   const userType = JSON.parse(localStorage.user_details).userType;
 
   const columns = userType !== 'User' ? [
@@ -27,12 +28,20 @@ function Faqs(props) {
       field: 'id',
     },
     {
-      title: 'Question',
-      field: 'question',
+      title: 'Subject',
+      field: 'subject',
     },
     {
-      title: 'Answer',
-      field: 'answer',
+      title: 'Category',
+      field: 'category',
+    },
+    {
+      title: 'Link',
+      field: 'customlink',
+    },
+    {
+      title: 'Attachment',
+      field: 'customfile',
     },
     {
       title: 'Created At',
@@ -49,12 +58,20 @@ function Faqs(props) {
       field: 'id',
     },
     {
-      title: 'Question',
-      field: 'question',
+      title: 'Subject',
+      field: 'subject',
     },
     {
-      title: 'Answer',
-      field: 'answer',
+      title: 'Category',
+      field: 'category',
+    },
+    {
+      title: 'Link',
+      field: 'customlink',
+    },
+    {
+      title: 'Attachment',
+      field: 'customfile',
     },
     {
       title: 'Created At',
@@ -63,86 +80,109 @@ function Faqs(props) {
   ];
 
   useEffect(() => {
-    getFaqs();
+    getUsefulInformations();
   }, []);
 
 
-  const getFaqs = async () => {
-    const { data, error } = await getResponse(apipaths.faqList);
-    if (error) return toast.warn('Error in listing faq.');
-    data.data.faqs.map((faq) => {
-      faq.created_at = dateFormatHandler(faq.created_at);
-
-      faq.action = (
+  const getUsefulInformations = async () => {
+    const { data, error } = await getResponse(apipaths.uiList);
+    if (error) return toast.warn('Error in listing Useful Information.');
+    console.log(data);
+    data.data.usefulInformations.map((ui) => {
+      ui.created_at = dateFormatHandler(ui.created_at);
+      ui.customlink = ui.link !== undefined && ui.link !== null && ui.link !== '' ? (
+        <a
+          href={ui.link}
+          class="other-attachment"
+          shape="round"
+          size="small"
+          target="_blank"
+      >
+        {ui.link}
+      </a>
+      ) : '';
+      ui.customfile = ui.file !== undefined && ui.file !== null && ui.file !== '' ? (
+        <a
+          href={`${process.env.REACT_APP_BASE_URL}${ui.file}`}
+          class="other-attachment"
+          shape="round"
+          size="small"
+          download
+          target="_blank"
+      >
+        <img src={fileImage} />
+      </a>
+      ) : '';
+      ui.action = (
         <div className="text-center d-flex justify-content-center">
-          <Tooltip title="View Faq">
+          <Tooltip title="View Useful Information">
             <div>
               <i
                 className="fa fa-eye bg-secondary ml-3 table-icon"
-                onClick={() => openModel(faq, 1)}
+                onClick={() => openModel(ui, 1)}
               ></i>
             </div>
           </Tooltip>
-          <Tooltip title="Edit Faq">
+          <Tooltip title="Edit Useful Information">
             <div>
               <i
                 className="fa fa-pen bg-warning ml-2 table-icon"
-                onClick={() => openModel(faq, 2)}
+                onClick={() => openModel(ui, 2)}
               ></i>
             </div>
           </Tooltip>
-          <Tooltip title="Delete Faq">
+          <Tooltip title="Delete Useful Information">
             <div>
               <i
                 className="fa fa-trash bg-danger ml-2  table-icon"
-                onClick={() => deleteFaq(faq)}
+                onClick={() => deleteUI(ui)}
               ></i>
             </div>
           </Tooltip>
         </div>
       );
     });
-    setFaqMasterData(data.data.faqs);
+    setUIMasterData(data.data.usefulInformations);
   };
 
 
-  const onSubmit = async (faq) => {
-    const data = await getResponse(apipaths.addFaq, faq);
+  const onSubmit = async (ui) => {
+    const data = await getResponse(apipaths.addUI, ui);
     if (data.status === 200) {
       toast.success(data.data.message);
-      getFaqs();
-      setFaqModal(false);
+      getUsefulInformations();
+      setUIModal(false);
     } else {
       toast.error(data.data.message);
     }
   };
 
-  const openModel = (faq, code) => {
+  const openModel = (ui, code) => {
     setModalCode(code)
-    setEditFormData(faq);
-    if(faq !== null)
+    setEditFormData(ui);
+    if(ui !== null)
     {
-      setFaqId(faq.id);
+      setUIId(ui.id);
     }
-    setFaqModal(true);
+    setUIModal(true);
   };
 
-  const deleteFaq = async (faq) => {
+  const deleteUI = async (ui) => {
     swal({
       title: 'Are you sure?',
-      text: 'Press ok to Delete this faq',
+      text: 'Press ok to delete this Useful Information',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then(async (val) => {
       if (val) {
-        const { data } = await getResponse(apipaths.deleteFaq, {
-          delete_id: faq.id,
+        const { data } = await getResponse(apipaths.deleteUI, {
+          delete_id: ui.id,
         });
         const { success, message } = data;
         if (success) {
           toast.success(<div className="text-capitalize">{message}</div>);
-          getFaqs();
+          getUsefulInformations();
         }
       }
     });
@@ -150,22 +190,22 @@ function Faqs(props) {
 
   const handleFilterSearch = (val) => {
     setSearchValue(val);
-    const filteredData = faqsMasterData?.filter((item) =>
-      item?.question?.toLowerCase().includes(val.toLowerCase())
+    const filteredData = uiMasterData?.filter((item) =>
+      item?.subject?.toLowerCase().includes(val.toLowerCase())
     );
-    setFaqFilterData(filteredData);
+    setUIFilterData(filteredData);
   };
 
   const filterProps = userType !== 'User' ? {
-    heading: 'Faqs',
-    buttonOne: 'Add Faq',
+    heading: 'Useful Informations',
+    buttonOne: 'Add Useful Information',
     filterEnableButton: false,
     buttonOneHandler: () => {
       openModel({}, 0);
     },
     handleFilterSearch,
-  } :  {
-    heading: 'Faqs',
+  } : {
+    heading: 'Useful Informations',
     filterEnableButton: false,
     handleFilterSearch,
   };
@@ -188,14 +228,14 @@ function Faqs(props) {
   const classes = useStyles();
 
   return (
-    <div className={userType !== 'User' ? "faqs__window" : "user__faqs__window"}>
+    <div className={userType !== 'User' ? "ui__window" : "user__ui__window"}>
       <FilterComponent {...{ ...filterProps }} />
 
-      <div className="faqs__table">
+      <div className="ui__table">
         <MaterialTable
           className={classes.toolbarWrapper}
           title=""
-          data={ searchValue !== '' ? faqsFilterData : faqsMasterData}
+          data={ searchValue !== '' ? uiFilterData : uiMasterData}
           columns={columns}
           disableGutters={true}
           options={{
@@ -212,13 +252,13 @@ function Faqs(props) {
       </div>
 
       <div className="">
-        {faqModal && (
-          <FaqModal
-            setFaqModal={setFaqModal}
+        {uiModal && (
+          <UsefulIModal
+            setUIModal={setUIModal}
             editFormData={editFormData}
             modalCode = {modalCode}
-            faqId={faqId}
-            faqModal={faqModal}
+            uiId={uiId}
+            uiModal={uiModal}
             onSubmit={onSubmit}
           />
         )}
@@ -227,4 +267,4 @@ function Faqs(props) {
   );
 }
 
-export default Faqs;
+export default UsefulInformation;

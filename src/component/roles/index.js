@@ -13,7 +13,7 @@ import { Tooltip } from '@material-ui/core';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './style.css';
 
-function Ticket() {
+function Roles() {
   const roles = useSelector((state) => state.roles);
   const [operation, setOperation] = useState('add');
   const [roleModal, setRoleModal] = useState(false);
@@ -222,4 +222,4 @@ function Ticket() {
   );
 }
 
-export default Ticket;
+export default Roles;

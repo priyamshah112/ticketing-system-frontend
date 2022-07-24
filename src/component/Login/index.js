@@ -25,7 +25,6 @@ function Login(props) {
   const parsed = queryString.parse(window.location.search);
   const dispatch = useDispatch();
   const loginHandler = async (e) => {
-    console.log("in here" ,e)
     e.preventDefault && e.preventDefault();
     setError({ show: false });
     let { status_code, data, error } = await getResponse(apipaths.login, {
@@ -40,7 +39,6 @@ function Login(props) {
       });
     }
     dispatch(addUserDetailsAction(data?.data));
-    // console.log(data.data)
     if (data.data.userType === "Support") {
       props.history.push("/tickets");
     } else if (data.data.userType === "User") {
@@ -50,14 +48,21 @@ function Login(props) {
     }
   };
 
-
-  
-
   useEffect(() => {
     let token = localStorage.authToken;
-    if (token) {
-      window.location.href = '/dashboard';
+    if (token)
+    {
+      let userType = JSON.parse(localStorage?.user_details)?.userType;
+      if(userType !== 'User')
+      {
+        window.location.href = '/dashboard';
+      }
+      else
+      {
+        window.location.href = '/userdashboard';
+      }
     }
+    
     let cred = localStorage.credentials;
     if (cred) {
       cred = JSON.parse(cred);

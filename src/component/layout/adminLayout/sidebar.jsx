@@ -15,6 +15,7 @@ import { ReactComponent as Software } from "../../../images/admin-dashboard/Soft
 import { ReactComponent as Inventory } from "../../../images/admin-dashboard/Invoice.svg"
 import { ReactComponent as Roles } from "../../../images/admin-dashboard/Education.svg";
 import { ReactComponent as User } from "../../../images/admin-dashboard/Plus.svg"
+import { ReactComponent as Faq } from "../../../images/admin-dashboard/File.svg"
 import { ReactComponent as Logout } from "../../../images/admin-dashboard/Logout1.svg";
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -24,6 +25,7 @@ import { getResponse } from "../../../api/apiResponse";
 import { toast } from "react-toastify";
 import { apipaths } from "../../../api/apiPaths";
 import './style.css';
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     typography: {
@@ -33,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function IconTabs() {
+    const location = useLocation();
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const userType = JSON.parse(localStorage.user_details).userType;
@@ -42,6 +45,46 @@ function IconTabs() {
     useEffect(() => {
         getUserDetails();
     }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setActiveRoute();
+        }, 400)
+    }, []);
+    
+    const setActiveRoute = () => {
+        if(location.pathname === '/dashboard')
+        {
+            activeLinkHandler('dashboard');
+        }
+        else if(location.pathname === '/tickets') {
+            activeLinkHandler('tickets-main');
+        }
+        else if(location.pathname === '/inventory/software') {
+            toggleInventory();
+            activeLinkHandler('inv-software');
+        }
+        else if(location.pathname === '/inventory/hardware') {
+            toggleInventory();
+            activeLinkHandler('inv-hardware');
+        }
+        else if(location.pathname === '/role') {
+            toggleUsers();
+            activeLinkHandler("roles");
+        }
+        else if(location.pathname === '/user') {
+            toggleUsers();
+            activeLinkHandler("users");
+        }
+        else if(location.pathname === '/faqs') {
+            toggleUsers();
+            activeLinkHandler("faq-main");
+        }
+        else if(location.pathname === '/useful-information') {
+            toggleUsers();
+            activeLinkHandler("useful-information-main");
+        }
+    }
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -92,7 +135,7 @@ function IconTabs() {
         } else {
           toast.success(res.data.message)
         }
-      }
+    }
 
 
 
@@ -116,15 +159,6 @@ function IconTabs() {
                 >
                      <ProfileView setIsProfileViewActive={setIsProfileViewActive} firstName={firstName} lastName={lastName} middleName={middleName} email={email} country={country} phone={phone}/>
                 </Modal>
-                {/* <Modal
-                    title="Edit Profile"
-
-                    visible={isProfileUpdateActive}
-                    onCancel={() => setIsProfileUpdateActive(false)}
-                    footer={null}
-                >
-                    <ProfileUpdate setIsProfileUpdateActive={setIsProfileUpdateActive} />
-                </Modal> */}
 
                 <div className="profile__img__layout">
                     <div className="profile" onClick={handleClick}>
@@ -188,16 +222,6 @@ function IconTabs() {
                                         <span className="link-collapse">My Profile</span>
                                     </a>
                                 </li>
-                                {/* <li>
-                                    <a href="#edit"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setIsProfileUpdateActive(true);
-                                        }}
-                                    >
-                                        <span className="link-collapse">Edit Profile</span>
-                                    </a>
-                                </li> */}
                             </ul>
                         </Typography>
                     </Popover>
@@ -315,8 +339,8 @@ function IconTabs() {
                                             </div>
                                             <li
                                                 className="sidebar-item pl-0 pr-0"
-                                                id="user-role"
-                                                onClick={() => activeLinkHandler("user-role")}
+                                                id="roles"
+                                                onClick={() => activeLinkHandler("roles")}
                                             >
                                                 <span class="hiddenHoverIn">Roles</span>
                                                 <Link to="/role">
@@ -331,8 +355,8 @@ function IconTabs() {
                                             </div>
                                             <li
                                                 className="sidebar-item pl-0 pr-0"
-                                                id="user"
-                                                onClick={() => activeLinkHandler("user-role")}
+                                                id="users"
+                                                onClick={() => activeLinkHandler("users")}
                                             >
                                                 <span class="hiddenHoverIn">Users</span>
                                                 <Link to="/user">
@@ -348,18 +372,31 @@ function IconTabs() {
                                 </div>
 
                             </div>
-
                             :
                             ''
                     }
 
-                    {/* <li
+                    <li
                         className="sidebar-item"
                         id="faq-main"
                         onClick={() => activeLinkHandler("faq-main")}
                     >
-                        <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
-                    </li> */}
+                        <span class="hiddenHover">Faqs</span>
+                        <Link to={`/faqs`}>
+                            <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                        </Link>
+                    </li>
+                    
+                    <li
+                        className="sidebar-item"
+                        id="useful-information-main"
+                        onClick={() => activeLinkHandler("useful-information-main")}
+                    >
+                        <span class="hiddenHover">Information</span>
+                        <Link to={`/useful-information`}>
+                            <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
+                        </Link>
+                    </li>
 
 
                     <li

@@ -1,0 +1,225 @@
+@font-face {
+  font-family: Rubik;
+  src: url('../assets/fonts/Rubik-Regular.ttf');
+}
+
+.ui__window {
+  margin-left: 100px;
+  padding: 32px;
+}
+.user__ui__window {
+  padding: 32px 32px 0px 32px;
+}
+.ui__table {
+  width: 100%;
+}
+
+.faq-heading {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 40px;
+  color: #2d3142;
+}
+
+.search-bar {
+  width: 375px;
+  height: 50px;
+  left: 510px;
+  top: 264px;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+  color: #bec3ce;
+}
+
+.search-bar1 .form-control {
+  padding-left: 2.375rem;
+  background-color: #ffffff;
+}
+
+.search-icon {
+  color: #bec3ce;
+  position: absolute;
+  transform: translateY(-50%);
+  font-size: 14px;
+  left: 5px;
+  top: 26px;
+  z-index: 2;
+}
+
+.text-padding {
+  padding-left: 42px;
+  width: 375px;
+  height: 50px;
+  left: -13px;
+  position: absolute;
+  top: 35px;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 28px;
+  color: #bec3ce;
+  margin-top: -34px;
+}
+
+.filter {
+  width: 148.82px;
+  height: 48px;
+  /* position: absolute; */
+  left: -35px;
+  top: 14px;
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+}
+
+.filter > a {
+  color: #2d3142 !important;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 28px;
+}
+
+.filter-icon {
+  position: absolute;
+  left: 15px;
+  width: 20px;
+  top: 15px;
+  z-index: 1;
+}
+
+.filter-caret {
+  position: absolute;
+  color: black;
+  right: 8px;
+  top: 24px;
+}
+
+.add-faq {
+  position: relative;
+  height: 48px;
+  background: #bf5555;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+  text-align: center;
+  top: 6px;
+}
+
+.button-font {
+    color: #FFFFFF;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 16px;
+    text-align: center;
+    padding: 10px;
+    background: transparent;
+    border: none;
+}
+
+.export {
+  position: relative;
+  height: 48px;
+  background: #5c55bf;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+  top: 5px;
+  bottom: 0px;
+}
+
+.import {
+  height: 48px;
+  position: relative;
+  top: 5px;
+  background: #62bc46;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+}
+
+.ui-table {
+  background: #ffffff;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  padding: 0px;
+  border-radius: 20px 20px 0px 0px !important;
+}
+
+.MTableToolbar-root-7 {
+  display: none !important;
+}
+
+.MuiTableBody-root > td {
+  font-family: 'Rubik' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 28px;
+ 
+  color: #2d3142;
+}
+
+.MuiTableRow-head > th {
+  background-color: #5c55bf !important;
+  font-family: 'Rubik' !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 11px !important;
+  line-height: 28px;
+  color: #ffffff;
+  text-align: center !important;
+}
+
+.MuiTableCell-root a {
+  text-decoration: none;
+  color: inherit;
+  font-family: 'Rubik' !important ;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 13px;
+  line-height: 28px;
+  color: #2d3142;
+  text-align: start !important;
+}
+
+.MuiTableRow-root > td{
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Rubik'!important;
+    font-style: normal!important;
+    font-size: 13px!important;
+    line-height: 28px;
+    color: #2D3142;
+    text-align: center !important;
+
+}
+
+.filter-btn{
+    background: transparent;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #2D3142;
+    box-shadow: none !important;
+}
+.filter-faq{
+    position: relative;
+    top: 60px;
+    cursor: pointer;
+}
+.submit-btn{
+  background: #5c55bf;
+  color: white;
+}
+.user-faq-filter{
+  padding: 32px 32px 0px 32px;
+}

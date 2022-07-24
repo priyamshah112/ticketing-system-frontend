@@ -18,6 +18,7 @@ import { Tooltip } from '@material-ui/core';
 import swal from 'sweetalert';
 import { getUserLists } from '../../../actions/userActions';
 import FilterComponent from '../reusableComponents/filters';
+import queryString from 'query-string';
 import './style.css';
 
 function HardwareInventory() {
@@ -97,6 +98,11 @@ function HardwareInventory() {
           emptyValue: '-',
         },
         {
+          title: 'Hardware Type',
+          field: 'hardware_type',
+          emptyValue: '-',
+        },
+        {
           title: 'Location',
           field: 'location',
           emptyValue: '-',
@@ -152,6 +158,7 @@ function HardwareInventory() {
   const [isAssignInventoryModal, setIsAssignInventoryModal] = useState(false);
   const [sampleImport, setSampleImport] = useState('');
   const [userList, setUserList] = useState([]);
+  const { hardware_type,status } = queryString.parse(window.location.search);
 
   const { Option } = Select;
 
@@ -193,6 +200,18 @@ function HardwareInventory() {
   }, [id]);
 
   useEffect(() => {
+    if (hardware_type !== undefined && hardware_type !== '' && status !== undefined && status !== ''){
+      filterSubmitHandler(`hardware_type=${hardware_type}&status=${status}`, true);
+    }
+    else if (hardware_type !== undefined && hardware_type !== ''){
+      filterSubmitHandler(`hardware_type=${hardware_type}`, true);
+    }
+    else if (status !== undefined && status !== ''){
+      filterSubmitHandler(`status=${status}`, true);
+    }
+  }, [hardware_type,status]);
+
+  useEffect(() => {
     userListHandler();
   }, []);
 
@@ -217,7 +236,6 @@ function HardwareInventory() {
       data = data.filter((d) => parseInt(d.assigned_to) === parseInt(userid));
     }
     let mydata = inventoryDataModifier(data);
-    console.log(mydata);
     setInventories(mydata);
     setSampleImport(inventoryList.hardwareSampleImport);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -325,13 +343,17 @@ function HardwareInventory() {
     return mydata;
   };
 
-  const filterSubmitHandler = async (e) => {
-    e.preventDefault();
+  const filterSubmitHandler = async (e, custom = false) => {
+    e && e.preventDefault && e.preventDefault();
     let elem = $("#filter-inventory :input[value!='']")
       .filter(function (index, element) {
         return $(element).val() != '';
       })
       .serialize();
+
+    if (custom) {
+      elem = e;
+    }
     let path = {
       url: apipaths.hardwareInventoryList.url,
       method: apipaths.hardwareInventoryList.method,
@@ -467,6 +489,25 @@ function HardwareInventory() {
                         setFormdata({
                           ...formData,
                           asset_name: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-3 mt-3">
+                  <div>
+                    <div>
+                      <label className="mb-2">Hardware Type</label>
+                    </div>
+                    <input
+                      type={'text'}
+                      className="form-control"
+                      name="hardware_type"
+                      onChange={(e) => {
+                        setFormdata({
+                          ...formData,
+                          hardware_type: e.target.value,
                         });
                       }}
                     />

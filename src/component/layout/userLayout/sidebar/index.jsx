@@ -90,7 +90,6 @@ function Sidebar() {
         $(`.nav-item`).removeClass("active");
         $(`.sub-nav-item`).removeClass("active");
         $(`#${elem}`).addClass("active");
-        console.log($(`#${elem}`));
     };
 
 
@@ -218,10 +217,16 @@ function Sidebar() {
                     <div className="card-body">
                         <ul class="nav   flex-column">
                             <li class="nav-item items">
-                                <a class="" href={`/userdashboard`}>  <SvgIcon component={Dashboard} width="25" height="25" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />Dashboard</a>
+                                <Link to="/userdashboard">  <SvgIcon component={Dashboard} width="25" height="25" viewBox="0 -10 59 59" style={{ fontSize: '2.5rem ', width: '45px' }} />Dashboard</Link>
                             </li>
                             <li class="nav-item items ">
-                                <a class="" href={`/tickets`}><SvgIcon component={Tickets} width="25" height="25" viewBox="10 -10 59 59 " style={{ fontSize: '2rem', width: '45px' }} />Tickets</a>
+                                <Link to="/tickets" ><SvgIcon component={Tickets} width="25" height="25" viewBox="10 -10 59 59 " style={{ fontSize: '2rem', width: '45px' }} />Tickets</Link>
+                            </li>
+                            <li class="nav-item items ">
+                                <Link to="/useful-information"><SvgIcon component={Tickets} width="25" height="25" viewBox="10 -10 59 59 " style={{ fontSize: '2rem', width: '45px' }} />Information</Link>
+                            </li>
+                            <li class="nav-item items ">
+                                <Link to="/faqs"><SvgIcon component={Tickets} width="25" height="25" viewBox="10 -10 59 59 " style={{ fontSize: '2rem', width: '45px' }} />Faqs</Link>
                             </li>
 
                             <li class="nav-item items" onClick={() => localStorage.clear()}>

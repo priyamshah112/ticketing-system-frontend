@@ -17,7 +17,6 @@ const roleListAction = () => async (dispatch) => {
             role.role_access_string = role.role_access.map((access, i) => {
                 // eslint-disable-next-line no-useless-concat
                 let last = (role.role_access).length - 1 === i ? true : false;
-                console.log(last)
                 let str = access.manager.manager_name + ` (${access.mode})`;
                 if (last === false) {
                     str = str + " ,"

@@ -292,7 +292,6 @@ function User(props) {
       method: apipaths.listusers.method,
     };
     path.url = path.url.split('?')[0] + '?' + filterString;
-    // console.log(path);
     let { data } = await getResponse(path);
     path = '';
 
@@ -337,8 +336,6 @@ function User(props) {
     inventories: userList,
     handleFilterSearch,
   };
-
-  console.log(userData);
 
   return (
     <div className="user__window">
