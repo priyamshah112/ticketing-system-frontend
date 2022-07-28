@@ -16,7 +16,9 @@ import $ from "jquery"
 import { isCompositeComponent } from "react-dom/cjs/react-dom-test-utils.production.min";
 import DownloadIcon from '@mui/icons-material/Download';
 import './style.css';
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 
+import Typography from "@material-ui/core/Typography";
 function TicketDetails(props) {
 
     const [attachments, setAttachments] = useState([]);
@@ -119,9 +121,8 @@ function TicketDetails(props) {
 
     const fileHandler = (e) => {
         setFiles([]);
-        for (let i = 0; i < (e.target.files).length; i++)
-        {
-            setFiles([...files,e.target.files[i]]);
+        for (let i = 0; i < (e.target.files).length; i++) {
+            setFiles([...files, e.target.files[i]]);
         }
     }
 
@@ -145,6 +146,33 @@ function TicketDetails(props) {
     return (
         <div className="page-inner usetTicket">
             <div className="row">
+                <Breadcrumbs separator="›" aria-label="breadcrumb">
+                <Link underline="hover" color="#5C55BF" 
+                        //to={`/ticket`}
+                        to="/"                        
+                    >
+                        Home
+                    </Link>
+                    <Link underline="hover" color="#5C55BF" 
+                        //to={`/ticket`}
+                        to="/tickets"
+
+                       
+                        
+                    >
+                        Tickets
+                    </Link>
+                    <Link underline="hover"color="#5C55BF"
+                        to={`/ticket/details?ticketid=${ticket.id}`} 
+                        
+                    >
+                        ${ticket.id}
+                    </Link>
+                </Breadcrumbs>
+            </div>
+            <div className="row">
+
+
                 <div className="col-lg-4 col-12">
                     <TicketInformation ticket={ticket} closeTicketHandler={closeTicketHandler} />
                 </div>
@@ -188,17 +216,15 @@ function TicketDetails(props) {
                                             <div className="activity-image">
                                                 {
                                                     t.files && t.files.map((file, i) => {
-                                                        if(file.type.toLowerCase() === 'jpg' || file.type.toLowerCase() === 'png' || file.type.toLowerCase() === 'jpeg' || file.type.toLowerCase() === 'gif')
-                                                        {
+                                                        if (file.type.toLowerCase() === 'jpg' || file.type.toLowerCase() === 'png' || file.type.toLowerCase() === 'jpeg' || file.type.toLowerCase() === 'gif') {
                                                             return (
                                                                 <a href={`${process.env.REACT_APP_BASE_URL}${file.path}`} target="_blank">
                                                                     <img className="img_reply mr-3 mb-3" key={i} src={`${process.env.REACT_APP_BASE_URL}${file.path}`} width={100} height={100} />
                                                                 </a>
                                                             )
                                                         }
-                                                        else                               
-                                                        {
-                                                            return(
+                                                        else {
+                                                            return (
                                                                 <a
                                                                     href={`${process.env.REACT_APP_BASE_URL}${file.path}`}
                                                                     class="other-attachment"

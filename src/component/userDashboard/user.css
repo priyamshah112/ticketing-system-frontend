@@ -418,20 +418,20 @@ body {
 
 
 .react-calendar__viewContainer {
-  line-height: 23px;
-  font-size: 12px;
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  top: 32px;
-  position: relative;
-  text-align: center;
+  line-height: 23px  !important;
+  font-size: 12px  !important;
+  font-family: Rubik  !important;
+  font-style: normal  !important;
+  font-weight: 400  !important;
+  font-size: 15px  !important;
+  top: 32px  !important;
+  position: relative  !important;
+  text-align: center  !important;
 
 }
 
-.react-calendar__month-view__weekdays__weekday abbr {
-  text-decoration: none;
+.react-calendar__month-view__weekdays__weekday abbr  {
+  text-decoration: none  !important;
 
 }
 

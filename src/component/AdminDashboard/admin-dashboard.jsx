@@ -139,12 +139,12 @@ function AdminDashboard() {
                 <div className="row">
                     <UserRequest userRequest={userRequest} />
                     <HardInventory priorityTickets={priorityTickets} />
-                    <div className="col-12 col-xl mb-3 mb-sm-0">
+                    <div className="col-12 col-xl-12 mb-3 mb-sm-0">
                         <div className="row">
-                            <div className="col-12 col-md-6 col-lg-6 col-xl-12">
+                            <div className="col-12 col-md-6 col-lg-6 col-xl-6">
                                 <TrackByCountry />
                             </div>
-                            <div className="col-12 col-md-6 col-lg-6 col-xl-12">
+                            <div className="col-12 col-md-6 col-lg-6 col-xl-6">
                                 <TicketCalender />
                             </div>
                         </div>
