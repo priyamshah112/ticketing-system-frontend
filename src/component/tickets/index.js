@@ -147,7 +147,7 @@ function Ticket(props) {
 
       ticket.created_by = username;
       ticket.created_at = dateFormatHandler(ticket.created_at);
-      if (ticket.subject.length > 30)
+      if (ticket.subject !== null && ticket.subject.length > 30)
         ticket.subject = ticket.subject.substring(0, 30) + '...';
 
       //ticket.assigned_to = username;
