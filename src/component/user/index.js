@@ -122,7 +122,7 @@ function User(props) {
       );
 
       if (user.userType === 'Support') {
-        user.userType = 'Co-Admin';
+        user.userType = 'Support';
       }
       let userStatus = '';
       switch (user.enable) {
@@ -353,7 +353,7 @@ function User(props) {
                       <option value="">Choose User Type</option>
                       <option value="user">User</option>
                       <option value="admin">Admin</option>
-                      <option value="support">Co-Admin</option>
+                      <option value="support">Support</option>
                     </select>
                   </div>
                 </div>

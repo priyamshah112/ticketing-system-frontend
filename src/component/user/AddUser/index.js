@@ -98,7 +98,7 @@ function AddUser(props) {
             <option value={""}>Choose User Type</option>
             <option value={"user"}>User</option>
             <option value={"admin"}>Admin</option>
-            <option value={"support"}>Co-Admin</option>
+            <option value={"support"}>Support</option>
           </select>
           {/* </div> */}
         </div>
