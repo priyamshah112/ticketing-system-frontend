@@ -378,6 +378,7 @@ function IconTabs() {
                             ''
                     }
 
+                    { userType !== 'Support' && (
                     <li
                         className="sidebar-item"
                         id="faq-main"
@@ -388,7 +389,9 @@ function IconTabs() {
                             <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                         </Link>
                     </li>
+                    )}
                     
+                    { userType !== 'Support' && (
                     <li
                         className="sidebar-item"
                         id="useful-information-main"
@@ -399,6 +402,7 @@ function IconTabs() {
                             <SvgIcon component={Faq} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }}  />
                         </Link>
                     </li>
+                    )}
 
 
                     <li
