@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<title>Hardware Inventory</title>
+  <g id="Group_13" data-name="Group 13" transform="translate(-164 -410)">
+    <g id="Desktop" transform="translate(164 410)">
+      <rect id="Rectangle_337" data-name="Rectangle 337" width="24" height="24" fill="#fff" opacity="0"/>
+      <g id="Desktop-2" data-name="Desktop">
+        <path id="Path_401" data-name="Path 401" d="M10,0H0" transform="translate(7.5 21.5)" fill="none" stroke="#27723c" stroke-linecap="round" stroke-width="1.5"/>
+        <g id="Group_12" data-name="Group 12" transform="translate(0.695)">
+          <path id="Path_400" data-name="Path 400" d="M2.2,0,.823,1.405,0,2.248" transform="translate(9.305 17.252)" fill="none" stroke="#27723c" stroke-linecap="round" stroke-width="1.5"/>
+          <line id="Line_111" data-name="Line 111" x2="2.195" y2="2.248" transform="translate(12.305 17.252)" fill="none" stroke="#27723c" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        </g>
+        <rect id="Rectangle_338" data-name="Rectangle 338" width="13" height="20" rx="5" transform="translate(22.5 4.252) rotate(90)" fill="none" stroke="#030835" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>
