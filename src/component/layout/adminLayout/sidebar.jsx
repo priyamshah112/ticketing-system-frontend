@@ -317,14 +317,16 @@ function IconTabs() {
                             :
                             ''
                     }
-                    <li
-                        className="sidebar-item"
-                        id="user-sub-user"
-                        onClick={() => { activeLinkHandler("user-sub-user"); toggleUsers() }}
-                    >
-                        <span class="hiddenHover">Users</span>
-                        <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
-                    </li>
+                    { userType !== 'Support' && (
+                        <li
+                            className="sidebar-item"
+                            id="user-sub-user"
+                            onClick={() => { activeLinkHandler("user-sub-user"); toggleUsers() }}
+                        >
+                            <span class="hiddenHover">Users</span>
+                            <SvgIcon component={Solidusers} width="20" height="20" viewBox="0 -10 59 59" style={{ fontSize: '3.5rem ', width: '60px' }} />
+                        </li>
+                    )}
                     {
                         showUsers ?
                             <div className=" ">
