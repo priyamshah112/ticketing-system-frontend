@@ -102,7 +102,7 @@ export default function TicketRequestTabs(props) {
     SetDailySeriesData(DailySeriesData)
     SetDailyCatogoriesData(DailyCatogoriesData)
 
-    // console.log(DailySeriesData, WeekelyCatogoriesData)
+     console.log(DailySeriesData, WeekelyCatogoriesData)
 
   }, [])
 
@@ -142,10 +142,13 @@ export default function TicketRequestTabs(props) {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <TicketRequest seriesData={DailySeriesData} categories={DailyCatogoriesData} />
+          {DailySeriesData.length > 0 ? (<TicketRequest seriesData={DailySeriesData} categories={DailySeriesData} />) : (<p className="fs-18 text-center mt-2">No Data</p>)}
+
+           {/* <TicketRequest seriesData={DailySeriesData} categories={DailyCatogoriesData} />*/}
           </TabPanel>
           <TabPanel value={value} index={1}>
             {WeekelySeriesData.length > 0 ? (<TicketRequest seriesData={WeekelySeriesData} categories={WeekelyCatogoriesData} />) : (<p className="fs-18 text-center mt-2">No Data</p>)}
+
           </TabPanel>
           <TabPanel value={value} index={2}>
             {MonthlySeriesData.length > 0 ? (<TicketRequest seriesData={MonthlySeriesData} categories={MonthlyCatogoriesData} />) : (<p className="fs-18 text-center mt-2">No Data</p>)}

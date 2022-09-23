@@ -90,11 +90,11 @@ function AddUser(props) {
               setFormdata({ ...formdata, userType: e.target.value })
             }
           >
-            {formdata?.userType && (
+            {/*formdata?.userType && (
               <option selected value={formdata?.userType}>
                 {formdata?.userType}
               </option>
-            )}
+            )*/}
             <option value={""}>Choose User Type</option>
             <option value={"user"}>User</option>
             <option value={"admin"}>Admin</option>
