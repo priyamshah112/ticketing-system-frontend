@@ -317,7 +317,7 @@ function IconTabs() {
                             :
                             ''
                     }
-                    { userType !== 'Support' && (
+                    { userType !==  'Co-Admin' && (
                         <li
                             className="sidebar-item"
                             id="user-sub-user"
@@ -378,7 +378,7 @@ function IconTabs() {
                             ''
                     }
 
-                    { userType !== 'Support' && (
+                    { userType !==  'Co-Admin' && (
                     <li
                         className="sidebar-item"
                         id="faq-main"
@@ -391,7 +391,7 @@ function IconTabs() {
                     </li>
                     )}
                     
-                    { userType !== 'Support' && (
+                    { userType !==  'Co-Admin' && (
                     <li
                         className="sidebar-item"
                         id="useful-information-main"

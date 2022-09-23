@@ -121,8 +121,8 @@ function User(props) {
         </div>
       );
 
-      if (user.userType === 'Support') {
-        user.userType = 'Support';
+      if (user.userType === 'Co-Admin') {
+        user.userType = 'Co-Admin';
       }
       let userStatus = '';
       switch (user.enable) {
