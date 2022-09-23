@@ -29,7 +29,7 @@ function AddTicket(props) {
 
   useEffect(() => {
     let userListOnCoAdmin = userList?.filter(
-      (result) => result.userType === "Support"
+      (result) => result.userType === "Co-Admin"
     ); 
     setUSerListOnCoAdmin(userListOnCoAdmin);
   }, [userList]);
@@ -38,7 +38,7 @@ function AddTicket(props) {
     const { data } = await getResponse(apipaths.listusers, null);
     let userOptions = [];
     data.data?.user.map((user) => {
-      if(user.userType === "Support")
+      if(user.userType === "Co-Admin")
       {
         userOptions.push({
           value: user.user_details?.id,

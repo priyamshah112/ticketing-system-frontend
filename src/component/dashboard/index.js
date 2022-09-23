@@ -65,7 +65,7 @@ function Dashboard() {
                       </div>
 
                       {
-                        userDetails.userType !== "Support" && userDetails.userType !== "Staff" && (
+                        userDetails.userType !== "Co-Admin" && userDetails.userType !== "Staff" && (
                           <div className="flex justify-content-between">
                             <p>Customers</p>
                             <p>{data.totalCustomers}</p>
@@ -153,7 +153,7 @@ function Dashboard() {
 
 
                 {
-                  userDetails.userType !== "Support" && userDetails.userType !== "Staff" && (
+                  userDetails.userType !== "Co-Admin" && userDetails.userType !== "Staff" && (
                     <div className="col-md-6">
                       <div className="card">
                         <div className="card-head">
@@ -183,7 +183,7 @@ function Dashboard() {
 
 
                 {
-                  userDetails.userType !== "Support" && userDetails.userType !== "Staff" && (<div className="col-md-6">
+                  userDetails.userType !== "Co-Admin" && userDetails.userType !== "Staff" && (<div className="col-md-6">
                     <div className="card">
                       <div className="card-head">
                       </div>

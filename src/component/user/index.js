@@ -351,9 +351,9 @@ function User(props) {
                     </div>
                     <select className="form-control" name="userType">
                       <option value="">Choose User Type</option>
-                      <option value="user">User</option>
-                      <option value="admin">Admin</option>
-                      <option value="support">Support</option>
+                      <option value="User">User</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Co-Admin">Co-Admin</option>
                     </select>
                   </div>
                 </div>

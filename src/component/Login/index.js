@@ -39,7 +39,7 @@ function Login(props) {
       });
     }
     dispatch(addUserDetailsAction(data?.data));
-    if (data.data.userType === "Support") {
+    if (data.data.userType === "Co-Admin") {
       props.history.push("/tickets");
     } else if (data.data.userType === "User") {
       props.history.push("/userdashboard");

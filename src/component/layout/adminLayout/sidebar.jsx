@@ -229,7 +229,7 @@ function IconTabs() {
                 </div>
 
                 <ul className="sidebar__ul" style={{paddingLeft:0}}>
-                    {userType !== "Support" && (
+                    {userType !== "Co-Admin" && (
                         <li className="sidebar-item active"
                             id="dashboard"
                             onClick={() => activeLinkHandler("dashboard")}
