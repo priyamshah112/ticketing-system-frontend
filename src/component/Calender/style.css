@@ -45,12 +45,12 @@
 .react-calendar__month-view__weekdays__weekday{
 }
 
-.react-calendar__tile--active {
-    background-color: #6f48eb;
+.react-calendar__tile--active > abbr{
+    background-color: #ffffff;
     border-radius: 50%;
     width:20%  !important;
     font-weight: bold;
-    color: white;
+    color: #5C55BF;
 }
 
 .calender {
