@@ -19,7 +19,7 @@ export default [
   exact: true,
   permission: [
     Roles.ADMIN,
-    Roles.SUPPORT,
+    Roles.COADMIN,
     Roles.USER,
   ],
  },
@@ -39,7 +39,7 @@ export default [
   exact: true,
   permission: [
    Roles.ADMIN,
-   Roles.SUPPORT,
+   Roles.COADMIN,
    Roles.USER,
   ],
   },
@@ -50,7 +50,7 @@ export default [
   exact: true,
   permission: [
    Roles.ADMIN,
-   Roles.SUPPORT,
+   Roles.COADMIN,
   ],
   },
  {
@@ -60,7 +60,7 @@ export default [
   exact: true,
   permission: [
    Roles.ADMIN,
-   Roles.SUPPORT,
+   Roles.COADMIN,
    Roles.USER,
   ],
   },
@@ -71,7 +71,7 @@ export default [
   exact: true,
   permission: [
    Roles.ADMIN,
-   Roles.SUPPORT,
+   Roles.COADMIN,
    Roles.USER,
   ],
   },
@@ -82,7 +82,7 @@ export default [
   exact: true,
   permission: [
    Roles.ADMIN,
-   Roles.SUPPORT,
+   Roles.COADMIN,
    Roles.USER,
   ],
   },
@@ -93,7 +93,7 @@ export default [
   exact: true,
   permission: [
    Roles.ADMIN,
-   Roles.SUPPORT,
+   Roles.COADMIN,
    Roles.USER,
   ],
   },
