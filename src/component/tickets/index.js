@@ -15,6 +15,7 @@ import { dateFormatHandler } from '../../actions/commonAction';
 import { Tooltip } from '@material-ui/core';
 import FilterComponent from '../inventory/reusableComponents/filters';
 import './index.css';
+import Select from 'react-select';
 
 function Ticket(props) {
   const [ticketModal, setTicketModal] = useState(false);
@@ -26,13 +27,13 @@ function Ticket(props) {
   const [users, setUsers] = useState([]);
   const [isModal, setIsModal] = useState(false);
   const [ticketinfo, setTicketInfo] = useState([]);
-  const [supportUsers, setSupportUsers] = useState([]);
   const userDetails = useSelector((state) => state.userDetails);
   const userList = useSelector((state) => state.userList);
   const userType = JSON.parse(localStorage.user_details).userType;
   const { status } = queryString.parse(window.location.search);
   const [ticketDataOnStatus, setTicketDataOnStatus] = useState([]);
   const [ticketsMasterData, setTicketMasterData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState([]);
 
   const columns =
     userType !== 'User'
@@ -100,7 +101,7 @@ function Ticket(props) {
     {
       getTickets();
     }
-    getSupportUsers();
+    userListHandler();
   }, []);
 
   useEffect(() => {
@@ -129,7 +130,6 @@ function Ticket(props) {
 
     const { data, error } = await getResponse(path);
     if (error) return toast.warn('Error in listing tickets.');
-    setUsers(data.data.support);
     setTicketMasterData(data.data.tickets);
 
     data.data.tickets.map((ticket) => {
@@ -213,10 +213,20 @@ function Ticket(props) {
     });
 
     setTicketDataOnStatus(data.data.tickets)
-  }; const userListHandler = async () => {
+  }; 
+  const userListHandler = async () => {
     const { data } = await getResponse(apipaths.listusers, null);
-    const users = data.data.user;
-    dispatch(getUserLists(users));
+    let userOptions = [];
+    data.data?.user.map((user) => {
+      if(user.userType === "Co-Admin")
+      {
+        userOptions.push({
+          value: user.user_details?.id,
+          label: user.user_details?.firstName + " " + user.user_details?.lastName
+        })
+      }     
+    });
+    setUsers(userOptions);
   };
 
   const ViewTicketHandler = async (data) => {
@@ -230,7 +240,6 @@ function Ticket(props) {
     const { data, error } = await getResponse(apipaths.listticket);
     if (error) return toast.warn('Error in listing tickets.');
 
-    setUsers(data.data.support);
     setTicketMasterData(JSON.parse(JSON.stringify(data.data.tickets)));
 
     data.data.tickets.map((ticket) => {
@@ -324,12 +333,6 @@ function Ticket(props) {
     setTicketDataOnStatus(data.data.tickets);
   };
 
-  const getSupportUsers = async () => {
-    const { data, error } = await getResponse(apipaths.supportUsers);
-    if (error) return toast.warn('Error in listing Support Users.');
-    setSupportUsers(data.data.user);
-  };
-
   const ticketAssignHandler = (ticket) => {
     setEditTicketModel(true);
     setEditTicket(ticket);
@@ -352,12 +355,12 @@ function Ticket(props) {
   };
 
   const assignToSubmitHandler = async (userId) => {
+    console.log(userId);
     if (userId) {
       let { data } = await getResponse(apipaths.assignTicket, {
         ticket_id: ticketId,
-        assigned_to: parseInt(userId),
+        assigned_to: selectedOption?.value,
       });
-      userListHandler();
       setEditTicketModel(false);
       toast.success(data.message);
     }
@@ -434,8 +437,8 @@ function Ticket(props) {
                     <label className="mb-2">Assigned To</label>
                     <select name="assigned_to" className="form-control">
                       <option value="">Select Assigned To</option>
-                      {supportUsers.length &&
-                        supportUsers.map((user) => {
+                      {users.length &&
+                        users.map((user) => {
                           if (user?.id) {
                             return (
                               <option value={user?.id} key={user?.id}>
@@ -520,7 +523,7 @@ function Ticket(props) {
         <Modal
           title="Assign Ticket"
           visible={editTicketModel}
-          onOk={() => assignToSubmitHandler(false)}
+          onOk={() => assignToSubmitHandler(true)}
           onCancel={() => setEditTicketModel(false)}
         >
           <div className="col-12 mt-4">
@@ -528,18 +531,16 @@ function Ticket(props) {
           </div>
           <div className="col-12 mt-4">
             <label>Assign To</label>
-            <select
-              onChange={(e) => assignToSubmitHandler(e.target.value)}
-              className="form-control"
-            >
-              <option value="">Choose User</option>
-              {users &&
-                users.map((user) => (
-                  <option value={user.id} key={user.id}>
-                    {user.name}
-                  </option>
-                ))}
-            </select>
+            <Select 
+                name="assigned_to"
+                options={users}
+                className="w-100"
+                onChange={(value) => {
+                  setSelectedOption(value);
+                }}
+                value={selectedOption}
+                required
+              />
           </div>
         </Modal>
         <Modal
@@ -627,8 +628,8 @@ function Ticket(props) {
                       <label className="mb-2">Assigned To</label>
                       <select name="assigned_to" className="form-control">
                         <option value="">Select Assigned To</option>
-                        {supportUsers.length &&
-                          supportUsers.map((user) => {
+                        {users.length &&
+                          users.map((user) => {
                             if (user?.id) {
                               return (
                                 <option value={user?.id} key={user?.id}>
@@ -723,18 +724,16 @@ function Ticket(props) {
           </div>
           <div className="col-12 mt-4">
             <label>Assign To</label>
-            <select
-              onChange={(e) => assignToSubmitHandler(e.target.value)}
-              className="form-control"
-            >
-              <option value="">Choose User</option>
-              {users &&
-                users.map((user) => (
-                  <option value={user.id} key={user.id}>
-                    {user.name}
-                  </option>
-                ))}
-            </select>
+              <Select 
+                  name="assigned_to"
+                  options={users}
+                  className="w-100"
+                  onChange={(value) => {
+                    setSelectedOption(value);
+                  }}
+                  value={selectedOption}
+                  required
+              />
           </div>
         </Modal>
         <Modal
